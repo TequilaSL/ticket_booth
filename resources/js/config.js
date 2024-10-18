@@ -1,4 +1,4 @@
-export const siteURL = 'https://zoombus.net'
+export const siteURL = 'http://zoombus-web.tequilasl.com'
 export const client = {
     id: 2,
     secret: '6INHr6KFa9stUNgmHfdDAk1azAk212qbCojOE7H3'
@@ -13,7 +13,7 @@ export function notificationTypesPath(file) {
 }
 
 export const googleRecaptcha = {
-    siteKey: '6LcstsMUAAAAAGp_J4ZaetoDdTUjiRK3WgVY9Px7'
+    siteKey: '6LePvmEqAAAAAKRuX8pEnMfY_3qLoRZGxBujw3FE'
 }
 
 export const vehiclesPerPage = 10
