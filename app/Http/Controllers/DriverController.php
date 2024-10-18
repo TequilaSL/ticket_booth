@@ -38,7 +38,8 @@ class DriverController extends ValidationController
         // else {
         //     return false;
         // }
-        return 'drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension;
+        // return 'drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension;
+        return false;
     }
 
 
@@ -58,7 +59,9 @@ class DriverController extends ValidationController
         // else {
         //     return false;
         // }
-        return 'drivers/license/' . $realId . '/front_side.' . $extension->back_side_extension;
+        // return 'drivers/license/' . $realId . '/front_side.' . $extension->back_side_extension;
+        return false;
+
     }
 
     protected function vehicleFrontSide($id)

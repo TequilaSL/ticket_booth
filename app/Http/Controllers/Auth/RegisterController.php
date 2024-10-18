@@ -62,7 +62,7 @@ class RegisterController extends ValidationController
             $vals['password'] = 'required|string|min:5';
         }
         if (!$ignoreCaptcha) {
-            $vals['g-recaptcha-response'] = 'required';
+            $vals['g-recaptcha-response'] = 'nullable';
         }
         return $vals;
     }
