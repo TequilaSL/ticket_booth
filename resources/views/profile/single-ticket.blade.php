@@ -95,8 +95,7 @@
                 </div>
                 <div class="print-col print-col20">
                     <div class="ticket-print-block qr">
-                        <figure><img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl('tickets/'.md5($tickets['ticket_number']).'.png', now()->addMinutes(5)) }}" alt="Your QR Code"
-                                     class="img-fluid"></figure>
+                        <figure></figure>
                     </div>
                 </div>
             </div>
