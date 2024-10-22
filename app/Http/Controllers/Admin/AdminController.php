@@ -23,7 +23,7 @@ class AdminController extends ValidationController {
     public function __construct() {
         parent::__construct();
         $this->middleware('customer');
-        $this->middleware('admin');
+        // $this->middleware('admin');
     }
 
     protected static function countVehicleRequests() {

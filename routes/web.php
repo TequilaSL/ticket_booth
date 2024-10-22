@@ -204,7 +204,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/driver/vehicle/maxSeats', 'Driver\VehiclesController@seatsMax')->name('driver_vehicle_seats_max');
 
     //Admin
-    Route::get('/admin', 'Admin\AdminController@view')->name('admin_dashboard');
+    Route::get('/admin-panel', 'Admin\AdminController@view')->name('admin_dashboard');
+    
     Route::get('/admin/users/support-tickets', 'Admin\Users\SupportTicketsController@view')->name('admin_users_support_tickets');
     Route::get('/admin/users/support-tickets/{id}', 'Admin\Users\SupportTicketsController@viewEdit')->name('admin_users_support_ticket_edit');
     Route::get('/admin/users/administrators', 'Admin\Users\AdministratorsController@view')->name('admin_users_administrators');
@@ -249,7 +250,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/unsubscribe/{id}', 'NotificationController@unsubscribe')->name('unsubscribe');
 
     //test
-    Route::get('/test', 'PS5Controller@scheduled');
+    // Route::get('/test', 'PS5Controller@scheduled');
 
 
     //Admin AJAX
