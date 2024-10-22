@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class CreditCardController extends BookingController
 {
@@ -20,6 +21,7 @@ class CreditCardController extends BookingController
 
     public function confirm(Request $request) {
         $req = $request->only(['ConfirmRequest','signature']);
+        Log::info('credit card controller confirm');
 
         $fp = fopen(public_path()."CartuBankKEY.pem", "r");
         $cert = fread($fp, 8192);
@@ -36,6 +38,7 @@ class CreditCardController extends BookingController
         $xml = xml_parser_create('UTF-8');
         xml_parse_into_struct($xml, $req['ConfirmRequest'], $vals);
         xml_parser_free($xml);
+        Log::info('credit card controller confirm', [$resp]);
 
         foreach ($vals as $data) {
             if ($data['tag']=='TRANSACTIONID')
@@ -51,6 +54,7 @@ class CreditCardController extends BookingController
         }
 
         $resp = Arr::only($response, ['transaction_id','payment_id']);
+        $response['status'] == 'S';
         if($response['status'] == 'C' && !$this->checkOrder(Arr::only($response, ['transaction_id','amount']))) {
             $resp['status'] = 'DECLINED';
         }
@@ -60,11 +64,13 @@ class CreditCardController extends BookingController
         else {
             $resp['status'] = 'ACCEPTED';
         }
-
+        Log::info('credit card controller', [$resp]);
         return view('components.checkout.XMLResponse', $resp);
     }
 
     public function confirmTest($transaction_id, $amount) {
+        Log::info('credit card confirmTest', );
+
         $data['transaction_id'] = $transaction_id;
         $data['amount'] = $amount;
 
@@ -80,12 +86,16 @@ class CreditCardController extends BookingController
     }
 
     private function successOrder($transaction_id) {
+        Log::info('credit card successOrder', );
+
         BookingController::orderApprove($transaction_id);
         return true;
     }
 
 
     private function checkOrder($data) {
+        Log::info('credit card checkOrder', );
+
         if(strlen($data['transaction_id']) == 11) {
             if (Cart::where('transaction_id', $data['transaction_id'])->exists()) {
                 if(Sales::whereHas('cart', function ($q) use ($data) {
