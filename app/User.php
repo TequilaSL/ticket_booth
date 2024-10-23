@@ -123,19 +123,18 @@ class User extends Authenticatable {
     }
 
     public function photoExists() {
-        // if (Storage::disk('s3')->exists('users/' . $this->id . '.'.$this->extension)) {
-        //     return true;
-        // } else {
-        //     return false;
-        // }
-        return true;
+        if (Storage::disk('s3')->exists('users/' . $this->id . '.'.$this->extension)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function photoById($id) {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/' . $id . '.'.$extension)) {
-            return Storage::temporaryUrl('users/'.$id.'.'.$extension, now()->addMinutes(5));
+            return Storage::url('users/'.$id.'.'.$extension, now()->addMinutes(5));
         } else {
             return '/images/users/default.png';
         }
@@ -145,7 +144,7 @@ class User extends Authenticatable {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/small/' . $id . '.'.$extension)) {
-            return Storage::temporaryUrl('users/small/' . $id . '.'.$extension, now()->addMinutes(5));
+            return Storage::url('users/small/' . $id . '.'.$extension, now()->addMinutes(5));
         } else {
             return '/images/users/small/default.png';
         }
@@ -160,22 +159,19 @@ class User extends Authenticatable {
     }
 
     public function photo() {
-        // if (Storage::disk('s3')->exists('users/' . $this->id . '.' . $this->extension)) {
-        //     return Storage::temporaryUrl('users/' . $this->id . '.'.$this->extension, now()->addMinutes(5));
-        // } else {
-        //     return '/images/users/default.png';
-        // }
-        return '/images/users/default.png';
+        if (Storage::disk('s3')->exists('users/' . $this->id . '.' . $this->extension)) {
+            return Storage::url('users/' . $this->id . '.'.$this->extension);
+        } else {
+            return '/images/users/default.png';
+        }
     }
 
     public function photoSmall() {
-        // if (Storage::disk('s3')->exists('users/small/' . $this->id . '.' . $this->extension)) {
-        //     return Storage::temporaryUrl('users/small/' . $this->id . '.'.$this->extension, now()->addMinutes(5));
-        // } else {
-        //     return '/images/users/small/default.png';
-        // }
-        return '/images/users/small/default.png';
-        
+        if (Storage::disk('s3')->exists('users/small/' . $this->id . '.' . $this->extension)) {
+            return Storage::url('users/small/' . $this->id . '.'.$this->extension);
+        } else {
+            return '/images/users/small/default.png';
+        }        
     }
 
     public function driver() {

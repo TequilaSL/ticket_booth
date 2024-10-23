@@ -14,7 +14,7 @@
         "google/recaptcha": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
         "hashids/hashids": "^4.0",
-        "intervention/image": "*",
+        "intervention/image": "^3.9",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^9.5",
         "laravel/nexmo-notification-channel": "^3.0",

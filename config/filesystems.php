@@ -46,6 +46,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'temporary_url' => true,
         ],
 
         'public' => [
@@ -72,6 +73,7 @@ return [
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
+            'temporary_url' => true,
         ],
 
     ],
