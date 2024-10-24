@@ -219,7 +219,7 @@ class User extends Authenticatable {
     }
 
     public function balanceUpdates() {
-        return $this->hasMany('App\BalanceUpdate', 'user_id');
+        return $this->hasMany('App\BalanceUpdates', 'user_id');
     }
 
     public function country() {
