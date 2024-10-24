@@ -1,4 +1,6 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
+
 
 /*
  |--------------------------------------------------------------------------
@@ -16,5 +18,16 @@ mix.copy('resources/assets/fonts', 'public/fonts');
 mix.copy('resources/assets/images', 'public/images');
 mix.copy('resources/js/assets/images', 'public/images');
 mix.copy('resources/assets/js', 'public/js');
-mix.js('resources/js/app.js', 'public/js');
-
+mix.js('resources/js/app.js', 'public/js')
+   .sass('resources/sass/app.scss', 'public/css')
+   .vue()
+   .version()    
+   .webpackConfig({
+    resolve: {
+        fallback: {
+            crypto: require.resolve('crypto-browserify'),
+            vm: require.resolve('vm-browserify'),
+            stream: require.resolve('stream-browserify'),
+        }
+    }
+});;

@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Auth;
 use Endroid\QrCode\QrCode;
 use Illuminate\Support\Facades\Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
+use Illuminate\Support\Facades\Log;
 
 
 class BookingController extends ValidationController
@@ -208,6 +209,8 @@ class BookingController extends ValidationController
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
         }
+        Log::info('booking controller end', [$response]);
+
         return response()->json($response->original);
 
     }
@@ -256,7 +259,8 @@ class BookingController extends ValidationController
         if ($sale->exists()) {
             $first = $sale->first()->toArray();
             $searchForDriver = array_search(1, array_column($first['balance_updates'], 'type'));
-            $amountDriver = $first['balance_updates'][$searchForDriver]['amount'];
+            $amountDriver = 5;
+            // $amountDriver = $first['balance_updates'][$searchForDriver]['amount'];
             if (Carbon::now()->diffInHours(Carbon::parse($first['routes']['departure_date'] . ' ' . $first['routes']['departure_time'])) <= 24) {
                 $amountForDriver = $amountDriver * 0.14;
                 $amountUs = $amountDriver * 0.06;
@@ -361,6 +365,8 @@ class BookingController extends ValidationController
 
     protected function orderApprove($transaction_id, $type = 'card')
     {
+        Log::info('booking controller order approve', );
+
         if ($type == 'paypal') {
             $transactionField = 'paypal_transaction_id';
         }
