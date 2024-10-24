@@ -118,7 +118,7 @@ class VehiclesController extends AdminController {
 
     public function approve(Request $request) {
         $d = $request->only('id');
-        $this->vehicleNotification(1, $d['id']);
+        // $this->vehicleNotification(1, $d['id']);
         Vehicle::where('id', $d['id'])->update(['status' => 1]);
         return response()->json(['status' => 1, 'text' => Lang::get('alerts.success_vehicle_approve')]);
     }
@@ -144,10 +144,10 @@ class VehiclesController extends AdminController {
         if(isset($d['reason']) && !empty($d['reason'])) {
             $vWithUser = Vehicle::with('user')->whereId($d['id'])->first()->toArray();
             $rejRes = $this->rejectionReason($vWithUser['user']['email'], $vWithUser['user']['name'], $vWithUser['user_id'], $d['reason']);
-            $this->vehicleNotification($d['status'], $d['id'], $rejRes['id'], $rejRes['latest_message']);
+            // $this->vehicleNotification($d['status'], $d['id'], $rejRes['id'], $rejRes['latest_message']);
         }
         else {
-            $this->vehicleNotification($d['status'], $d['id']);
+            // $this->vehicleNotification($d['status'], $d['id']);
         }
         Vehicle::where('id', $d['id'])->update(['status' => $d['status'], 'seat_positioning' => $d['seat_positioning']]);
         return response()->json(['status' => 1, 'text' => Lang::get('alerts.success_vehicle_change')]);
