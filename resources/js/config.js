@@ -1,4 +1,4 @@
-export const siteURL = 'http://zoombus-web.tequilasl.com'
+export const siteURL = 'http://localhost/'
 export const client = {
     id: 2,
     secret: '6INHr6KFa9stUNgmHfdDAk1azAk212qbCojOE7H3'
