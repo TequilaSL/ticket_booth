@@ -13,12 +13,12 @@ class LoginController extends Controller {
     public function view() {
         $agent = new Agent();
         $data['title'] = \Lang::get('titles.login');
-        if($agent->isMobile()) {
+        // if($agent->isMobile()) {
             return view('mobile.login', $data);
-        }
-        else {
-            abort(404);
-        }
+        // }
+        // else {
+            // abort(404);
+        // }
     }
 
 }

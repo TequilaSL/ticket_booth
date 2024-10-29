@@ -47,13 +47,13 @@ return [
     ],
 
     'google-recaptcha' => [
-        'secret' => 'AIzaSyDc0yP6eix_poD9LVy8A1CBdTnVkQcE0gY',
-        'site' => '6LePvmEqAAAAAKRuX8pEnMfY_3qLoRZGxBujw3FE'
+        'secret' => '6Lcps2cqAAAAAJpNqcSD3vRMvHzBygNoISX6gW3w',
+        'site' => '6Lcps2cqAAAAAI9_W2IQJ2wnr6D7DJY67bMsHO67'
     ],
 
     'google-maps' => [
         'project_id' => 'zoombus-438705',
-        'key' => 'AIzaSyDc0yP6eix_poD9LVy8A1CBdTnVkQcE0gY',
+        'key' => 'AIzaSyDBdn9qJ2AxhtOCyn0JLyGLdBvRVkmsAs8',
     ],
 
     'paypal' => [
