@@ -476,8 +476,10 @@ Router.beforeEach((to, from, next) => {
         localStorage.setItem('locale', automaticLoginLocale)
     }
     if(automaticLoginResponse) {
+        console.log('beforeEach routes automaticLoginResponse',automaticLoginResponse);
         localStorage.setItem('user', automaticLoginResponse)
     }
+    console.log('beforeEach routes automaticLoginResponse outside',automaticLoginResponse, to);
 
     if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
         next({name: 'login'})

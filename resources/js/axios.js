@@ -12,6 +12,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('user')
+    // const token = 'b1WGE6b3udGxSk6E0LGcIHJEfrzOxVJXWBrCsB2B'
+    
+    console.log('token ___________', token);
+    
     if (token) {
       const parsed = JSON.parse(token)
       config.headers.Authorization = 'Bearer ' + parsed.access_token
@@ -30,10 +34,18 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   response => {
+    console.log('res________', response);
+    
+    alert("axios res" , response);
+
     return response
   },
   error => {
     const originalRequest = error.config
+    console.log('res error________', error);
+
+    alert("axios", originalRequest);
+
     const apiFind = api.find(o => o.name === 'refreshToken')
     if (error.response.status === 401 && originalRequest.url === apiFind.url) {
       store.dispatch('logout')

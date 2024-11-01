@@ -1,7 +1,7 @@
 export const siteURL = 'http://127.0.0.1:8000'
 export const client = {
-    id: 4,
-    secret: 'nA01iPRkSWDdKCwIEknp8HKK9BDsRcZfRDaWvWZJ'
+    id: 6,
+    secret: 'pp7RPra5XJeUfovawxl0fKMOmk2sxMuKSvU8p9DH'
 }
 
 export function imagesPathRewrite(file) {

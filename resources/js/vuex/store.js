@@ -35,6 +35,8 @@ export default new Vuex.Store({
     },
     mutations: {
         setUserData(state, userData) {
+            console.log('store set data ', userData);
+
             state.user = userData
             state.isLoggedIn = true
             localStorage.setItem('isLoggedIn', 'true')
@@ -80,20 +82,35 @@ export default new Vuex.Store({
     },
     actions: {
         async apiCall({commit}, payload) {
+            console.log('payload.commit 01 ___store________',payload, payload.data);
+            alert("payload.commit", payload);
+
             try {
                 const apiFind = api.find(o => o.name === payload.actionName)
                 let response
+                console.log('api find_store__________',apiFind);
+                // alert("api find", payload);
+
+
                 switch (apiFind.method) {
                     case 'GET':
                         response = await axios.get(apiFind.url, {params: payload.data})
                         break
                     case 'POST':
-                        response = await axios.post(apiFind.url, payload.data)
+                        console.log('post method___________',apiFind.url, payload.data);
+
+                            response = await axios.post(apiFind.url, payload.data)
+                        console.log('post method___________',response);
                         break
                 }
-                if (payload.commit) {
-                    commit(payload.commit, response.data)
-                }
+                console.log('payload.commit ___________',payload.commit,  payload.data.get('_token'));
+                // alert("payload.commit", payload.commit);
+
+
+                // console.log('payload.actionName ___________',payload.actionName, payload.actionName === 'login');
+
+                // alert("payload.actionName", payload.actionName, payload.actionName === 'login');
+
                 if (payload.actionName === 'login') {
                     let customFormData = new FormData()
                     const apiFindLogin = api.find(o => o.name === 'loginForWeb')
@@ -102,6 +119,9 @@ export default new Vuex.Store({
                     customFormData.append('password', payload.data.get('password'))
                     await axios.post(apiFindLogin.url, customFormData)
                 }
+                alert("payload.onSuccessRedirect", payload.onSuccessRedirect);
+                console.log('onSuccessRedirect ___________',payload.onSuccessRedirect);
+
                 if (payload.onSuccessRedirect) {
                     let redirectObject
                     if (payload.onSuccessRedirectQuery) {
@@ -114,10 +134,16 @@ export default new Vuex.Store({
                             name: payload.onSuccessRedirect
                         }
                     }
+                    console.log('router ___________',redirectObject);
+
                     await router.push(redirectObject)
                 }
                 return response
             } catch (error) {
+                console.log('Promise.reject ___________',error);
+
+                alert("Promise.reject", error);
+
                 return Promise.reject(error)
             }
         },
