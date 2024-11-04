@@ -13,12 +13,12 @@ class RegisterController extends Controller {
     public function view() {
         $agent = new Agent();
         $data['title'] = \Lang::get('titles.register');
-        if($agent->isMobile()) {
+        // if($agent->isMobile()) {
             return view('mobile.register', $data);
-        }
-        else {
-            abort(404);
-        }
+        // }
+        // else {
+        //     abort(404);
+        // }
     }
 
 }

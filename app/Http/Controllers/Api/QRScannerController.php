@@ -11,7 +11,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\LaravelLocalization;
-
+use Illuminate\Support\Facades\Log;
 class QRScannerController extends Controller {
 
     public function balanceUpdate($sale_id) {
@@ -27,6 +27,8 @@ class QRScannerController extends Controller {
 
 
     private function validateTicket($ticket_number, $method, $userId, $locale) {
+        Log::info('validateTicket in QR scanner controller', [$ticket_number, $method, $userId, $locale]);
+
         $sale_check = Sales::whereHas('routes', function ($q) use ($userId) {
             $q->where('user_id', $userId)->nowOrFuture();
         })->whereHas('routes.drivers', function ($q) {
@@ -75,6 +77,7 @@ class QRScannerController extends Controller {
     }
 
     public function parseQR(Request $request) {
+        Log::info('parseQR in QR scanner controller', [$request]);
         if ($request->lang) {
             (new LaravelLocalization())->setLocale($request->lang);
         }
@@ -90,6 +93,8 @@ class QRScannerController extends Controller {
 
 
     public function parseTicket(Request $request) {
+        Log::info('parseTicket in QR scanner controller', [$request]);
+
         if ($request->lang) {
             (new LaravelLocalization())->setLocale($request->lang);
         }

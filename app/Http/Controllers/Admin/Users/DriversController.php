@@ -41,10 +41,10 @@ class DriversController extends AdminController {
         if(isset($d['reason']) && !empty($d['reason'])) {
             $user = User::whereId($d['user_id'])->first()->toArray();
             $rejRes = $this->rejectionReason($user['email'], $user['name'], $d['user_id'], $d['reason']);
-            $this->licenseNotification($d['status'], $d['user_id'], $rejRes['id'], $rejRes['latest_message']);
+            // $this->licenseNotification($d['status'], $d['user_id'], $rejRes['id'], $rejRes['latest_message']);
         }
         else {
-            $this->licenseNotification($d['status'], $d['user_id']);
+            // $this->licenseNotification($d['status'], $d['user_id']);
         }
         Driver::where('user_id', $d['user_id'])->update(['status' => $d['status']]);
         return response()->json(['status' => 1, 'text' => Lang::get('alerts.success_info_update')]);

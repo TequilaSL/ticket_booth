@@ -81,11 +81,11 @@
 @if(!Auth::check() || Request::routeIs(['support','register_as_partner','register_as_driver','support']))
     <script>
         var onloadCallback = function () {
-            @if(!Auth::check())
-            grecaptcha.render('register_element', {
-                'sitekey': '{{ config('services.google-recaptcha.site') }}'
-            });
-            @endif
+            // @if(!Auth::check())
+            // grecaptcha.render('register_element', {
+            //     'sitekey': '{{ config('services.google-recaptcha.site') }}'
+            // });
+            // @endif
             @if(Request::routeIs('register_as_partner'))
             grecaptcha.render('register_partner_element', {
                 'sitekey': '{{ config('services.google-recaptcha.site') }}'

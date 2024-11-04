@@ -93,7 +93,7 @@
                     <div class="info d-flex">
                         <div class="info1">
                             <div class="img1"><img
-                            src="{{ Storage::url('cities/'.$result['cities_from']['id'].'.'.$result['cities_from']['extension'], now()->addMinutes(5)) }}"                                    src="c"
+                            src="{{ Storage::url('cities/'.$result['cities_from']['id'].'.'.$result['cities_from']['extension']) }}"
                                     alt="{{ $result['vehicles']['type'] }}" class="img-fluid"></div>
                             <div class="txt1">{{ $result['cities_from']['translated']['name'] }}</div>
                             <div class="txt2">
@@ -111,8 +111,8 @@
                         </div>
                         <div class="info3">
                             <div class="img1"><img
-                            src="{{ Storage::url('cities/'.$result['cities_to']['id'].'.'.$result['cities_to']['extension'], now()->addMinutes(5)) }}"                                    src="n"
-                                    alt="{{ $result['cities_to']['translated']['name'] }}" class="img-fluid">
+                            src="{{ Storage::url('cities/'.$result['cities_to']['id'].'.'.$result['cities_to']['extension']) }}"
+                            alt="{{ $result['cities_to']['translated']['name'] }}" class="img-fluid">
                             </div>
                             <div class="txt1">{{ $result['cities_to']['translated']['name'] }}</div>
                             <div class="txt2">
@@ -157,7 +157,7 @@
                                 <div class="col-md-6">
                                     <div class="ticket-info-service clearfix">
                                         <figure><img
-                                               src="{{ Storage::url('vehicle-features/'.$specs['pivot']['vehicle_specification_id'].'.'.$specs['extension'], now()->addMinutes(5)) }}"
+                                               src="{{ Storage::url('vehicle-features/'.$specs['pivot']['vehicle_specification_id'].'.'.$specs['extension']) }}"
                                                  src="no"
                                                 alt="{{ $specs['translated']['name'] }}" class="img-fluid">
                                         </figure>

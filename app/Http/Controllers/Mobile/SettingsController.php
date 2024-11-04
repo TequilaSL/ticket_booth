@@ -13,12 +13,12 @@ class SettingsController extends Controller {
     public function view() {
         $agent = new Agent();
         $data['title'] = \Lang::get('titles.profile');
-        if($agent->isMobile()) {
+        // if($agent->isMobile()) {
             return view('mobile.profile.settings', $data);
-        }
-        else {
-            abort(404);
-        }
+        // }
+        // else {
+        //     abort(404);
+        // }
     }
 
 }

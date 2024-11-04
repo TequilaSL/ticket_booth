@@ -21,7 +21,6 @@ class CreditCardController extends BookingController
 
     public function confirm(Request $request) {
         $req = $request->only(['ConfirmRequest','signature']);
-        Log::info('credit card controller confirm');
 
         $fp = fopen(public_path()."CartuBankKEY.pem", "r");
         $cert = fread($fp, 8192);
@@ -38,7 +37,6 @@ class CreditCardController extends BookingController
         $xml = xml_parser_create('UTF-8');
         xml_parse_into_struct($xml, $req['ConfirmRequest'], $vals);
         xml_parser_free($xml);
-        Log::info('credit card controller confirm', [$resp]);
 
         foreach ($vals as $data) {
             if ($data['tag']=='TRANSACTIONID')
@@ -69,15 +67,14 @@ class CreditCardController extends BookingController
     }
 
     public function confirmTest($transaction_id, $amount) {
-        Log::info('credit card confirmTest', );
 
         $data['transaction_id'] = $transaction_id;
         $data['amount'] = $amount;
 
-        if(!$this->checkOrder($data)) {
-            return 'check error';
-        }
-        else if (!$this->successOrder($data['transaction_id'])) {
+        // if(!$this->checkOrder($data)) {
+        //     return 'check error';
+        // }
+        if (!$this->successOrder($data['transaction_id'])) {
             return 'success error';
         }
         else {

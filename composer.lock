@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85652344853afc5868bc4b3cdf43229b",
+    "content-hash": "10e2785dd1bd951dd31aaf1724204e78",
     "packages": [
         {
             "name": "appstract/laravel-blade-directives",
