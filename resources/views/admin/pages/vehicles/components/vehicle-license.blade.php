@@ -18,7 +18,7 @@
                     <div class="form-group">
                         <label class="col-md-3 col-xs-5 control-label">{{ Lang::get('admin.front_side') }}:</label>
                         <div class="col-md-9 col-xs-7">
-                            <img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl('drivers/vehicles/'.$vehicle['id'].'/front_side.'.$vehicle['front_side_extension'], now()->addMinutes(5)) }}"
+                            <img src="{{ \Illuminate\Support\Facades\Storage::url('drivers/vehicles/'.$vehicle['id'].'/front_side.'.$vehicle['front_side_extension']) }}"
                                  class="img-fluid max-100" alt="Front side">
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label class="col-md-3 col-xs-5 control-label">{{ Lang::get('admin.back_side') }}:</label>
                         <div class="col-md-9 col-xs-7">
-                            <img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl('drivers/vehicles/'.$vehicle['id'].'/back_side.'.$vehicle['back_side_extension'], now()->addMinutes(5)) }}"
+                            <img src="{{ \Illuminate\Support\Facades\Storage::url('drivers/vehicles/'.$vehicle['id'].'/back_side.'.$vehicle['back_side_extension']) }}"
                                  class="img-fluid max-100" alt="Back side">
                         </div>
                     </div>

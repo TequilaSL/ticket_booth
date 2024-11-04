@@ -47,7 +47,7 @@ class SupportController extends ValidationController
             'name' => 'required',
             'email' => 'required|email',
             'message' => 'required',
-            'g-recaptcha-response' => 'required',
+            'g-recaptcha-response' => 'nullable',
         ];
         if ($type == 'reply') {
             unset($fields['name']);
@@ -78,15 +78,16 @@ class SupportController extends ValidationController
 
     public function action(Request $request)
     {
-        $data = $request->only('name', 'email', 'message', 'g-recaptcha-response');
+        // $data = $request->only('name', 'email', 'message', 'g-recaptcha-response');
+        $data = $request->only('name', 'email', 'message');
         $response = ValidationController::response($this->validator($data), Lang::get('validation.support_successfully_sent'));
         if ($response->original['status'] == 1) {
-            if (!$this->validateRecaptcha($data['g-recaptcha-response'])) {
-                $response->original = ['status' => 0, 'text' => \Lang::get('validation.recaptcha_verification_failed')];
-            } else {
+            // if (!$this->validateRecaptcha($data['g-recaptcha-response'])) {
+            //     $response->original = ['status' => 0, 'text' => \Lang::get('validation.recaptcha_verification_failed')];
+            // } else {
                 unset($data['g-recaptcha-response']);
                 $this->store($data);
-            }
+            // }
         }
         return response()->json($response->original);
     }

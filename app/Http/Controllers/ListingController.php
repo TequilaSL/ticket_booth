@@ -179,7 +179,7 @@ class ListingController extends Controller {
                 $vehicleImages = json_decode($val['vehicles']['images_extension'], true);
                 foreach($vehicleImages as $k => $image) {
                     if (Storage::disk('s3')->exists('drivers/vehicles/'.$val['vehicle_id'].'/'.$image)) {
-                        $data['results']['vehicle_images'][$k] = Storage::temporaryUrl('drivers/vehicles/'.$val['vehicle_id'].'/'.$image, now()->addMinutes(5));
+                        $data['results']['vehicle_images'][$k] = Storage::url('drivers/vehicles/'.$val['vehicle_id'].'/'.$image);
                     }
                 }
             }
@@ -342,7 +342,7 @@ class ListingController extends Controller {
         $vehicleImages = json_decode($data['result']['vehicles']['images_extension'], true);
         foreach($vehicleImages as $k => $image) {
             if (Storage::disk('s3')->exists('drivers/vehicles/'.$data['result']['vehicle_id'] .'/'.$image)) {
-                $data['result']['vehicle_images'][$k] = Storage::temporaryUrl('drivers/vehicles/'.$data['result']['vehicle_id'].'/'.$image, now()->addMinutes(5));
+                $data['result']['vehicle_images'][$k] = Storage::url('drivers/vehicles/'.$data['result']['vehicle_id'].'/'.$image);
             }
         }
 

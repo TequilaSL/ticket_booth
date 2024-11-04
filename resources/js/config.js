@@ -1,7 +1,7 @@
-export const siteURL = 'https://zoombus.net'
+export const siteURL = 'http://127.0.0.1:8000'
 export const client = {
-    id: 2,
-    secret: '6INHr6KFa9stUNgmHfdDAk1azAk212qbCojOE7H3'
+    id: 12,
+    secret: 'cN1IuLmM4dy7DJUBN72pVaZt8oKXDpd1BCcSaikN'
 }
 
 export function imagesPathRewrite(file) {
@@ -13,7 +13,7 @@ export function notificationTypesPath(file) {
 }
 
 export const googleRecaptcha = {
-    siteKey: '6LcstsMUAAAAAGp_J4ZaetoDdTUjiRK3WgVY9Px7'
+    siteKey: '6LePvmEqAAAAAKRuX8pEnMfY_3qLoRZGxBujw3FE'
 }
 
 export const vehiclesPerPage = 10

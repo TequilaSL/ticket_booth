@@ -41,7 +41,7 @@ class RegisterAsDriverController extends RegisterController {
         $data = $this->invokeDriverPartner($request, 'driver')['data'];
         if ($response->original['status'] == 1) {
             $data['user']['password'] = Hash::make($data['user']['password']);
-            $data['user']['locale'] = config('app.locale');
+            // $data['user']['locale'] = config('app.locale');
             $reg = RegisterController::store($data['user']);
             $data['driver']['user_id'] = $reg->id;
             $this->store($data);

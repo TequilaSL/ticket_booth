@@ -42,7 +42,7 @@ class RegisterAsPartnerController extends RegisterController {
         $data = $this->invokeDriverPartner($request, 'partner')['data'];
         if ($response->original['status'] == 1) {
             $data['user']['password'] = Hash::make($data['user']['password']);
-            $data['user']['locale'] = config('app.locale');
+            // $data['user']['locale'] = config('app.locale');
             $reg = RegisterController::store($data['user']);
             $data['partner']['user_id'] = $reg->id;
             $this->store($data);

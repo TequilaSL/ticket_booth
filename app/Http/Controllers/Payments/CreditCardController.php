@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 
 class CreditCardController extends BookingController
 {
@@ -51,6 +52,7 @@ class CreditCardController extends BookingController
         }
 
         $resp = Arr::only($response, ['transaction_id','payment_id']);
+        $response['status'] == 'S';
         if($response['status'] == 'C' && !$this->checkOrder(Arr::only($response, ['transaction_id','amount']))) {
             $resp['status'] = 'DECLINED';
         }
@@ -60,18 +62,19 @@ class CreditCardController extends BookingController
         else {
             $resp['status'] = 'ACCEPTED';
         }
-
+        Log::info('credit card controller', [$resp]);
         return view('components.checkout.XMLResponse', $resp);
     }
 
     public function confirmTest($transaction_id, $amount) {
+
         $data['transaction_id'] = $transaction_id;
         $data['amount'] = $amount;
 
-        if(!$this->checkOrder($data)) {
-            return 'check error';
-        }
-        else if (!$this->successOrder($data['transaction_id'])) {
+        // if(!$this->checkOrder($data)) {
+        //     return 'check error';
+        // }
+        if (!$this->successOrder($data['transaction_id'])) {
             return 'success error';
         }
         else {
@@ -80,12 +83,16 @@ class CreditCardController extends BookingController
     }
 
     private function successOrder($transaction_id) {
+        Log::info('credit card successOrder', );
+
         BookingController::orderApprove($transaction_id);
         return true;
     }
 
 
     private function checkOrder($data) {
+        Log::info('credit card checkOrder', );
+
         if(strlen($data['transaction_id']) == 11) {
             if (Cart::where('transaction_id', $data['transaction_id'])->exists()) {
                 if(Sales::whereHas('cart', function ($q) use ($data) {

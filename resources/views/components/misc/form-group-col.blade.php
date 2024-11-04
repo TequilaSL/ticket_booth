@@ -124,7 +124,7 @@
                                                 @if(Storage::disk('s3')->exists($ip))
                                                     <div class="{{ $image_class ?? 'profile-license-img' }}">
                                                         <div class="hovered-bg hidden"></div>
-                                                        <img src="{{ Storage::temporaryUrl($ip, now()->addMinutes(5)) }}" alt="{{ $label.' '.$c ?? null }}">
+                                                        <img src="{{ Storage::url($ip) }}" alt="{{ $label.' '.$c ?? null }}">
                                                         <div class="hidden hovered-single-image">
                                                             <i class="fa fa-trash delete-veh-image"
                                                                data-path="{{ $ip }}"></i>
@@ -136,7 +136,7 @@
                                         </div>
                                     @elseif(Storage::disk('s3')->exists($image_path))
                                         <div class="{{ $image_class ?? 'profile-license-img' }}">
-                                            <img src="{{ Storage::temporaryUrl($image_path, now()->addMinutes(5)) }}" alt="{{ $label ?? null }}">
+                                            <img src="{{ Storage::url($image_path) }}" alt="{{ $label ?? null }}">
                                         </div>
                                     @endif
                                 @endif

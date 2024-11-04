@@ -17,12 +17,12 @@ class LanguagesController extends Controller {
     public function view() {
         $agent = new Agent();
         $data['title'] = \Lang::get('titles.languages');
-        if($agent->isMobile()) {
-            return view('mobile.languages', $data);
-        }
-        else {
-            abort(404);
-        }
+        // if($agent->isMobile()) {
+             return view('mobile.languages', $data);
+        // }
+        // else {
+        //    abort(404);
+        // }
     }
 
     public function setPreferredLocale(Request $request) {
