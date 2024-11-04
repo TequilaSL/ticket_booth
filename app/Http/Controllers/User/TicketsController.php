@@ -17,14 +17,11 @@ use Jenssegers\Agent\Agent;
 use Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Validator;
-use Illuminate\Support\Facades\Log;
 
 class TicketsController extends ValidationController
 {
     public function __construct()
     {
-        Log::info('TicketsController constructor', );
-
         parent::__construct();
         $agent = new Agent();
         if (!$agent->isMobile()) {
@@ -143,18 +140,16 @@ class TicketsController extends ValidationController
                 Cache::store('memcached')->put('locale', config('app.locale'));
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
-            Log::info('Tickets controller___________');
 
             $response = $http->post('http://127.0.0.1:8000/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id' => '6',
-                    'client_secret' => 'pp7RPra5XJeUfovawxl0fKMOmk2sxMuKSvU8p9DH',
+                    'client_id' => '12',
+                    'client_secret' => 'cN1IuLmM4dy7DJUBN72pVaZt8oKXDpd1BCcSaikN',
                     'username' => $data['tickets']['users']['phone_number'],
                     'password' => $data['tickets']['users']['password']
                 ]
             ]);
-            Log::info('Tickets controller___________', [$response]);
 
             if (Cache::store('memcached')->has('locale')) {
                 $data['locale'] = Cache::store('memcached')->pull('locale');
