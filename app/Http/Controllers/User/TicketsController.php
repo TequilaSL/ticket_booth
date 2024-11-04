@@ -141,7 +141,7 @@ class TicketsController extends ValidationController
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
 
-            $response = $http->post('http://127.0.0.1:8000/oauth/token', [
+            $response = $http->post('http://zoombus.tequilasl.com/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => '12',
