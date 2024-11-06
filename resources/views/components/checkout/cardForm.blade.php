@@ -1,4 +1,4 @@
-<form action="http://127.0.0.1:8000/cardConfirmTest/{{ $transaction_id }}/{{ $total }}" method="get" id="creditCardForm">
+<form action="http://zoombus.tequilasl.com/cardConfirmTest/{{ $transaction_id }}/{{ $total }}" method="get" id="creditCardForm">
     <input name="PurchaseDesc" type="hidden" value="{{ $transaction_id }}">
     <input name="PurchaseAmt" type="hidden" value="{{ $total }}">
     <input name="CountryCode" type="hidden" value="268">

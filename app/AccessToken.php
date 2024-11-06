@@ -25,7 +25,6 @@ class AccessToken extends PassportAccessToken {
         $signingKey = InMemory::file($privateKey->getKeyPath(), $privateKey->getPassPhrase() ?? '');
         $verificationKey = InMemory::plainText(file_get_contents($privateKey->getKeyPath()));  // Adjust this if a separate public key is used
 
-        // Set up configuration for signing and verification
         $config = Configuration::forAsymmetricSigner(
             new Sha256(),
             $signingKey,
@@ -34,7 +33,6 @@ class AccessToken extends PassportAccessToken {
 
         $now = new \DateTimeImmutable();
 
-        // Build the token
         $token = $config->builder()
             ->permittedFor($this->getClient()->getIdentifier())
             ->identifiedBy($this->getIdentifier(), true)
