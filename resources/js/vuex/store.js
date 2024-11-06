@@ -126,7 +126,7 @@ export default new Vuex.Store({
                 return response
             } catch (error) {
                 console.log('Promise.reject _store__________',error.message);
-                alert("Promise.reject store", error);
+                // alert("Promise.reject store", error);
 
                 return Promise.reject(error)
             }
