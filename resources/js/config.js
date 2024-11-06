@@ -1,7 +1,7 @@
-export const siteURL = 'http://127.0.0.1:8000'
+export const siteURL = 'https://zoombus.tequilasl.com'
 export const client = {
-    id: 12,
-    secret: 'cN1IuLmM4dy7DJUBN72pVaZt8oKXDpd1BCcSaikN'
+    id: 3,
+    secret: 'a7z0hRrvBECOHPybXEVvjoiaJZDqwWkyOB2mh0bW'
 }
 
 export function imagesPathRewrite(file) {
