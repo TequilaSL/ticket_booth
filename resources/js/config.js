@@ -16,6 +16,10 @@ export const googleRecaptcha = {
     siteKey: '6LePvmEqAAAAAKRuX8pEnMfY_3qLoRZGxBujw3FE'
 }
 
+export const googleMaps = {
+    key: 'AIzaSyCHBELaz3Rdo3GIuRlxaC_jvVens2QSoEk'
+}
+
 export const vehiclesPerPage = 10
 export const routesPerPage = 10
 export const notificationsPerPage = 10

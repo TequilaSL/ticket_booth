@@ -75,6 +75,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/driver/sales-history', 'Driver\SalesController@viewAllHistory')->name('sales_history');
         Route::get('/driver/fines', 'Driver\FinesController@view')->name('fines');
 
+        // Route::post('/driver/controller/location', 'Driver\DriverTrackerController@updateLocation')->name('location-track');
+        // Route::post('/driver/location', 'Driver\DriverController@updateLocation')->name('location-track-2');
+        Route::post('/passenger/location', 'Driver\DriverController@loadLocation')->name('location-load');
 
         //rate
         Route::get('/rate/{id}', 'RatingController@view')->name('rate_driver');
@@ -206,7 +209,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //Admin
     Route::get('/admin-panel', 'Admin\AdminController@view')->name('admin_dashboard');
-    
+
     Route::get('/admin/users/support-tickets', 'Admin\Users\SupportTicketsController@view')->name('admin_users_support_tickets');
     Route::get('/admin/users/support-tickets/{id}', 'Admin\Users\SupportTicketsController@viewEdit')->name('admin_users_support_ticket_edit');
     Route::get('/admin/users/administrators', 'Admin\Users\AdministratorsController@view')->name('admin_users_administrators');
@@ -352,5 +355,5 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::get('/{any}', function () {
-    return view('welcome'); 
+    return view('welcome');
 })->where('any', '.*');

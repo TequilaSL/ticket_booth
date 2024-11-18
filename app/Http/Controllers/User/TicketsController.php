@@ -42,11 +42,11 @@ class TicketsController extends ValidationController
         }
         else {
             if (config('app.locale') != 'en') {
-                Cache::store('memcached')->put('locale', config('app.locale'));
+                Cache::store('file')->put('locale', config('app.locale'));
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('bought_tickets')));
             }
-            if (Cache::store('memcached')->has('locale')) {
-                $data['locale'] = Cache::store('memcached')->pull('locale');
+            if (Cache::store('file')->has('locale')) {
+                $data['locale'] = Cache::store('file')->pull('locale');
             }
             $data['title'] = \Lang::get('titles.ticket_list');
             return view('mobile.main', $data);
@@ -137,7 +137,7 @@ class TicketsController extends ValidationController
         if ($agent->isMobile()) {
             $http = new Client;
             if (config('app.locale') != 'en') {
-                Cache::store('memcached')->put('locale', config('app.locale'));
+                Cache::store('file')->put('locale', config('app.locale'));
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
 
@@ -151,8 +151,8 @@ class TicketsController extends ValidationController
                 ]
             ]);
 
-            if (Cache::store('memcached')->has('locale')) {
-                $data['locale'] = Cache::store('memcached')->pull('locale');
+            if (Cache::store('file')->has('locale')) {
+                $data['locale'] = Cache::store('file')->pull('locale');
             }
 
             $data['response'] = (string)$response->getBody();
