@@ -696,6 +696,8 @@ export default {
                 become_partner_sub: 'Registration',
                 ticketList: 'Tickets',
                 ticketList_sub: 'Bought tickets',
+                trackLocation: 'Track Location',
+                trackLocation_sub: 'Vehicle location track',
             }
         },
         settings: {

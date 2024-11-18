@@ -48,6 +48,13 @@ export default {
                     color: '#14a969',
                     title: lang[this.$store.state.locale].home.boxes.become_driver,
                     subTitle: lang[this.$store.state.locale].home.boxes.become_driver_sub
+                },
+                {
+                    name: 'locationTrack',
+                    image: 'ticket_icon.svg',
+                    color: '#33881c',
+                    title: lang[this.$store.state.locale].home.boxes.trackLocation,
+                    subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
                 }
             ]
         } else if (this.$store.state.roles.includes('driver')) {
@@ -111,6 +118,13 @@ export default {
                     color: '#33881c',
                     title: lang[this.$store.state.locale].home.boxes.ticketList,
                     subTitle: lang[this.$store.state.locale].home.boxes.ticketList_sub
+                },
+                {
+                    name: 'locationTrack',
+                    image: 'ticket_icon.svg',
+                    color: '#33881c',
+                    title: lang[this.$store.state.locale].home.boxes.trackLocation,
+                    subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
                 }
             ]
         } else {
@@ -143,6 +157,13 @@ export default {
                     title: lang[this.$store.state.locale].home.boxes.become_partner,
                     subTitle: lang[this.$store.state.locale].home.boxes.become_partner_sub
                 },
+                {
+                    name: 'locationTrack',
+                    image: 'ticket_icon.svg',
+                    color: '#33881c',
+                    title: lang[this.$store.state.locale].home.boxes.trackLocation,
+                    subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
+                }
             ]
         }
     },
