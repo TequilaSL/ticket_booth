@@ -47,8 +47,9 @@ export default {
     methods: {
         async updateLocation() {
             try {
-                const response = await axios.get("/api/location"); // Laravel API
-                console.log("API Response:_____________", response);
+                const response = await axios.get("http://dagps.net/GetDataService.aspx?method=loadUser&mds=4a1710d504c84345bc7ff54b46e7de29&callback=loadedCallback&user_id=9e81ee7f-a67a-4606-8588-f161fe2c97a4&_=1731988172974"
+                ); // Laravel API
+                console.log("API Responses:_____________", response);
 
                 if (response.data) {
                     const { latitude, longitude } = response.data;
