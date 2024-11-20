@@ -47,7 +47,7 @@ export default {
     methods: {
         async updateLocation() {
             try {
-                const response = await axios.get("http://dagps.net/GetDataService.aspx?method=loadUser&mds=4a1710d504c84345bc7ff54b46e7de29&callback=loadedCallback&user_id=9e81ee7f-a67a-4606-8588-f161fe2c97a4&_=1731988172974"
+                const response = await axios.get("https://www.dagps.net/TrackService.aspx?method=getOnlineGpsInfoByIDUtc&callback=TrackOBJ.updateDataCallBack&school_id=e8a10151-2001-45e9-a509-3129c9f1ec7a&custid=e8a10151-2001-45e9-a509-3129c9f1ec7a&userIDs=e8a10151-2001-45e9-a509-3129c9f1ec7a&mapType=GOOGLE&option=en&t=1732079563765&minTime=1732079537000&mds=d2a0156bd27042c99ad5403374955dfd&timestamp=1732079563765"
                 ); // Laravel API
                 console.log("API Responses:_____________", response);
 
@@ -57,7 +57,7 @@ export default {
                         lat: parseFloat(latitude),
                         lng: parseFloat(longitude),
                     };
-                    this.marker.position =newPosition ;
+                    this.marker.position = newPosition ;
                     this.map.setCenter(newPosition);
                 }
             } catch (error) {
