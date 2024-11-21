@@ -47,7 +47,7 @@ export default {
         async updateLocation() {
             try {
                 const response = await axios.get(
-                    "https://zoombus.tequilasl.com/proxy-location"
+                    "https://ticketbooth.tequilasl.com/proxy-location"
                 );
                 if (response.data) {
                     const { longitude, latitude } = response.data;

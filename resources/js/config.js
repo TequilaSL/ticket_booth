@@ -1,4 +1,4 @@
-export const siteURL = 'https://zoombus.tequilasl.com'
+export const siteURL = 'https://ticketbooth.tequilasl.com'
 export const client = {
     id: 3,
     secret: 'a7z0hRrvBECOHPybXEVvjoiaJZDqwWkyOB2mh0bW'
