@@ -44,6 +44,7 @@ Route::group(['middleware' => ['web']], function () {
         //cart
         Route::get('/cart', 'CartController@view')->name('cart');
 
+        Route::get('/proxy-location', 'Passenger\LocationTrackerController@loadLocation');
 
         //users
         Route::get('/profile', 'User\ProfileController@viewProfile')->name('profile');
@@ -74,10 +75,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/driver/sales', 'Driver\SalesController@viewAll')->name('sales');
         Route::get('/driver/sales-history', 'Driver\SalesController@viewAllHistory')->name('sales_history');
         Route::get('/driver/fines', 'Driver\FinesController@view')->name('fines');
-
-        // Route::post('/driver/controller/location', 'Driver\DriverTrackerController@updateLocation')->name('location-track');
-        // Route::post('/driver/location', 'Driver\DriverController@updateLocation')->name('location-track-2');
-        Route::post('/passenger/location', 'Driver\DriverController@loadLocation')->name('location-load');
 
         //rate
         Route::get('/rate/{id}', 'RatingController@view')->name('rate_driver');
