@@ -13,8 +13,7 @@ import Footer from "../../components/Footer";
 import vzForm from "../../components/Form";
 import vLoading from "../../components/Loading";
 import { googleMaps } from "../../config";
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
     components: { vzForm, Header, Footer, vLoading },
@@ -47,24 +46,31 @@ export default {
     methods: {
         async updateLocation() {
             try {
-                const response = await axios.get("https://www.dagps.net/TrackService.aspx?method=getOnlineGpsInfoByIDUtc&callback=TrackOBJ.updateDataCallBack&school_id=e8a10151-2001-45e9-a509-3129c9f1ec7a&custid=e8a10151-2001-45e9-a509-3129c9f1ec7a&userIDs=e8a10151-2001-45e9-a509-3129c9f1ec7a&mapType=GOOGLE&option=en&t=1732079563765&minTime=1732079537000&mds=d2a0156bd27042c99ad5403374955dfd&timestamp=1732079563765"
-                ); // Laravel API
-                console.log("API Responses:_____________", response);
-
+                const response = await axios.get(
+                    "http://127.0.0.1:8000/proxy-location"
+                );
                 if (response.data) {
-                    const { latitude, longitude } = response.data;
+                    const { longitude, latitude } = response.data;
                     const newPosition = {
                         lat: parseFloat(latitude),
                         lng: parseFloat(longitude),
                     };
-                    this.marker.position = newPosition ;
+                    this.marker.position = newPosition;
                     this.map.setCenter(newPosition);
                 }
             } catch (error) {
                 console.error("Error fetching location:", error);
             }
         },
-
+        createBusIcon() {
+            const iconContainer = document.createElement("div");
+            iconContainer.style.width = "50px";
+            iconContainer.style.height = "50px";
+            iconContainer.style.backgroundImage = "url('/images/bus_icon.png')";
+            iconContainer.style.backgroundSize = "cover";
+            iconContainer.style.backgroundPosition = "center";
+            return iconContainer;
+        },
         async initMap() {
             const { AdvancedMarkerElement } = await google.maps.importLibrary(
                 "marker"
@@ -82,6 +88,7 @@ export default {
             this.marker = new AdvancedMarkerElement({
                 position: this.coordinates[0],
                 map: this.map,
+                content: this.createBusIcon(),
                 title: "Kohuwala",
             });
             this.updateLocation();
