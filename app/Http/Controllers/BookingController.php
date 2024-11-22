@@ -195,7 +195,9 @@ class BookingController extends ValidationController
                     //return form for Cartu Payments
                     $cc = new CreditCardController();
                     //TODO: credit card payment
-                    $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+                    // $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+                    return $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+
                 }
                 else if ($data['payment_method'] == 2) {
                     //return redirect URL for PayPal
@@ -203,14 +205,11 @@ class BookingController extends ValidationController
                     $response->original['status'] = 2;
                     $response->original['text'] = $pp->createOrder($ppD);
                 }
-            }
-            else {
+            } else {
                 $response->original['status'] = 3;
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
         }
-        Log::info('booking controller end', [$response]);
-
         return response()->json($response->original);
 
     }
@@ -365,7 +364,7 @@ class BookingController extends ValidationController
 
     protected function orderApprove($transaction_id, $type = 'card')
     {
-        Log::info('booking controller order approve', );
+        $qrCodeUrl = null;
 
         if ($type == 'paypal') {
             $transactionField = 'paypal_transaction_id';
@@ -392,6 +391,7 @@ class BookingController extends ValidationController
             $qrCode->setSize(800);
             $qrCode->setMargin(0);
             Storage::disk('s3')->put('tickets/' . md5($ui['ticket_number']) . '.png', $qrCode->writeString());
+            $qrCodeUrl = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
 
             $locale = $ui['users']['locale'];
             //Send SMS and Email
@@ -404,7 +404,7 @@ class BookingController extends ValidationController
 //            User::where('id', $ui['user_id'])->first()->notify(
 //                new TicketOrder($data,
 //                    $locale,
-//                    route('secure_ticket', ['id' => md5($ui['ticket_number'])])
+//                    route('secure_ticket', ['id' => md5($ui['ticket_number'])] )
 //                )
 //            );
 
@@ -415,9 +415,9 @@ class BookingController extends ValidationController
 
         }
 
-
+        Log::info('booking controller order approve 3', [$qrCodeUrl] );
         $this->checkOtherSalesToRemove($transactionField, $transaction_id);
-
+        return $qrCodeUrl;
     }
 
 
