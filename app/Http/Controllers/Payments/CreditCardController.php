@@ -23,7 +23,8 @@ class CreditCardController extends BookingController
             return 'success error';
         }
         else {
-            return view('components.checkout.issuedQrForm', $data)->render()  ;
+            // return view('components.checkout.issuedQrForm', $data)->render()  ;
+            return $data['qrCodeUrl'];
         }
         // return view('components.checkout.cardForm', $data)->render();
     }
@@ -79,7 +80,7 @@ class CreditCardController extends BookingController
 
         $data['transaction_id'] = $transaction_id;
         $data['amount'] = $amount;
-
+        // dd('test');
         // if(!$this->checkOrder($data)) {
         //     return 'check error';
         // }

@@ -195,8 +195,8 @@ class BookingController extends ValidationController
                     //return form for Cartu Payments
                     $cc = new CreditCardController();
                     //TODO: credit card payment
-                    // $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
-                    return $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+                    $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+                    // return $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
 
                 }
                 else if ($data['payment_method'] == 2) {
