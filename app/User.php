@@ -134,7 +134,7 @@ class User extends Authenticatable {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/' . $id . '.'.$extension)) {
-            return Storage::url('users/'.$id.'.'.$extension, now()->addMinutes(5));
+            return Storage::url('users/'.$id.'.'.$extension);
         } else {
             return '/images/users/default.png';
         }
@@ -144,7 +144,7 @@ class User extends Authenticatable {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/small/' . $id . '.'.$extension)) {
-            return Storage::url('users/small/' . $id . '.'.$extension, now()->addMinutes(5));
+            return Storage::url('users/small/' . $id . '.'.$extension);
         } else {
             return '/images/users/small/default.png';
         }
@@ -171,7 +171,7 @@ class User extends Authenticatable {
             return Storage::url('users/small/' . $this->id . '.'.$this->extension);
         } else {
             return '/images/users/small/default.png';
-        }        
+        }
     }
 
     public function driver() {

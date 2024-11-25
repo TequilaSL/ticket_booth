@@ -41,7 +41,7 @@ class Controller extends BaseController {
     public static function userAvatarById($id) {
         $user = User::whereId($id)->first('extension');
         if (Storage::disk('s3')->exists('users/' . $id . '.'.$user->extension)) {
-            return Storage::temporaryUrl('users/'.$id.'.'.$user->extension, now()->addMinutes());
+            return Storage::url('users/'.$id.'.'.$user->extension);
         } else {
             return '/images/users/default.png';
         }

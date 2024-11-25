@@ -35,7 +35,7 @@ class VehicleSpecs extends Model
     public function specImageById($id) {
         $vehicleSpec = VehicleSpecs::whereId($id)->first('extension');
         if(Storage::disk('s3')->exists('vehicle-features/'.$id.'.'.$vehicleSpec->extension)) {
-            return Storage::temporaryUrl('vehicle-features/'.$id.'.'.$vehicleSpec->extension, now()->addMinutes(5));
+            return Storage::url('vehicle-features/'.$id.'.'.$vehicleSpec->extension);
         }
         else {
             return false;

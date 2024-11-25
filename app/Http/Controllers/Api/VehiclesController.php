@@ -81,7 +81,7 @@ class VehiclesController extends VC {
 
             foreach($vehicleImages as $k => $image) {
                 if (Storage::disk('s3')->exists('drivers/vehicles/'.$request->id.'/'.$image)) {
-                    $data['vehicle_images'][$k] = Storage::temporaryUrl('drivers/vehicles/'.$request->id.'/'.$image, now()->addMinutes(5));
+                    $data['vehicle_images'][$k] = Storage::url('drivers/vehicles/'.$request->id.'/'.$image);
                 }
             }
             $data['front_side'] = $this->vehicleFrontSide($request->id);
