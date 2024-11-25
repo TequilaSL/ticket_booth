@@ -24,7 +24,7 @@ class ProfileController extends PC {
         $response = ValidationController::response($this->validator($data,'avatar'));
         if($response->original['status'] == 1) {
             $this->avatarAction($image, $userId);
-            $response->original['text'] = Storage::temporaryUrl('users/'.$userId.'.'.$image->extension(), now()->addMinutes(5));
+            $response->original['text'] = Storage::url('users/'.$userId.'.'.$image->extension());
             $responseCode = 200;
         }
         else {

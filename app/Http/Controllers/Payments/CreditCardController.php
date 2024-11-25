@@ -16,7 +16,17 @@ class CreditCardController extends BookingController
         $data = $this->essentialVars(['current_currency_code','current_locale_id']);
         $data['total'] = $total;
         $data['transaction_id'] = $transaction_id;
-        return view('components.checkout.cardForm', $data)->render();
+        $result = $this->confirmTest($data['transaction_id'], $data['total']);
+        $data['qrCodeUrl'] = $result;
+        Log::info('viewCreditCardForm QR Code URL', ['qrCodeUrl' => $data['qrCodeUrl']]);
+        if (empty($data['qrCodeUrl'])) {
+            return 'success error';
+        }
+        else {
+            // return view('components.checkout.issuedQrForm', $data)->render()  ;
+            return $data['qrCodeUrl'];
+        }
+        // return view('components.checkout.cardForm', $data)->render();
     }
 
     public function confirm(Request $request) {
@@ -70,23 +80,16 @@ class CreditCardController extends BookingController
 
         $data['transaction_id'] = $transaction_id;
         $data['amount'] = $amount;
-
+        // dd('test');
         // if(!$this->checkOrder($data)) {
         //     return 'check error';
         // }
-        if (!$this->successOrder($data['transaction_id'])) {
-            return 'success error';
-        }
-        else {
-            return 'succ';
-        }
+
+        return $this->successOrder($data['transaction_id']);
     }
 
     private function successOrder($transaction_id) {
-        Log::info('credit card successOrder', );
-
-        BookingController::orderApprove($transaction_id);
-        return true;
+        return BookingController::orderApprove($transaction_id);
     }
 
 

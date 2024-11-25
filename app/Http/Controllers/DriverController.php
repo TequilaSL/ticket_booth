@@ -29,7 +29,7 @@ class DriverController extends ValidationController
         $extension = Driver::whereUserId($realId)->first('front_side_extension');
         if (Storage::disk('s3')->exists('drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension)) {
             if ($agent->isMobile()) {
-                return Storage::url('drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension, now()->addMinutes(5));
+                return Storage::url('drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension);
             }
             else {
                 return 'drivers/license/' . $realId . '/front_side.' . $extension->front_side_extension;
@@ -50,7 +50,7 @@ class DriverController extends ValidationController
         $extension = Driver::whereUserId($realId)->first('back_side_extension');
         if (Storage::disk('s3')->exists('drivers/license/' . $realId . '/back_side.' . $extension->back_side_extension)) {
             if ($agent->isMobile()) {
-                return Storage::url('drivers/license/' . $realId . '/back_side.' . $extension->back_side_extension, now()->addMinutes(5));
+                return Storage::url('drivers/license/' . $realId . '/back_side.' . $extension->back_side_extension);
             }
             else {
                 return 'drivers/license/' . $realId . '/front_side.' . $extension->back_side_extension;
@@ -68,7 +68,7 @@ class DriverController extends ValidationController
     {
         $extension = Vehicle::whereId($id)->first('front_side_extension');
         if ($extension && Storage::disk('s3')->exists('drivers/vehicles/' . $id . '/front_side.' . $extension->front_side_extension)) {
-            return Storage::url('drivers/vehicles/' . $id . '/front_side.' . $extension->front_side_extension, now()->addMinutes(5));
+            return Storage::url('drivers/vehicles/' . $id . '/front_side.' . $extension->front_side_extension);
         }
         else {
             return false;
@@ -79,7 +79,7 @@ class DriverController extends ValidationController
     {
         $extension = Vehicle::whereId($id)->first('back_side_extension');
         if ($extension && Storage::disk('s3')->exists('drivers/vehicles/' . $id . '/back_side.' . $extension->back_side_extension)) {
-            return Storage::url('drivers/vehicles/' . $id . '/back_side.' . $extension->back_side_extension, now()->addMinutes(5));
+            return Storage::url('drivers/vehicles/' . $id . '/back_side.' . $extension->back_side_extension);
         }
         else {
             return false;

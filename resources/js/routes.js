@@ -47,7 +47,7 @@ import PartnerList from './views/partner/PartnersList'
 import PartnerDetails from './views/partner/PartnerDetails'
 import PartnerRegister from './views/partner/PartnerRegister'
 import QRScanner from './views/QRScanner'
-import SingleTicket from "./views/tickets/SingleTicket"
+import SingleTicket from "./views/tickets/SingleTicket.vue"
 import TicketList from "./views/tickets/TicketList"
 import SingleTicketSecure from "./views/tickets/SingleTicketSecure";
 import RateRoute from "./views/RateRoute";
