@@ -1655,9 +1655,9 @@ transition: all 0.3s ease-out;
 
 .language_ge .navbar_ .navbar-nav > li > .nav-link{font-weight: 400; padding: 3px 25px 0 25px; font-family: 'bpg_nino_mtavrulibold';}
 
-.navbar_ .navbar-nav > li.nav2 > .nav-link{color: #363636; background: #fff; padding-left: 60px; padding-right: 30px;}
+.navbar_ .navbar-nav > li.nav2 > .nav-link{color: #000000; background: #fff; padding-left: 60px; padding-right: 30px;}
 
-.navbar_ .navbar-nav > li.nav1 > .nav-link{color: #fff; background: #f79904; padding-left: 60px; padding-right: 30px;}
+.navbar_ .navbar-nav > li.nav1 > .nav-link{color: #fff; background: #c9302c; padding-left: 60px; padding-right: 30px;}
 
 .navbar_ .navbar-nav > li > .nav-link:focus,
 .navbar_ .navbar-nav > li > .nav-link:hover,
@@ -1665,7 +1665,7 @@ transition: all 0.3s ease-out;
 .navbar_ .navbar-nav > li.sfHover > .nav-link:hover,
 .navbar_ .navbar-nav > li > .nav-link.active,
 .navbar_ .navbar-nav > li > .nav-link.active:hover,
-.navbar_ .navbar-nav > li > .nav-link.active:focus{color: #fff; background: #f79904;}
+.navbar_ .navbar-nav > li > .nav-link.active:focus{color: #fff; background: #c9302c;}
 
 .navbar_ .navbar-nav > li.nav1 > .nav-link:focus,
 .navbar_ .navbar-nav > li.nav1 > .nav-link:hover,
@@ -1674,10 +1674,10 @@ transition: all 0.3s ease-out;
 .navbar_ .navbar-nav > li.nav1 > .nav-link.active,
 .navbar_ .navbar-nav > li.nav1 > .nav-link.active:hover,
 .navbar_ .navbar-nav > li.nav1 > .nav-link.active:focus{color: #fff;
-background: #f27509;
-background: -moz-linear-gradient(left, #f27509 0%, #faa603 100%);
-background: -webkit-linear-gradient(left, #f27509 0%,#faa603 100%);
-background: linear-gradient(to right, #f27509 0%,#faa603 100%);
+background: #c9302c;
+background: -moz-linear-gradient(left, #c9302c  0%, #720f0c 100%);
+background: -webkit-linear-gradient(left, #c9302c  0%,#720f0c 100%);
+background: linear-gradient(to right, #c9302c  0%,#720f0c 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f27509', endColorstr='#faa603',GradientType=1 );
 }
 

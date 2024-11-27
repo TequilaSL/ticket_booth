@@ -1,27 +1,7 @@
 [
     {
-        "code": "GE",
-        "locale": "ka",
-        "id": 80
-    },
-    {
-        "code": "RU",
-        "locale": "ru",
-        "id": 181
-    },
-    {
-        "code": "TR",
-        "locale": "",
-        "id": 222
-    },
-    {
-        "code": "AZ",
-        "locale": "",
-        "id": 16
-    },
-    {
-        "code": "AM",
-        "locale": "",
-        "id": 12
+        "code": "SL",
+        "locale": "en",
+        "id": 1
     }
 ]
