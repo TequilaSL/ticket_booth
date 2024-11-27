@@ -55,7 +55,7 @@
                         @slot('faicon') fa-car @endslot
                     @endcomponent
                     @component('components.misc.rowbreak') @endcomponent
-                    @component('components.misc.form-group-col', ['values' => $countries, 'value' => $vehicle['country_id'] ?? 80])
+                    @component('components.misc.form-group-col', ['values' => $countries, 'value' => $vehicle['country_id'] ?? 1])
                         @slot('label') {{ Lang::get('auth.vehicle_country') }} @endslot
                         @slot('name') country_id @endslot
                         @slot('field') select @endslot

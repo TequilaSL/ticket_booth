@@ -62,7 +62,7 @@
                         @slot('type') password @endslot
                         @slot('value') @endslot
                     @endcomponent
-                    @component('components.misc.form-group-col', ['values' => $countries, 'value' => 80])
+                    @component('components.misc.form-group-col', ['values' => $countries, 'value' => 1])
                         @slot('label') {{ Lang::get('auth.country') }} @endslot
                         @slot('field') select @endslot
                         @slot('name') country_id @endslot

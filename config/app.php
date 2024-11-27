@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Zoombus'),
+    'name' => env('APP_NAME', 'Ticket-Boooth'),
 
 
     /*
@@ -132,7 +132,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-   
+
 
     /*
     |--------------------------------------------------------------------------
