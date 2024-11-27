@@ -1,192 +1,377 @@
 [
     {
         "city_id": 1,
-        "name": "Tbilisi",
+        "name": "කොළඹ",
+        "locale": "si"
+    },
+    {
+        "city_id": 1,
+        "name": "Colombo",
         "locale": "en"
     },
     {
         "city_id": 1,
-        "name": "თბილისი",
-        "locale": "ka"
+        "name": "கொழும்பு",
+        "locale": "ta"
     },
     {
         "city_id": 2,
-        "name": "Batumi",
+        "name": "ගම්පහ",
+        "locale": "si"
+    },
+    {
+        "city_id": 2,
+        "name": "Gampaha",
         "locale": "en"
     },
     {
         "city_id": 2,
-        "name": "ბათუმი",
-        "locale": "ka"
+        "name": "கம்பஹா",
+        "locale": "ta"
     },
     {
         "city_id": 3,
-        "name": "Gori",
+        "name": "කළුතර",
+        "locale": "si"
+    },
+    {
+        "city_id": 3,
+        "name": "Kalutara",
         "locale": "en"
     },
     {
         "city_id": 3,
-        "name": "გორი",
-        "locale": "ka"
+        "name": "களுத்துறை",
+        "locale": "ta"
     },
     {
         "city_id": 4,
-        "name": "Poti",
+        "name": "මහනුවර",
+        "locale": "si"
+    },
+    {
+        "city_id": 4,
+        "name": "Kandy",
         "locale": "en"
     },
     {
         "city_id": 4,
-        "name": "ფოთი",
-        "locale": "ka"
+        "name": "கண்டி",
+        "locale": "ta"
     },
     {
         "city_id": 5,
-        "name": "Kutaisi",
+        "name": "මාතලේ",
+        "locale": "si"
+    },
+    {
+        "city_id": 5,
+        "name": "Matale",
         "locale": "en"
     },
     {
         "city_id": 5,
-        "name": "ქუთაისი",
-        "locale": "ka"
+        "name": "மாத்தளை",
+        "locale": "ta"
     },
     {
         "city_id": 6,
-        "name": "Telavi",
+        "name": "නුවරඑළිය",
+        "locale": "si"
+    },
+    {
+        "city_id": 6,
+        "name": "Nuwara Eliya",
         "locale": "en"
     },
     {
         "city_id": 6,
-        "name": "თელავი",
-        "locale": "ka"
+        "name": "நுவரேலியா",
+        "locale": "ta"
     },
     {
         "city_id": 7,
-        "name": "Gurjaani",
+        "name": "ගාල්ල",
+        "locale": "si"
+    },
+    {
+        "city_id": 7,
+        "name": "Galle",
         "locale": "en"
     },
     {
         "city_id": 7,
-        "name": "გურჯაანი",
-        "locale": "ka"
+        "name": "காலி",
+        "locale": "ta"
     },
     {
         "city_id": 8,
-        "name": "Kobuleti",
+        "name": "මාතර",
+        "locale": "si"
+    },
+    {
+        "city_id": 8,
+        "name": "Matara",
         "locale": "en"
     },
     {
         "city_id": 8,
-        "name": "ქობულეთი",
-        "locale": "ka"
+        "name": "மாத்தறை",
+        "locale": "ta"
     },
     {
         "city_id": 9,
-        "name": "Khashuri",
+        "name": "හම්බන්තොට",
+        "locale": "si"
+    },
+    {
+        "city_id": 9,
+        "name": "Hambantota",
         "locale": "en"
     },
     {
         "city_id": 9,
-        "name": "ხაშური",
-        "locale": "ka"
+        "name": "ஹம்பாந்தோட்டை",
+        "locale": "ta"
     },
     {
         "city_id": 10,
-        "name": "Rustavi",
+        "name": "යාපනය",
+        "locale": "si"
+    },
+    {
+        "city_id": 10,
+        "name": "Jaffna",
         "locale": "en"
     },
     {
         "city_id": 10,
-        "name": "რუსთავი",
-        "locale": "ka"
+        "name": "யாழ்ப்பாணம்",
+        "locale": "ta"
     },
     {
         "city_id": 11,
-        "name": "Zugdidi",
+        "name": "කිළිනොච්චි",
+        "locale": "si"
+    },
+    {
+        "city_id": 11,
+        "name": "Kilinochchi",
         "locale": "en"
     },
     {
         "city_id": 11,
-        "name": "ზუგდიდი",
-        "locale": "ka"
+        "name": "கிளிநொச்சி",
+        "locale": "ta"
     },
     {
         "city_id": 12,
-        "name": "Samtredia",
+        "name": "මන්නාරම",
+        "locale": "si"
+    },
+    {
+        "city_id": 12,
+        "name": "Mannar",
         "locale": "en"
     },
     {
         "city_id": 12,
-        "name": "სამტრედია",
-        "locale": "ka"
+        "name": "மன்னார்",
+        "locale": "ta"
     },
     {
         "city_id": 13,
-        "name": "Senaki",
+        "name": "වවුනියාව",
+        "locale": "si"
+    },
+    {
+        "city_id": 13,
+        "name": "Vavuniya",
         "locale": "en"
     },
     {
         "city_id": 13,
-        "name": "სენაკი",
-        "locale": "ka"
+        "name": "வவுனியா",
+        "locale": "ta"
     },
     {
         "city_id": 14,
-        "name": "Marneuli",
+        "name": "මුලතිව්",
+        "locale": "si"
+    },
+    {
+        "city_id": 14,
+        "name": "Mullaitivu",
         "locale": "en"
     },
     {
         "city_id": 14,
-        "name": "მარნეული",
-        "locale": "ka"
+        "name": "முல்லைத்தீவு",
+        "locale": "ta"
     },
     {
         "city_id": 15,
-        "name": "Akhaltsikhe",
+        "name": "තෙල්ලිපളෙයි",
+        "locale": "si"
+    },
+    {
+        "city_id": 15,
+        "name": "Batticaloa",
         "locale": "en"
     },
     {
         "city_id": 15,
-        "name": "ახალციხე",
-        "locale": "ka"
+        "name": "மட்டக்களப்பு",
+        "locale": "ta"
     },
     {
         "city_id": 16,
-        "name": "Ozurgeti",
+        "name": "අම්පාර",
+        "locale": "si"
+    },
+    {
+        "city_id": 16,
+        "name": "Ampara",
         "locale": "en"
     },
     {
         "city_id": 16,
-        "name": "ოზურგეთი",
-        "locale": "ka"
+        "name": "அம்பாறை",
+        "locale": "ta"
     },
     {
         "city_id": 17,
-        "name": "Kaspi",
+        "name": "ත්‍රිකුණාමලය",
+        "locale": "si"
+    },
+    {
+        "city_id": 17,
+        "name": "Trincomalee",
         "locale": "en"
     },
     {
         "city_id": 17,
-        "name": "კასპი",
-        "locale": "ka"
+        "name": "திருகோணமலை",
+        "locale": "ta"
     },
     {
         "city_id": 18,
-        "name": "Tchiatura",
+        "name": "කුඩාලි",
+        "locale": "si"
+    },
+    {
+        "city_id": 18,
+        "name": "Kurunegala",
         "locale": "en"
     },
     {
         "city_id": 18,
-        "name": "ჭიათურა",
-        "locale": "ka"
+        "name": "குருணாகல்",
+        "locale": "ta"
     },
     {
         "city_id": 19,
-        "name": "Tskaltubo",
+        "name": "පුත්තලම",
+        "locale": "si"
+    },
+    {
+        "city_id": 19,
+        "name": "Puttalam",
         "locale": "en"
     },
     {
         "city_id": 19,
-        "name": "წყალტუბო",
-        "locale": "ka"
+        "name": "புத்தளம்",
+        "locale": "ta"
+    },
+    {
+        "city_id": 20,
+        "name": "අනුරාධපුරය",
+        "locale": "si"
+    },
+    {
+        "city_id": 20,
+        "name": "Anuradhapura",
+        "locale": "en"
+    },
+    {
+        "city_id": 20,
+        "name": "அனுராதபுரம்",
+        "locale": "ta"
+    },
+    {
+        "city_id": 21,
+        "name": "පොළොන්නරුව",
+        "locale": "si"
+    },
+    {
+        "city_id": 21,
+        "name": "Polonnaruwa",
+        "locale": "en"
+    },
+    {
+        "city_id": 21,
+        "name": "பொலன்னறுவை",
+        "locale": "ta"
+    },
+    {
+        "city_id": 22,
+        "name": "බදුල්ල",
+        "locale": "si"
+    },
+    {
+        "city_id": 22,
+        "name": "Badulla",
+        "locale": "en"
+    },
+    {
+        "city_id": 22,
+        "name": "பதுளை",
+        "locale": "ta"
+    },
+    {
+        "city_id": 23,
+        "name": "මොණරාගල",
+        "locale": "si"
+    },
+    {
+        "city_id": 23,
+        "name": "Monaragala",
+        "locale": "en"
+    },
+    {
+        "city_id": 23,
+        "name": "மொணராகலை",
+        "locale": "ta"
+    },
+    {
+        "city_id": 24,
+        "name": "රත්නපුර",
+        "locale": "si"
+    },
+    {
+        "city_id": 24,
+        "name": "Ratnapura",
+        "locale": "en"
+    },
+    {
+        "city_id": 24,
+        "name": "இரத்தினபுரி",
+        "locale": "ta"
+    },
+    {
+        "city_id": 25,
+        "name": "කෑගල්ල",
+        "locale": "si"
+    },
+    {
+        "city_id": 25,
+        "name": "Kegalle",
+        "locale": "en"
+    },
+    {
+        "city_id": 25,
+        "name": "கேகாலை",
+        "locale": "ta"
     }
 ]
