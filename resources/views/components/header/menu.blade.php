@@ -57,11 +57,11 @@
                     {{ Lang::get('auth.become_partner') }}
                 </a>
             </li>
-            <li class="nav4 nav-item">
+            <!-- <li class="nav4 nav-item">
                 <a href="{{ (Auth::check()) ? route('driver_registration') : route('register_as_driver') }}" class="nav-link">
                     {{ Lang::get('auth.become_driver') }}
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>

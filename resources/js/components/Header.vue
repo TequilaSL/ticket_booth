@@ -14,7 +14,7 @@
         <div class="header_logo" :class="{mt30: additionalMarginTop}" v-if="showLogo">
             <img :src="imagesPathRewrite('logo_setting.svg')" alt="Logo setting">
             <p class="logo_caption">{{ caption }}</p>
-            <h1 class="company_title" :class="{largerLogo: largerLogo}" v-if="!hideLogoText">Zoombus</h1>
+            <h1 class="company_title" :class="{largerLogo: largerLogo}" v-if="!hideLogoText">TicketBooth</h1>
             <div class="caption2" v-if="caption2">{{ caption2 }}</div>
         </div>
     </div>
