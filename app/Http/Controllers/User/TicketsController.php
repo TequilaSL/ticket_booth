@@ -144,8 +144,8 @@ class TicketsController extends ValidationController
             $response = $http->post('https://ticketbooth.tequilasl.com/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id' => '3',
-                    'client_secret' => 'EErrN6PhSJvoGvbFVE2pCPMuw7mPvgSHA3wpCAdN',
+                    'client_id' => '1',
+                    'client_secret' => '7nWmIwLZD1c7VGMKpp3gQFkGOgIIAtPszKZCgo1u',
                     'username' => $data['tickets']['users']['phone_number'],
                     'password' => $data['tickets']['users']['password']
                 ]
