@@ -47,7 +47,7 @@ export default {
         async updateLocation() {
             try {
                 const response = await axios.get(
-                    "https://ticketbooth.tequilasl.com/proxy-location"
+                    "http://127.0.0.1:8000/proxy-location"
                 );
                 if (response.data) {
                     const { longitude, latitude } = response.data;

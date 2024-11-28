@@ -2116,7 +2116,7 @@ td.inline-block {
     .social-block{display: none;}
     .divider-sl{display: none;}
     .top2{background: none;}
-    header{bottom: auto; top: -11px;}
+    header{bottom: auto; top: -11px; left: 27%;}
 
     .front .top-wrapper{padding-bottom: 0;}
 
