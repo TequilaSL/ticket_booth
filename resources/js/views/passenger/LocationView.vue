@@ -66,7 +66,7 @@ export default {
             const iconContainer = document.createElement("div");
             iconContainer.style.width = "50px";
             iconContainer.style.height = "50px";
-            iconContainer.style.backgroundImage = "url('/images/bus_icon.png')";
+            iconContainer.style.backgroundImage = "url('/images/map-icon.png')";
             iconContainer.style.backgroundSize = "cover";
             iconContainer.style.backgroundPosition = "center";
             return iconContainer;
