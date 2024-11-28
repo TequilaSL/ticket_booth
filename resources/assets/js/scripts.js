@@ -3205,7 +3205,7 @@ $(document).ready(function () {
                     position: relative;
                     background-color: #fff;
                     margin: 10% auto;
-                    padding: 20px;
+                    padding: 40px 10px 0px 10px;
                     max-width: 500px;
                     width: 90%;
                     border-radius: 10px;
@@ -3213,8 +3213,11 @@ $(document).ready(function () {
                     text-align: center;
                 }
 
+                .model-content .qr-code-container img {
+                    width: 86%;
+                }
+
                 .modal-image {
-                    width: 50%;
                     height: auto;
                     max-width: 100%;
                     border-radius: 5px;
@@ -3223,8 +3226,8 @@ $(document).ready(function () {
 
                 .close-btn-popup {
                     position: absolute;
-                    top: 10px;
-                    right: 10px;
+                    top: -3px;
+                    right: 20px;
                     font-size: 30px;
                     color: #aaa;
                     cursor: pointer;
@@ -3257,7 +3260,7 @@ $(document).ready(function () {
             var image = $('<img src="'+ imagePath +'" alt="QR Code Image" class="modal-image" />');
 
             // Append content to the modal
-            modalContent.append(closeBtn).append(imagePath);
+            modalContent.append(closeBtn).append(image);
             modal.append(modalContent);
 
             // Append the modal to the body
