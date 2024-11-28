@@ -32,7 +32,7 @@
                 <div class="info d-flex">
                     <div class="info1">
                         <div class="img1"><img
-                                src="{{ Storage::url('cities/'.$result['routes']['cities_from']['id'].'.'.$result['routes']['cities_from']['extension']) }}"
+                                src="{{ '/images/'.$result['routes']['cities_from']['id'].'.svg' }}"
                                 alt="{{ $result['routes']['vehicles']['type'] }}" class="img-fluid"></div>
                         <div class="txt1 from_city">{{ $result['routes']['cities_from']['translated']['name'] }}</div>
                         <div class="txt2">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="info3">
                         <div class="img1"><img
-                                src="{{ Storage::url('cities/'.$result['routes']['cities_to']['id'].'.'.$result['routes']['cities_to']['extension']) }}"
+                                src="{{ '/images/'.$result['routes']['cities_to']['id'].'.svg' }}"
                                 alt="{{ $result['routes']['cities_to']['translated']['name'] }}" class="img-fluid"></div>
                         <div class="txt1 to_city">{{ $result['routes']['cities_to']['translated']['name'] }}</div>
                         <div class="txt2">

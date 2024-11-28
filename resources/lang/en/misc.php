@@ -34,7 +34,7 @@ return [
     'seat' => 'Seat',
     'ticket' => 'Ticket',
     'and' => 'and',
-    'book' => 'Book',
+    'book' => 'Book Ticket',
     'details' => 'details',
     'detailed_info' => 'Detailed information',
     'view_vehicle_images' => 'Vehicle images',
