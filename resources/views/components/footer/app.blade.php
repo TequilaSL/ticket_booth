@@ -61,7 +61,7 @@
                                 <img src="{{ URL::asset('images/logo-footer.png') }}" alt="" class="img-fluid">
                             </figure>
                             <div class="caption">
-                                <div class="txt1">zoombus.net</div>
+                                <div class="txt1">ticketbooth.lk</div>
                                 <div class="txt2">Copyright © All rights Reserved</div>
                             </div>
                         </div>
