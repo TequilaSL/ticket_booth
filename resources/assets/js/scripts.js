@@ -3254,10 +3254,10 @@ $(document).ready(function () {
             var modal = $('<div class="modal-popup"></div>');
             var modalContent = $('<div class="modal-content"></div>');
             var closeBtn = $('<span class="close-btn-popup">&times;</span>');
-            var image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
+            var image = $('<img src="'+ imagePath +'" alt="QR Code Image" class="modal-image" />');
 
             // Append content to the modal
-            modalContent.append(closeBtn).append(image);
+            modalContent.append(closeBtn).append(imagePath);
             modal.append(modalContent);
 
             // Append the modal to the body
