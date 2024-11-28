@@ -3425,34 +3425,36 @@ $(document).ready(function () {
                     preserving = 0;
                 }
                 that.off('click');
-                $.ajax({
-                    url: route('choose_seat'),
-                    method: 'POST',
-                    context: this,
-                    data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
-                    beforeSend: function () {
-                        $('.loading-web').css('display', 'none');
-                    },
-                    success: function (data) {
-                        that.addClass('seat-active');
-                        ticket_totals.removeClass('hidden');
-                        ticket_passengers.append(data).removeClass('hidden');
-                        let oc = $('.select2');
-                        let phone_number_input = $('input.phone_number_inp');
-                        let select2Parrent = oc.parent().attr('class') + '-dropdown';
-                        oc.select2({
-                            minimumResultsForSearch: Infinity,
-                            dropdownCssClass: select2Parrent
-                        });
-                        phone_number_input.intlTelInput({
-                            autoPlaceholder: "aggressive",
-                            defaultCountry: current_country_code,
-                            onlyCountries: ['ge'],
-                            utilsScript: "/js/utils.js"
-                        });
-                        that.on('click', chooseSeat);
-                    }
-                });
+                if (seat_counts<1) {
+                    $.ajax({
+                        url: route('choose_seat'),
+                        method: 'POST',
+                        context: this,
+                        data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
+                        beforeSend: function () {
+                            $('.loading-web').css('display', 'none');
+                        },
+                        success: function (data) {
+                            that.addClass('seat-active');
+                            ticket_totals.removeClass('hidden');
+                            ticket_passengers.append(data).removeClass('hidden');
+                            let oc = $('.select2');
+                            let phone_number_input = $('input.phone_number_inp');
+                            let select2Parrent = oc.parent().attr('class') + '-dropdown';
+                            oc.select2({
+                                minimumResultsForSearch: Infinity,
+                                dropdownCssClass: select2Parrent
+                            });
+                            phone_number_input.intlTelInput({
+                                autoPlaceholder: "aggressive",
+                                defaultCountry: current_country_code,
+                                onlyCountries: ['ge'],
+                                utilsScript: "/js/utils.js"
+                            });
+                            that.on('click', chooseSeat);
+                        }
+                    });
+                }
                 $('#amount').val(seat_counts + 1);
                 $('.details-of-payment-total .txt2 span').html((seat_counts + 1) * parseFloat($('input[name="price"]').val()).toFixed(2));
             } else {

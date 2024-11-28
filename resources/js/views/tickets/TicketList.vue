@@ -2,7 +2,7 @@
     <div v-if="!isLoading">
         <Header :title="title" :showBack="true" :showLogo="false"/>
         <section>
-            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://www.ticketbooth.tequilasl.com/'+$store.state.locale+'/listings' : 'https://www.ticketbooth.tequilasl.com/listings'">
+            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://ticketbooth.tequilasl.com/'+$store.state.locale+'/listings' : 'https://ticketbooth.tequilasl.com/listings'">
                 <v-btn class="submit gradiented no-margins-vertical">
                     {{ lang.buyTickets }}
                 </v-btn>
