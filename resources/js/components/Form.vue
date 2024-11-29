@@ -204,8 +204,8 @@ export default {
                         data[d.name] = d.value
                     }
                     if (d.name === 'phone_number' || d.name === 'username') {
-                        if (d.value.substr(0, 4) !== '+995') {
-                            formData.append(d.name, '+995' + d.value.replace(/\s/g, ''))
+                        if (d.value.substr(0, 4) !== '+94') {
+                            formData.append(d.name, '+94' + d.value.replace(/\s/g, ''))
                         } else {
                             formData.append(d.name, d.value.replace(/\s/g, ''))
                         }
