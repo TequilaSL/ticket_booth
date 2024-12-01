@@ -3177,6 +3177,9 @@ $(document).ready(function () {
         });
         $('.response').css('display', 'none').removeClass('response-success response-danger response-warning response-info');
         data.push({name: "action", value: $(this).val()});
+        if (data.find(item => item.name === "phone_number[]").value ==="" && data.find(item => item.name === "name[]").value ==="") {
+            window.location.href = "/signup";
+        }
         $.ajax({
             url: route('booking'),
             method: 'POST',
@@ -3237,6 +3240,19 @@ $(document).ready(function () {
                 .close-btn-popup:hover {
                     color: #333;
                 }
+                    .thank-class-p-1{
+                    font-size: 16px;
+                        margin-bottom: 0;
+
+    font-weight: 700;
+                    }
+    .thank-class-p-2 {
+    margin-bottom: 0;
+    }
+                    }
+    .thank-class-p-2 {
+    margin-bottom: 1rem;
+    }
 
                 .modal-overlay {
                     position: fixed;
@@ -3256,11 +3272,17 @@ $(document).ready(function () {
             // Create modal structure
             var modal = $('<div class="modal-popup"></div>');
             var modalContent = $('<div class="modal-content"></div>');
-            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
+            var para = $(`
+                <div >
+                    <p class="thank-class-p-1">Thank you for booking with us!</p>
+                    <p class="thank-class-p-2">You can download or share your QR code now.</p>
+                    <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
+                </div>
+            `);            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
             var image = $('<img src="'+ imagePath +'" alt="QR Code Image" class="modal-image" />');
 
             // Append content to the modal
-            modalContent.append(closeBtn).append(image);
+            modalContent.append(para).append(closeBtn).append(image);
             modal.append(modalContent);
 
             // Append the modal to the body
@@ -3451,7 +3473,7 @@ $(document).ready(function () {
                             phone_number_input.intlTelInput({
                                 autoPlaceholder: "aggressive",
                                 defaultCountry: current_country_code,
-                                onlyCountries: ['ge'],
+                                onlyCountries: ['lk'],
                                 utilsScript: "/js/utils.js"
                             });
                             that.on('click', chooseSeat);

@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Admin Account",
         "email": "admin@zoombus.net",
-        "phone_number": "+995555555555",
+        "phone_number": "+94755555555",
         "password": "$2y$10$7OBNQdjasyaSQQB3OnJdQuOzluQr0KmY64KkaHOW99Rerf2w2LxDi",
         "status": 1,
         "id_number": null,
