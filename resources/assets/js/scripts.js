@@ -3209,8 +3209,9 @@ $(document).ready(function () {
                         background-color: #fff;
                         margin: 10% auto;
                         padding: 40px 10px 0px 10px;
-                        max-width: 500px;
+                        max-width: 440px;
                         width: 90%;
+                            align-items: center;
                         border-radius: 10px;
                         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
                         text-align: center;
