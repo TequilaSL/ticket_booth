@@ -462,7 +462,7 @@ transition: all 0.3s ease-out;
 .ticket-details-left-col3{width: 17%;padding: 20px 40px 0; margin-top: 20px; margin-bottom: 20px; border-left: 2px solid #efefef; text-align: center;}
 .language_ge .ticket-details-left-col3 .txt1{width: 120%;font-weight: 400; font-size: 24px; color: #111d59; font-family: 'Roboto';}
 .ticket-details-left-col3 .txt1{width: 120%;font-weight: 400; font-size: 24px; color: #111d59; font-family: 'Roboto';}
-.ticket-details-left-col3 .txt1 span{display: inline-block; width: 11px; height: 13px; background: url(../images/lari.png) 0 0 no-repeat; margin-left: 5px;}
+.ticket-details-left-col3 .txt1 span{display: inline-block; width: 11px; height: 13px; margin-left: 5px;}
 .ticket-details-left-col3 .txt2 span{display: block; padding: 1px 5px; border-radius: 5px; background: #f79904; color: #fff; font-family: 'Roboto Condensed'; font-weight: 400; font-size: 12px;}
 .language_ge .ticket-details-left-col3 .txt2 span{font-family: 'dejavu_sansextralight'; width: 125%;}
 
