@@ -181,7 +181,7 @@
                         <span class="new_row new_one row_{{ $vehicle['route_types']['key'] }} @if($vehicle['route_types']['id'] == 3 || $vehicle['status'] == 1) hidden @endif">
                             <i class="fa fa-plus"></i> {{ Lang::get('driver.new_row') }}</span>
                     </div>
-                    <div class="minibus-pattern-edit">
+                    <div class="bus-pattern-edit">
                         @component('components.vehicle-schemes', ['seat_positioning' => $vehicle['seat_positioning']])
                             @slot('route_type') {{ $vehicle['route_types']['key'] }} @endslot
                             @if($vehicle['status'] != 1) @slot('editable') @endslot @endif

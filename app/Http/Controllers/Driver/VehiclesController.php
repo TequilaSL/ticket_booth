@@ -63,13 +63,7 @@ class VehiclesController extends DriverController
     public function seatsMax(Request $request)
     {
         if ($request->type == 1) {
-            return config('app.max_minibus_seats');
-        }
-        else if ($request->type == 2) {
             return config('app.max_bus_seats');
-        }
-        else if ($request->type == 3) {
-            return config('app.max_car_seats');
         }
         else {
             return false;
@@ -109,17 +103,7 @@ class VehiclesController extends DriverController
     {
         if ($mode == 'type_1') {
             $fields = [
-                'number_of_seats' => 'required|integer|between:' . config('app.min_minibus_seats') . ',' . config('app.max_minibus_seats'),
-            ];
-        }
-        else if ($mode == 'type_2') {
-            $fields = [
                 'number_of_seats' => 'required|integer|between:' . config('app.min_bus_seats') . ',' . config('app.max_bus_seats'),
-            ];
-        }
-        else if ($mode == 'type_3') {
-            $fields = [
-                'number_of_seats' => 'required|integer|between:' . config('app.min_car_seats') . ',' . config('app.max_car_seats'),
             ];
         }
         else if ($mode == 'deleteVehicle') {
@@ -317,22 +301,22 @@ class VehiclesController extends DriverController
 
     public function defaultSchemes($type)
     {
+        // if ($type == 1) {
+        //     return json_encode([
+        //         ['value' => 1, 'top' => 85, 'left' => 155],
+        //         ['value' => 2, 'top' => 255, 'left' => 310],
+        //         ['value' => 3, 'top' => 195, 'left' => 310],
+        //         ['value' => 4, 'top' => 75, 'left' => 310],
+        //         ['value' => 5, 'top' => 255, 'left' => 430],
+        //         ['value' => 6, 'top' => 195, 'left' => 430],
+        //         ['value' => 7, 'top' => 75, 'left' => 430],
+        //         ['value' => 8, 'top' => 255, 'left' => 550],
+        //         ['value' => 9, 'top' => 195, 'left' => 550],
+        //         ['value' => 10, 'top' => 135, 'left' => 550],
+        //         ['value' => 11, 'top' => 75, 'left' => 550],
+        //     ]);
+        // }
         if ($type == 1) {
-            return json_encode([
-                ['value' => 1, 'top' => 85, 'left' => 155],
-                ['value' => 2, 'top' => 255, 'left' => 310],
-                ['value' => 3, 'top' => 195, 'left' => 310],
-                ['value' => 4, 'top' => 75, 'left' => 310],
-                ['value' => 5, 'top' => 255, 'left' => 430],
-                ['value' => 6, 'top' => 195, 'left' => 430],
-                ['value' => 7, 'top' => 75, 'left' => 430],
-                ['value' => 8, 'top' => 255, 'left' => 550],
-                ['value' => 9, 'top' => 195, 'left' => 550],
-                ['value' => 10, 'top' => 135, 'left' => 550],
-                ['value' => 11, 'top' => 75, 'left' => 550],
-            ]);
-        }
-        else if ($type == 2) {
             return json_encode([
                 ['value' => 1, 'top' => 200, 'left' => 165],
                 ['value' => 2, 'top' => 160, 'left' => 165],

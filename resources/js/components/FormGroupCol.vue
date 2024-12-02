@@ -83,7 +83,7 @@
                     :class="item.class"
                 />
                 <div class="seat_box" v-else-if="item.field === 'seats'" :class="item.class">
-                    <div :class="{minivan_scheme: (item.routeType === 1), bus_scheme: (item.routeType === 2), car_scheme: (item.routeType === 3)}">
+                    <div :class="{ bus_scheme: (item.routeType === 1), car_scheme: (item.routeType === 3)}">
                         <div class="scheme_start"></div>
                         <div class="scheme_container" :style="'height: '+ maximumHeightFromScheme(item.values, item.routeType, item.reserving) + 'px;'" v-if="item.values">
                             <div

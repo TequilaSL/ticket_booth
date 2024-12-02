@@ -3190,100 +3190,143 @@ $(document).ready(function () {
                 if (data.status === 1) {
                     var imagePath = data.text; // Assuming data.text contains the image URL
 
-            // Inline CSS for modal
-            var modalCss = `
-                .modal-popup {
-                    display: none;
-                    position: absolute;
-                    z-index: 1000;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    padding: 20px;
-                }
+                    // Inline CSS for modal
+                    var modalCss = `
+                    .modal-popup {
+                        display: none;
+                        position: absolute;
+                        z-index: 1000;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 20px;
+                    }
 
-                .modal-content {
-                    position: relative;
-                    background-color: #fff;
-                    margin: 10% auto;
-                    padding: 40px 10px 0px 10px;
-                    max-width: 500px;
-                    width: 90%;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-                    text-align: center;
-                }
+                    .modal-content {
+                        position: relative;
+                        background-color: #fff;
+                        margin: 10% auto;
+                        padding: 40px 10px 0px 10px;
+                        max-width: 440px;
+                        width: 90%;
+                            align-items: center;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                        text-align: center;
+                    }
 
-                .model-content .qr-code-container img {
-                    width: 86%;
-                }
+                    .modal-content img {
+                        width: 86%;
+                    }
 
-                .modal-image {
-                    height: auto;
-                    max-width: 100%;
-                    border-radius: 5px;
-                    margin-bottom: 20px;
-                }
+                    .modal-image {
+                        height: auto;
+                        max-width: 100%;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
 
-                .close-btn-popup {
-                    position: absolute;
-                    top: -3px;
-                    right: 20px;
-                    font-size: 30px;
-                    color: #aaa;
-                    cursor: pointer;
-                    font-weight: bold;
-                }
+                    .close-btn-popup {
+                        position: absolute;
+                        top: -3px;
+                        right: 20px;
+                        font-size: 30px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    }
 
-                .close-btn-popup:hover {
-                    color: #333;
+                    .close-btn-popup:hover {
+                        color: #333;
+                    }
+
+                    .modal-btn {
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                        position: absolute;
+                        top: 5px;
+                        background: #ffffff;
+                        color: #c9302c;
+                        border: none;
+                        font-weight: bold;
+                    }
+                        .modal-btn :hover {
+                        border: none;
                 }
                     .thank-class-p-1{
                     font-size: 16px;
                         margin-bottom: 0;
 
-    font-weight: 700;
+                    font-weight: 700;
+                                    }
+                    .thank-class-p-2 {
+                    margin-bottom: 0;
                     }
-    .thank-class-p-2 {
-    margin-bottom: 0;
-    }
+                                    }
+                    .thank-class-p-2 {
+                    margin-bottom: 1rem;
                     }
-    .thank-class-p-2 {
-    margin-bottom: 1rem;
-    }
 
-                .modal-overlay {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.6);
-                    z-index: 999;
-                }
-            `;
+                    .modal-btn:hover {
+                        color: ##7a1212;
+                    }
+                    .download-btn {
+                    right: 80px;
+                    }
+                    .share-btn {
+                    right: 40px;
+                    }
+                    `;
 
-            // Create a style element and append the CSS to the document head
-            var style = $('<style></style>').text(modalCss);
-            $('head').append(style);
+                    // Create a style element and append the CSS to the document head
+                    const style = $('<style></style>').text(modalCss);
+                    $('head').append(style);
 
-            // Create modal structure
-            var modal = $('<div class="modal-popup"></div>');
-            var modalContent = $('<div class="modal-content"></div>');
-            var para = $(`
-                <div >
-                    <p class="thank-class-p-1">Thank you for booking with us!</p>
-                    <p class="thank-class-p-2">You can download or share your QR code now.</p>
-                    <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
-                </div>
-            `);            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
-            var image = $('<img src="'+ imagePath +'" alt="QR Code Image" class="modal-image" />');
+                    // Create modal structure
+                    const modal = $('<div class="modal-popup"></div>');
+                    const modalContent = $('<div class="modal-content"></div>');
+                    var para = $(`
+                        <div >
+                            <p class="thank-class-p-1">Thank you for booking with us!</p>
+                            <p class="thank-class-p-2">You can download or share your QR code now.</p>
+                            <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
+                        </div>
+                    `);
+                    const closeBtn = $('<span class="close-btn-popup modal-btn"><i class="fa fa-times" aria-hidden="true"></i></span>');
+                    const image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
 
-            // Append content to the modal
-            modalContent.append(para).append(closeBtn).append(image);
-            modal.append(modalContent);
+                    // Add download button
+
+                    const downloadBtn = $('<button class="modal-btn download-btn"><i class="fa fa-download" aria-hidden="true"></i></button>');
+                    downloadBtn.on('click', function () {
+                        const link = document.createElement('a');
+                        link.href = imagePath;
+                        link.download = 'QRCode.png';
+                        link.click();
+                    });
+
+                    // Add share button
+
+                    var shareBtn = $('<button class="modal-btn share-btn"><i class="fa fa-share" aria-hidden="true"></i></button>');
+                    shareBtn.on('click', function () {
+                        if (navigator.share) {
+                            navigator.share({
+                                title: 'QR Code',
+                                text: 'Check out this QR code!',
+                                url: imagePath
+                            }).catch((error) => {
+                                console.error('Error sharing:', error);
+                            });
+                        } else {
+                            alert('Sharing is not supported on this browser.');
+                        }
+                    });
+
+                    // Append content to the modal
+                    modalContent.append(para).append(downloadBtn).append(shareBtn).append(closeBtn).append(image);
+                    modal.append(modalContent);
 
             // Append the modal to the body
             $('body').append(modal);
@@ -3327,7 +3370,6 @@ $(document).ready(function () {
             }
         });
     });
-
 
     $(document).on('click', '.show_more', showMore);
 

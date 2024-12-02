@@ -34,24 +34,24 @@ export const partnerListPerPage = 10
 export const partnerListVehiclesPerPage = 10
 
 export const vehicleSeats = [
+    // {
+    //     id: 1,
+    //     name: 'minibus',
+    //     min: 7,
+    //     max: 29,
+    //     seat: {
+    //         top: 276,
+    //         height: 45,
+    //         separator: 35
+    //     },
+    //     spliceIndex: 1,
+    //     right: [216, 168, 120, 72],
+    //     width: 47,
+    //     rightPlus: (parseInt(window.innerWidth)/2)-187.5,
+    //     firstMinus: 0
+    // },
     {
         id: 1,
-        name: 'minibus',
-        min: 7,
-        max: 29,
-        seat: {
-            top: 276,
-            height: 45,
-            separator: 35
-        },
-        spliceIndex: 1,
-        right: [216, 168, 120, 72],
-        width: 47,
-        rightPlus: (parseInt(window.innerWidth)/2)-187.5,
-        firstMinus: 0
-    },
-    {
-        id: 2,
         name: 'bus',
         min: 30,
         max: 70,

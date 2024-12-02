@@ -417,9 +417,6 @@ return [
     'min_car_seats' => 4,
     'max_car_seats' => 4,
 
-    'min_minibus_seats' => 7,
-    'max_minibus_seats' => 30,
-
     'min_bus_seats' => 30,
     'max_bus_seats' => 70,
 

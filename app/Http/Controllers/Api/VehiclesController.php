@@ -20,12 +20,14 @@ class VehiclesController extends VC {
     }
 
     private function calculation($type, $width = null) {
-        if ($type == 1) {
-            $data['mult'] = 1.5;
-            $data['plus'] = 75;
-            $data['rmult'] = 1.25;
-            $data['rplus'] = ($width) ? ($width/2)-175.5 : 12;
-        } else if ($type == 2) {
+        // mini bus
+        // if ($type == 1) {
+        //     $data['mult'] = 1.5;
+        //     $data['plus'] = 75;
+        //     $data['rmult'] = 1.25;
+        //     $data['rplus'] = ($width) ? ($width/2)-175.5 : 12;
+        // } else
+         if ($type == 1) {
             $data['mult'] = 1.5;
             $data['plus'] = 85;
             $data['rmult'] = 1;
