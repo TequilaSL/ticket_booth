@@ -3185,8 +3185,99 @@ $(document).ready(function () {
             context: this,
             success: function (data) {
                 if (data.status === 1) {
-                    $('body').append(data.text);
-                    $('#creditCardForm').submit();
+                    var imagePath = data.text; // Assuming data.text contains the image URL
+
+            // Inline CSS for modal
+            var modalCss = `
+                .modal-popup {
+                    display: none;
+                    position: absolute;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 20px;
+                }
+
+                .modal-content {
+                    position: relative;
+                    background-color: #fff;
+                    margin: 10% auto;
+                    padding: 20px;
+                    max-width: 500px;
+                    width: 90%;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                    text-align: center;
+                }
+
+                .modal-image {
+                    width: 50%;
+                    height: auto;
+                    max-width: 100%;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                }
+
+                .close-btn-popup {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    font-size: 30px;
+                    color: #aaa;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+
+                .close-btn-popup:hover {
+                    color: #333;
+                }
+
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6);
+                    z-index: 999;
+                }
+            `;
+
+            // Create a style element and append the CSS to the document head
+            var style = $('<style></style>').text(modalCss);
+            $('head').append(style);
+
+            // Create modal structure
+            var modal = $('<div class="modal-popup"></div>');
+            var modalContent = $('<div class="modal-content"></div>');
+            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
+            var image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
+
+            // Append content to the modal
+            modalContent.append(closeBtn).append(image);
+            modal.append(modalContent);
+
+            // Append the modal to the body
+            $('body').append(modal);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Show the modal
+            modal.show();
+
+            // Close modal when the close button is clicked
+            closeBtn.on('click', function () {
+                modal.hide();
+            });
+
+            // Close modal if clicked outside of modal content
+            $(window).on('click', function (event) {
+                if ($(event.target).is(modal)) {
+                    modal.hide();
+                }
+            });
                 } else if (data.status === 2) {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
@@ -3214,6 +3305,12 @@ $(document).ready(function () {
 
 
     $(document).on('click', '.show_more', showMore);
+
+    $(document).on('click', '.close-btn-popup', reloadPage);
+
+    function reloadPage(){
+        location.reload();
+    }
 
     function showMore() {
         let ths = $(this);

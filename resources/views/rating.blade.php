@@ -32,7 +32,7 @@
                 <div class="info d-flex">
                     <div class="info1">
                         <div class="img1"><img
-                                src="{{ Storage::temporaryUrl('cities/'.$result['routes']['cities_from']['id'].'.'.$result['routes']['cities_from']['extension'], now()->addMinutes(5)) }}"
+                                src="{{ '/images/'.$result['routes']['cities_from']['id'].'.svg' }}"
                                 alt="{{ $result['routes']['vehicles']['type'] }}" class="img-fluid"></div>
                         <div class="txt1 from_city">{{ $result['routes']['cities_from']['translated']['name'] }}</div>
                         <div class="txt2">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="info3">
                         <div class="img1"><img
-                                src="{{ Storage::temporaryUrl('cities/'.$result['routes']['cities_to']['id'].'.'.$result['routes']['cities_to']['extension'], now()->addMinutes(5)) }}"
+                                src="{{ '/images/'.$result['routes']['cities_to']['id'].'.svg' }}"
                                 alt="{{ $result['routes']['cities_to']['translated']['name'] }}" class="img-fluid"></div>
                         <div class="txt1 to_city">{{ $result['routes']['cities_to']['translated']['name'] }}</div>
                         <div class="txt2">
@@ -127,7 +127,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ URL::asset('js/listingMaps.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-maps.key') }}&callback=initMap"
-            async defer></script>
+<script src="{{ URL::asset('js/listingMaps.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-maps.key') }}&callback=initMap" async></script>
+
 @endpush

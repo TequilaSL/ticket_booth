@@ -17,9 +17,9 @@
                             <li class="blue"><a
                                     href="{{ route('register_as_driver') }}">{{ Lang::get('auth.become_driver') }}</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'minibus']) }}">{{ Lang::get('menu.minibus_tickets') }}</a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'bus']) }}">{{ Lang::get('menu.bus_tickets') }}</a>
                             </li>
@@ -61,7 +61,7 @@
                                 <img src="{{ URL::asset('images/logo-footer.png') }}" alt="" class="img-fluid">
                             </figure>
                             <div class="caption">
-                                <div class="txt1">zoombus.net</div>
+                                <div class="txt1">ticketbooth.lk</div>
                                 <div class="txt2">Copyright © All rights Reserved</div>
                             </div>
                         </div>

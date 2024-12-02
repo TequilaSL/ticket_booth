@@ -47,10 +47,12 @@ import PartnerList from './views/partner/PartnersList'
 import PartnerDetails from './views/partner/PartnerDetails'
 import PartnerRegister from './views/partner/PartnerRegister'
 import QRScanner from './views/QRScanner'
-import SingleTicket from "./views/tickets/SingleTicket"
+import SingleTicket from "./views/tickets/SingleTicket.vue"
 import TicketList from "./views/tickets/TicketList"
 import SingleTicketSecure from "./views/tickets/SingleTicketSecure";
 import RateRoute from "./views/RateRoute";
+import LocationView from './views/passenger/LocationView.vue';
+
 
 Vue.use(VueRouter)
 
@@ -71,6 +73,14 @@ routes.push(
             requiresAuth: true
         },
         component: QRScanner
+    },
+    {
+        path: '/passenger/location',
+        name: 'locationTrack',
+        meta: {
+            requiresAuth: true
+        },
+        component: LocationView
     },
     {
         path: '/profile',

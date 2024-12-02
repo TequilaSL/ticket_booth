@@ -3177,6 +3177,9 @@ $(document).ready(function () {
         });
         $('.response').css('display', 'none').removeClass('response-success response-danger response-warning response-info');
         data.push({name: "action", value: $(this).val()});
+        if (data.find(item => item.name === "phone_number[]").value ==="" && data.find(item => item.name === "name[]").value ==="") {
+            window.location.href = "/signup";
+        }
         $.ajax({
             url: route('booking'),
             method: 'POST',
@@ -3185,8 +3188,121 @@ $(document).ready(function () {
             context: this,
             success: function (data) {
                 if (data.status === 1) {
-                    $('body').append(data.text);
-                    $('#creditCardForm').submit();
+                    var imagePath = data.text; // Assuming data.text contains the image URL
+
+            // Inline CSS for modal
+            var modalCss = `
+                .modal-popup {
+                    display: none;
+                    position: absolute;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 20px;
+                }
+
+                .modal-content {
+                    position: relative;
+                    background-color: #fff;
+                    margin: 10% auto;
+                    padding: 40px 10px 0px 10px;
+                    max-width: 500px;
+                    width: 90%;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                    text-align: center;
+                }
+
+                .model-content .qr-code-container img {
+                    width: 86%;
+                }
+
+                .modal-image {
+                    height: auto;
+                    max-width: 100%;
+                    border-radius: 5px;
+                    margin-bottom: 20px;
+                }
+
+                .close-btn-popup {
+                    position: absolute;
+                    top: -3px;
+                    right: 20px;
+                    font-size: 30px;
+                    color: #aaa;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+
+                .close-btn-popup:hover {
+                    color: #333;
+                }
+                    .thank-class-p-1{
+                    font-size: 16px;
+                        margin-bottom: 0;
+
+    font-weight: 700;
+                    }
+    .thank-class-p-2 {
+    margin-bottom: 0;
+    }
+                    }
+    .thank-class-p-2 {
+    margin-bottom: 1rem;
+    }
+
+                .modal-overlay {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.6);
+                    z-index: 999;
+                }
+            `;
+
+            // Create a style element and append the CSS to the document head
+            var style = $('<style></style>').text(modalCss);
+            $('head').append(style);
+
+            // Create modal structure
+            var modal = $('<div class="modal-popup"></div>');
+            var modalContent = $('<div class="modal-content"></div>');
+            var para = $(`
+                <div >
+                    <p class="thank-class-p-1">Thank you for booking with us!</p>
+                    <p class="thank-class-p-2">You can download or share your QR code now.</p>
+                    <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
+                </div>
+            `);            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
+            var image = $('<img src="'+ imagePath +'" alt="QR Code Image" class="modal-image" />');
+
+            // Append content to the modal
+            modalContent.append(para).append(closeBtn).append(image);
+            modal.append(modalContent);
+
+            // Append the modal to the body
+            $('body').append(modal);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Show the modal
+            modal.show();
+
+            // Close modal when the close button is clicked
+            closeBtn.on('click', function () {
+                modal.hide();
+            });
+
+            // Close modal if clicked outside of modal content
+            $(window).on('click', function (event) {
+                if ($(event.target).is(modal)) {
+                    modal.hide();
+                }
+            });
                 } else if (data.status === 2) {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
@@ -3214,6 +3330,12 @@ $(document).ready(function () {
 
 
     $(document).on('click', '.show_more', showMore);
+
+    $(document).on('click', '.close-btn-popup', reloadPage);
+
+    function reloadPage(){
+        location.reload();
+    }
 
     function showMore() {
         let ths = $(this);
@@ -3328,34 +3450,36 @@ $(document).ready(function () {
                     preserving = 0;
                 }
                 that.off('click');
-                $.ajax({
-                    url: route('choose_seat'),
-                    method: 'POST',
-                    context: this,
-                    data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
-                    beforeSend: function () {
-                        $('.loading-web').css('display', 'none');
-                    },
-                    success: function (data) {
-                        that.addClass('seat-active');
-                        ticket_totals.removeClass('hidden');
-                        ticket_passengers.append(data).removeClass('hidden');
-                        let oc = $('.select2');
-                        let phone_number_input = $('input.phone_number_inp');
-                        let select2Parrent = oc.parent().attr('class') + '-dropdown';
-                        oc.select2({
-                            minimumResultsForSearch: Infinity,
-                            dropdownCssClass: select2Parrent
-                        });
-                        phone_number_input.intlTelInput({
-                            autoPlaceholder: "aggressive",
-                            defaultCountry: current_country_code,
-                            onlyCountries: ['ge'],
-                            utilsScript: "/js/utils.js"
-                        });
-                        that.on('click', chooseSeat);
-                    }
-                });
+                if (seat_counts<1) {
+                    $.ajax({
+                        url: route('choose_seat'),
+                        method: 'POST',
+                        context: this,
+                        data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
+                        beforeSend: function () {
+                            $('.loading-web').css('display', 'none');
+                        },
+                        success: function (data) {
+                            that.addClass('seat-active');
+                            ticket_totals.removeClass('hidden');
+                            ticket_passengers.append(data).removeClass('hidden');
+                            let oc = $('.select2');
+                            let phone_number_input = $('input.phone_number_inp');
+                            let select2Parrent = oc.parent().attr('class') + '-dropdown';
+                            oc.select2({
+                                minimumResultsForSearch: Infinity,
+                                dropdownCssClass: select2Parrent
+                            });
+                            phone_number_input.intlTelInput({
+                                autoPlaceholder: "aggressive",
+                                defaultCountry: current_country_code,
+                                onlyCountries: ['lk'],
+                                utilsScript: "/js/utils.js"
+                            });
+                            that.on('click', chooseSeat);
+                        }
+                    });
+                }
                 $('#amount').val(seat_counts + 1);
                 $('.details-of-payment-total .txt2 span').html((seat_counts + 1) * parseFloat($('input[name="price"]').val()).toFixed(2));
             } else {

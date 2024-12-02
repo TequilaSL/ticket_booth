@@ -1,8 +1,9 @@
 <div class="currency dropdown">
     @if(count($currencies) > 1)
         <a class="dropdown-toggle" href="#" role="button" id="dropdownCurrency" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img src="{{ URL::asset('images/currencies/'.$currencies[$current_currency]['key'].'.png') }}" alt="{{ $currencies[$current_currency]['key'] }}" class="img-fluid">
-            <span>{{ $currencies[$current_currency]['key'] }}</span>
+            <!-- <img src="{{ URL::asset('images/currencies/'.$currencies[$current_currency]['key'].'.png') }}" alt="{{ $currencies[$current_currency]['key'] }}" class="img-fluid"> -->
+            <!-- <span>{{ $currencies[$current_currency]['key'] }}</span> -->
+            <span>LKR</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownCurrency">
             @foreach(\Illuminate\Support\Arr::except($currencies, $current_currency) as $curr)
@@ -13,8 +14,9 @@
         </div>
     @else
         <a href="#" class="dropdown-toggle no-after">
-            <img src="{{ URL::asset('images/currencies/'.$currencies[$current_currency]['key'].'.png') }}" alt="{{ $currencies[$current_currency]['key'] }}" class="img-fluid">
-            <span>{{ $currencies[$current_currency]['key'] }}</span>
+            <!-- <img src="{{ URL::asset('images/currencies/'.$currencies[$current_currency]['key'].'.png') }}" alt="{{ $currencies[$current_currency]['key'] }}" class="img-fluid"> -->
+            <!-- <span>{{ $currencies[$current_currency]['key'] }}</span> -->
+            <span>LKR</span>
         </a>
     @endif
 

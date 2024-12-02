@@ -1,7 +1,7 @@
-export const siteURL = 'https://zoombus.tequilasl.com'
+export const siteURL = 'https://ticketbooth.tequilasl.com'
 export const client = {
-    id: 3,
-    secret: 'a7z0hRrvBECOHPybXEVvjoiaJZDqwWkyOB2mh0bW'
+    id: 2,
+    secret: 'nqNNtsInNJc2whptIlTlimw1r5YnAukMNnaeCjLz'
 }
 
 export function imagesPathRewrite(file) {
@@ -14,6 +14,10 @@ export function notificationTypesPath(file) {
 
 export const googleRecaptcha = {
     siteKey: '6LePvmEqAAAAAKRuX8pEnMfY_3qLoRZGxBujw3FE'
+}
+
+export const googleMaps = {
+    key: 'AIzaSyCHBELaz3Rdo3GIuRlxaC_jvVens2QSoEk'
 }
 
 export const vehiclesPerPage = 10

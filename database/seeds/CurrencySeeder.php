@@ -13,7 +13,7 @@ class CurrencySeeder extends Seeder
     public function run()
     {
         $currencies = array(
-            array('id' => 1, 'key' => 'GEL', 'code' => 981, 'value' => 2.9)
+            array('id' => 1, 'key' => 'RS', 'code' => 981, 'value' => 2.9)
         );
         Currency::insert($currencies);
     }

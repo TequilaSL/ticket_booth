@@ -75,8 +75,13 @@
                                                         selected
                                                     @endif
                                                 @endisset>
-                                                {{ (!empty($valuez['translated'])) ? $valuez['translated']['name'] : $valuez['text'] ?? $valuez['name'] ?? $valuez }}
-                                            </option>
+{{
+    (!empty($valuez['translated']['name']) && is_string($valuez['translated']['name']))
+        ? $valuez['translated']['name']
+        : (is_string($valuez['text'] ?? null)
+            ? ($valuez['text'] ?? $valuez['name'] ?? $valuez)
+            : null)
+}}                                            </option>
                                         @endforeach
                                     @endisset
                                 </select>

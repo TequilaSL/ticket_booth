@@ -109,6 +109,12 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 });
+
+Route::get('/location', function () {
+    $location = DB::table('locations')->orderBy('created_at', 'desc')->first();
+    return response()->json($location);
+});
+
 Route::post('registration', 'Api\RegistrationController@create');
 Route::post('registration-partner', 'Api\RegistrationController@createAsPartner');
 Route::post('forgot', 'Api\ForgotPasswordController@request');
