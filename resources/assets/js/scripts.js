@@ -3370,6 +3370,9 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '.show_more', showMore);
+
+    $(document).on('click', '.close-btn-popup', reloadPage);
 
     function reloadPage(){
         location.reload();
