@@ -23,5 +23,11 @@
     { "id": "22", "city_id": 22, "user_id": 1 },
     { "id": "23", "city_id": 23, "user_id": 1 },
     { "id": "24", "city_id": 24, "user_id": 1 },
-    { "id": "25", "city_id": 25, "user_id": 1 }
+    { "id": "25", "city_id": 25, "user_id": 1 },
+    { "id": "26", "city_id": 26, "user_id": 1 },
+    { "id": "27", "city_id": 27, "user_id": 1 },
+    { "id": "28", "city_id": 28, "user_id": 1 },
+    { "id": "29", "city_id": 29, "user_id": 1 },
+    { "id": "30", "city_id": 30, "user_id": 1 },
+    { "id": "31", "city_id": 31, "user_id": 1 }
 ]
