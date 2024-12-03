@@ -51,7 +51,7 @@ import SingleTicket from "./views/tickets/SingleTicket.vue"
 import TicketList from "./views/tickets/TicketList"
 import SingleTicketSecure from "./views/tickets/SingleTicketSecure";
 import RateRoute from "./views/RateRoute";
-import LocationView from './views/passenger/LocationView.vue';
+import LocationView from './views/passenger/LocationView';
 
 
 Vue.use(VueRouter)

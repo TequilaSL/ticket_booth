@@ -14,9 +14,9 @@
                             <li class="red"><a
                                     href="{{ route('register_as_partner') }}">{{ Lang::get('auth.become_partner') }}</a>
                             </li>
-                            <li class="blue"><a
+                            <!-- <li class="blue"><a
                                     href="{{ route('register_as_driver') }}">{{ Lang::get('auth.become_driver') }}</a>
-                            </li>
+                            </li> -->
                             <!-- <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'minibus']) }}">{{ Lang::get('menu.minibus_tickets') }}</a>
                             </li> -->
@@ -69,16 +69,6 @@
                     <div class="col-md-3">
                         <div class="pre-footer-block">
                             <figure>
-                                <img src="{{ URL::asset('images/icon-globe.png') }}" alt="" class="img-fluid">
-                            </figure>
-                            <div class="caption">
-                                {{ Lang::get('misc.footer_feature_1') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pre-footer-block">
-                            <figure>
                                 <img src="{{ URL::asset('images/icon-hands.png') }}" alt="" class="img-fluid">
                             </figure>
                             <div class="caption">
@@ -101,7 +91,7 @@
                     @endif
                 </div>
             </div>
-            <div class="copyrights">made by <a href="#">web technology l.t.d.</a></div>
+            <div class="copyrights">made by <a href="https://tequilasl.com/" target="_blank">TEQUILA SRI LANKA</a></div>
         </div>
     </div>
 </div>

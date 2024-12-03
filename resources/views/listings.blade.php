@@ -181,7 +181,7 @@
                 @isset($sort_by) @slot('value') {{ $sort_by }} @endslot @endisset
                 @slot('name') sort_by @endslot
             @endcomponent
-            @component('components.misc.form-group-col')
+            <!-- @component('components.misc.form-group-col')
                 @slot('field') checkbox @endslot
                 @slot('group_class') form-check @endslot
                 @slot('label_class') form-check-label @endslot
@@ -201,7 +201,7 @@
                     @isset($route_type_array) @if(in_array($rt['id'], $route_type_array)) @slot('checked') @endslot @endif @endisset
                     @if(!isset($route_type_array) && in_array($rt['id'], $route_type)) @slot('checked') @endslot @endif
                 @endcomponent
-            @endforeach
+            @endforeach -->
         @endcomponent
     </div>
 
