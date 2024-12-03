@@ -430,6 +430,9 @@ export default {
                 withdrawal_sub: 'გამოითხოვეთ თანხა ნებისმიერ დროს'
             }
         },
+        passengerArea: {
+            title: 'Track Bus Location',
+        },
         partnerArea: {
             title: 'პარტნიორის სივრცე',
             caption2: 'პარტნიორთა სია, გაყიდვები, საპარტნიორო კოდი',
@@ -1014,6 +1017,9 @@ export default {
                 withdrawal: 'Withdrawal',
                 withdrawal_sub: 'Withdraw your funds anytime'
             }
+        },
+        passengerArea: {
+            title: 'Track Bus Location',
         },
         partnerArea: {
             title: 'Partners Area',
