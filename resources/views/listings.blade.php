@@ -181,27 +181,27 @@
                 @isset($sort_by) @slot('value') {{ $sort_by }} @endslot @endisset
                 @slot('name') sort_by @endslot
             @endcomponent
-            <!-- @component('components.misc.form-group-col')
-                @slot('field') checkbox @endslot
-                @slot('group_class') form-check @endslot
-                @slot('label_class') form-check-label @endslot
-                @slot('label') {{ Lang::get('misc.all') }} @endslot
-                @slot('field_id') check_all @endslot
-                @isset($route_type_array) @if(in_array(1, $route_type_array) && in_array(2, $route_type_array)) @slot('checked') @endslot @endif @endisset
-                @if(!isset($route_type_array) && $route_type == [1,2]) @slot('checked') @endslot @endif
-            @endcomponent
-            @foreach($route_types as $rt)
-                @component('components.misc.form-group-col')
-                    @slot('field') checkbox @endslot
-                    @slot('name') {{ $rt['id'] }} @endslot
-                    @slot('group_class') form-check @endslot
-                    @slot('label_class') form-check-label @endslot
-                    @slot('label') {{ $rt['translated']['name'] }} @endslot
-                    @slot('field_id') sort_{{ $rt['id'] }}  @endslot
-                    @isset($route_type_array) @if(in_array($rt['id'], $route_type_array)) @slot('checked') @endslot @endif @endisset
-                    @if(!isset($route_type_array) && in_array($rt['id'], $route_type)) @slot('checked') @endslot @endif
-                @endcomponent
-            @endforeach -->
+            {{-- @component('components.misc.form-group-col') --}}
+                {{--@slot('field') checkbox @endslot --}}
+                {{--@slot('group_class') form-check @endslot --}}
+                {{--@slot('label_class') form-check-label @endslot  --}}
+                {{--@slot('label') {{ Lang::get('misc.all') }} @endslot --}}
+                {{--@slot('field_id') check_all @endslot --}}
+                {{--@isset($route_type_array) @if(in_array(1, $route_type_array) && in_array(2, $route_type_array)) @slot('checked') @endslot @endif @endisset --}}
+                {{--@if(!isset($route_type_array) && $route_type == [1,2]) @slot('checked') @endslot @endif --}}
+            {{--@endcomponent --}}
+            {{--@foreach($route_types as $rt) --}}
+                {{--@component('components.misc.form-group-col') --}}
+                    {{--@slot('field') checkbox @endslot --}}
+                    {{--@slot('name') {{ $rt['id'] }} @endslot --}}
+                    {{--@slot('group_class') form-check @endslot --}}
+                    {{--@slot('label_class') form-check-label @endslot --}}
+                    {{--@slot('label') {{ $rt['translated']['name'] }} @endslot --}}
+                    {{--@slot('field_id') sort_{{ $rt['id'] }}  @endslot --}}
+                    {{--@isset($route_type_array) @if(in_array($rt['id'], $route_type_array)) @slot('checked') @endslot @endif @endisset --}}
+                    {{--@if(!isset($route_type_array) && in_array($rt['id'], $route_type)) @slot('checked') @endslot @endif --}}
+                {{--@endcomponent --}}
+            {{--@endforeach  --}}
         @endcomponent
     </div>
 
