@@ -63,7 +63,7 @@
                         <div class="details"><a href="#">{{ Lang::get('misc.details') }}</a></div>
                     </div>
                     <div class="ticket-details-left-col3">
-                        <div class="txt1">{{ $result['price'] }}<span></span></div>
+                        <div class="txt1">{{ $result['price'] }}<span>{{$result['currency']['currency_key']}}</span></div>
                         <div class="txt2"><span>{{ Lang::get('misc.refundable') }}</span></div>
                     </div>
                 </div>
