@@ -265,7 +265,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'currency' => 'GEL',
+    'currency' => 'LKR',
 
 
     /*
@@ -414,11 +414,23 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'min_car_seats' => 4,
-    'max_car_seats' => 4,
+    'min_3_minibus_seats' => 26,
+    'max_3_minibus_seats' => 50,
 
-    'min_bus_seats' => 30,
-    'max_bus_seats' => 70,
+    'min_4_minibus_seats' => 34,
+    'max_4_minibus_seats' => 70,
+
+    'min_4_medium_bus_seats' => 30,
+    'max_4_medium_bus_seats' => 70,
+
+    'min_5_medium_bus_seats' => 41,
+    'max_5_medium_bus_seats' => 70,
+
+    'min_4_large_bus_seats' => 30,
+    'max_4_large_bus_seats' => 70,
+
+    'min_5_large_bus_seats' => 41,
+    'max_5_large_bus_seats' => 70,
 
     /*
     |--------------------------------------------------------------------------

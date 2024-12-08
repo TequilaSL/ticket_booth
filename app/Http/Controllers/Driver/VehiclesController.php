@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Log;
 
 class VehiclesController extends DriverController
 {
@@ -63,7 +64,22 @@ class VehiclesController extends DriverController
     public function seatsMax(Request $request)
     {
         if ($request->type == 1) {
-            return config('app.max_bus_seats');
+            return config('app.max_3_minibus_seats');
+        }
+        else if ($request->type == 2) {
+            return config('app.max_4_minibus_seats');
+        }
+        else if ($request->type == 3) {
+            return config('app.max_4_medium_bus_seats');
+        }
+        else if ($request->type == 4) {
+            return config('app.max_5_medium_bus_seats');
+        }
+        else if ($request->type == 5) {
+            return config('app.max_4_large_bus_seats');
+        }
+        else if ($request->type == 6) {
+            return config('app.max_5_large_bus_seats');
         }
         else {
             return false;
@@ -103,7 +119,32 @@ class VehiclesController extends DriverController
     {
         if ($mode == 'type_1') {
             $fields = [
-                'number_of_seats' => 'required|integer|between:' . config('app.min_bus_seats') . ',' . config('app.max_bus_seats'),
+                'number_of_seats' => 'required|integer|between:' . config('app.min_3_minibus_seats') . ',' . config('app.max_3_minibus_seats'),
+            ];
+        }
+        if ($mode == 'type_2') {
+            $fields = [
+                'number_of_seats' => 'required|integer|between:' . config('app.min_4_minibus_seats') . ',' . config('app.max_4_minibus_seats'),
+            ];
+        }
+        if ($mode == 'type_3') {
+            $fields = [
+                'number_of_seats' => 'required|integer|between:' . config('app.min_4_medium_bus_seats') . ',' . config('app.max_4_medium_bus_seats'),
+            ];
+        }
+        if ($mode == 'type_4') {
+            $fields = [
+                'number_of_seats' => 'required|integer|between:' . config('app.min_5_medium_bus_seats') . ',' . config('app.max_5_medium_bus_seats'),
+            ];
+        }
+        if ($mode == 'type_5') {
+            $fields = [
+                'number_of_seats' => 'required|integer|between:' . config('app.min_4_large_bus_seats') . ',' . config('app.max_4_large_bus_seats'),
+            ];
+        }
+        if ($mode == 'type_6') {
+            $fields = [
+                'number_of_seats' => 'required|integer|between:' . config('app.min_5_large_bus_seats') . ',' . config('app.max_5_large_bus_seats'),
             ];
         }
         else if ($mode == 'deleteVehicle') {
@@ -126,7 +167,7 @@ class VehiclesController extends DriverController
                 'type' => 'required|integer|' . Rule::exists('route_types', 'id'),
                 'country_id' => 'required|integer|' . Rule::exists('countries', 'id'),
                 'manufacturer' => 'required|integer|' . Rule::exists('manufacturers', 'id'),
-                'license_plate' => 'required|string|' . Rule::unique('vehicles', 'license_plate')->where('country_id', $data['country_id'])->whereNot('id', $data['id'] ?? 0),
+                'license_plate' => 'required|string|' . Rule::unique('vehicles', 'license_plate')->where('id', $data['country_id'])->whereNot('id', $data['country_id'] ?? 0),
                 'model' => 'required|string',
                 'fuel_type' => 'required|integer|' . Rule::exists('fuel_types', 'id'),
                 'year' => 'required|integer|' . Rule::in($year),
@@ -217,7 +258,7 @@ class VehiclesController extends DriverController
         if ($response->original['status'] == 1) {
             if ($noSP == false) {
                 $sit['number_of_seats'] = count($data['seat_positioning']);
-                $response_sit = ValidationController::response($this->validator($sit, 'type_' . $data['type']), \Lang::get('auth.successfully_updated_sent_to_review'));
+                $response_sit = ValidationController::response($this->validator($data, 'type_' . $data['type']), \Lang::get('auth.successfully_updated_sent_to_review'));
             }
             else {
                 $response_sit = $response;
@@ -270,7 +311,7 @@ class VehiclesController extends DriverController
                     Vehicle::whereId($id)->update(['images_extension' => json_encode($imageExtensions)]);
                 }
             }
-            $response_sit->original['vehicle_id'] = $id;
+            $response_sit->original['vehicle_id'] = $request->vehicle_id;
             return response()->json($response_sit->original);
         }
         return response()->json($response->original);
@@ -301,80 +342,252 @@ class VehiclesController extends DriverController
 
     public function defaultSchemes($type)
     {
-        // if ($type == 1) {
-        //     return json_encode([
-        //         ['value' => 1, 'top' => 85, 'left' => 155],
-        //         ['value' => 2, 'top' => 255, 'left' => 310],
-        //         ['value' => 3, 'top' => 195, 'left' => 310],
-        //         ['value' => 4, 'top' => 75, 'left' => 310],
-        //         ['value' => 5, 'top' => 255, 'left' => 430],
-        //         ['value' => 6, 'top' => 195, 'left' => 430],
-        //         ['value' => 7, 'top' => 75, 'left' => 430],
-        //         ['value' => 8, 'top' => 255, 'left' => 550],
-        //         ['value' => 9, 'top' => 195, 'left' => 550],
-        //         ['value' => 10, 'top' => 135, 'left' => 550],
-        //         ['value' => 11, 'top' => 75, 'left' => 550],
-        //     ]);
-        // }
-        if ($type == 1) {
+        if ($type == 1 ) {
             return json_encode([
-                ['value' => 1, 'top' => 200, 'left' => 165],
-                ['value' => 2, 'top' => 160, 'left' => 165],
-                ['value' => 3, 'top' => 80, 'left' => 165],
-                ['value' => 4, 'top' => 40, 'left' => 165],
-                ['value' => 5, 'top' => 200, 'left' => 240],
-                ['value' => 6, 'top' => 160, 'left' => 240],
-                ['value' => 7, 'top' => 80, 'left' => 240],
-                ['value' => 8, 'top' => 40, 'left' => 240],
-                ['value' => 9, 'top' => 200, 'left' => 315],
-                ['value' => 10, 'top' => 160, 'left' => 315],
-                ['value' => 11, 'top' => 80, 'left' => 315],
-                ['value' => 12, 'top' => 40, 'left' => 315],
-                ['value' => 13, 'top' => 200, 'left' => 390],
-                ['value' => 14, 'top' => 160, 'left' => 390],
-                ['value' => 15, 'top' => 80, 'left' => 390],
-                ['value' => 16, 'top' => 40, 'left' => 390],
-                ['value' => 17, 'top' => 200, 'left' => 465],
-                ['value' => 18, 'top' => 160, 'left' => 465],
-                ['value' => 19, 'top' => 80, 'left' => 465],
-                ['value' => 20, 'top' => 40, 'left' => 465],
-                ['value' => 21, 'top' => 200, 'left' => 540],
-                ['value' => 22, 'top' => 160, 'left' => 540],
-                ['value' => 23, 'top' => 80, 'left' => 540],
-                ['value' => 24, 'top' => 40, 'left' => 540],
-                ['value' => 25, 'top' => 200, 'left' => 615],
-                ['value' => 26, 'top' => 160, 'left' => 615],
-                ['value' => 27, 'top' => 80, 'left' => 615],
-                ['value' => 28, 'top' => 40, 'left' => 615],
-                ['value' => 29, 'top' => 200, 'left' => 690],
-                ['value' => 30, 'top' => 160, 'left' => 690],
-                ['value' => 31, 'top' => 80, 'left' => 690],
-                ['value' => 32, 'top' => 40, 'left' => 690],
-                ['value' => 33, 'top' => 200, 'left' => 765],
-                ['value' => 34, 'top' => 160, 'left' => 765],
-                ['value' => 35, 'top' => 80, 'left' => 765],
-                ['value' => 36, 'top' => 40, 'left' => 765],
-                ['value' => 37, 'top' => 200, 'left' => 840],
-                ['value' => 38, 'top' => 160, 'left' => 840],
-                ['value' => 39, 'top' => 80, 'left' => 840],
-                ['value' => 40, 'top' => 40, 'left' => 840],
-                ['value' => 41, 'top' => 200, 'left' => 915],
-                ['value' => 42, 'top' => 160, 'left' => 915],
-                ['value' => 43, 'top' => 80, 'left' => 915],
-                ['value' => 44, 'top' => 40, 'left' => 915],
-                ['value' => 45, 'top' => 200, 'left' => 990],
-                ['value' => 46, 'top' => 160, 'left' => 990],
-                ['value' => 47, 'top' => 120, 'left' => 990],
-                ['value' => 48, 'top' => 80, 'left' => 990],
-                ['value' => 49, 'top' => 40, 'left' => 990]
+                ['value' => 1, 'top' => 170, 'left' => 85],
+                ['value' => 2, 'top' => 190, 'left' => 190],
+                ['value' => 3, 'top' => 100, 'left' => 190],
+                ['value' => 4, 'top' => 50, 'left' => 190],
+                ['value' => 5, 'top' => 190, 'left' => 275],
+                ['value' => 6, 'top' => 100, 'left' => 275],
+                ['value' => 7, 'top' => 50, 'left' => 275],
+                ['value' => 8, 'top' => 190, 'left' => 360],
+                ['value' => 9, 'top' => 100, 'left' => 360],
+                ['value' => 10, 'top' => 50, 'left' => 360],
+                ['value' => 11, 'top' => 190, 'left' => 445],
+                ['value' => 12, 'top' => 100, 'left' => 445],
+                ['value' => 13, 'top' => 50, 'left' => 445],
+                ['value' => 14, 'top' => 190, 'left' => 530],
+                ['value' => 15, 'top' => 100, 'left' => 530],
+                ['value' => 16, 'top' => 50, 'left' => 530],
+                ['value' => 17, 'top' => 190, 'left' => 615],
+                ['value' => 18, 'top' => 100, 'left' => 615],
+                ['value' => 19, 'top' => 50, 'left' => 615],
+                ['value' => 20, 'top' => 190, 'left' => 700],
+                ['value' => 21, 'top' => 100, 'left' => 700],
+                ['value' => 22, 'top' => 50, 'left' => 700],
+                ['value' => 23, 'top' => 190, 'left' => 785],
+                ['value' => 24, 'top' => 145, 'left' => 785],
+                ['value' => 25, 'top' => 100, 'left' => 785],
+                ['value' => 26, 'top' => 50, 'left' => 785],
             ]);
         }
-        else if ($type == 3) {
+        if ($type == 2 ) {
             return json_encode([
-                ['value' => 1, 'top' => 90, 'left' => 391],
-                ['value' => 2, 'top' => 90, 'left' => 530],
-                ['value' => 3, 'top' => 150, 'left' => 530],
-                ['value' => 4, 'top' => 210, 'left' => 530],
+                ['value' => 1, 'top' => 170, 'left' => 90],
+                ['value' => 2, 'top' => 200, 'left' => 190],
+                ['value' => 3, 'top' => 160, 'left' => 190],
+                ['value' => 4, 'top' => 80, 'left' => 190],
+                ['value' => 5, 'top' => 40, 'left' => 190],
+                ['value' => 6, 'top' => 200, 'left' => 280],
+                ['value' => 7, 'top' => 160, 'left' => 280],
+                ['value' => 8, 'top' => 80, 'left' => 280],
+                ['value' => 9, 'top' => 40, 'left' => 280],
+                ['value' => 10, 'top' => 200, 'left' => 370],
+                ['value' => 11, 'top' => 160, 'left' => 370],
+                ['value' => 12, 'top' => 80, 'left' => 370],
+                ['value' => 13, 'top' => 40, 'left' => 370],
+                ['value' => 14, 'top' => 200, 'left' => 460],
+                ['value' => 15, 'top' => 160, 'left' => 460],
+                ['value' => 16, 'top' => 80, 'left' => 460],
+                ['value' => 17, 'top' => 40, 'left' => 460],
+                ['value' => 18, 'top' => 200, 'left' => 550],
+                ['value' => 19, 'top' => 160, 'left' => 550],
+                ['value' => 20, 'top' => 80, 'left' => 550],
+                ['value' => 21, 'top' => 40, 'left' => 550],
+                ['value' => 22, 'top' => 200, 'left' => 640],
+                ['value' => 23, 'top' => 160, 'left' => 640],
+                ['value' => 24, 'top' => 80, 'left' => 640],
+                ['value' => 25, 'top' => 40, 'left' => 640],
+                ['value' => 26, 'top' => 200, 'left' => 730],
+                ['value' => 27, 'top' => 160, 'left' => 730],
+                ['value' => 28, 'top' => 80, 'left' => 730],
+                ['value' => 29, 'top' => 40, 'left' => 730],
+                ['value' => 30, 'top' => 200, 'left' => 820],
+                ['value' => 31, 'top' => 160, 'left' => 820],
+                ['value' => 32, 'top' => 120, 'left' => 820],
+                ['value' => 33, 'top' => 80, 'left' => 820],
+                ['value' => 34, 'top' => 40, 'left' => 820]
+            ]);
+        }
+        if ($type == 3) {
+            return json_encode([
+                ['value' => 1, 'top' => 170, 'left' => 90],
+                ['value' => 2, 'top' => 200, 'left' => 190],
+                ['value' => 3, 'top' => 160, 'left' => 190],
+                ['value' => 4, 'top' => 80, 'left' => 190],
+                ['value' => 5, 'top' => 40, 'left' => 190],
+                ['value' => 6, 'top' => 200, 'left' => 270],
+                ['value' => 7, 'top' => 160, 'left' => 270],
+                ['value' => 8, 'top' => 80, 'left' => 270],
+                ['value' => 9, 'top' => 40, 'left' => 270],
+                ['value' => 10, 'top' => 200, 'left' => 350],
+                ['value' => 11, 'top' => 160, 'left' => 350],
+                ['value' => 12, 'top' => 80, 'left' => 350],
+                ['value' => 13, 'top' => 40, 'left' => 350],
+                ['value' => 14, 'top' => 200, 'left' => 430],
+                ['value' => 15, 'top' => 160, 'left' => 430],
+                ['value' => 16, 'top' => 80, 'left' => 430],
+                ['value' => 17, 'top' => 40, 'left' => 430],
+                ['value' => 18, 'top' => 200, 'left' => 510],
+                ['value' => 19, 'top' => 160, 'left' => 510],
+                ['value' => 20, 'top' => 80, 'left' => 510],
+                ['value' => 21, 'top' => 40, 'left' => 510],
+                ['value' => 22, 'top' => 200, 'left' => 590],
+                ['value' => 23, 'top' => 160, 'left' => 590],
+                ['value' => 24, 'top' => 80, 'left' => 590],
+                ['value' => 25, 'top' => 40, 'left' => 590],
+                ['value' => 26, 'top' => 200, 'left' => 670],
+                ['value' => 27, 'top' => 160, 'left' => 670],
+                ['value' => 28, 'top' => 80, 'left' => 670],
+                ['value' => 29, 'top' => 40, 'left' => 670],
+                ['value' => 30, 'top' => 200, 'left' => 750],
+                ['value' => 31, 'top' => 160, 'left' => 750],
+                ['value' => 32, 'top' => 120, 'left' => 750],
+                ['value' => 33, 'top' => 80, 'left' => 750],
+                ['value' => 34, 'top' => 40, 'left' => 750]
+            ]);
+        }
+        if ($type == 4) {
+            return json_encode([
+                ['value' => 1, 'top' => 170, 'left' => 90],
+                ['value' => 2, 'top' => 205, 'left' => 190],
+                ['value' => 3, 'top' => 170, 'left' => 190],
+                ['value' => 4, 'top' => 100, 'left' => 190],
+                ['value' => 5, 'top' => 65, 'left' => 190],
+                ['value' => 6, 'top' => 30, 'left' => 190],
+                ['value' => 7, 'top' => 205, 'left' => 270],
+                ['value' => 8, 'top' => 170, 'left' => 270],
+                ['value' => 9, 'top' => 100, 'left' => 270],
+                ['value' => 10, 'top' => 65, 'left' => 270],
+                ['value' => 11, 'top' => 30, 'left' => 270],
+                ['value' => 12, 'top' => 205, 'left' => 350],
+                ['value' => 13, 'top' => 170, 'left' => 350],
+                ['value' => 14, 'top' => 100, 'left' => 350],
+                ['value' => 15, 'top' => 65, 'left' => 350],
+                ['value' => 16, 'top' => 30, 'left' => 350],
+                ['value' => 17, 'top' => 205, 'left' => 430],
+                ['value' => 18, 'top' => 170, 'left' => 430],
+                ['value' => 19, 'top' => 100, 'left' => 430],
+                ['value' => 20, 'top' => 65, 'left' => 430],
+                ['value' => 21, 'top' => 30, 'left' => 430],
+                ['value' => 22, 'top' => 205, 'left' => 510],
+                ['value' => 23, 'top' => 170, 'left' => 510],
+                ['value' => 24, 'top' => 100, 'left' => 510],
+                ['value' => 25, 'top' => 65, 'left' => 510],
+                ['value' => 26, 'top' => 30, 'left' => 510],
+                ['value' => 27, 'top' => 205, 'left' => 590],
+                ['value' => 28, 'top' => 170, 'left' => 590],
+                ['value' => 29, 'top' => 100, 'left' => 590],
+                ['value' => 30, 'top' => 65, 'left' => 590],
+                ['value' => 31, 'top' => 30, 'left' => 590],
+                ['value' => 32, 'top' => 205, 'left' => 670],
+                ['value' => 33, 'top' => 170, 'left' => 670],
+                ['value' => 34, 'top' => 100, 'left' => 670],
+                ['value' => 35, 'top' => 65, 'left' => 670],
+                ['value' => 36, 'top' => 30, 'left' => 670],
+                ['value' => 37, 'top' => 205, 'left' => 750],
+                ['value' => 38, 'top' => 170, 'left' => 750],
+                ['value' => 39, 'top' => 100, 'left' => 750],
+                ['value' => 40, 'top' => 65, 'left' => 750],
+                ['value' => 41, 'top' => 30, 'left' => 750]
+            ]);
+        }
+     if ($type == 5) {
+            return json_encode([
+                ['value' => 1, 'top' => 170, 'left' => 90],
+                ['value' => 2, 'top' => 200, 'left' => 190],
+                ['value' => 3, 'top' => 160, 'left' => 190],
+                ['value' => 4, 'top' => 80, 'left' => 190],
+                ['value' => 5, 'top' => 40, 'left' => 190],
+                ['value' => 6, 'top' => 200, 'left' => 270],
+                ['value' => 7, 'top' => 160, 'left' => 270],
+                ['value' => 8, 'top' => 80, 'left' => 270],
+                ['value' => 9, 'top' => 40, 'left' => 270],
+                ['value' => 10, 'top' => 200, 'left' => 350],
+                ['value' => 11, 'top' => 160, 'left' => 350],
+                ['value' => 12, 'top' => 80, 'left' => 350],
+                ['value' => 13, 'top' => 40, 'left' => 350],
+                ['value' => 14, 'top' => 200, 'left' => 430],
+                ['value' => 15, 'top' => 160, 'left' => 430],
+                ['value' => 16, 'top' => 80, 'left' => 430],
+                ['value' => 17, 'top' => 40, 'left' => 430],
+                ['value' => 18, 'top' => 200, 'left' => 510],
+                ['value' => 19, 'top' => 160, 'left' => 510],
+                ['value' => 20, 'top' => 80, 'left' => 510],
+                ['value' => 21, 'top' => 40, 'left' => 510],
+                ['value' => 22, 'top' => 200, 'left' => 590],
+                ['value' => 23, 'top' => 160, 'left' => 590],
+                ['value' => 24, 'top' => 80, 'left' => 590],
+                ['value' => 25, 'top' => 40, 'left' => 590],
+                ['value' => 26, 'top' => 200, 'left' => 670],
+                ['value' => 27, 'top' => 160, 'left' => 670],
+                ['value' => 28, 'top' => 80, 'left' => 670],
+                ['value' => 29, 'top' => 40, 'left' => 670],
+                ['value' => 30, 'top' => 200, 'left' => 750],
+                ['value' => 31, 'top' => 160, 'left' => 750],
+                ['value' => 32, 'top' => 80, 'left' => 750],
+                ['value' => 33, 'top' => 40, 'left' => 750],
+                ['value' => 34, 'top' => 200, 'left' => 830],
+                ['value' => 35, 'top' => 160, 'left' => 830],
+                ['value' => 36, 'top' => 80, 'left' => 830],
+                ['value' => 37, 'top' => 40, 'left' => 830],
+                ['value' => 38, 'top' => 200, 'left' => 910],
+                ['value' => 39, 'top' => 160, 'left' => 910],
+                ['value' => 40, 'top' => 120, 'left' => 910],
+                ['value' => 41, 'top' => 80, 'left' => 910],
+                ['value' => 42, 'top' => 40, 'left' => 910]
+            ]);
+        }
+        if ($type == 6) {
+            return json_encode([
+                ['value' => 1, 'top' => 170, 'left' => 90],
+                ['value' => 2, 'top' => 205, 'left' => 190],
+                ['value' => 3, 'top' => 170, 'left' => 190],
+                ['value' => 4, 'top' => 100, 'left' => 190],
+                ['value' => 5, 'top' => 65, 'left' => 190],
+                ['value' => 6, 'top' => 30, 'left' => 190],
+                ['value' => 7, 'top' => 205, 'left' => 270],
+                ['value' => 8, 'top' => 170, 'left' => 270],
+                ['value' => 9, 'top' => 100, 'left' => 270],
+                ['value' => 10, 'top' => 65, 'left' => 270],
+                ['value' => 11, 'top' => 30, 'left' => 270],
+                ['value' => 12, 'top' => 205, 'left' => 350],
+                ['value' => 13, 'top' => 170, 'left' => 350],
+                ['value' => 14, 'top' => 100, 'left' => 350],
+                ['value' => 15, 'top' => 65, 'left' => 350],
+                ['value' => 16, 'top' => 30, 'left' => 350],
+                ['value' => 17, 'top' => 205, 'left' => 430],
+                ['value' => 18, 'top' => 170, 'left' => 430],
+                ['value' => 19, 'top' => 100, 'left' => 430],
+                ['value' => 20, 'top' => 65, 'left' => 430],
+                ['value' => 21, 'top' => 30, 'left' => 430],
+                ['value' => 22, 'top' => 205, 'left' => 510],
+                ['value' => 23, 'top' => 170, 'left' => 510],
+                ['value' => 24, 'top' => 100, 'left' => 510],
+                ['value' => 25, 'top' => 65, 'left' => 510],
+                ['value' => 26, 'top' => 30, 'left' => 510],
+                ['value' => 27, 'top' => 205, 'left' => 590],
+                ['value' => 28, 'top' => 170, 'left' => 590],
+                ['value' => 29, 'top' => 100, 'left' => 590],
+                ['value' => 30, 'top' => 65, 'left' => 590],
+                ['value' => 31, 'top' => 30, 'left' => 590],
+                ['value' => 32, 'top' => 205, 'left' => 670],
+                ['value' => 33, 'top' => 170, 'left' => 670],
+                ['value' => 34, 'top' => 100, 'left' => 670],
+                ['value' => 35, 'top' => 65, 'left' => 670],
+                ['value' => 36, 'top' => 30, 'left' => 670],
+                ['value' => 37, 'top' => 205, 'left' => 750],
+                ['value' => 38, 'top' => 170, 'left' => 750],
+                ['value' => 39, 'top' => 100, 'left' => 750],
+                ['value' => 40, 'top' => 65, 'left' => 750],
+                ['value' => 41, 'top' => 30, 'left' => 750],
+                ['value' => 42, 'top' => 205, 'left' => 830],
+                ['value' => 43, 'top' => 170, 'left' => 830],
+                ['value' => 44, 'top' => 135, 'left' => 830],
+                ['value' => 45, 'top' => 100, 'left' => 830],
+                ['value' => 46, 'top' => 65, 'left' => 830],
+                ['value' => 47, 'top' => 30, 'left' => 830]
             ]);
         }
         else {
