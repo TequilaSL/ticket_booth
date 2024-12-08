@@ -34,26 +34,26 @@ export const partnerListPerPage = 10
 export const partnerListVehiclesPerPage = 10
 
 export const vehicleSeats = [
-    // {
-    //     id: 1,
-    //     name: 'minibus',
-    //     min: 7,
-    //     max: 29,
-    //     seat: {
-    //         top: 276,
-    //         height: 45,
-    //         separator: 35
-    //     },
-    //     spliceIndex: 1,
-    //     right: [216, 168, 120, 72],
-    //     width: 47,
-    //     rightPlus: (parseInt(window.innerWidth)/2)-187.5,
-    //     firstMinus: 0
-    // },
     {
         id: 1,
-        name: 'bus',
-        min: 30,
+        name: '3 minibus',
+        min: 26,
+        max: 50,
+        seat: {
+            top: 276,
+            height: 45,
+            separator: 35
+        },
+        spliceIndex: 1,
+        right: [216, 168, 120, 72],
+        width: 47,
+        rightPlus: (parseInt(window.innerWidth)/2)-187.5,
+        firstMinus: 0
+    },
+    {
+        id: 2,
+        name: '4 minibus',
+        min: 34,
         max: 70,
         seat: {
             top: 150,
@@ -68,20 +68,72 @@ export const vehicleSeats = [
     },
     {
         id: 3,
-        name: 'car',
-        min: 4,
-        max: 4,
+        name: '4 mediumbus',
+        min: 34,
+        max: 70,
         seat: {
-            top: 98,
+            top: 150,
             height: 45,
             separator: 5
         },
-        width: 50,
+        spliceIndex: 2,
+        right: [228, 188, 148, 108, 68],
+        width: 39,
         rightPlus: (parseInt(window.innerWidth)/2)-187.5,
-        firstMinus: 10
-    }
+        firstMinus: 0
+    },
+    {
+        id: 4,
+        name: '5 mediumbus',
+        min: 41,
+        max: 70,
+        seat: {
+            top: 150,
+            height: 45,
+            separator: 5
+        },
+        spliceIndex: 2,
+        right: [228, 188, 148, 108, 68],
+        width: 39,
+        rightPlus: (parseInt(window.innerWidth)/2)-187.5,
+        firstMinus: 0
+    },
+    {
+        id: 5,
+        name: '4 minibus',
+        min: 42,
+        max: 70,
+        seat: {
+            top: 150,
+            height: 45,
+            separator: 5
+        },
+        spliceIndex: 2,
+        right: [228, 188, 148, 108, 68],
+        width: 39,
+        rightPlus: (parseInt(window.innerWidth)/2)-187.5,
+        firstMinus: 0
+    },
+    {
+        id: 6,
+        name: '4 minibus',
+        min: 47,
+        max: 70,
+        seat: {
+            top: 150,
+            height: 45,
+            separator: 5
+        },
+        spliceIndex: 2,
+        right: [228, 188, 148, 108, 68],
+        width: 39,
+        rightPlus: (parseInt(window.innerWidth)/2)-187.5,
+        firstMinus: 0
+    },
+
 ]
 
+// needto change
 export function addNewRow(routeType, values) {
     const configRoute = vehicleSeats.find(d => d.id === routeType)
     if (configRoute.max >= values.length) {

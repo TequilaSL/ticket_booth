@@ -1183,6 +1183,14 @@ $(document).ready(function () {
         });
     });
 
+    document.querySelectorAll('.switch-currency').forEach(item => {
+        item.addEventListener('click', function () {
+            const selectedCurrency = this.getAttribute('data-currency');
+            console.log('Selected currency:', selectedCurrency);
+            document.getElementById('currentCurrency').innerText = selectedCurrency;
+        });
+    });
+
     let routesDataTable = $('#routes');
     if (routesDataTable.length > 0) {
         routesDataTable.DataTable({
@@ -1387,15 +1395,15 @@ $(document).ready(function () {
         return tmp;
     }();
 
-
+// needtochange
     let new_row = $('.new_row');
     $(document).on('click', '.new_row', function (e) {
         e.preventDefault();
         let type = $('#type').val();
         let vehicle_scheme = $('.seat-parent');
-        if (parseInt(type) === 1) {
+        if (parseInt(type) === 1 || parseInt(type) === 3) {
             newRow(vehicle_scheme, this, parseInt(seatsDefault), 4);
-        } else if (parseInt(type) === 2) {
+        } else if (parseInt(type) === 2 || parseInt(type) === 4) {
             newRow(vehicle_scheme, this, parseInt(seatsDefault), 5);
         } else {
             $(this).off('click');
@@ -1424,9 +1432,11 @@ $(document).ready(function () {
             data: {_token: CSRF_TOKEN, type: thsv},
             success: function (data) {
                 let row;
-                if (thsv === 1) {
+                if (thsv === 1 ) {
+                    row = 3;
+                } else if (thsv === 2 || thsv === 3 || thsv === 5 ) {
                     row = 4;
-                } else if (thsv === 2) {
+                } else if (thsv === 4 || thsv === 6 ) {
                     row = 5;
                 }
                 $('.scheme_container').html(data);
@@ -1435,12 +1445,13 @@ $(document).ready(function () {
                 if (seats < seatsDefault - row) {
                     new_row.removeClass('hidden');
                 }
-                if (thsv !== 3) {
+                // need to verify
+                if (thsv !== 7) {
                     new_row.css('display', 'block');
                 } else {
                     new_row.css('display', 'none');
                 }
-                if (thsv !== 3) {
+                if (thsv !== 7) {
                     draggableVehicle(vehicle_scheme, row);
                 } else {
                     $(document).off('click', '.remove_seat');
@@ -1450,15 +1461,15 @@ $(document).ready(function () {
         });
     });
 
-
+// needtochange
     $(document).on('click', '.remove_seat', function (e) {
         e.preventDefault();
         let vehicle_scheme = $('.seat-parent');
         let rowVal = $('#type').val();
         let row;
-        if (parseInt(rowVal) === 2) {
+        if (parseInt(rowVal) === 2 || parseInt(rowVal) === 4) {
             row = 5;
-        } else if (parseInt(rowVal) === 1) {
+        } else if (parseInt(rowVal) === 1 || parseInt(rowVal) === 3) {
             row = 4;
         }
         if (rowVal !== 3) {
@@ -1466,7 +1477,7 @@ $(document).ready(function () {
         }
     });
 
-
+// needtochange
     function removeSeat(vehicle_scheme, ths, number, row) {
         $(ths).parent().remove();
         let seatSeparator;
@@ -1498,25 +1509,28 @@ $(document).ready(function () {
 
     }
 
-
+// needtochange
     function hasVehicleScheme(draggableSeat, hasVehicleScheme, seatParent, nonDraggable = null) {
         if (hasVehicleScheme.length) {
             let frontEnd;
             let row;
             let seatSeparator;
-            if (parseInt(hasVehicleScheme.find('#type').val()) === 3) {
+            if (parseInt(hasVehicleScheme.find('#type').val()) === 7) { //verify
                 $(document).off('click', '.remove_seat');
             } else {
-                if (parseInt(hasVehicleScheme.find('#type').val()) === 2) {
+                if (parseInt(hasVehicleScheme.find('#type').val()) === 1) {
                     frontEnd = 210;
                     seatSeparator = -85;
-                    row = 5;
-                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 1) {
+                    row = 3;
+                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 2 || parseInt(hasVehicleScheme.find('#type').val()) === 3 || parseInt(hasVehicleScheme.find('#type').val()) === 5) {
                     frontEnd = 350;
                     seatSeparator = -182;
                     row = 4;
+                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 4 || parseInt(hasVehicleScheme.find('#type').val()) === 6) {
+                    frontEnd = 450;
+                    seatSeparator = -282;
+                    row = 5;
                 }
-
                 if (draggableSeat.length > 0) {
                     draggableVehicle(draggableSeat, row);
                 }
@@ -1554,22 +1568,27 @@ $(document).ready(function () {
             new_row.addClass('hidden');
         }
 
-
+// needtochange
         let toSeparate;
         let seatSeparator;
         let seatWidth;
         let top;
         let frontEnd;
         let toAppend;
-        if (row === 4) {
+        if (row === 3) { //verify
             seatSeparator = -182;
             seatWidth = 120;
             top = 0;
             frontEnd = 350;
+        } else if (row === 4) {
+            seatSeparator = -85;
+            seatWidth = 80;
+            top = 40;
+            frontEnd = 210;
         } else if (row === 5) {
             seatSeparator = -85;
             seatWidth = 80;
-            top = 10;
+            top = 30;
             frontEnd = 210;
         }
 
@@ -1612,7 +1631,7 @@ $(document).ready(function () {
                 const value = parseInt($(this).val());
                 maxNum = (value > maxNum) ? value : maxNum;
             });
-
+// needtochange
             if (row === 4) {
                 let minone = maxNum - 1;
                 let mintwo = maxNum - 2;
@@ -1633,6 +1652,7 @@ $(document).ready(function () {
                     lastSeat.find('.fromtop').attr('name', 'seat_positioning[' + kf + '][top]').val(kfTop);
                     lastSeat.find('.fromleft').attr('name', 'seat_positioning[' + kf + '][left]').val(kfLeft);
                 }
+                // needtochange
             } else if (row === 5) {
                 let minone = maxNum - 1;
                 let mintwo = maxNum - 2;
@@ -1672,7 +1692,7 @@ $(document).ready(function () {
         let toAppSeatsVal = maxVal + row;
         for (let i = maxVal; i < toAppSeatsVal; i++) {
             let j;
-            if (row === 4) {
+            if (row === 3) { ///verify
                 if (i === maxVal) {
                     j = 255;
                 } else if (i === maxVal + 1) {
@@ -1681,6 +1701,18 @@ $(document).ready(function () {
                     j = 135;
                 } else if (i === maxVal + 3) {
                     j = 75;
+                }
+            } else if (row === 4) {
+                if (i === maxVal) {
+                    j = 200;
+                } else if (i === maxVal + 1) {
+                    j = 160;
+                } else if (i === maxVal + 2) {
+                    j = 120;
+                } else if (i === maxVal + 3) {
+                    j = 80;
+                } else if (i === maxVal + 4) {
+                    j = 40;
                 }
             } else if (row === 5) {
                 if (i === maxVal) {
@@ -1728,9 +1760,12 @@ $(document).ready(function () {
                 let max = 0;
                 let frontEnd;
                 let seatSeparator;
-                if (row === 4) {
+                if (row === 3) { // verify
                     frontEnd = 350;
                     seatSeparator = -182;
+                } else if (row === 4) {
+                    frontEnd = 210;
+                    seatSeparator = -85;
                 } else if (row === 5) {
                     frontEnd = 210;
                     seatSeparator = -85;
@@ -2093,7 +2128,7 @@ $(document).ready(function () {
                     phone_number_input.intlTelInput({
                         autoPlaceholder: "aggressive",
                         defaultCountry: current_country_code,
-                        onlyCountries: ['ge'],
+                        onlyCountries: ['lk'],
                         utilsScript: "/js/utils.js"
                     });
                     let oz = $('.datepicker');
@@ -3663,7 +3698,7 @@ $(document).ready(function () {
         phone_number_input.intlTelInput({
             autoPlaceholder: "aggressive",
             defaultCountry: current_country_code,
-            onlyCountries: ['ge'],
+            onlyCountries: ['lk'],
             utilsScript: "/js/utils.js"
         });
     }
