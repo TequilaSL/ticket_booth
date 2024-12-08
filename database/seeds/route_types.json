@@ -1,6 +1,31 @@
 [
     {
-        "key": "bus",
+        "key": "2*1 mini bus",
+        "slug": "bus",
+        "faicon": "fa-bus"
+    },
+    {
+        "key": "3*1 mini bus",
+        "slug": "bus",
+        "faicon": "fa-bus"
+    },
+    {
+        "key": "2*2 medium bus",
+        "slug": "bus",
+        "faicon": "fa-bus"
+    },
+    {
+        "key": "2*3 medium bus",
+        "slug": "bus",
+        "faicon": "fa-bus"
+    },
+    {
+        "key": "2*2 large bus",
+        "slug": "bus",
+        "faicon": "fa-bus"
+    },
+    {
+        "key": "2*3 large bus",
         "slug": "bus",
         "faicon": "fa-bus"
     }
