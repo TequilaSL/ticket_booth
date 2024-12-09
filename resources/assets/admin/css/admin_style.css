@@ -151,6 +151,141 @@
 .bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
 .bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
 
+/* ============================= bus scheme ====================== */
+.medium-bus-scheme .vehicle-seat{width: 73px; height: 40px; background: url(../../images/bus-seat.png) 0 0 no-repeat;}
+.medium-bus-scheme .vehicle-seat.seat-chosen{background-image: url(../../images/bus-seat-chosen.png);}
+.medium-bus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../../images/bus-seat-chosen-driver.png);}
+.medium-bus-scheme .vehicle-seat:not(.seat-chosen):hover,
+.medium-bus-scheme .vehicle-seat.seat-active{background-image: url(../../images/bus-seat-active.png);}
+
+.medium-bus-scheme .vehicle-seat-mini{width: 47px; height: 40px; background: url(../../images/bus-seat-small.png) 0 0 no-repeat;}
+.medium-bus-scheme .vehicle-seat-mini.seat-chosen{background-image: url(../../images/bus-seat-chosen-small.png);}
+.medium-bus-scheme .vehicle-seat-mini:not(.seat-chosen):hover,
+.medium-bus-scheme .vehicle-seat-mini.seat-active{background-image: url(../../images/bus-seat-active-small.png);}
+
+.medium-bus-scheme-wrapper {width:100%;text-align: center;position: relative;}
+.medium-bus-scheme-start {float:left; background: url(../../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
+.medium-bus-scheme-pattern {position:static;float:left; width:675px; height: 278px; background: url(../../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.medium-bus-scheme-end {float:left; background: url("../../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
+
+.medium-bus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat2{left: 172px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat3{left: 172px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat4{left: 172px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat5{left: 247px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat6{left: 247px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat7{left: 247px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat8{left: 247px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat9{left: 322px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat10{left: 322px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat11{left: 322px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat12{left: 322px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat13{left: 397px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat14{left: 397px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat15{left: 397px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat16{left: 397px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat17{left: 472px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat18{left: 472px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat19{left: 472px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat20{left: 472px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat21{left: 547px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat22{left: 547px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat23{left: 547px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat24{left: 547px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat25{left: 622px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat26{left: 622px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat27{left: 622px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat28{left: 622px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat29{left: 697px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat30{left: 697px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat31{left: 697px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat32{left: 697px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat33{left: 772px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat34{left: 772px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat35{left: 772px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat36{left: 772px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat37{left: 847px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat38{left: 847px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat39{left: 847px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat40{left: 847px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat41{left: 922px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat42{left: 922px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat43{left: 922px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat44{left: 922px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat45{left: 997px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat46{left: 997px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat47{left: 997px; bottom: 120px;}
+.medium-bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
+
+
+/* ============================= bus scheme ====================== */
+.large-bus-scheme .vehicle-seat{width: 73px; height: 40px; background: url(../../images/bus-seat.png) 0 0 no-repeat;}
+.large-bus-scheme .vehicle-seat.seat-chosen{background-image: url(../../images/bus-seat-chosen.png);}
+.large-bus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../../images/bus-seat-chosen-driver.png);}
+.large-bus-scheme .vehicle-seat:not(.seat-chosen):hover,
+.large-bus-scheme .vehicle-seat.seat-active{background-image: url(../../images/bus-seat-active.png);}
+
+.large-bus-scheme .vehicle-seat-mini{width: 47px; height: 40px; background: url(../../images/bus-seat-small.png) 0 0 no-repeat;}
+.large-bus-scheme .vehicle-seat-mini.seat-chosen{background-image: url(../../images/bus-seat-chosen-small.png);}
+.large-bus-scheme .vehicle-seat-mini:not(.seat-chosen):hover,
+.large-bus-scheme .vehicle-seat-mini.seat-active{background-image: url(../../images/bus-seat-active-small.png);}
+
+.large-bus-scheme-wrapper {width:100%;text-align: center;position: relative;}
+.large-bus-scheme-start {float:left; background: url(../../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
+.large-bus-scheme-pattern {position:static;float:left; width:840px; height: 278px; background: url(../../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.large-bus-scheme-end {float:left; background: url("../../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
+
+.large-bus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat2{left: 172px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat3{left: 172px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat4{left: 172px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat5{left: 247px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat6{left: 247px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat7{left: 247px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat8{left: 247px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat9{left: 322px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat10{left: 322px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat11{left: 322px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat12{left: 322px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat13{left: 397px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat14{left: 397px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat15{left: 397px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat16{left: 397px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat17{left: 472px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat18{left: 472px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat19{left: 472px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat20{left: 472px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat21{left: 547px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat22{left: 547px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat23{left: 547px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat24{left: 547px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat25{left: 622px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat26{left: 622px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat27{left: 622px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat28{left: 622px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat29{left: 697px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat30{left: 697px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat31{left: 697px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat32{left: 697px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat33{left: 772px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat34{left: 772px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat35{left: 772px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat36{left: 772px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat37{left: 847px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat38{left: 847px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat39{left: 847px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat40{left: 847px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat41{left: 922px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat42{left: 922px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat43{left: 922px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat44{left: 922px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat45{left: 997px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat46{left: 997px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat47{left: 997px; bottom: 120px;}
+.large-bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
+
 /* ============================= minibus scheme ====================== */
 .minibus-scheme{width: 825px; height: 391px; background: url(../../images/microbus-scheme.png) 0 0 no-repeat; }
 .minibus-scheme .vehicle-seat{width: 113px; height: 61px; background: url(../../images/microbus-seat.png) 0 0 no-repeat;}

@@ -10,22 +10,22 @@
         "faicon": "fa-bus"
     },
     {
-        "key": "2*2 medium bus",
+        "key": "2*2 medium-bus",
         "slug": "bus",
         "faicon": "fa-bus"
     },
     {
-        "key": "2*3 medium bus",
+        "key": "2*3 medium-bus",
         "slug": "bus",
         "faicon": "fa-bus"
     },
     {
-        "key": "2*2 large bus",
+        "key": "2*2 large-bus",
         "slug": "bus",
         "faicon": "fa-bus"
     },
     {
-        "key": "2*3 large bus",
+        "key": "2*3 large-bus",
         "slug": "bus",
         "faicon": "fa-bus"
     }
