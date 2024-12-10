@@ -26,6 +26,7 @@
         "mcamara/laravel-localization": "^1.5",
         "nesbot/carbon": "^2.38",
         "paypal/paypal-checkout-sdk": "1.0.1",
+        "phpmailer/phpmailer": "^6.9",
         "predis/predis": "^2.2",
         "propaganistas/laravel-phone": "^4.2",
         "symfony/polyfill-php80": "^1.23",

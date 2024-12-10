@@ -20,14 +20,14 @@ $(document).ready(function () {
     });
 
 
-    if (lang === 'ka') {
+    if (lang === 'sn') {
         tooltipsDateTime = {
-            pickHour: 'მონიშნეთ საათი',
-            incrementHour: "საათის გაზრდა",
-            decrementHour: "საათის შემცირება",
-            pickMinute: "მონიშნეთ წუთი",
-            incrementMinute: "წუთის გაზრდა",
-            decrementMinute: "წუთის შემცირება",
+            pickHour: "පැය තෝරන්න",
+            incrementHour: "පැය වැඩි කරන්න",
+            decrementHour: "පැය අඩු කරන්න",
+            pickMinute: "මිනිත්තුව තෝරන්න",
+            incrementMinute: "මිනිත්තුව වැඩි කරන්න",
+            decrementMinute: "මිනිත්තුව අඩු කරන්න",
         }
     } else {
         tooltipsDateTime = {
@@ -1183,6 +1183,14 @@ $(document).ready(function () {
         });
     });
 
+    document.querySelectorAll('.switch-currency').forEach(item => {
+        item.addEventListener('click', function () {
+            const selectedCurrency = this.getAttribute('data-currency');
+            console.log('Selected currency:', selectedCurrency);
+            document.getElementById('currentCurrency').innerText = selectedCurrency;
+        });
+    });
+
     let routesDataTable = $('#routes');
     if (routesDataTable.length > 0) {
         routesDataTable.DataTable({
@@ -1387,15 +1395,15 @@ $(document).ready(function () {
         return tmp;
     }();
 
-
+// needtochange
     let new_row = $('.new_row');
     $(document).on('click', '.new_row', function (e) {
         e.preventDefault();
         let type = $('#type').val();
         let vehicle_scheme = $('.seat-parent');
-        if (parseInt(type) === 1) {
+        if (parseInt(type) === 1 || parseInt(type) === 3) {
             newRow(vehicle_scheme, this, parseInt(seatsDefault), 4);
-        } else if (parseInt(type) === 2) {
+        } else if (parseInt(type) === 2 || parseInt(type) === 4) {
             newRow(vehicle_scheme, this, parseInt(seatsDefault), 5);
         } else {
             $(this).off('click');
@@ -1424,9 +1432,11 @@ $(document).ready(function () {
             data: {_token: CSRF_TOKEN, type: thsv},
             success: function (data) {
                 let row;
-                if (thsv === 1) {
+                if (thsv === 1 ) {
+                    row = 3;
+                } else if (thsv === 2 || thsv === 3 || thsv === 5 ) {
                     row = 4;
-                } else if (thsv === 2) {
+                } else if (thsv === 4 || thsv === 6 ) {
                     row = 5;
                 }
                 $('.scheme_container').html(data);
@@ -1435,12 +1445,13 @@ $(document).ready(function () {
                 if (seats < seatsDefault - row) {
                     new_row.removeClass('hidden');
                 }
-                if (thsv !== 3) {
+                // need to verify
+                if (thsv !== 7) {
                     new_row.css('display', 'block');
                 } else {
                     new_row.css('display', 'none');
                 }
-                if (thsv !== 3) {
+                if (thsv !== 7) {
                     draggableVehicle(vehicle_scheme, row);
                 } else {
                     $(document).off('click', '.remove_seat');
@@ -1450,15 +1461,15 @@ $(document).ready(function () {
         });
     });
 
-
+// needtochange
     $(document).on('click', '.remove_seat', function (e) {
         e.preventDefault();
         let vehicle_scheme = $('.seat-parent');
         let rowVal = $('#type').val();
         let row;
-        if (parseInt(rowVal) === 2) {
+        if (parseInt(rowVal) === 2 || parseInt(rowVal) === 4) {
             row = 5;
-        } else if (parseInt(rowVal) === 1) {
+        } else if (parseInt(rowVal) === 1 || parseInt(rowVal) === 3) {
             row = 4;
         }
         if (rowVal !== 3) {
@@ -1466,7 +1477,7 @@ $(document).ready(function () {
         }
     });
 
-
+// needtochange
     function removeSeat(vehicle_scheme, ths, number, row) {
         $(ths).parent().remove();
         let seatSeparator;
@@ -1498,25 +1509,28 @@ $(document).ready(function () {
 
     }
 
-
+// needtochange
     function hasVehicleScheme(draggableSeat, hasVehicleScheme, seatParent, nonDraggable = null) {
         if (hasVehicleScheme.length) {
             let frontEnd;
             let row;
             let seatSeparator;
-            if (parseInt(hasVehicleScheme.find('#type').val()) === 3) {
+            if (parseInt(hasVehicleScheme.find('#type').val()) === 7) { //verify
                 $(document).off('click', '.remove_seat');
             } else {
-                if (parseInt(hasVehicleScheme.find('#type').val()) === 2) {
+                if (parseInt(hasVehicleScheme.find('#type').val()) === 1) {
                     frontEnd = 210;
                     seatSeparator = -85;
-                    row = 5;
-                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 1) {
+                    row = 3;
+                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 2 || parseInt(hasVehicleScheme.find('#type').val()) === 3 || parseInt(hasVehicleScheme.find('#type').val()) === 5) {
                     frontEnd = 350;
                     seatSeparator = -182;
                     row = 4;
+                } else if (parseInt(hasVehicleScheme.find('#type').val()) === 4 || parseInt(hasVehicleScheme.find('#type').val()) === 6) {
+                    frontEnd = 450;
+                    seatSeparator = -282;
+                    row = 5;
                 }
-
                 if (draggableSeat.length > 0) {
                     draggableVehicle(draggableSeat, row);
                 }
@@ -1554,22 +1568,27 @@ $(document).ready(function () {
             new_row.addClass('hidden');
         }
 
-
+// needtochange
         let toSeparate;
         let seatSeparator;
         let seatWidth;
         let top;
         let frontEnd;
         let toAppend;
-        if (row === 4) {
+        if (row === 3) { //verify
             seatSeparator = -182;
             seatWidth = 120;
             top = 0;
             frontEnd = 350;
+        } else if (row === 4) {
+            seatSeparator = -85;
+            seatWidth = 80;
+            top = 40;
+            frontEnd = 210;
         } else if (row === 5) {
             seatSeparator = -85;
             seatWidth = 80;
-            top = 10;
+            top = 30;
             frontEnd = 210;
         }
 
@@ -1612,7 +1631,7 @@ $(document).ready(function () {
                 const value = parseInt($(this).val());
                 maxNum = (value > maxNum) ? value : maxNum;
             });
-
+// needtochange
             if (row === 4) {
                 let minone = maxNum - 1;
                 let mintwo = maxNum - 2;
@@ -1633,6 +1652,7 @@ $(document).ready(function () {
                     lastSeat.find('.fromtop').attr('name', 'seat_positioning[' + kf + '][top]').val(kfTop);
                     lastSeat.find('.fromleft').attr('name', 'seat_positioning[' + kf + '][left]').val(kfLeft);
                 }
+                // needtochange
             } else if (row === 5) {
                 let minone = maxNum - 1;
                 let mintwo = maxNum - 2;
@@ -1672,7 +1692,7 @@ $(document).ready(function () {
         let toAppSeatsVal = maxVal + row;
         for (let i = maxVal; i < toAppSeatsVal; i++) {
             let j;
-            if (row === 4) {
+            if (row === 3) { ///verify
                 if (i === maxVal) {
                     j = 255;
                 } else if (i === maxVal + 1) {
@@ -1681,6 +1701,18 @@ $(document).ready(function () {
                     j = 135;
                 } else if (i === maxVal + 3) {
                     j = 75;
+                }
+            } else if (row === 4) {
+                if (i === maxVal) {
+                    j = 200;
+                } else if (i === maxVal + 1) {
+                    j = 160;
+                } else if (i === maxVal + 2) {
+                    j = 120;
+                } else if (i === maxVal + 3) {
+                    j = 80;
+                } else if (i === maxVal + 4) {
+                    j = 40;
                 }
             } else if (row === 5) {
                 if (i === maxVal) {
@@ -1728,9 +1760,12 @@ $(document).ready(function () {
                 let max = 0;
                 let frontEnd;
                 let seatSeparator;
-                if (row === 4) {
+                if (row === 3) { // verify
                     frontEnd = 350;
                     seatSeparator = -182;
+                } else if (row === 4) {
+                    frontEnd = 210;
+                    seatSeparator = -85;
                 } else if (row === 5) {
                     frontEnd = 210;
                     seatSeparator = -85;
@@ -2093,7 +2128,7 @@ $(document).ready(function () {
                     phone_number_input.intlTelInput({
                         autoPlaceholder: "aggressive",
                         defaultCountry: current_country_code,
-                        onlyCountries: ['ge'],
+                        onlyCountries: ['lk'],
                         utilsScript: "/js/utils.js"
                     });
                     let oz = $('.datepicker');
@@ -3177,6 +3212,9 @@ $(document).ready(function () {
         });
         $('.response').css('display', 'none').removeClass('response-success response-danger response-warning response-info');
         data.push({name: "action", value: $(this).val()});
+        if (data.find(item => item.name === "phone_number[]").value ==="" && data.find(item => item.name === "name[]").value ==="") {
+            window.location.href = "/signup";
+        }
         $.ajax({
             url: route('booking'),
             method: 'POST',
@@ -3187,78 +3225,143 @@ $(document).ready(function () {
                 if (data.status === 1) {
                     var imagePath = data.text; // Assuming data.text contains the image URL
 
-            // Inline CSS for modal
-            var modalCss = `
-                .modal-popup {
-                    display: none;
-                    position: absolute;
-                    z-index: 1000;
-                    left: 0;
-                    top: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    padding: 20px;
+                    // Inline CSS for modal
+                    var modalCss = `
+                    .modal-popup {
+                        display: none;
+                        position: absolute;
+                        z-index: 1000;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 20px;
+                    }
+
+                    .modal-content {
+                        position: relative;
+                        background-color: #fff;
+                        margin: 10% auto;
+                        padding: 40px 10px 0px 10px;
+                        max-width: 440px;
+                        width: 90%;
+                            align-items: center;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                        text-align: center;
+                    }
+
+                    .modal-content img {
+                        width: 86%;
+                    }
+
+                    .modal-image {
+                        height: auto;
+                        max-width: 100%;
+                        border-radius: 5px;
+                        margin-bottom: 20px;
+                    }
+
+                    .close-btn-popup {
+                        position: absolute;
+                        top: -3px;
+                        right: 20px;
+                        font-size: 30px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    }
+
+                    .close-btn-popup:hover {
+                        color: #333;
+                    }
+
+                    .modal-btn {
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: background-color 0.3s;
+                        position: absolute;
+                        top: 5px;
+                        background: #ffffff;
+                        color: #c9302c;
+                        border: none;
+                        font-weight: bold;
+                    }
+                        .modal-btn :hover {
+                        border: none;
                 }
+                    .thank-class-p-1{
+                    font-size: 16px;
+                        margin-bottom: 0;
 
-                .modal-content {
-                    position: relative;
-                    background-color: #fff;
-                    margin: 10% auto;
-                    padding: 20px;
-                    max-width: 500px;
-                    width: 90%;
-                    border-radius: 10px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-                    text-align: center;
-                }
+                    font-weight: 700;
+                                    }
+                    .thank-class-p-2 {
+                    margin-bottom: 0;
+                    }
+                                    }
+                    .thank-class-p-2 {
+                    margin-bottom: 1rem;
+                    }
 
-                .modal-image {
-                    width: 50%;
-                    height: auto;
-                    max-width: 100%;
-                    border-radius: 5px;
-                    margin-bottom: 20px;
-                }
+                    .modal-btn:hover {
+                        color: ##7a1212;
+                    }
+                    .download-btn {
+                    right: 80px;
+                    }
+                    .share-btn {
+                    right: 40px;
+                    }
+                    `;
 
-                .close-btn-popup {
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    font-size: 30px;
-                    color: #aaa;
-                    cursor: pointer;
-                    font-weight: bold;
-                }
+                    // Create a style element and append the CSS to the document head
+                    const style = $('<style></style>').text(modalCss);
+                    $('head').append(style);
 
-                .close-btn-popup:hover {
-                    color: #333;
-                }
+                    // Create modal structure
+                    const modal = $('<div class="modal-popup"></div>');
+                    const modalContent = $('<div class="modal-content"></div>');
+                    var para = $(`
+                        <div >
+                            <p class="thank-class-p-1">Thank you for booking with us!</p>
+                            <p class="thank-class-p-2">You can download or share your QR code now.</p>
+                            <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
+                        </div>
+                    `);
+                    const closeBtn = $('<span class="close-btn-popup modal-btn"><i class="fa fa-times" aria-hidden="true"></i></span>');
+                    const image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
 
-                .modal-overlay {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.6);
-                    z-index: 999;
-                }
-            `;
+                    // Add download button
 
-            // Create a style element and append the CSS to the document head
-            var style = $('<style></style>').text(modalCss);
-            $('head').append(style);
+                    const downloadBtn = $('<button class="modal-btn download-btn"><i class="fa fa-download" aria-hidden="true"></i></button>');
+                    downloadBtn.on('click', function () {
+                        const link = document.createElement('a');
+                        link.href = imagePath;
+                        link.download = 'QRCode.png';
+                        link.click();
+                    });
 
-            // Create modal structure
-            var modal = $('<div class="modal-popup"></div>');
-            var modalContent = $('<div class="modal-content"></div>');
-            var closeBtn = $('<span class="close-btn-popup">&times;</span>');
-            var image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
+                    // Add share button
 
-            // Append content to the modal
-            modalContent.append(closeBtn).append(image);
-            modal.append(modalContent);
+                    var shareBtn = $('<button class="modal-btn share-btn"><i class="fa fa-share" aria-hidden="true"></i></button>');
+                    shareBtn.on('click', function () {
+                        if (navigator.share) {
+                            navigator.share({
+                                title: 'QR Code',
+                                text: 'Check out this QR code!',
+                                url: imagePath
+                            }).catch((error) => {
+                                console.error('Error sharing:', error);
+                            });
+                        } else {
+                            alert('Sharing is not supported on this browser.');
+                        }
+                    });
+
+                    // Append content to the modal
+                    modalContent.append(para).append(downloadBtn).append(shareBtn).append(closeBtn).append(image);
+                    modal.append(modalContent);
 
             // Append the modal to the body
             $('body').append(modal);
@@ -3302,7 +3405,6 @@ $(document).ready(function () {
             }
         });
     });
-
 
     $(document).on('click', '.show_more', showMore);
 
@@ -3425,34 +3527,36 @@ $(document).ready(function () {
                     preserving = 0;
                 }
                 that.off('click');
-                $.ajax({
-                    url: route('choose_seat'),
-                    method: 'POST',
-                    context: this,
-                    data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
-                    beforeSend: function () {
-                        $('.loading-web').css('display', 'none');
-                    },
-                    success: function (data) {
-                        that.addClass('seat-active');
-                        ticket_totals.removeClass('hidden');
-                        ticket_passengers.append(data).removeClass('hidden');
-                        let oc = $('.select2');
-                        let phone_number_input = $('input.phone_number_inp');
-                        let select2Parrent = oc.parent().attr('class') + '-dropdown';
-                        oc.select2({
-                            minimumResultsForSearch: Infinity,
-                            dropdownCssClass: select2Parrent
-                        });
-                        phone_number_input.intlTelInput({
-                            autoPlaceholder: "aggressive",
-                            defaultCountry: current_country_code,
-                            onlyCountries: ['ge'],
-                            utilsScript: "/js/utils.js"
-                        });
-                        that.on('click', chooseSeat);
-                    }
-                });
+                if (seat_counts<1) {
+                    $.ajax({
+                        url: route('choose_seat'),
+                        method: 'POST',
+                        context: this,
+                        data: {_token: CSRF_TOKEN, number: seat_counts + 1, seat_number: seat_number, preserving: preserving},
+                        beforeSend: function () {
+                            $('.loading-web').css('display', 'none');
+                        },
+                        success: function (data) {
+                            that.addClass('seat-active');
+                            ticket_totals.removeClass('hidden');
+                            ticket_passengers.append(data).removeClass('hidden');
+                            let oc = $('.select2');
+                            let phone_number_input = $('input.phone_number_inp');
+                            let select2Parrent = oc.parent().attr('class') + '-dropdown';
+                            oc.select2({
+                                minimumResultsForSearch: Infinity,
+                                dropdownCssClass: select2Parrent
+                            });
+                            phone_number_input.intlTelInput({
+                                autoPlaceholder: "aggressive",
+                                defaultCountry: current_country_code,
+                                onlyCountries: ['lk'],
+                                utilsScript: "/js/utils.js"
+                            });
+                            that.on('click', chooseSeat);
+                        }
+                    });
+                }
                 $('#amount').val(seat_counts + 1);
                 $('.details-of-payment-total .txt2 span').html((seat_counts + 1) * parseFloat($('input[name="price"]').val()).toFixed(2));
             } else {
@@ -3594,7 +3698,7 @@ $(document).ready(function () {
         phone_number_input.intlTelInput({
             autoPlaceholder: "aggressive",
             defaultCountry: current_country_code,
-            onlyCountries: ['ge'],
+            onlyCountries: ['lk'],
             utilsScript: "/js/utils.js"
         });
     }

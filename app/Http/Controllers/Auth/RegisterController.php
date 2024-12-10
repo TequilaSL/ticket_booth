@@ -8,6 +8,7 @@ use App\Country;
 use App\Driver;
 use App\Gender;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\Partners\GeneratorController;
 use App\Http\Controllers\ValidationController;
 use App\Partner;
@@ -18,7 +19,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Log;
 
 class RegisterController extends ValidationController
 {
@@ -89,14 +89,16 @@ class RegisterController extends ValidationController
         if ($validator->fails()) {
             $response = array('status' => 0, 'text' => $errors->first());
         } else {
-            // if (!$this->validateRecaptcha($data['g-recaptcha-response'])) {
-            //     $response = ['status' => 0, 'text' => \Lang::get('validation.recaptcha_verification_failed')];
-            // } else {
                 $data['password'] = Hash::make($data['password']);
                 $this->store($data);
+
+                //  $mailSend=new MailController();
+                //  $mailSend->sendMail($data);
+
                 $response = array('status' => 1, 'text' => \Lang::get('auth.registration_successful'));
-            // }
+               
         }
+    
         return response()->json($response);
     }
 

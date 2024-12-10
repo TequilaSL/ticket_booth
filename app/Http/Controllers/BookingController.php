@@ -28,6 +28,7 @@ use Endroid\QrCode\QrCode;
 use Illuminate\Support\Facades\Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 
 class BookingController extends ValidationController
@@ -54,6 +55,7 @@ class BookingController extends ValidationController
         $after60 = Carbon::now()->addDays(60)->format('Y-m-d');
         $routeId = Routes::with('vehicles')->where('id', $data['route_id'] ?? 0)->first()->toArray();
         $numberOfSeats = $routeId['vehicles']['number_of_seats'] ?? 0;
+ 
         if (empty($data['departure_date'])) {
             $depD = $routeId['departure_date'];
             $data['departure_date'] = Carbon::parse($depD)->format('Y-m-d');
@@ -128,6 +130,7 @@ class BookingController extends ValidationController
     public function start(Request $request)
     {
         $data = $request->only(['route_id', 'payment_method', 'phone_number', 'name', 'seat_number', 'gender_id', 'email', 'action']);
+
         if (Auth::check()): $data['user_id'] = Auth::user()->id; endif;
         $response = ValidationController::response($this->validator($data));
         if ($response->original['status'] == 1) {
@@ -209,6 +212,11 @@ class BookingController extends ValidationController
                 $response->original['status'] = 3;
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
+            $mailSend=new MailController();
+            $mailSend->sendMail($data);
+            Log::info('mail send');
+            $this->sendMassageForMobile($data);
+
         }
         return response()->json($response->original);
 
@@ -414,8 +422,6 @@ class BookingController extends ValidationController
             Cart::where('sale_id', $ui['id'])->delete();
 
         }
-
-        Log::info('booking controller order approve 3', [$qrCodeUrl] );
         $this->checkOtherSalesToRemove($transactionField, $transaction_id);
         return $qrCodeUrl;
     }
@@ -454,6 +460,30 @@ class BookingController extends ValidationController
             Cart::where('sale_id', $sale['id'])->delete();
         }
     }
+
+    public function sendMassageForMobile($data)
+    {
+        Log::info("number ", $data['phone_number']);
+
+        $contact = $data['phone_number'][0];
+        $userName = $data['name'][0];
+
+            $queryParams = http_build_query([
+                'recipient' =>  $contact,
+                'sender_id' => 'TextLKDemo',
+                'message' => 'You are Booking seat',
+            ]);
+
+            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
+
+            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
+            ->post($url);
+            Log::info($response->status());
+            Log::info('ok');
+
+            Log::info($response->body());
+    }
+
 
 
 }
