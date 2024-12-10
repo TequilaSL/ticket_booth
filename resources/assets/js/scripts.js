@@ -20,14 +20,14 @@ $(document).ready(function () {
     });
 
 
-    if (lang === 'ka') {
+    if (lang === 'sn') {
         tooltipsDateTime = {
-            pickHour: 'მონიშნეთ საათი',
-            incrementHour: "საათის გაზრდა",
-            decrementHour: "საათის შემცირება",
-            pickMinute: "მონიშნეთ წუთი",
-            incrementMinute: "წუთის გაზრდა",
-            decrementMinute: "წუთის შემცირება",
+            pickHour: "පැය තෝරන්න",
+            incrementHour: "පැය වැඩි කරන්න",
+            decrementHour: "පැය අඩු කරන්න",
+            pickMinute: "මිනිත්තුව තෝරන්න",
+            incrementMinute: "මිනිත්තුව වැඩි කරන්න",
+            decrementMinute: "මිනිත්තුව අඩු කරන්න",
         }
     } else {
         tooltipsDateTime = {

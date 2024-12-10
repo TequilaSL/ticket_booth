@@ -15,7 +15,7 @@ const app = new Vue({
     vuetify,
     mounted() {
         const body = document.body
-        if (store.state.locale === 'ka') {
+        if (store.state.locale === 'en') {
             body.classList.add('language_ge')
         } else {
             body.classList.remove('language_ge')
