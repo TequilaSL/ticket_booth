@@ -99,9 +99,9 @@ class RegisterController extends ValidationController
                  $this->sendMassageForMobile($data);
 
                 $response = array('status' => 1, 'text' => \Lang::get('auth.registration_successful'));
-               
+
         }
-    
+
         return response()->json($response);
     }
 
@@ -170,7 +170,7 @@ class RegisterController extends ValidationController
             $queryParams = http_build_query([
                 'recipient' =>  $contact,
                 'sender_id' => 'TextLKDemo',
-                'message' => 'You are Booking seat',
+                'message' => 'Seat booked successfully.',
             ]);
 
             $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
