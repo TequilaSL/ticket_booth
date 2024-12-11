@@ -22,7 +22,7 @@ class MailController extends Controller
             $mail->SMTPSecure = 'ssl';
             $mail->Port       = 465;
 
-            if (is_array($values)) {
+            if (is_array($values['email'])) {
                 Log::info("1");
                 $email=$values['email'][0];
                
@@ -32,7 +32,7 @@ class MailController extends Controller
             } else {
                 Log::info("2");
                
-                $email=$values['email'][0];
+                $email=$values['email'];
                 Log::info($email);
                 $mail->setFrom('nipuna315np@gmail.com', 'piyumal');
                 $mail->addAddress($email, 'nipuna');
