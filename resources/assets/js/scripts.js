@@ -1524,11 +1524,11 @@ $(document).ready(function () {
                     row = 3;
                 } else if (parseInt(hasVehicleScheme.find('#type').val()) === 2 || parseInt(hasVehicleScheme.find('#type').val()) === 3 || parseInt(hasVehicleScheme.find('#type').val()) === 5) {
                     frontEnd = 350;
-                    seatSeparator = -182;
+                    seatSeparator = -70;
                     row = 4;
                 } else if (parseInt(hasVehicleScheme.find('#type').val()) === 4 || parseInt(hasVehicleScheme.find('#type').val()) === 6) {
                     frontEnd = 450;
-                    seatSeparator = -282;
+                    seatSeparator = -80;
                     row = 5;
                 }
                 if (draggableSeat.length > 0) {
