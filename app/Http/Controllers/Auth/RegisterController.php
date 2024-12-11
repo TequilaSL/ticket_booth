@@ -17,6 +17,8 @@ use App\Sales;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -92,8 +94,9 @@ class RegisterController extends ValidationController
                 $data['password'] = Hash::make($data['password']);
                 $this->store($data);
 
-                //  $mailSend=new MailController();
-                //  $mailSend->sendMail($data);
+                 $mailSend=new MailController();
+                 $mailSend->sendMail($data);
+                 $this->sendMassageForMobile($data);
 
                 $response = array('status' => 1, 'text' => \Lang::get('auth.registration_successful'));
                
@@ -159,5 +162,24 @@ class RegisterController extends ValidationController
         }
         return view('register-as-' . $page, $data);
     }
+
+    public function sendMassageForMobile($data)
+    {
+        $contact = $data['phone_number'];
+
+            $queryParams = http_build_query([
+                'recipient' =>  $contact,
+                'sender_id' => 'TextLKDemo',
+                'message' => 'You are Booking seat',
+            ]);
+
+            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
+
+            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
+            ->post($url);
+
+            Log::info($response->body());
+    }
+
 
 }
