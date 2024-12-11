@@ -257,7 +257,7 @@ class VehiclesController extends DriverController
         $response = ValidationController::response($this->validator($data, $type), \Lang::get('auth.successfully_updated'));
         if ($response->original['status'] == 1) {
             if ($noSP == false) {
-                $sit['number_of_seats'] = count($data['seat_positioning']);
+                $data['number_of_seats'] = count($data['seat_positioning']);
                 $response_sit = ValidationController::response($this->validator($data, 'type_' . $data['type']), \Lang::get('auth.successfully_updated_sent_to_review'));
             }
             else {

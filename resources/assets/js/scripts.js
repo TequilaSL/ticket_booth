@@ -3244,7 +3244,7 @@ $(document).ready(function () {
                         background-color: #fff;
                         margin: 10% auto;
                         padding: 40px 10px 0px 10px;
-                        max-width: 440px;
+                        max-width: 400px;
                         width: 90%;
                             align-items: center;
                         border-radius: 10px;
@@ -3253,14 +3253,13 @@ $(document).ready(function () {
                     }
 
                     .modal-content img {
-                        width: 86%;
+                        width: 65%;
                     }
 
                     .modal-image {
                         height: auto;
                         max-width: 100%;
                         border-radius: 5px;
-                        margin-bottom: 20px;
                     }
 
                     .close-btn-popup {
@@ -3304,14 +3303,38 @@ $(document).ready(function () {
                     margin-bottom: 1rem;
                     }
 
+                    .bottom-btn-section{
+                        text-decoration: none;
+                        font-family: 'Roboto Condensed';
+                        font-weight: 600;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        line-height: 36px;
+                        padding: 0 15px;
+                        margin: 0;
+                        color: #fff;
+                        letter-spacing: 0.1em;
+                        background: linear-gradient(to right, #c9302c 0%, #720f0c 100%);
+                        border-radius: 5px;
+                        border: 0;
+                        transition: all 0.3s ease-out;
+                    }
+                    .bottom-btn-section:hover{
+                        color: #fff;
+                        background: linear-gradient(to right, #720f0c 0%, #c9302c 100%);
+                        border: 0;
+                        cursor: pointer;
+                    }
+                    .bottom-btn-div-container{
+                        justify-content: space-between;
+                        display: flex;
+                        padding: 15px 0;
+                        align-items: center;
+                        width: 65%;
+                    }
+
                     .modal-btn:hover {
                         color: ##7a1212;
-                    }
-                    .download-btn {
-                    right: 80px;
-                    }
-                    .share-btn {
-                    right: 40px;
                     }
                     `;
 
@@ -3332,9 +3355,9 @@ $(document).ready(function () {
                     const closeBtn = $('<span class="close-btn-popup modal-btn"><i class="fa fa-times" aria-hidden="true"></i></span>');
                     const image = $('<img src="' + imagePath + '" alt="QR Code Image" class="modal-image" />');
 
-                    // Add download button
+                    const buttonContainer = $('<div class="bottom-btn-div-container"></div>');
 
-                    const downloadBtn = $('<button class="modal-btn download-btn"><i class="fa fa-download" aria-hidden="true"></i></button>');
+                    const downloadBtn = $('<button class="download-btn bottom-btn-section"><i class="fa fa-download" aria-hidden="true"></i> Download  </button>');
                     downloadBtn.on('click', function () {
                         const link = document.createElement('a');
                         link.href = imagePath;
@@ -3344,7 +3367,7 @@ $(document).ready(function () {
 
                     // Add share button
 
-                    var shareBtn = $('<button class="modal-btn share-btn"><i class="fa fa-share" aria-hidden="true"></i></button>');
+                    var shareBtn = $('<button class="share-btn bottom-btn-section"><i class="fa fa-share" aria-hidden="true"> </i> Share  </button>');
                     shareBtn.on('click', function () {
                         if (navigator.share) {
                             navigator.share({
@@ -3359,8 +3382,8 @@ $(document).ready(function () {
                         }
                     });
 
-                    // Append content to the modal
-                    modalContent.append(para).append(downloadBtn).append(shareBtn).append(closeBtn).append(image);
+                    buttonContainer.append(downloadBtn).append(shareBtn);
+                    modalContent.append(para).append(closeBtn).append(image).append(buttonContainer);
                     modal.append(modalContent);
 
             // Append the modal to the body
