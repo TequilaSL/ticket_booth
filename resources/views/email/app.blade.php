@@ -33,7 +33,7 @@
             mso-padding-alt: 0px 0px 0px 0px;
         }
 
-        table.language_ge {
+        table.language_si {
             font-family: 'dejavu_sansextralight', sans-serif;
         }
 

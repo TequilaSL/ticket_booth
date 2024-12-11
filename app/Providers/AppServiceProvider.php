@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider {
 
         Schema::defaultStringLength(191);
 
-        Translator::get('ka')->setTranslations([
+        Translator::get('si')->setTranslations([
             'months' => ['იანვარს', 'თებერვალს', 'მარტს', 'აპრილს', 'მაისს', 'ივნისს', 'ივლისს', 'აგვისტოს', 'სექტემბერს', 'ოქტომბერს', 'ნოემბერს', 'დეკემბერს'],
         ]);
 

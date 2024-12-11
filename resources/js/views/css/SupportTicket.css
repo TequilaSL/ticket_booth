@@ -42,7 +42,7 @@ section .chat_room .customer .box2 .message_area {
     font-size: 14px;
 }
 
-.language_ge section .chat_room .customer .box2 .message_area {
+.language_si section .chat_room .customer .box2 .message_area {
      font-family: 'dejavu_sansextralight', sans-serif;
  }
 
@@ -54,7 +54,7 @@ section .chat_room .customer .box2 span.data {
     font-weight: 200;
     color: #AAAAAA;
 }
-.language_ge section .chat_room .customer .box2 span.data {
+.language_si section .chat_room .customer .box2 span.data {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 section .chat_room .admin {
@@ -80,7 +80,7 @@ section .chat_room .admin .box2 .message_area {
     margin: 0 0 0 15px;
     font-size: 14px;
 }
-.language_ge section .chat_room .admin .box2 .message_area {
+.language_si section .chat_room .admin .box2 .message_area {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 section .chat_room .admin .box2 span.data {
@@ -91,7 +91,7 @@ section .chat_room .admin .box2 span.data {
     font-weight: 200;
     color: #AAAAAA;
 }
-.language_ge section .chat_room .admin .box2 span.data {
+.language_si section .chat_room .admin .box2 span.data {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -149,7 +149,7 @@ section .team_box .second_box .support_name {
     line-height: 15px;
     font-weight: 500;
 }
-.language_ge section .team_box .second_box .support_name {
+.language_si section .team_box .second_box .support_name {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -159,7 +159,7 @@ section .team_box .second_box p.description {
     font-size: 14px;
     line-height: 14px;
 }
-.language_ge section .team_box .second_box p.description {
+.language_si section .team_box .second_box p.description {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -172,7 +172,7 @@ section .team_box .second_box p.title {
     margin-top: -10px;
     color: #007bdd;
 }
-.language_ge section .team_box .second_box p.title {
+.language_si section .team_box .second_box p.title {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 section .team_box .chat_logo img {

@@ -23,7 +23,7 @@ section {
     transition: all 200ms ease-in-out;
 }
 
-.language_ge .v-btn.addNew {
+.language_si .v-btn.addNew {
     font-weight: 400;
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }

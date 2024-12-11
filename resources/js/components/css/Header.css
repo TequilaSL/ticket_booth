@@ -47,7 +47,7 @@
     font-weight: 400;
 }
 
-.language_ge .header .breadcrumb h3.head_title {
+.language_si .header .breadcrumb h3.head_title {
     font-size: 15px;
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
@@ -57,12 +57,12 @@
     margin-top:-20px;
 }
 
-.language_ge .header .breadcrumb h3.head_title.hasParent {
+.language_si .header .breadcrumb h3.head_title.hasParent {
     margin-top:-17px;
 }
 
 
-.language_ge .header .breadcrumb h3.head_title {
+.language_si .header .breadcrumb h3.head_title {
     font-family: "bpg_nino_mtavrulinormal", sans-serif;
 }
 
@@ -99,7 +99,7 @@
     font-weight: 500;
 }
 
-.language_ge .logo_caption {
+.language_si .logo_caption {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -111,6 +111,6 @@
     padding: 0;
 }
 
-.language_ge .header_logo div.caption2 {
+.language_si .header_logo div.caption2 {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }

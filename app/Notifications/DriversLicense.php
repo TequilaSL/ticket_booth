@@ -56,7 +56,7 @@ class DriversLicense extends Notification
             \Lang::get('email_templates.drivers_license_title', $this->translatable[$this->preferred_language], $this->preferred_language)
         )->view('email.app',
             [
-                'locale' => ($this->preferred_language == 'ka') ? 'language_ge' : null,
+                'locale' => ($this->preferred_language == 'en') ? 'language_si' : null,
                 'title' =>
                     \Lang::get('email_templates.drivers_license_title', $this->translatable[$this->preferred_language], $this->preferred_language),
                 'text' =>

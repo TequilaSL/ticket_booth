@@ -5,8 +5,8 @@
 
 @section('body_class')
     @parent
-    @if( app()->getLocale() == 'ka')
-        language_ge
+    @if( app()->getLocale() == 'si')
+        language_si
     @endif
 @stop
 
@@ -35,7 +35,7 @@
     <script type="text/javascript" src="{{ URL::asset('js/bootstrap-datepicker.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 @endpush
-@if ( Config::get('app.locale') == 'ka')
+@if ( Config::get('app.locale') == 'en')
     @push('scripts')
         <script type="text/javascript" src="{{ URL::asset('js/bootstrap-datepicker.ka.min.js') }}"></script>
     @endpush

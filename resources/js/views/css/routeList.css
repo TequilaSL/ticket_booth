@@ -61,7 +61,7 @@ section .list > a > div.item .description p.route_title {
     color: #606060;
     margin-bottom: 4px;
 }
-.language_ge section .list > a > div.item .description p.route_title {
+.language_si section .list > a > div.item .description p.route_title {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -78,7 +78,7 @@ section .list > a > div.item .description p.route_destination {
     font-weight: 400;
 }
 
-.language_ge section .list > a > div.item .description p.route_destination {
+.language_si section .list > a > div.item .description p.route_destination {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -94,7 +94,7 @@ section .list > a > div.item .content .amount {
     font-weight: 500;
     padding-top: 4px;
 }
-.language_ge section .list > a > div.item .content .amount {
+.language_si section .list > a > div.item .content .amount {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 

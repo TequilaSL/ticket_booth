@@ -8,7 +8,7 @@ section {
     margin-bottom: 10px;
     font-family: 'Roboto', sans-serif;
 }
-.language_ge .header_icon {
+.language_si .header_icon {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 .header_icon p.description {
@@ -18,7 +18,7 @@ section {
     padding-top: 10px;
     text-align: center;
 }
-.language_ge .header_icon p.description {
+.language_si .header_icon p.description {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
     font-weight: 300;
 }

@@ -4,8 +4,8 @@
 
 @section('body_class')
     @parent
-    @if( app()->getLocale() == 'ka')
-        language_ge
+    @if( app()->getLocale() == 'si')
+        language_si
     @endif
 @stop
 

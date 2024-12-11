@@ -6,8 +6,8 @@
 
 @section('body_class')
     @parent
-    @if( app()->getLocale() == 'ka')
-        front language_ge
+    @if( app()->getLocale() == 'si')
+        front language_si
     @else
         front
     @endif

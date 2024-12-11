@@ -107,13 +107,13 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
 table.dataTable thead {
     cursor: pointer;
 }
-.language_ge table.dataTable thead {
+.language_si table.dataTable thead {
     cursor: pointer;
     font-family: 'bpg_nino_mtavrulibold';
     font-size: 11px;
     text-align: center;
 }
-.language_ge table.dataTable tfoot {
+.language_si table.dataTable tfoot {
     cursor: pointer;
     font-family: 'bpg_nino_mtavrulibold';
     font-size: 12px;

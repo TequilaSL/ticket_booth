@@ -27,7 +27,7 @@ section .withdrawal_stats .info h2 {
     margin-top: 15px;
     color: #778087;
 }
-.language_ge section .withdrawal_stats .info h2 {
+.language_si section .withdrawal_stats .info h2 {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 
@@ -60,7 +60,7 @@ section  h2.title_area {
     font-weight: bold;
 }
 
-.language_ge section h2.title_area {
+.language_si section h2.title_area {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -114,7 +114,7 @@ section .list .item .description .title_area {
     font-size: 16px;
     margin-bottom: 2px;
 }
-.language_ge section .list .item .description .title_area {
+.language_si section .list .item .description .title_area {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 section .list .item .description .withdraw_date {
@@ -123,7 +123,7 @@ section .list .item .description .withdraw_date {
     font-size: 14px;
     margin-bottom: 2px;
 }
-.language_ge section .list .item .description .withdraw_date {
+.language_si section .list .item .description .withdraw_date {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
     font-weight: bold;
 }
@@ -159,7 +159,7 @@ section .list .item .last_content div.status {
     font-weight: 300;
 }
 
-.language_ge section .list .item .last_content div.status {
+.language_si section .list .item .last_content div.status {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
     font-weight: bold;
 }

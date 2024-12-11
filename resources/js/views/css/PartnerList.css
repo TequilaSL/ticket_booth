@@ -57,7 +57,7 @@ section .list .partner .description .transport_title {
     font-weight: bold;
     margin-bottom: 2px;
 }
-.language_ge section .list .partner .description .transport_title {
+.language_si section .list .partner .description .transport_title {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 section .list .partner .description div.route_description {
@@ -65,7 +65,7 @@ section .list .partner .description div.route_description {
     font-size: 12px;
     font-weight: 300;
 }
-.language_ge section .list .partner .description div.route_description {
+.language_si section .list .partner .description div.route_description {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 section .list .partner .description div.route_description img {
@@ -82,7 +82,7 @@ section .list .partner .description div.car_description span{
     font-family: 'Roboto Condensed', sans-serif !important;
     font-weight: 500;
 }
-.language_ge section .list .partner .description div.car_description {
+.language_si section .list .partner .description div.car_description {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 
@@ -111,6 +111,6 @@ section .list .partner .last_content div.date {
     font-size: 11px;
     font-weight: 300;
 }
-.language_ge section .list .partner .last_content div.date {
+.language_si section .list .partner .last_content div.date {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }

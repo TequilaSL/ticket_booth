@@ -20,7 +20,7 @@ section .forgot_box h3.forgot_title {
     font-size: 20px;
 }
 
-.language_ge section .forgot_box h3.forgot_title {
+.language_si section .forgot_box h3.forgot_title {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -30,7 +30,7 @@ section .forgot_box p.forgot_description {
     font-family: 'Roboto', sans-serif;
 }
 
-.language_ge section .forgot_box p.forgot_description {
+.language_si section .forgot_box p.forgot_description {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 

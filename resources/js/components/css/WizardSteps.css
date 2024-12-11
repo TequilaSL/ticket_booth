@@ -9,7 +9,7 @@
     margin-bottom: 15px;
 }
 
-.language_ge .steps_container {
+.language_si .steps_container {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -17,6 +17,6 @@
     margin:0 3px;
 }
 
-.language_ge .steps_container > div > span {
+.language_si .steps_container > div > span {
     padding-bottom:5px;
 }

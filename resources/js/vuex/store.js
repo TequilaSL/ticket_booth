@@ -24,7 +24,7 @@ export default new Vuex.Store({
     state: {
         user: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : null,
         roles: accessTokenRoles(localStorage.getItem('user')),
-        locale: (localStorage.getItem('locale') && localesToSearch.includes(localStorage.getItem('locale'))) ? localStorage.getItem('locale') : 'ka',
+        locale: (localStorage.getItem('locale') && localesToSearch.includes(localStorage.getItem('locale'))) ? localStorage.getItem('locale') : 'en',
         isLoggedIn: (localStorage.getItem('isLoggedIn')) ? (localStorage.getItem('isLoggedIn') === 'true') : false,
         new_notifications: 0,
         wizardStep: (localStorage.getItem('wizardStep')) ? parseInt(localStorage.getItem('wizardStep')) : 1,

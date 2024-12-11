@@ -24,7 +24,7 @@ section .paypal_logo p {
 }
 
 
-.language_ge section .paypal_logo p {
+.language_si section .paypal_logo p {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -49,7 +49,7 @@ section .paypal_logo p {
     transition: all 200ms ease-in-out;
 }
 
-.language_ge .v-btn.addNew {
+.language_si .v-btn.addNew {
     font-weight: 400;
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }

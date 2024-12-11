@@ -18,7 +18,7 @@ label {
     font-weight: 100;
 }
 
-.language_ge .borderless-form .form-group .form-control {
+.language_si .borderless-form .form-group .form-control {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -59,7 +59,7 @@ label {
     margin-top:0;
 }
 
-.language_ge .form-group .form-control {
+.language_si .form-group .form-control {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -511,7 +511,7 @@ label {
 }
 
 
-.language_ge .new_section h3.title_section {
+.language_si .new_section h3.title_section {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 

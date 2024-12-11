@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
 
-    if (lang === 'sn') {
+    if (lang === 'si') {
         tooltipsDateTime = {
             pickHour: "පැය තෝරන්න",
             incrementHour: "පැය වැඩි කරන්න",

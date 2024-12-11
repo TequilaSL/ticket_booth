@@ -34,7 +34,7 @@ section .partner_info .info h2 {
     margin-top: 15px;
     color: #778087;
 }
-.language_ge section .partner_info .info h2 {
+.language_si section .partner_info .info h2 {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 
@@ -142,7 +142,7 @@ section .list .item .transport .third_transport_box p.date_add {
     font-style: italic;
     margin-bottom: 3px;
 }
-.language_ge section .list .item .transport .third_transport_box p.date_add {
+.language_si section .list .item .transport .third_transport_box p.date_add {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 

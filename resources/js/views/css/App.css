@@ -76,7 +76,7 @@ a[href^="tel:"] {
     color: #fff
 }
 
-.language_ge .v-application {
+.language_si .v-application {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -132,7 +132,7 @@ body {
     margin: 0;
 }
 
-body.language_ge {
+body.language_si {
     font-weight: 400;
     font-family: 'dejavu_sansextralight', sans-serif;
 }
@@ -190,7 +190,7 @@ form.default-form label.primary--text {
     color: #333 !important;
 }
 
-.language_ge form.default-form label {
+.language_si form.default-form label {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -312,7 +312,7 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.language_ge .v-expansion-panel .v-expansion-panel-header{
+.language_si .v-expansion-panel .v-expansion-panel-header{
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
     font-weight: 400;
 }
@@ -359,7 +359,7 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     margin-top:0 !important;
 }
 
-.language_ge .v-btn.submit {
+.language_si .v-btn.submit {
     font-weight: 400;
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
@@ -389,7 +389,7 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.language_ge .popupButton {
+.language_si .popupButton {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 
@@ -402,7 +402,7 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     padding: 10px 10px 0 10px !important;
 }
 
-.language_ge .v-application .headline, .language_ge .v-application .headline-larger {
+.language_si .v-application .headline, .language_si .v-application .headline-larger {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif !important;
 }
 
@@ -439,20 +439,20 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     width: 90%;
 }
 
-.language_ge .headersCap .v-data-table__mobile-row__header {
+.language_si .headersCap .v-data-table__mobile-row__header {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
-.language_ge .submit {
+.language_si .submit {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
-.language_ge .buttonFont {
+.language_si .buttonFont {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
     letter-spacing: 0;
 }
 
-.language_ge .buttonFont .v-btn__content {
+.language_si .buttonFont .v-btn__content {
     line-height: 2.6 !important;
 }
 
@@ -460,19 +460,19 @@ form.borderless-form .theme--light.v-input:not(.v-input--is-disabled) textarea::
     padding: 0 0 0 12px !important;
 }
 
-.language_ge .v-alert, .language_ge .v-date-picker-header__value button, .v-date-picker-title__date > div {
+.language_si .v-alert, .language_si .v-date-picker-header__value button, .v-date-picker-title__date > div {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
-.language_ge .v-date-picker-table--month .v-btn__content {
+.language_si .v-date-picker-table--month .v-btn__content {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
-.language_ge .v-picker--date {
+.language_si .v-picker--date {
     font-family: 'Roboto', sans-serif;
 }
 
-.language_ge .v-date-picker-title__date {
+.language_si .v-date-picker-title__date {
     font-size: 24px;
 }
 
@@ -502,7 +502,7 @@ section .no_results {
     display: flex;
 }
 
-.language_ge .forceEng input::placeholder {
+.language_si .forceEng input::placeholder {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -513,7 +513,7 @@ section .no_results {
     font-family: 'Roboto', sans-serif;
 }
 
-.language_ge form.borderless-form .vue-tel-input input::placeholder {
+.language_si form.borderless-form .vue-tel-input input::placeholder {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 
@@ -563,15 +563,15 @@ form.borderless-form .vue-tel-input:focus-within {
     margin-left:2px !important;
 }
 
-.language_ge .v-application--is-ltr .v-btn__content .v-icon--left {
+.language_si .v-application--is-ltr .v-btn__content .v-icon--left {
     margin-top: -5px !important;
 }
 
-.language_ge .v-application--is-ltr .v-btn__content .largeIconPrev {
+.language_si .v-application--is-ltr .v-btn__content .largeIconPrev {
     margin-top: -6px !important;
 }
 
-.language_ge .v-application--is-ltr .v-btn__content .largeIconNext {
+.language_si .v-application--is-ltr .v-btn__content .largeIconNext {
     margin-top: -5px !important;
 }
 
@@ -625,7 +625,7 @@ form.default-form .v-input--checkbox .v-label {
     color:#FFF !important;
 }
 
-.language_ge .v-alert__content a {
+.language_si .v-alert__content a {
     font-size:12px;
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }

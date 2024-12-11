@@ -16,7 +16,7 @@
     @endisset
     <meta name="viewport" content="width=device-width, viewport-fit=cover, user-scalable=no, initial-scale=1, shrink-to-fit=no">
 </head>
-<body class="{{ (isset($current_locale) && $current_locale == 'ka') ? 'language_ge' : null }}">
+<body class="{{ (isset($current_locale) && $current_locale == 'en') ? 'language_si' : null }}">
 <div id="app">
     @yield('content')
 </div>

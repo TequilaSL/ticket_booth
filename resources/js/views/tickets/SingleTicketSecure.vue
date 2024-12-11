@@ -200,10 +200,10 @@ export default {
             document.title = this.title
             this.forceFooterRerender()
             const body = document.body
-            if (this.$store.state.locale === 'ka') {
-                body.classList.add('language_ge')
+            if (this.$store.state.locale === 'en') {
+                body.classList.add('language_si')
             } else {
-                body.classList.remove('language_ge')
+                body.classList.remove('language_si')
             }
         })
         this.$store.dispatch('apiCall', {

@@ -82,7 +82,7 @@ section .notification .box .second_box h3.support_name {
     color: #333333;
     margin-bottom: 0;
 }
-.language_ge section .notification .box .second_box h3.support_name {
+.language_si section .notification .box .second_box h3.support_name {
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }
 
@@ -126,7 +126,7 @@ section .notification .box .third_box p.date {
     display: block;
 }
 
-.language_ge section .notification .box .third_box p.date {
+.language_si section .notification .box .third_box p.date {
     font-family: 'bpg_nino_mtavrulinormal', sans-serif;
 }
 
@@ -144,7 +144,7 @@ section .notification .box .third_box a.read_more {
     text-align: center;
     float: right;
 }
-.language_ge section .notification .box .third_box a.read_more {
+.language_si section .notification .box .third_box a.read_more {
     padding: 3px 0 0 0;
     font-family: 'bpg_nino_mtavrulibold', sans-serif;
 }

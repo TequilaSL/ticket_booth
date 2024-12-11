@@ -21,11 +21,11 @@ class GenderSeeder extends Seeder
 
         $gendersTranslate = array(
             array('gender_id' => 1, 'name' => 'Male', 'locale' => 'en'),
-            array('gender_id' => 1, 'name' => 'მამრობითი', 'locale' => 'ka'),
-            array('gender_id' => 1, 'name' => 'мужской', 'locale' => 'ru'),
+            array('gender_id' => 1, 'name' => 'මහලු', 'locale' => 'si'),
+            array('gender_id' => 1, 'name' => 'ஆண்', 'locale' => 'ta'),
             array('gender_id' => 2, 'name' => 'Female', 'locale' => 'en'),
-            array('gender_id' => 2, 'name' => 'მდედრობითი', 'locale' => 'ka'),
-            array('gender_id' => 2, 'name' => 'женский', 'locale' => 'ru'),
+            array('gender_id' => 2, 'name' => 'ගැහැණු', 'locale' => 'si'),
+            array('gender_id' => 2, 'name' => 'பெண்', 'locale' => 'ta'),
         );
         GenderTranslatable::insert($gendersTranslate);
     }

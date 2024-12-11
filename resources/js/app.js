@@ -15,10 +15,10 @@ const app = new Vue({
     vuetify,
     mounted() {
         const body = document.body
-        if (store.state.locale === 'en') {
-            body.classList.add('language_ge')
+        if (store.state.locale === 'si') {
+            body.classList.add('language_si')
         } else {
-            body.classList.remove('language_ge')
+            body.classList.remove('language_si')
         }
     },
     router: Routes,

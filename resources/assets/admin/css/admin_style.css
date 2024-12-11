@@ -76,7 +76,7 @@
 
 .transparent-input {outline:none;background:transparent;color:#626262;width:100%;display: block;border:none;text-align: center;font-weight: 900;}
 .new_one { font-size:14px; cursor: pointer;}
-.language_ge .new_one { font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+.language_si .new_one { font-family: 'bpg_nino_mtavrulibold', sans-serif;}
 .new_row { color:#007bff; }
 .new_seat { color:#ff3161; }
 
@@ -390,7 +390,7 @@
     text-decoration: none;
 }
 
-td.language_ge {
+td.language_si {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 

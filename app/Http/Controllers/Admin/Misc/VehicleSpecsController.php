@@ -162,7 +162,7 @@ class VehicleSpecsController extends AdminController {
         $data['columns'][] = 'actions';
         $data['columnDefs'] = [
             ['className' => 'text-center', 'targets' => [0]],
-            ['className' => 'language_ge', 'targets' => [2]],
+            ['className' => 'language_si', 'targets' => [2]],
         ];
         $data['addNew'] = [
             'url' => route('admin_specs_add'),

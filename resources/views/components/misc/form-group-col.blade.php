@@ -186,7 +186,7 @@
             <script type="text/javascript" src="{{ URL::asset('js/moment.js') }}"></script>
             @endpush
             @if ( Session::has('locale'))
-            @if(Session::get('locale') == 'ka')
+            @if(Session::get('locale') == 'en')
                 @push('scripts')
                 <script type="text/javascript" src="{{ URL::asset('js/bootstrap-datepicker.ka.min.js') }}"></script>
                 @endpush

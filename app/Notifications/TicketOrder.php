@@ -46,7 +46,7 @@ class TicketOrder extends Notification{
             Lang::get('email_templates.ticket_purchase_title', [], $this->preferred_language)
         )->view('email.app',
             [
-                'locale' => ($this->preferred_language == 'ka') ? 'language_ge' : null,
+                'locale' => ($this->preferred_language == 'en') ? 'language_si' : null,
                 'title' =>
                     Lang::get('email_templates.ticket_purchase_title', [], $this->preferred_language),
                 'text' =>
