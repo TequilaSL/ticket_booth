@@ -4464,8 +4464,6 @@ $(document).ready(function () {
         "click",
         '#ticketBooking button[name="action"]',
         async function (e) {
-            console.log("hy");
-
             e.preventDefault();
             let data = $("#ticketBooking").serializeArray();
             let num = 0;
@@ -4483,12 +4481,12 @@ $(document).ready(function () {
                 );
             data.push({ name: "action", value: $(this).val() });
             if (
-                data.find((item) => item.name === "phone_number[]").value ===
-                    "" &&
+                data.find((item) => item.name === "phone_number[]").value === "" &&
                 data.find((item) => item.name === "name[]").value === ""
             ) {
                 window.location.href = "/signup";
             }
+            window.scrollTo({ top: 0, behavior: "smooth" });
             $.ajax({
                 url: route("booking"),
                 method: "POST",
@@ -4698,7 +4696,6 @@ $(document).ready(function () {
 
                         // Append the modal to the body
                         $("body").append(modal);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
 
                         // Show the modal
                         modal.show();

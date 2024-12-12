@@ -130,7 +130,7 @@ class BookingController extends ValidationController
     public function start(Request $request)
     {
         $data = $request->only(['route_id', 'payment_method', 'phone_number', 'name', 'seat_number', 'gender_id', 'email', 'action']);
-      
+
         if(!Auth::check()){
             return response()->json(['status' => -1, 'text' => Lang::get('Redirect Log Page')]);
         }
@@ -217,10 +217,10 @@ class BookingController extends ValidationController
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
             $mailSend=new MailController();
+            $data['subject'] = 'TicketBooth booking successfull !';
+            $data['body'] ='We hereby inform you that you have booked a bus ticket through our website.';
             $mailSend->sendMail($data);
-            Log::info('mail send');
             $this->sendMassageForMobile($data);
-
         }
         return response()->json($response->original);
 
@@ -485,7 +485,7 @@ class BookingController extends ValidationController
             $queryParams = http_build_query([
                 'recipient' =>  $contact,
                 'sender_id' => 'TextLKDemo',
-                'message' => 'You booked a seat successfully!',
+                'message' => $data['body'],
             ]);
 
             $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
