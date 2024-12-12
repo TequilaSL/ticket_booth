@@ -24,6 +24,7 @@ $(document).ready(function () {
     });
 
     if (lang === "sn") {
+
         tooltipsDateTime = {
             pickHour: "පැය තෝරන්න",
             incrementHour: "පැය වැඩි කරන්න",
@@ -1472,6 +1473,7 @@ $(document).ready(function () {
     });
 
     let routesDataTable = $("#routes");
+
     if (routesDataTable.length > 0) {
         routesDataTable.DataTable({
             processing: true,
@@ -2107,7 +2109,6 @@ $(document).ready(function () {
         for (let i = maxVal; i < toAppSeatsVal; i++) {
             let j;
             if (row === 3) {
-                ///verify
                 if (i === maxVal) {
                     j = 255;
                 } else if (i === maxVal + 1) {
@@ -2837,6 +2838,7 @@ $(document).ready(function () {
                         defaultCountry: current_country_code,
                         onlyCountries: ["lk"],
                         utilsScript: "/js/utils.js",
+
                     });
                     let oz = $(".datepicker");
                     let options = {
@@ -4464,8 +4466,6 @@ $(document).ready(function () {
         "click",
         '#ticketBooking button[name="action"]',
         function (e) {
-            console.log("hy");
-
             e.preventDefault();
             let data = $("#ticketBooking").serializeArray();
             let num = 0;
@@ -4577,18 +4577,41 @@ $(document).ready(function () {
                     .thank-class-p-2 {
                     margin-bottom: 1rem;
                     }
+                    .bottom-btn-section{
+                        text-decoration: none;
+                        font-family: 'Roboto Condensed';
+                        font-weight: 600;
+                        font-size: 12px;
+                        text-transform: uppercase;
+                        line-height: 36px;
+                        padding: 0 15px;
+                        margin: 0;
+                        color: #fff;
+                        letter-spacing: 0.1em;
+                        background: linear-gradient(to right, #c9302c 0%, #720f0c 100%);
+                        border-radius: 5px;
+                        border: 0;
+                        transition: all 0.3s ease-out;
+                    }
+                    .bottom-btn-section:hover{
+                        color: #fff;
+                        background: linear-gradient(to right, #720f0c 0%, #c9302c 100%);
+                        border: 0;
+                        cursor: pointer;
+                    }
+                    .bottom-btn-div-container{
+                        justify-content: space-between;
+                        display: flex;
+                        padding: 15px 0;
+                        align-items: center;
+                        width: 65%;
+                    }
 
                     .modal-btn:hover {
-                        color: ##7a1212;
-                    }
-                    .download-btn {
-                    right: 80px;
-                    }
-                    .share-btn {
-                    right: 40px;
+                        color: #7a1212;
                     }
                     `;
-
+                      
                         // Create a style element and append the CSS to the document head
                         const style = $("<style></style>").text(modalCss);
                         $("head").append(style);
@@ -4599,7 +4622,7 @@ $(document).ready(function () {
                             '<div class="modal-content"></div>'
                         );
                         var para = $(`
-                        <div >
+                        <div>
                             <p class="thank-class-p-1">Thank you for booking with us!</p>
                             <p class="thank-class-p-2">You can download or share your QR code now.</p>
                             <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
@@ -4613,23 +4636,40 @@ $(document).ready(function () {
                                 imagePath +
                                 '" alt="QR Code Image" class="modal-image" />'
                         );
-
-                        // Add download button
+                      
+                        const buttonContainer = $('<div class="bottom-btn-div-container"></div>');
 
                         const downloadBtn = $(
-                            '<button class="modal-btn download-btn"><i class="fa fa-download" aria-hidden="true"></i></button>'
+                            '<button class="modal-btn download-btn"><i class="fa fa-download" aria-hidden="true"></i> Download </button>'
                         );
                         downloadBtn.on("click", function () {
-                            const link = document.createElement("a");
-                            link.href = imagePath;
-                            link.download = "QRCode.png";
-                            link.click();
+                            const res = await $.ajax({
+                            url: imagePath  ,
+                            method: "GET",
+                            xhrFields: {
+                                responseType: 'blob' // Specify response as binary blob
+                            },
+                            success: function (blob) {
+                                const link = document.createElement('a');
+                                const objectURL = window.URL.createObjectURL(blob); // Create URL for the Blob
+                                link.href = objectURL;
+                                link.download = 'QRCode.png'; // Specify the filename for download
+                                document.body.appendChild(link);
+                                link.click();
+
+                                // Cleanup the link element
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(objectURL); // Free memory
+                            },
+                            error: function (err) {
+                                console.error("Failed to download file:", err);
+                            }
+                        })
                         });
 
                         // Add share button
-
                         var shareBtn = $(
-                            '<button class="modal-btn share-btn"><i class="fa fa-share" aria-hidden="true"></i></button>'
+                            '<button class="modal-btn share-btn"><i class="fa fa-share" aria-hidden="true"></i>Share</button>'
                         );
                         shareBtn.on("click", function () {
                             if (navigator.share) {
@@ -4650,13 +4690,9 @@ $(document).ready(function () {
                         });
 
                         // Append content to the modal
-                        modalContent
-                            .append(para)
-                            .append(downloadBtn)
-                            .append(shareBtn)
-                            .append(closeBtn)
-                            .append(image);
-                        modal.append(modalContent);
+                    buttonContainer.append(downloadBtn).append(shareBtn);
+                    modalContent.append(para).append(closeBtn).append(image).append(buttonContainer);
+                    modal.append(modalContent);
 
                         // Append the modal to the body
                         $("body").append(modal);
@@ -4678,7 +4714,6 @@ $(document).ready(function () {
                         });
                     } else if (data.status === -1) {
                         window.location.href = '../login';
-                        
                     } else if (data.status === 2) {
                         window.location.href = data.text;
                     } else if (data.status === 3) {
@@ -4732,7 +4767,7 @@ $(document).ready(function () {
         }
     );
 
-    $(document).on("click", ".show_more", showMore);
+    $(document).on('click', '.show_more', showMore);
 
     $(document).on("click", ".close-btn-popup", reloadPage);
 
@@ -5074,6 +5109,7 @@ $(document).ready(function () {
             defaultCountry: current_country_code,
             onlyCountries: ["lk"],
             utilsScript: "/js/utils.js",
+
         });
     }
 

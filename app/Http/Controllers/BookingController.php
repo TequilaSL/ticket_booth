@@ -130,11 +130,10 @@ class BookingController extends ValidationController
     public function start(Request $request)
     {
         $data = $request->only(['route_id', 'payment_method', 'phone_number', 'name', 'seat_number', 'gender_id', 'email', 'action']);
-
+      
         if(!Auth::check()){
             return response()->json(['status' => -1, 'text' => Lang::get('Redirect Log Page')]);
         }
-
 
         if (Auth::check()): $data['user_id'] = Auth::user()->id; endif;
         $response = ValidationController::response($this->validator($data));
