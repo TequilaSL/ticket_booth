@@ -55,7 +55,7 @@ class BookingController extends ValidationController
         $after60 = Carbon::now()->addDays(60)->format('Y-m-d');
         $routeId = Routes::with('vehicles')->where('id', $data['route_id'] ?? 0)->first()->toArray();
         $numberOfSeats = $routeId['vehicles']['number_of_seats'] ?? 0;
- 
+
         if (empty($data['departure_date'])) {
             $depD = $routeId['departure_date'];
             $data['departure_date'] = Carbon::parse($depD)->format('Y-m-d');
@@ -134,8 +134,8 @@ class BookingController extends ValidationController
         if(!Auth::check()){
             return response()->json(['status' => -1, 'text' => Lang::get('Redirect Log Page')]);
         }
-      
-        
+
+
         if (Auth::check()): $data['user_id'] = Auth::user()->id; endif;
         $response = ValidationController::response($this->validator($data));
         if ($response->original['status'] == 1) {
@@ -403,9 +403,19 @@ class BookingController extends ValidationController
             $qrCode = new QrCode($ui['ticket_number'] . " | " . $ui['users']['name'] . " | " . $ui['routes']['cities_from']['translated']['name'] . " - " . $ui['routes']['cities_to']['translated']['name']);
             $qrCode->setSize(800);
             $qrCode->setMargin(0);
-            Storage::disk('s3')->put('tickets/' . md5($ui['ticket_number']) . '.png', $qrCode->writeString());
-            $qrCodeUrl = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
+            Storage::disk('s3')->put('tickets/' . md5($ui['ticket_number']) . '.png', $qrCode->writeString(),
+            [
+                'ACL' => 'public-read', // Optional: If public access is needed
+                'ContentType' => 'image/png',
+                'ResponseContentDisposition' => 'attachment; filename="QRCode.png"' // Forces download
+            ]
+        );
+            $ticketPath = 'tickets/' . md5($ui['ticket_number']) . '.png';
 
+            $qrCodeUrl = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
+            $qrCodeUrlTemp = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
+
+            Log::info('generate dqr ', [$qrCodeUrlTemp, $qrCodeUrl,]);
             $locale = $ui['users']['locale'];
             //Send SMS and Email
             $departure_date = Carbon::parse($ui['routes']['departure_date']);
@@ -476,7 +486,7 @@ class BookingController extends ValidationController
             $queryParams = http_build_query([
                 'recipient' =>  $contact,
                 'sender_id' => 'TextLKDemo',
-                'message' => 'You are Booking seat',
+                'message' => 'You booked a seat successfully!',
             ]);
 
             $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;

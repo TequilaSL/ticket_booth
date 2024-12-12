@@ -4463,7 +4463,7 @@ $(document).ready(function () {
     $(document).on(
         "click",
         '#ticketBooking button[name="action"]',
-        function (e) {
+        async function (e) {
             console.log("hy");
 
             e.preventDefault();
@@ -4640,11 +4640,39 @@ $(document).ready(function () {
                     const buttonContainer = $('<div class="bottom-btn-div-container"></div>');
 
                     const downloadBtn = $('<button class="download-btn bottom-btn-section"><i class="fa fa-download" aria-hidden="true"></i> Download  </button>');
-                    downloadBtn.on('click', function () {
-                        const link = document.createElement('a');
-                        link.href = imagePath;
-                        link.download = 'QRCode.png';
-                        link.click();
+                    downloadBtn.on('click',async function () {
+                        // const link = document.createElement('a');
+                        // link.href = imagePath;
+                        // link.download = 'QRCode.png';
+                        // link.target = '_blank';
+                        // link.click();
+                        const res = await $.ajax({
+                            url: imagePath  ,
+                            method: "GET",
+                            xhrFields: {
+                                responseType: 'blob' // Specify response as binary blob
+                            },
+                            success: function (blob) {
+                                const link = document.createElement('a');
+                                const objectURL = window.URL.createObjectURL(blob); // Create URL for the Blob
+                                link.href = objectURL;
+                                link.download = 'QRCode.png'; // Specify the filename for download
+                                document.body.appendChild(link);
+                                link.click();
+
+                                // Cleanup the link element
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(objectURL); // Free memory
+                            },
+                            error: function (err) {
+                                console.error("Failed to download file:", err);
+                            }
+                        })
+                                            get(imagePath, {
+                            responseType: 'stream',
+                          });
+
+
                     });
 
                         // Add share button
