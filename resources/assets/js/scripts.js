@@ -4579,7 +4579,7 @@ $(document).ready(function () {
                         text-decoration: none;
                         font-family: 'Roboto Condensed';
                         font-weight: 600;
-                        font-size: 12px;
+                        font-size: 11px;
                         text-transform: uppercase;
                         line-height: 36px;
                         padding: 0 15px;
@@ -4608,6 +4608,16 @@ $(document).ready(function () {
                     .modal-btn:hover {
                         color: ##7a1212;
                     }
+                    @media (max-width: 1520.98px) {
+                         .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
+                    }
+                    @media (max-width: 750.98px) {
+                        .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
+                    }
+                    @media (max-width: 1000.98px) {
+                        .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
+                    }
+
                     `;
 
                         // Create a style element and append the CSS to the document head
