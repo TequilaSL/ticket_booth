@@ -4464,8 +4464,6 @@ $(document).ready(function () {
         "click",
         '#ticketBooking button[name="action"]',
         async function (e) {
-            console.log("hy");
-
             e.preventDefault();
             let data = $("#ticketBooking").serializeArray();
             let num = 0;
@@ -4483,12 +4481,12 @@ $(document).ready(function () {
                 );
             data.push({ name: "action", value: $(this).val() });
             if (
-                data.find((item) => item.name === "phone_number[]").value ===
-                    "" &&
+                data.find((item) => item.name === "phone_number[]").value === "" &&
                 data.find((item) => item.name === "name[]").value === ""
             ) {
                 window.location.href = "/signup";
             }
+            window.scrollTo({ top: 0, behavior: "smooth" });
             $.ajax({
                 url: route("booking"),
                 method: "POST",
@@ -4641,41 +4639,22 @@ $(document).ready(function () {
 
                     const downloadBtn = $('<button class="download-btn bottom-btn-section"><i class="fa fa-download" aria-hidden="true"></i> Download  </button>');
                     downloadBtn.on('click',async function () {
-                        // const link = document.createElement('a');
-                        // link.href = imagePath;
-                        // link.download = 'QRCode.png';
-                        // link.target = '_blank';
-                        // link.click();
-                        const res = await $.ajax({
-                            url: imagePath  ,
-                            method: "GET",
-                            xhrFields: {
-                                responseType: 'blob' // Specify response as binary blob
-                            },
-                            success: function (blob) {
-                                const link = document.createElement('a');
-                                const objectURL = window.URL.createObjectURL(blob); // Create URL for the Blob
-                                link.href = objectURL;
-                                link.download = 'QRCode.png'; // Specify the filename for download
-                                document.body.appendChild(link);
-                                link.click();
+                        const res = fetch(imagePath)
+                        .then(response => response.blob())
+                        .then(blob => {
+                          const blobUrl = URL.createObjectURL(blob);
+                          const img = document.createElement('img');
+                          img.src = blobUrl;
+                          document.body.appendChild(img);
 
-                                // Cleanup the link element
-                                document.body.removeChild(link);
-                                window.URL.revokeObjectURL(objectURL); // Free memory
-                            },
-                            error: function (err) {
-                                console.error("Failed to download file:", err);
-                            }
+                          const filename = imagePath.substring(imagePath.lastIndexOf('/') + 1);
+                          const a = document.createElement('a');
+                          a.href = blobUrl;
+                          a.download = filename;
+                          a.click();
                         })
-                                            get(imagePath, {
-                            responseType: 'stream',
-                          });
-
-
+                        .catch(error => console.error('Error fetching the file:', error));
                     });
-
-                        // Add share button
 
                     var shareBtn = $('<button class="share-btn bottom-btn-section"><i class="fa fa-share" aria-hidden="true"> </i> Share  </button>');
                     shareBtn.on('click', function () {
@@ -4698,7 +4677,6 @@ $(document).ready(function () {
 
                         // Append the modal to the body
                         $("body").append(modal);
-                        window.scrollTo({ top: 0, behavior: "smooth" });
 
                         // Show the modal
                         modal.show();
@@ -4716,9 +4694,6 @@ $(document).ready(function () {
                         });
                     } else if (data.status === -1) {
                         window.location.href = '../login';
-                    } else if (data.status === -1) {
-                        window.location.href = '../login';
-
                     } else if (data.status === 2) {
                         window.location.href = data.text;
                     } else if (data.status === 3) {

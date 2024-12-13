@@ -95,6 +95,8 @@ class RegisterController extends ValidationController
                 $this->store($data);
 
                  $mailSend=new MailController();
+                 $data['subject'] = 'TicketBooth registration successfull !';
+                 $data['body'] = 'We hereby inform you that you have registered with TicketBooth.lk successfully';
                  $mailSend->sendMail($data);
                  $this->sendMassageForMobile($data);
 
@@ -170,7 +172,7 @@ class RegisterController extends ValidationController
             $queryParams = http_build_query([
                 'recipient' =>  $contact,
                 'sender_id' => 'TextLKDemo',
-                'message' => 'Seat booked successfully.',
+                'message' => $data['body'],
             ]);
 
             $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;

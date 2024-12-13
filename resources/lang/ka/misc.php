@@ -51,6 +51,7 @@ return [
     'non_stop' => 'გაჩერების გარეშე',
     'oneway' => 'ცალმხრივი',
     'no_results' => 'ვერაფერი მოიძებნა',
+    'route_search' => 'Search for a route ვერაფერი',
     'round_trip' => 'ორმხრივი',
     'new_row' => 'ახალი რიგის დამატება',
     'new_seat' => 'ახალი ადგილი',

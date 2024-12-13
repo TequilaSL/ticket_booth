@@ -45,6 +45,7 @@ return [
     'non_stop' => 'non-stop',
     'oneway' => '1 way',
     'no_results' => 'No results',
+    'route_search' => 'Search for a route',
     'round_trip' => 'round trip',
     'new_row' => 'Add new row',
     'new_seat' => 'New seat',
