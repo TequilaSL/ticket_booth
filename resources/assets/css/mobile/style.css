@@ -1570,24 +1570,26 @@ transition: all 0.3s ease-out;
     .front .corner-top-orange{display: none;}
     .front .corner-top-gray{display: none;}
 
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (max-width: 1599.98px) {
     .phone1-txt{display: none;}
     .divider-pp{display: none;}
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 }
 
 @media (max-width: 1399.98px) {
     .serving-since{display: none;}
     .corner-top-orange{display: none;}
     .corner-top-gray{display: none;}
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 }
 
 
 @media (min-width: 1260px) {
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 }
 @media (max-width: 1259.98px) {
@@ -1624,17 +1626,17 @@ transition: all 0.3s ease-out;
 
     .user-menu > li > a em{right: 10px;}
 
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 
 }
 @media (min-width: 992px) {
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 }
 @media (min-width: 992px) and (max-width: 1259.98px) {
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 }
@@ -1733,18 +1735,17 @@ transition: all 0.3s ease-out;
 
     .details-of-payment-buttons .btn-continue-shopping{float: none;}
 
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (min-width: 768px) {
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-
-
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 }
 @media (max-width: 767.98px) {
     .fixed-menu{display: none;}
@@ -1863,7 +1864,7 @@ transition: all 0.3s ease-out;
 
     .user-menu > li{width: 100%;}
 
-
+    .bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
 
 
 
@@ -1890,6 +1891,8 @@ transition: all 0.3s ease-out;
         box-shadow: 0px 48px 106px 0px rgba(175, 189, 198, 0.15);
     }
 .margin-minus{margin-top: -25px;}
+.bottom-btn-div-container .bottom-btn-div-container{ font-size: 11px; padding: 0 10px; }
+
 }
 
 .imgicon-size{width:29%;}
