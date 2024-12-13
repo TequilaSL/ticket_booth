@@ -205,7 +205,7 @@
         @endcomponent
     </div>
 
-    @if(isset($total_results) && $total_results > 0)
+    @if(!empty($from) && !empty($to) && isset($total_results) && $total_results > 0)
         <div class="items">
             @component('components.listing-item', ['results' => $results])
             @endcomponent
@@ -216,6 +216,8 @@
                         data-url="{{ route('listing_more') }}">{{ Lang::get('misc.show_more') }}</button>
             </div>
         @endif
+    @elseif(empty($from) && empty($to))
+        <h1 class="text-center">{{ Lang::get('misc.route_search') }}</h1>
     @else
         <h1 class="text-center">{{ Lang::get('misc.no_results') }}</h1>
     @endif
