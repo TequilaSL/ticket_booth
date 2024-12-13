@@ -53,6 +53,8 @@ class ListingController extends Controller {
         } else {
             if (\Auth::check()) {
                 $data['current_user'] = 1;
+            } else {
+                 return null;
             }
         }
         return view('components.booking-seat', $data)->render();
