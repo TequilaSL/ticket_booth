@@ -4608,16 +4608,6 @@ $(document).ready(function () {
                     .modal-btn:hover {
                         color: ##7a1212;
                     }
-                    @media (max-width: 1520.98px) {
-                         .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
-                    }
-                    @media (max-width: 750.98px) {
-                        .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
-                    }
-                    @media (max-width: 1000.98px) {
-                        .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
-                    }
-
                     `;
 
                         // Create a style element and append the CSS to the document head
@@ -4906,28 +4896,30 @@ $(document).ready(function () {
                             $(".loading-web").css("display", "none");
                         },
                         success: function (data) {
-                            that.addClass("seat-active");
-                            ticket_totals.removeClass("hidden");
-                            ticket_passengers
-                                .append(data)
-                                .removeClass("hidden");
-                            let oc = $(".select2");
-                            let phone_number_input = $(
-                                "input.phone_number_inp"
-                            );
-                            let select2Parrent =
-                                oc.parent().attr("class") + "-dropdown";
-                            oc.select2({
-                                minimumResultsForSearch: Infinity,
-                                dropdownCssClass: select2Parrent,
-                            });
-                            phone_number_input.intlTelInput({
-                                autoPlaceholder: "aggressive",
-                                defaultCountry: current_country_code,
-                                onlyCountries: ["lk"],
-                                utilsScript: "/js/utils.js",
-                            });
-                            that.on("click", chooseSeat);
+                            if (!empty(data)) {
+                                that.addClass("seat-active");
+                                ticket_totals.removeClass("hidden");
+                                ticket_passengers
+                                    .append(data)
+                                    .removeClass("hidden");
+                                let oc = $(".select2");
+                                let phone_number_input = $(
+                                    "input.phone_number_inp"
+                                );
+                                let select2Parrent =
+                                    oc.parent().attr("class") + "-dropdown";
+                                oc.select2({
+                                    minimumResultsForSearch: Infinity,
+                                    dropdownCssClass: select2Parrent,
+                                });
+                                phone_number_input.intlTelInput({
+                                    autoPlaceholder: "aggressive",
+                                    defaultCountry: current_country_code,
+                                    onlyCountries: ["lk"],
+                                    utilsScript: "/js/utils.js",
+                                });
+                                that.on("click", chooseSeat);
+                            }
                         },
                     });
                 }
