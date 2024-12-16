@@ -2,7 +2,7 @@
     {
         "route_type_id": 1,
         "name": "2*1 මිනි බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 1,
@@ -17,7 +17,7 @@
     {
         "route_type_id": 2,
         "name": "3*1 මිනි බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 2,
@@ -33,7 +33,7 @@
     {
         "route_type_id": 3,
         "name": "2*2 මධ්‍යම බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 3,
@@ -48,7 +48,7 @@
     {
         "route_type_id": 4,
         "name": "2*3 මධ්‍යම බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 4,
@@ -63,7 +63,7 @@
     {
         "route_type_id": 5,
         "name": "2*2 විශාල බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 5,
@@ -78,7 +78,7 @@
     {
         "route_type_id": 6,
         "name": "2*3 විශාල බස්",
-        "locale": "sn"
+        "locale": "si"
     },
     {
         "route_type_id": 6,
