@@ -1,6 +1,5 @@
 export default {
-  en: { name: 'English'},
-  sn: { name: 'Sinhala'},
-  ta: { name: 'Tamil' }
-//   ta: { name: 'Tamil', flag: 'flags/usa.svg' }
+  en: { name: 'English', flag: 'flags/en.png'},
+  si: { name: 'Sinhala', flag: 'flags/si.png'},
+  ta: { name: 'Tamil', flag: 'flags/ta.png' },
 }
