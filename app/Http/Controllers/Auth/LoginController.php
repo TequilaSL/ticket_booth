@@ -23,10 +23,6 @@ class LoginController extends Controller
     }
 
     public function __invoke(Request $request) {
-      
-
-
-
         $credentials = $request->only('phone_number', 'password');
         if(isset($credentials['phone_number']) && isset($credentials['password'])) {
             $credentials['status'] = [1,2];

@@ -3,7 +3,7 @@
 return [
     'supportedLocales' => [
         'en' => ['name' => 'Eng', 'id' => 1],
-        'sn' => ['name' => 'Sin', 'id' => 2],
+        'si' => ['name' => 'Sin', 'id' => 2],
         'ta' => ['name' => 'Tam', 'id' => 3],
     ],
     'useAcceptLanguageHeader' => true,

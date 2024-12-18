@@ -12,7 +12,7 @@ return [
     'registration' => 'registration',
     'mobile_phone' => 'Phone number',
     'email_address' => 'Email address',
-    'become_partner' => 'become partner',
+    'become_partner' => 'become a partner',
     'become_driver' => 'become driver',
     'failed' => 'Phone number or password is incorrect',
     'enter_system' => 'Login',
