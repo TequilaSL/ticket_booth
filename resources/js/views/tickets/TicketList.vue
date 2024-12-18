@@ -2,7 +2,7 @@
     <div v-if="!isLoading">
         <Header :title="title" :showBack="true" :showLogo="false"/>
         <section>
-            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://ticketbooth.tequilasl.com/'+$store.state.locale+'/listings' : 'https://ticketbooth.tequilasl.com/listings'">
+        <a :href="($store.state.locale && $store.state.locale !== 'en') ? $siteURL+$store.state.locale+'/listings' : `${siteURL}/listings`">
                 <v-btn class="submit gradiented no-margins-vertical">
                     {{ lang.buyTickets }}
                 </v-btn>
@@ -57,6 +57,7 @@ import VLoading from "../../components/Loading"
 import {boughtTicketsPerPage, imagesPathRewrite} from "../../config"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import { siteURL } from "../../config";
 
 export default {
     name: "ticketList",

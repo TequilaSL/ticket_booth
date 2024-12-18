@@ -13,7 +13,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import vzForm from "../../components/Form";
 import vLoading from "../../components/Loading";
-import { googleMaps } from "../../config";
+import { googleMaps, siteURL } from "../../config";
 import axios from "axios";
 import lang from '../../translations';
 
@@ -42,7 +42,7 @@ export default {
         async updateLocation() {
             try {
                 const response = await axios.get(
-                    "https://ticketbooth.tequilasl.com/proxy-location"
+                    `${siteURL}/proxy-location`
                 );
                 if (response.data) {
                     const { longitude, latitude } = response.data;
