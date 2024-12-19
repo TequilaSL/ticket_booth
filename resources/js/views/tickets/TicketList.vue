@@ -2,7 +2,7 @@
     <div v-if="!isLoading">
         <Header :title="title" :showBack="true" :showLogo="false"/>
         <section>
-        <a :href="($store.state.locale && $store.state.locale !== 'en') ? $siteURL+'/'+$store.state.locale+'/listings' : `${siteURL}/listings`">
+        <a :href="($store.state.locale && $store.state.locale !== 'en') ? defaultSiteUrl+'/'+$store.state.locale+'/listings' : `${defaultSiteUrl}/listings`">
                 <v-btn class="submit gradiented no-margins-vertical">
                     {{ lang.buyTickets }}
                 </v-btn>
@@ -79,6 +79,7 @@ export default {
     data() {
         return {
             title: lang[this.$store.state.locale].ticketList.title,
+            defaultSiteUrl: siteURL,
             isLoading: true,
             listLoading: false,
             data: [],
