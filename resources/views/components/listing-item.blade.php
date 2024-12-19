@@ -46,8 +46,8 @@
                                     {{ trans_choice('misc.hours_short', gmdate('H', $tt)) }}
                                 </div>
                                 <div class="line1"></div>
-                                <div
-                                    class="txt2">{{ Controller::timeForHumans($result['stopping_time']) }}</div>
+                               {{--  <div
+                                   class="txt2">{{ Controller::timeForHumans($result['stopping_time']) }}</div> --}}
                             </div>
                             <div class="info3">
                                 <div class="time1">{{ $result['arrival_time'] }}</div>

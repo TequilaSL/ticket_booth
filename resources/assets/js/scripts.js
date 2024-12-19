@@ -4896,7 +4896,7 @@ $(document).ready(function () {
                             $(".loading-web").css("display", "none");
                         },
                         success: function (data) {
-                            if (!empty(data)) {
+                            if (data && Object.keys(data).length > 0) {
                                 that.addClass("seat-active");
                                 ticket_totals.removeClass("hidden");
                                 ticket_passengers
