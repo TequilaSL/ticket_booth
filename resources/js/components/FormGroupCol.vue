@@ -23,6 +23,9 @@
                     autocomplete="off"
                     :disabled="item.disabled || false"
                 />
+                <label :class="{plb: item.plb, selectLabel: (item.field === 'select')}" class="password-show-hide" v-if="item?.pwShowIcon" :for="item.id" @click="pwStatus = !pwStatus" >
+                    <img :src="showHidePassword(item.id)" :alt="item.name" v-if="item.labelImage">
+                </label>
                 <template v-else-if="item.field === 'autocomplete'">
                     <div class="interlink" v-if="item.interlinked">
                         <img :src="imagesPathRewrite('driver/devider.svg')" alt="Interlinked">
@@ -336,6 +339,7 @@ export default {
     },
     data() {
         return {
+            pwStatus: false,
             tickIcon: mdiCheck,
             uploadedImages: [],
             displayPrev: [],
@@ -355,12 +359,12 @@ export default {
             imagesPathRewrite: imagesPathRewrite,
             telProps: {
                 mode: 'international',
-                defaultCountry: 'GE',
+                defaultCountry: 'LK',
                 placeholder: lang[this.$store.state.locale].login.fields.placeholders.phone_number,
                 required: true,
                 enabledCountryCode: false,
                 enabledFlags: true,
-                onlyCountries: ['GE'],
+                onlyCountries: ['LK'],
                 autocomplete: 'off'
             }
         }
@@ -402,6 +406,21 @@ export default {
                     this.$emit('preserveAction', 'remove', dataObject)
                 }
             }
+        },
+        showHidePassword() {
+            const pwElement = document.getElementsByName('password')[0]
+            if (pwElement) {
+                if (this.pwStatus) {
+                pwElement.type = 'text';
+                return imagesPathRewrite('form/show.png');
+            } else {
+                pwElement.type = 'password';
+                return imagesPathRewrite('form/hide.png');
+            }
+            } else {
+                return imagesPathRewrite('form/hide.png');
+            }
+
         },
         vehicleSeatClass(item, value) {
             if (item.reserving) {

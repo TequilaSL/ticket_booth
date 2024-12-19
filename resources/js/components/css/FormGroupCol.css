@@ -1,3 +1,14 @@
+.password-show-hide {
+    position: relative !important;
+    display: flex;
+}
+.password-show-hide img{
+    top: -50px;
+    opacity: 0.4;
+    right: 0;
+    position: absolute !important;
+}
+
 label {
     display: inline-block;
     margin-bottom: .5rem;
