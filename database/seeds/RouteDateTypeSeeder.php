@@ -20,12 +20,12 @@ class RouteDateTypeSeeder extends Seeder
         RouteDateTypes::insert($routedatetypes);
 
         $routedatetypes = array(
-            ['name' => 'ერთჯერადი', 'route_date_type_id' => 1, 'locale' => 'sl'],
+            ['name' => 'ერთჯერადი', 'route_date_type_id' => 1, 'locale' => 'si'],
             ['name' => 'Scheduled', 'route_date_type_id' => 1, 'locale' => 'en'],
-            ['name' => 'одноразовый', 'route_date_type_id' => 1, 'locale' => 'tm'],
-            ['name' => 'მრავალჯერადი', 'route_date_type_id' => 2, 'locale' => 'ka'],
+            ['name' => 'одноразовый', 'route_date_type_id' => 1, 'locale' => 'ta'],
+            ['name' => 'მრავალჯერადი', 'route_date_type_id' => 2, 'locale' => 'si'],
             ['name' => 'Multiple dates', 'route_date_type_id' => 2, 'locale' => 'en'],
-            ['name' => 'множественный', 'route_date_type_id' => 2, 'locale' => 'ru'],
+            ['name' => 'множественный', 'route_date_type_id' => 2, 'locale' => 'ta'],
         );
         RouteDateTypesTranslatable::insert($routedatetypes);
     }
