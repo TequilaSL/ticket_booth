@@ -80,16 +80,16 @@
             @isset($atLeastOneSale) @slot('disabled') @endslot @endisset
         @endcomponent
 
-        @component('components.misc.form-group-col')
-            @slot('name') stopping_time @endslot
-            @slot('label') {{ Lang::get('driver.stopping_time') }}@endslot
-            @slot('faicon') fa-clock-o @endslot
-            @slot('explanation') {{ Lang::get('explanations.stopping_time') }} @endslot
-            @slot('col') col-md-2 @endslot
-            @slot('value') {{ $stopping_time ?? null }} @endslot
-            @slot('placeholder') {{ Lang::get('misc.hour_min') }}@endslot
-            @isset($atLeastOneSale) @slot('disabled') @endslot @endisset
-        @endcomponent
+        {{-- @component('components.misc.form-group-col') --}}
+            {{-- @slot('name') stopping_time @endslot --}}
+            {{-- @slot('label') {{ Lang::get('driver.stopping_time') }}@endslot --}}
+            {{-- @slot('faicon') fa-clock-o @endslot --}}
+            {{-- @slot('explanation') {{ Lang::get('explanations.stopping_time') }} @endslot --}}
+            {{-- @slot('col') col-md-2 @endslot --}}
+            {{-- @slot('value') {{ $stopping_time ?? null }} @endslot --}}
+            {{-- @slot('placeholder') {{ Lang::get('misc.hour_min') }}@endslot --}}
+            {{-- @isset($atLeastOneSale) @slot('disabled') @endslot @endisset --}}
+        {{-- @endcomponent --}}
 
 
         @component('components.misc.form-group-col')
@@ -102,6 +102,9 @@
             @slot('explanation') {{ Lang::get('explanations.route_duration_hour') }} @endslot
             @isset($atLeastOneSale) @slot('disabled') @endslot @endisset
         @endcomponent
+
+        <div class="col-md-2"></div>
+
         @component('components.misc.form-group-col')
             @slot('name') to_address @endslot
             @slot('label') {{ Lang::get('driver.to_address') }}@endslot

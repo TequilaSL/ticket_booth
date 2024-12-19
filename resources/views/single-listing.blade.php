@@ -60,7 +60,8 @@
                     <div class="arrow-txt">{{ Lang::get('misc.trip_duration') }}<br>
                         {{ trans_choice('misc.days', gmdate('z', $tt)) }} {{ gmdate('H:i', $tt) }}
                         {{ trans_choice('misc.hours', gmdate('H', $tt)) }}
-                        <br>{{ Controller::timeForHumans($result['stopping_time']) }}
+                        <br>
+                        {{-- {{ Controller::timeForHumans($result['stopping_time']) }} --}}
                     </div>
                 </div>
                 <div class="info3">
