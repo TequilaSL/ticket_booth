@@ -102,6 +102,9 @@
             @slot('explanation') {{ Lang::get('explanations.route_duration_hour') }} @endslot
             @isset($atLeastOneSale) @slot('disabled') @endslot @endisset
         @endcomponent
+
+        <div class="col-md-2"></div>
+
         @component('components.misc.form-group-col')
             @slot('name') to_address @endslot
             @slot('label') {{ Lang::get('driver.to_address') }}@endslot
