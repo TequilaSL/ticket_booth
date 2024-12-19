@@ -83,7 +83,9 @@ export default {
                         ],
                         type: 'password',
                         plb: true,
-                        labelImage: 'form/lock.svg'
+                        labelImage: 'form/lock.svg',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     }
                 ]
             }
