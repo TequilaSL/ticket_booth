@@ -204,11 +204,13 @@ export default {
                         data[d.name] = d.value
                     }
                     if (d.name === 'phone_number' || d.name === 'username') {
-                        if (d.value.substr(0, 4) !== '+94') {
-                            formData.append(d.name, '+94' + d.value.replace(/\s/g, ''))
-                        } else {
-                            formData.append(d.name, d.value.replace(/\s/g, ''))
+                        let phoneNumber = d.value.replace(/\s/g, '')
+                        if (phoneNumber.startsWith('0')) {
+                            phoneNumber = '+94' + phoneNumber.substr(1)
+                        } else if (!phoneNumber.startsWith('+94')) {
+                            phoneNumber = '+94' + phoneNumber
                         }
+                        formData.append(d.name, phoneNumber)
                     } else {
                         if (d.multiple) {
                             d.value.forEach(i => {
