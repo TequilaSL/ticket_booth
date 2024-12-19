@@ -83,17 +83,17 @@ export default {
                         name: 'account_type',
                         labelImage: 'form/user.svg'
                     },
-                    {
-                        placeholder: lang[this.$store.state.locale].signup.fields.placeholders.affiliate_code,
-                        field: 'input',
-                        name: 'affiliate_code',
-                        rules: [
-                            v => !!v || validations[this.$store.state.locale].partnerRegister.affiliateCode.required
-                        ],
-                        plb: true,
-                        value: '',
-                        labelImage: 'partner_icon.svg'
-                    }
+                    // {
+                    //     placeholder: lang[this.$store.state.locale].signup.fields.placeholders.affiliate_code,
+                    //     field: 'input',
+                    //     name: 'affiliate_code',
+                    //     rules: [
+                    //         v => !!v || validations[this.$store.state.locale].partnerRegister.affiliateCode.required
+                    //     ],
+                    //     plb: true,
+                    //     value: '',
+                    //     labelImage: 'partner_icon.svg'
+                    // }
                 ]
             }
         }
