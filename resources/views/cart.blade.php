@@ -53,7 +53,7 @@
                                 <td class="col4">{{ $item['sales']['routes']['departure_time'] }}</td>
                                 <td class="col5">{{ $item['sales']['routes']['vehicles']['route_types']['translated']['name'] }}</td>
                                 <td class="col6">{{ $item['sales']['seat_number'] }}</td>
-                                <td class="col7">{{ $item['sales']['price'] }} {{ $current_currency_key ?? 'GEL' }}</td>
+                                <td class="col7">{{ $item['sales']['price'] }} {{ $current_currency_key ?? 'LKR' }}</td>
                                 <td class="col8">
                                     <button type="button" class="close-btn removeFromCart" data-id="{{ $item['id'] }}" aria-label="Close"></button>
                                 </td>
