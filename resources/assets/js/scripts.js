@@ -92,6 +92,7 @@ $(document).ready(function () {
     $(".login-button").on("click", function (e) {
         e.preventDefault();
         $(".login-btn-wrapper").addClass("open");
+        $(".signup-btn-wrapper").removeClass("open");
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
@@ -105,6 +106,7 @@ $(document).ready(function () {
     $(".signup-button").on("click", function (e) {
         e.preventDefault();
         $(".signup-btn-wrapper").addClass("open");
+        $(".login-btn-wrapper").removeClass("open");
     });
 
     $(".signup-popup-wrapper .close").on("click", function (e) {
@@ -4562,17 +4564,15 @@ $(document).ready(function () {
                         border: none;
                 }
                     .thank-class-p-1{
-                    font-size: 16px;
+                        font-size: 16px;
                         margin-bottom: 0;
-
-                    font-weight: 700;
-                                    }
-                    .thank-class-p-2 {
-                    margin-bottom: 0;
+                        font-weight: 700;
                     }
-                                    }
                     .thank-class-p-2 {
-                    margin-bottom: 1rem;
+                        margin-bottom: 0;
+                    }
+                    .thank-class-p-2 {
+                        margin-bottom: 1rem;
                     }
 
                     .bottom-btn-section{
@@ -4919,6 +4919,10 @@ $(document).ready(function () {
                                     utilsScript: "/js/utils.js",
                                 });
                                 that.on("click", chooseSeat);
+                            } else {
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                                $(".login-btn-wrapper").addClass("open");
+
                             }
                         },
                     });
