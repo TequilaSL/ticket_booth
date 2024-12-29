@@ -17,7 +17,7 @@
                         </p>
                     </div>
                     <div class="content">
-                        <div class="amount error--text">{{ item.amount }} <span>gel</span></div>
+                        <div class="amount error--text">{{ item.amount }} <span>lkr</span></div>
                         <p class="date">{{ item.route.departure_date }}</p>
                     </div>
                 </div>

@@ -63,7 +63,7 @@ class SalesController extends Controller
                 $type = \Lang::get('misc.driver');
             }
             if ($request->mobile) {
-                $data[$key]['amount'] = $val['amount'] . ' GEL';
+                $data[$key]['amount'] = $val['amount'] . ' LKR';
                 $data[$key]['from'] = $val['sale']['routes']['cities_from']['translated']['name'];
                 $data[$key]['to'] = $val['sale']['routes']['cities_to']['translated']['name'];
                 $data[$key]['departure_date'] = Carbon::parse($val['sale']['routes']['departure_date'])->translatedFormat('j M Y');

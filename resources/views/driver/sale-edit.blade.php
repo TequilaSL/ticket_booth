@@ -35,7 +35,7 @@
     <div class="span-bold-ge right">
         {{ Lang::get('misc.sold_in_currency') }}:
         <span class="eng-bold red size20">{{ array_sum(array_column($sale, 'price')) }}</span>
-        <img src="{{ URL::asset('images/currencies/GEL.png') }}" alt="GEL"> {{-- Future currency--}}
+        <img src="{{ URL::asset('images/currencies/lkr.png') }}" alt="lkr image"> {{-- Future currency--}}
         <br>
         {{ Lang::get('misc.sold_tickets_number') }}:
         <span class="eng-bold red size20">{{ count($sale['routes']['sales']) }}</span>

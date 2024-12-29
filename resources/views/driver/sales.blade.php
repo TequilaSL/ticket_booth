@@ -31,7 +31,7 @@
         <div class="col-md-6 col-lg-6"></div>
         <div class="col-md-6 col-lg-6 span-bold-ge right">
             {{ Lang::get('misc.total') }}: <span class="eng-bold red size20">{{ $total_sold_currency ?? 0 }}</span>
-            <img src="{{ URL::asset('images/currencies/GEL.png') }}" alt="GEL">
+            <img src="{{ URL::asset('images/currencies/lkr.png') }}" alt="LKR image">
             <br>{{ Lang::get('misc.sold_tickets_number') }}: <span class="eng-bold red size20">{{ $total_sold ?? 0 }}</span>
         </div>
     </div>

@@ -23,7 +23,7 @@
                                 </p>
                             </div>
                             <div class="content">
-                                <div class="amount">{{ item.price }} <span>gel</span></div>
+                                <div class="amount">{{ item.price }} <span>lkr</span></div>
                             </div>
                         </div>
                     </router-link>

@@ -1,5 +1,3 @@
-import { log } from "../../../public/js/app";
-
 $(document).ready(function () {
     // function route(name) {}
     // Temp.
@@ -94,6 +92,7 @@ $(document).ready(function () {
     $(".login-button").on("click", function (e) {
         e.preventDefault();
         $(".login-btn-wrapper").addClass("open");
+        $(".signup-btn-wrapper").removeClass("open");
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
@@ -107,6 +106,7 @@ $(document).ready(function () {
     $(".signup-button").on("click", function (e) {
         e.preventDefault();
         $(".signup-btn-wrapper").addClass("open");
+        $(".login-btn-wrapper").removeClass("open");
     });
 
     $(".signup-popup-wrapper .close").on("click", function (e) {
@@ -4468,12 +4468,6 @@ $(document).ready(function () {
         async function (e) {
             e.preventDefault();
             let data = $("#ticketBooking").serializeArray();
-            selectedSeats.forEach(seat => {
-                data.push({
-                    name: "seats[]",
-                    value: seat
-                });
-            });
             let num = 0;
             $("#ticketBooking .phone_number_inp").each(function () {
                 num++;
@@ -4551,8 +4545,18 @@ $(document).ready(function () {
                         font-weight: bold;
                     }
 
-                    .close-btn-popup:hover {
+                    .close-btn-popup:hover, home-btn-popup:hover {
                         color: #333;
+                    }
+
+                    .home-btn-popup {
+                        position: absolute;
+                        top: -3px;
+                        font-size: 30px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        left: 20px;
+                        right: unset;
                     }
 
                     .modal-btn {
@@ -4570,17 +4574,15 @@ $(document).ready(function () {
                         border: none;
                 }
                     .thank-class-p-1{
-                    font-size: 16px;
+                        font-size: 16px;
                         margin-bottom: 0;
-
-                    font-weight: 700;
-                                    }
-                    .thank-class-p-2 {
-                    margin-bottom: 0;
+                        font-weight: 700;
                     }
-                                    }
                     .thank-class-p-2 {
-                    margin-bottom: 1rem;
+                        margin-bottom: 0;
+                    }
+                    .thank-class-p-2 {
+                        margin-bottom: 1rem;
                     }
 
                     .bottom-btn-section{
@@ -4634,6 +4636,9 @@ $(document).ready(function () {
                             <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
                         </div>
                     `);
+                        const homeBotton = $(
+                            '<span class="home-btn-popup modal-btn"><i class="fa fa-home" aria-hidden="true"></i></span>'
+                        );
                         const closeBtn = $(
                             '<span class="close-btn-popup modal-btn"><i class="fa fa-times" aria-hidden="true"></i></span>'
                         );
@@ -4679,8 +4684,12 @@ $(document).ready(function () {
                         }
                     });
 
+                    homeBotton.on('click', function () {
+                        window.location.href = '/login';
+                    });
+
                     buttonContainer.append(downloadBtn).append(shareBtn);
-                    modalContent.append(para).append(closeBtn).append(image).append(buttonContainer);
+                    modalContent.append(homeBotton).append(para).append(closeBtn).append(image).append(buttonContainer);
                     modal.append(modalContent);
 
                         // Append the modal to the body
@@ -4869,8 +4878,6 @@ $(document).ready(function () {
         chooseSeat
     );
 
-    let selectedSeats = []; 
-
     function chooseSeat() {
         let that = $(this);
         if (
@@ -4907,14 +4914,11 @@ $(document).ready(function () {
                         },
                         success: function (data) {
                             if (data && Object.keys(data).length > 0) {
-                                if (seat_counts < 1) {
-                                    ticket_totals.removeClass("hidden");
-                                    ticket_passengers
-                                        .append(data)
-                                        .removeClass("hidden");
-                                }
-                                selectedSeats.push(seat_number);
                                 that.addClass("seat-active");
+                                ticket_totals.removeClass("hidden");
+                                ticket_passengers
+                                    .append(data)
+                                    .removeClass("hidden");
                                 let oc = $(".select2");
                                 let phone_number_input = $(
                                     "input.phone_number_inp"
@@ -4932,8 +4936,11 @@ $(document).ready(function () {
                                     utilsScript: "/js/utils.js",
                                 });
                                 that.on("click", chooseSeat);
-                        }                            
+                            } else {
+                                window.scrollTo({ top: 0, behavior: "smooth" });
+                                $(".login-btn-wrapper").addClass("open");
 
+                            }
                         },
                     });
                 }
@@ -4943,7 +4950,6 @@ $(document).ready(function () {
                         parseFloat($('input[name="price"]').val()).toFixed(2)
                 );
             } else {
-                selectedSeats = selectedSeats.filter(seat => seat !== seat_number);
                 that.removeClass("seat-active");
                 ticket_passenger_seat
                     .find("span")
@@ -4952,7 +4958,7 @@ $(document).ready(function () {
                     })
                     .parents(".ticket-passenger")
                     .remove();
-                if (seat_counts < 60) {
+                if (seat_counts < 2) {
                     ticket_passengers.addClass("hidden");
                     ticket_totals.addClass("hidden");
                 }
@@ -4976,9 +4982,9 @@ $(document).ready(function () {
             .html();
         let seat_counts =
             ticket_passengers.children(".ticket-passenger").length;
-        // if (seat_counts < 2) {
-        //     ticket_passengers.addClass("hidden");
-        // }
+        if (seat_counts < 2) {
+            ticket_passengers.addClass("hidden");
+        }
         $(this).parent().parent().remove();
         $(".vehicle-seat span:contains(" + this_seat + ")")
             .parent()
