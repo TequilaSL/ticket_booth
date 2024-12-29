@@ -60,9 +60,9 @@
                         </template>
                     </countdown>
                 </h3>
-                <v-btn class="submit gradiented no-margins-vertical" :loading="cancelLoading" @click="cancelPopup(ticket.id)" v-if="ticket.sale_status === 1">
+                <!-- <v-btn class="submit gradiented no-margins-vertical" :loading="cancelLoading" @click="cancelPopup(ticket.id)" v-if="ticket.sale_status === 1">
                     {{ lang.singleTicket.cancel }}
-                </v-btn>
+                </v-btn> -->
             </div>
         </section>
         <Footer :key="$store.state.new_notifications"/>

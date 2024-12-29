@@ -4545,8 +4545,18 @@ $(document).ready(function () {
                         font-weight: bold;
                     }
 
-                    .close-btn-popup:hover {
+                    .close-btn-popup:hover, home-btn-popup:hover {
                         color: #333;
+                    }
+
+                    .home-btn-popup {
+                        position: absolute;
+                        top: -3px;
+                        font-size: 30px;
+                        cursor: pointer;
+                        font-weight: bold;
+                        left: 20px;
+                        right: unset;
                     }
 
                     .modal-btn {
@@ -4626,6 +4636,9 @@ $(document).ready(function () {
                             <p class="thank-class-p-3">It will also be available under the "Ticket Booking" section for future reference.</p>
                         </div>
                     `);
+                        const homeBotton = $(
+                            '<span class="home-btn-popup modal-btn"><i class="fa fa-home" aria-hidden="true"></i></span>'
+                        );
                         const closeBtn = $(
                             '<span class="close-btn-popup modal-btn"><i class="fa fa-times" aria-hidden="true"></i></span>'
                         );
@@ -4671,8 +4684,12 @@ $(document).ready(function () {
                         }
                     });
 
+                    homeBotton.on('click', function () {
+                        window.location.href = '/login';
+                    });
+
                     buttonContainer.append(downloadBtn).append(shareBtn);
-                    modalContent.append(para).append(closeBtn).append(image).append(buttonContainer);
+                    modalContent.append(homeBotton).append(para).append(closeBtn).append(image).append(buttonContainer);
                     modal.append(modalContent);
 
                         // Append the modal to the body
@@ -4881,7 +4898,7 @@ $(document).ready(function () {
                     preserving = 0;
                 }
                 that.off("click");
-                if (seat_counts < 1) {
+                if (seat_counts < 60) {
                     $.ajax({
                         url: route("choose_seat"),
                         method: "POST",

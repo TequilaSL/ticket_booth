@@ -106,9 +106,9 @@
             @endif
         };
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
+    <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
             async defer>
-    </script>
+    </script> -->
 @endif
 <script src="{{ URL::asset('js/scripts.js') }}"></script>
 </body>
