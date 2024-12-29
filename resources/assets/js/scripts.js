@@ -1,3 +1,5 @@
+import { log } from "../../../public/js/app";
+
 $(document).ready(function () {
     // function route(name) {}
     // Temp.
@@ -4466,6 +4468,12 @@ $(document).ready(function () {
         async function (e) {
             e.preventDefault();
             let data = $("#ticketBooking").serializeArray();
+            selectedSeats.forEach(seat => {
+                data.push({
+                    name: "seats[]",
+                    value: seat
+                });
+            });
             let num = 0;
             $("#ticketBooking .phone_number_inp").each(function () {
                 num++;
@@ -4861,6 +4869,8 @@ $(document).ready(function () {
         chooseSeat
     );
 
+    let selectedSeats = []; 
+
     function chooseSeat() {
         let that = $(this);
         if (
@@ -4881,7 +4891,7 @@ $(document).ready(function () {
                     preserving = 0;
                 }
                 that.off("click");
-                if (seat_counts < 1) {
+                if (seat_counts < 60) {
                     $.ajax({
                         url: route("choose_seat"),
                         method: "POST",
@@ -4897,11 +4907,14 @@ $(document).ready(function () {
                         },
                         success: function (data) {
                             if (data && Object.keys(data).length > 0) {
+                                if (seat_counts < 1) {
+                                    ticket_totals.removeClass("hidden");
+                                    ticket_passengers
+                                        .append(data)
+                                        .removeClass("hidden");
+                                }
+                                selectedSeats.push(seat_number);
                                 that.addClass("seat-active");
-                                ticket_totals.removeClass("hidden");
-                                ticket_passengers
-                                    .append(data)
-                                    .removeClass("hidden");
                                 let oc = $(".select2");
                                 let phone_number_input = $(
                                     "input.phone_number_inp"
@@ -4919,7 +4932,8 @@ $(document).ready(function () {
                                     utilsScript: "/js/utils.js",
                                 });
                                 that.on("click", chooseSeat);
-                            }
+                        }                            
+
                         },
                     });
                 }
@@ -4929,6 +4943,7 @@ $(document).ready(function () {
                         parseFloat($('input[name="price"]').val()).toFixed(2)
                 );
             } else {
+                selectedSeats = selectedSeats.filter(seat => seat !== seat_number);
                 that.removeClass("seat-active");
                 ticket_passenger_seat
                     .find("span")
@@ -4937,7 +4952,7 @@ $(document).ready(function () {
                     })
                     .parents(".ticket-passenger")
                     .remove();
-                if (seat_counts < 2) {
+                if (seat_counts < 60) {
                     ticket_passengers.addClass("hidden");
                     ticket_totals.addClass("hidden");
                 }
@@ -4961,9 +4976,9 @@ $(document).ready(function () {
             .html();
         let seat_counts =
             ticket_passengers.children(".ticket-passenger").length;
-        if (seat_counts < 2) {
-            ticket_passengers.addClass("hidden");
-        }
+        // if (seat_counts < 2) {
+        //     ticket_passengers.addClass("hidden");
+        // }
         $(this).parent().parent().remove();
         $(".vehicle-seat span:contains(" + this_seat + ")")
             .parent()
