@@ -5,7 +5,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::group([
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => (!(new \Jenssegers\Agent\Agent())->isMobile()) ? ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] : []
+        'middleware' => (!(new \Jenssegers\Agent\Agent())->isMobile()) ? ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] : ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
         Route::get('/', 'HomePageController')->name('index');
