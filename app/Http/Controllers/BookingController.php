@@ -65,7 +65,8 @@ class BookingController extends ValidationController
         });
         if ($data['action'] == "cart" && Auth::check()) {
             $tsQ->where('user_id', Auth::user()->id);
-        } else {
+        }
+        else {
             $tsQ->status([1, 3]);
         }
 
@@ -109,12 +110,14 @@ class BookingController extends ValidationController
                 if (User::wherePhoneNumber($phone ?? 0)->whereNotNull('email')->exists()) {
                     $vals['email.' . $key] = 'nullable|email|distinct|' .
                         Rule::exists('users', 'email')->where('phone_number', $phone);
-                } else {
+                }
+                else {
                     $vals['email.' . $key] = 'nullable|email|distinct|' .
                         Rule::unique('users', 'email');
                 }
             }
-        } else {
+        }
+        else {
             $vals['email.*'] = 'nullable|email|distinct|' .
                 Rule::unique('users', 'email');
         }
@@ -126,15 +129,13 @@ class BookingController extends ValidationController
 
     public function start(Request $request)
     {
-        $data = $request->only(['route_id', 'payment_method', 'phone_number', 'name', 'seat_number', 'gender_id', 'email', 'action', 'seats']);
+        $data = $request->only(['route_id', 'payment_method', 'phone_number', 'name', 'seat_number', 'gender_id', 'email', 'action']);
 
-        if (!Auth::check()) {
+        if(!Auth::check()){
             return response()->json(['status' => -1, 'text' => Lang::get('Redirect Log Page')]);
         }
 
-        if (Auth::check()):
-            $data['user_id'] = Auth::user()->id;
-        endif;
+        if (Auth::check()): $data['user_id'] = Auth::user()->id; endif;
         $response = ValidationController::response($this->validator($data));
         if ($response->original['status'] == 1) {
             $password = Hash::make(Controller::uniqueString(20));
@@ -151,7 +152,6 @@ class BookingController extends ValidationController
             }
 
             foreach ($data['phone_number'] as $key => $val) {
-
                 if (!User::where('phone_number', $val)->exists()) {
                     $userData[$key]['phone_number'] = $val;
                     $userData[$key]['name'] = $data['name'][$key];
@@ -160,29 +160,22 @@ class BookingController extends ValidationController
                     $userData[$key]['email'] = $data['email'][$key] ?? null;
                     $userData[$key]['locale'] = config('app.locale');
                     $id = RegisterController::store($userData[$key])->id;
-                } else {
+                }
+                else {
                     $id = User::where('phone_number', $val)->first(['id'])->toArray()['id'];
                 }
                 $jData[$key]['route_id'] = $data['route_id'];
                 $jData[$key]['departure_date'] = $priku['departure_date'];
                 $jData[$key]['payment_method'] = $data['payment_method'];
+                $jData[$key]['seat_number'] = $data['seat_number'][$key];
                 $jData[$key]['user_id'] = $id;
-                $jData[$key]['status'] = '1';
                 $jData[$key]['price'] = $price;
                 $jData[$key]['currency_id'] = $currency;
-
-                foreach ($data['seats'] as $index => $val) {
-                    Log::info($data['seats'][$index]);
-                    $jData[$key]['seat_number'] = $data['seats'][$index];
-                    $insert = $this->store($jData[$key]);
-
-                    $uData[$key]['id'] = $insert->id;
-                    $uData[$key]['ticket_number'] = $hashti->encode($insert->id);
-                    $uData[$key]['transaction_id'] = $hashit->encode($uData[0]['id']);
-                    $this->update($uData[$key]);
-                }
-
-
+                $insert = $this->store($jData[$key]);
+                $uData[$key]['id'] = $insert->id;
+                $uData[$key]['ticket_number'] = $hashti->encode($insert->id);
+                $uData[$key]['transaction_id'] = $hashit->encode($uData[0]['id']);
+                $this->update($uData[$key]);
                 if ($data['payment_method'] == 2) {
                     $ppD[$key]['ticket_number'] = $hashti->encode($insert->id);
                     $ppD[$key]['from'] = $priku['cities_from']['translated']['name'];
@@ -196,7 +189,8 @@ class BookingController extends ValidationController
                     if (Cart::where('user_id', $cData[$key]['user_id'])->exists()) {
                         $getFirstCartId = Cart::where('user_id', $cData[$key]['user_id'])->first(['transaction_id'])->transaction_id;
                         $cData[$key]['transaction_id'] = $getFirstCartId;
-                    } else {
+                    }
+                    else {
                         $cData[$key]['transaction_id'] = $hashcart->encode($uData[0]['id']);
                     }
                     CartController::store($cData[$key]);
@@ -211,7 +205,8 @@ class BookingController extends ValidationController
                     $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
                     // return $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
 
-                } else if ($data['payment_method'] == 2) {
+                }
+                else if ($data['payment_method'] == 2) {
                     //return redirect URL for PayPal
                     $pp = new PayPalClient();
                     $response->original['status'] = 2;
@@ -221,9 +216,9 @@ class BookingController extends ValidationController
                 $response->original['status'] = 3;
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
-            $mailSend = new MailController();
+            $mailSend=new MailController();
             $data['subject'] = 'TicketBooth booking successfull !';
-            $data['body'] = 'We hereby inform you that you have booked a bus ticket through our website.';
+            $data['body'] ='We hereby inform you that you have booked a bus ticket through our website.';
             $mailSend->sendMail($data);
             $this->sendMassageForMobile($data);
         }
@@ -241,18 +236,21 @@ class BookingController extends ValidationController
                 RemainingSeats::whereHas('sales', function ($q) use ($sale_id) {
                     $q->whereId($sale_id);
                 })->decrement('remaining_seats');
-            } else if ($status == 4) {
+            }
+            else if ($status == 4) {
                 RemainingSeats::whereHas('sales', function ($q) use ($sale_id) {
                     $q->whereId($sale_id);
                 })->increment('remaining_seats');
             }
-        } else if ($type == 'transaction') {
+        }
+        else if ($type == 'transaction') {
             Sales::transaction($sale_id)->update(['status' => $status]);
             if ($status == 1) {
                 RemainingSeats::whereHas('sales', function ($q) use ($sale_id) {
                     $q->transaction($sale_id);
                 })->decrement('remaining_seats');
-            } else if ($status == 4) {
+            }
+            else if ($status == 4) {
                 RemainingSeats::whereHas('sales', function ($q) use ($sale_id) {
                     $q->transaction($sale_id);
                 })->increment('remaining_seats');
@@ -278,11 +276,13 @@ class BookingController extends ValidationController
                 $amountForDriver = $amountDriver * 0.14;
                 $amountUs = $amountDriver * 0.06;
                 $amountToReturnToPassenger = $amountDriver - $amountForDriver - $amountUs;
-            } else {
+            }
+            else {
                 $amountToReturnToPassenger = $amountDriver;
             }
             return response()->json(['status' => 1, 'text' => Lang::get('validation.refund_modal', ['amount' => $amountToReturnToPassenger])], 200);
-        } else {
+        }
+        else {
             return response()->json(['status' => 0, 'text' => Lang::get('validation.refund_not_allowed')], 403);
         }
     }
@@ -308,20 +308,23 @@ class BookingController extends ValidationController
                 $amountToReturnToPassenger = $amountDriver - $amountForDriver - $amountUs;
                 BalanceUpdates::whereSaleId($request->id)->whereType(1)->update(['amount' => $amountForDriver]);
                 BalanceUpdates::whereSaleId($request->id)->whereType(4)->update(['amount' => $amountOur + $amountUs]);
-            } else {
+            }
+            else {
                 BalanceUpdates::whereSaleId($request->id)->whereType(1)->update(['amount' => 0]);
                 $amountToReturnToPassenger = $amountDriver;
             }
             if ($first['payment_method'] == 2) {
                 (new PayPalClient())->refundOrder($first['paypal_capture_id'], $amountToReturnToPassenger);
-            } else if ($first['payment_method'] == 1) {
+            }
+            else if ($first['payment_method'] == 1) {
                 //TODO: credit card or paypal refund action goes here with $amountToReturnToPassenger as the amount to return
             }
             (new QRScannerController())->balanceUpdate($request->id);
             Sales::whereId($first['id'])->update(['status' => 4]);
             RemainingSeats::whereRouteId($first['routes'])->increment('remaining_seats');
             return response()->json(['status' => 1, 'text' => Lang::get('validation.refund_successful')], 200);
-        } else {
+        }
+        else {
             return response()->json(['status' => 0, 'text' => Lang::get('validation.refund_not_allowed')], 403);
         }
     }
@@ -351,7 +354,7 @@ class BookingController extends ValidationController
             }
         }
 
-        if ($passengerAffiliateUserId) {
+        if($passengerAffiliateUserId) {
             //insert passenger affiliate balance update table
             $appendp = round($theAmt * $passenger_percent, 3, PHP_ROUND_HALF_DOWN); //3% of 10%
             BalanceUpdates::create(['user_id' => $passengerAffiliateUserId, 'amount' => $appendp, 'sale_id' => $sale_id, 'type' => 5]);
@@ -377,7 +380,8 @@ class BookingController extends ValidationController
 
         if ($type == 'paypal') {
             $transactionField = 'paypal_transaction_id';
-        } else {
+        }
+        else {
             $transactionField = 'transaction_id';
         }
 
@@ -398,20 +402,19 @@ class BookingController extends ValidationController
             $qrCode = new QrCode($ui['ticket_number'] . " | " . $ui['users']['name'] . " | " . $ui['routes']['cities_from']['translated']['name'] . " - " . $ui['routes']['cities_to']['translated']['name']);
             $qrCode->setSize(800);
             $qrCode->setMargin(0);
-            Storage::disk('s3')->put(
-                'tickets/' . md5($ui['ticket_number']) . '.png',
-                $qrCode->writeString(),
-                [
-                    'ACL' => 'public-read', // Optional: If public access is needed
-                    'ContentType' => 'image/png',
-                    'ResponseContentDisposition' => 'attachment; filename="QRCode.png"' // Forces download
-                ]
-            );
+            Storage::disk('s3')->put('tickets/' . md5($ui['ticket_number']) . '.png', $qrCode->writeString(),
+            [
+                'ACL' => 'public-read', // Optional: If public access is needed
+                'ContentType' => 'image/png',
+                'ResponseContentDisposition' => 'attachment; filename="QRCode.png"' // Forces download
+            ]
+        );
             $ticketPath = 'tickets/' . md5($ui['ticket_number']) . '.png';
 
-            $qrCodeUrl = config('app.aws_url') . 'tickets/' . md5($ui['ticket_number']) . '.png';
-            $qrCodeUrlTemp = config('app.aws_url') . 'tickets/' . md5($ui['ticket_number']) . '.png';
+            $qrCodeUrl = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
+            $qrCodeUrlTemp = config('app.aws_url').'tickets/' . md5($ui['ticket_number']) . '.png';
 
+            Log::info('generate dqr ', [$qrCodeUrlTemp, $qrCodeUrl,]);
             $locale = $ui['users']['locale'];
             //Send SMS and Email
             $departure_date = Carbon::parse($ui['routes']['departure_date']);
@@ -420,7 +423,7 @@ class BookingController extends ValidationController
             $data['passenger'] = $ui['users']['name'];
             $data['seat_number'] = $ui['seat_number'];
 
-            //            User::where('id', $ui['user_id'])->first()->notify(
+//            User::where('id', $ui['user_id'])->first()->notify(
 //                new TicketOrder($data,
 //                    $locale,
 //                    route('secure_ticket', ['id' => md5($ui['ticket_number'])] )
@@ -442,7 +445,7 @@ class BookingController extends ValidationController
     {
         $lng = config('laravellocalization.supportedLocales');
         $sales = Sales::where($transactionField, $transaction_id)->get()->toArray();
-        foreach ($sales as $sale) {
+        foreach($sales as $sale) {
             $other_sales = Sales::with([
                 'routes',
                 'routes.citiesFrom',
@@ -474,23 +477,25 @@ class BookingController extends ValidationController
 
     public function sendMassageForMobile($data)
     {
+        Log::info("number ", $data['phone_number']);
 
         $contact = $data['phone_number'][0];
         $userName = $data['name'][0];
 
-        $queryParams = http_build_query([
-            'recipient' => $contact,
-            'sender_id' => 'TextLKDemo',
-            'message' => $data['body'],
-        ]);
+            $queryParams = http_build_query([
+                'recipient' =>  $contact,
+                'sender_id' => 'TextLKDemo',
+                'message' => $data['body'],
+            ]);
 
-        $url = 'https://app.text.lk/api/v3/sms/send?' . $queryParams;
+            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
 
-        $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
+            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
             ->post($url);
-        Log::info('ok');
+            Log::info($response->status());
+            Log::info('ok');
 
-        Log::info($response->body());
+            Log::info($response->body());
     }
 
 
