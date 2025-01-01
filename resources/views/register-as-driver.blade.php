@@ -76,7 +76,7 @@
                     @component('components.misc.submit-button')
                         @slot('anchor') {{ Lang::get('auth.registration') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
                     @endcomponent
-                    @slot('subtitle') {!! Lang::get('auth.agree_terms_of_use') !!} @endslot
+                    @slot('subtitle') {!! Lang::get('auth.sign-in-button-p') !!} @endslot
                 @endcomponent
             </div>
         </div>

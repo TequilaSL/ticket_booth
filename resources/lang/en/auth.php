@@ -24,9 +24,10 @@ return [
     'bank_name' => 'Bank name',
     'partnership_code_not_required' => 'Affiliate code (Not Required)',
     'affiliate_code' => 'Affiliate code',
-    'agree_terms_of_use' => 'by submitting you agree our <a href="' . route('terms_of_use') . '">terms of use</a>',
+    'sign_up_redirect_message' => '',
+    'sign_in_redirect_message' => 'Already have an account ? <a href="#" role="button"  id="sign-in-button-p">Login</a>',
     'agree_terms_of_use_forgot' => '<div class="text-center mb-10"><a href="' . route('forgot_password') . '" class="text-center">forgot password?</a></div>
-     by submitting you agree our <a href="' . route('terms_of_use') . '">terms of use</a>',
+    Don\'t have an account ? <a href="#" role="button" id="sign-up-button-p">Signup</a>',
     'banned' => 'Your account has been suspended',
     'id_number' => 'ID Number',
     'save' => 'Save information',

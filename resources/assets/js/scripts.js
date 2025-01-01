@@ -86,6 +86,18 @@ $(document).ready(function () {
         }
     });
 
+    $("#sign-in-button-p").on("click", function (e) {
+        e.preventDefault();
+        $(".login-btn-wrapper").addClass("open");
+        $(".signup-btn-wrapper").removeClass("open");
+    });
+
+    $("#sign-up-button-p").on("click", function (e) {
+        e.preventDefault();
+        $(".signup-btn-wrapper").addClass("open");
+        $(".login-btn-wrapper").removeClass("open");
+    });
+
     /*----------------------------------------------------*/
     // Modal login.
     /*----------------------------------------------------*/
