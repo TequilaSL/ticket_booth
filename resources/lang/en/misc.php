@@ -38,7 +38,6 @@ return [
     'detailed_info' => 'Detailed information',
     'view_vehicle_images' => 'Vehicle images',
     'refundable' => 'Refundable',
-    'stopping_time_search' => 'Stopping for',
     'trip_duration' => 'Trip duration',
     'hours' => '{0}|{1} hour|[2,*] hours',
     'minutes' => '{0}|{1} minute|[2,*] minutes',

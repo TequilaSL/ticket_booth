@@ -38,7 +38,6 @@ return [
     'detailed_info' => 'விரிவான தகவல்கள்',
     'view_vehicle_images' => 'வாகன படங்களைப் பார்வையிடுக',
     'refundable' => 'திரும்பப்பெறும்',
-    'stopping_time_search' => 'நின்று விடுக',
     'trip_duration' => 'பயணம் காலம்',
     'hours' => '{0}|{1} மணி|[2,*] மணி',
     'minutes' => '{0}|{1} நிமிட|[2,*] நிமிட',
