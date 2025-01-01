@@ -148,6 +148,7 @@ return [
     'day_count' => '[0] day|[0,*] days',
     'days_word' => 'DAYS',
     'refund' => 'Refund',
+    'no_reviews_available' => 'No reviews available.',
     'show_more' => 'Show more',
     'your_fine' => 'Fine amount',
     'time_before_route' => 'Departure countdown',

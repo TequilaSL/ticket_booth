@@ -176,7 +176,6 @@
                 @slot('field') select @endslot
                 @slot('label') {{ Lang::get('misc.filter') }}@endslot
                 @slot('field_id') sort_change @endslot
-                @slot('select_default_value') date @endslot
                 @slot('select_default_anchor') {{ Lang::get('misc.date') }} @endslot
                 @isset($sort_by) @slot('value') {{ $sort_by }} @endslot @endisset
                 @slot('name') sort_by @endslot
