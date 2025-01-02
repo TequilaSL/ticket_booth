@@ -88,28 +88,49 @@ $(document).ready(function () {
 
     $("#sign-in-button-p").on("click", function (e) {
         e.preventDefault();
-        $(".login-btn-wrapper").addClass("open");
-        $(".signup-btn-wrapper").removeClass("open");
+        openLoginForm();
+        closeRegisterForm();
     });
 
     $("#sign-up-button-p").on("click", function (e) {
         e.preventDefault();
-        $(".signup-btn-wrapper").addClass("open");
-        $(".login-btn-wrapper").removeClass("open");
+        openRegisterForm();
+        closeLoginForm();
     });
+
+    /*----------------------------------------------------*/
+    // login and register functions.
+    /*----------------------------------------------------*/
+
+    function openLoginForm (e) {
+        $(".login-btn-wrapper").addClass("open");
+    };
+
+    function openRegisterForm (e) {
+        $(".signup-btn-wrapper").addClass("open");
+    };
+
+    function closeLoginForm (e) {
+        $(".login-btn-wrapper").removeClass("open");
+    };
+
+    function closeRegisterForm (e) {
+        $(".signup-btn-wrapper").removeClass("open");
+    };
+
 
     /*----------------------------------------------------*/
     // Modal login.
     /*----------------------------------------------------*/
     $(".login-button").on("click", function (e) {
         e.preventDefault();
-        $(".login-btn-wrapper").addClass("open");
-        $(".signup-btn-wrapper").removeClass("open");
+        openLoginForm();
+        closeRegisterForm();
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
         e.preventDefault();
-        $(".login-btn-wrapper").removeClass("open");
+        closeLoginForm();
     });
 
     /*----------------------------------------------------*/
@@ -117,13 +138,13 @@ $(document).ready(function () {
     /*----------------------------------------------------*/
     $(".signup-button").on("click", function (e) {
         e.preventDefault();
-        $(".signup-btn-wrapper").addClass("open");
-        $(".login-btn-wrapper").removeClass("open");
+        openRegisterForm();
+        closeLoginForm();
     });
 
     $(".signup-popup-wrapper .close").on("click", function (e) {
         e.preventDefault();
-        $(".signup-btn-wrapper").removeClass("open");
+        closeRegisterForm();
     });
 
     /*----------------------------------------------------*/
@@ -2621,6 +2642,7 @@ $(document).ready(function () {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
                     location.reload();
+                    scrollTo();
                 } else {
                     $(this)
                         .parent()
@@ -2629,12 +2651,6 @@ $(document).ready(function () {
                         .addClass("response-danger mini")
                         .html(data.text);
                 }
-                $("html, body").animate(
-                    {
-                        scrollTop: $(".response").offset().top - 150,
-                    },
-                    1000
-                );
             },
             error: function (data) {
                 $(this)
@@ -2675,12 +2691,12 @@ $(document).ready(function () {
             data: formData,
             success: function (data) {
                 if (data.status === 1) {
-                    $(this)
-                        .parent()
-                        .find(".response")
-                        .css("display", "inline-block")
-                        .addClass("response-success")
-                        .html(data.text);
+                    closeRegisterForm();
+                    openLoginForm();
+                    $(".login-popup-wrapper .response")
+                    .css("display", "inline-block")
+                    .addClass("response-success")
+                    .html(data.text);
                 } else {
                     $(this)
                         .parent()
@@ -2712,6 +2728,17 @@ $(document).ready(function () {
             },
         });
     });
+
+    const currentPath = window.location.pathname;
+    const routeRegex = /^\/listings\/\d+-[a-zA-Z]+-[a-zA-Z]+-date-\d{4}-\d{2}-\d{2}$/;
+    const targetElement = document.querySelector(".ticket-scheme");
+    function scrollTo () {
+        if (routeRegex.test(currentPath)) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+        } else {
+            return;
+    }
+    }
 
     let changeableStars = $(".stars-active.changeable");
     if (changeableStars.length) {
@@ -4950,8 +4977,7 @@ $(document).ready(function () {
                                 that.on("click", chooseSeat);
                             } else {
                                 window.scrollTo({ top: 0, behavior: "smooth" });
-                                $(".login-btn-wrapper").addClass("open");
-
+                                openLoginForm();
                             }
                         },
                     });
