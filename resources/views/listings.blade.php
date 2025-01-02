@@ -149,14 +149,14 @@
                         @if(isset($departure_date) && $departure_date != 'Invalid date')  @slot('value') {{ \Carbon\Carbon::createFromTimestamp(strtotime($departure_date))->translatedFormat('j\ F Y') }} @endslot @endif
                     @endcomponent
                 </div>
-                <!-- <div class="col-md-6 col-lg-3">
-                    @component('components.misc.input')
-                        @slot('inner_class') passengers @endslot
-                        @slot('title') {{ Lang::get('misc.passengers') }} @endslot
-                        @slot('name') passengers @endslot
-                        @slot('value') {{ $passengers ?? 1 }} @endslot
-                    @endcomponent
-                </div> -->
+                {{--   <div class="col-md-6 col-lg-3"> --}}
+                    {{--  @component('components.misc.input') --}}
+                        {{--  @slot('inner_class') passengers @endslot --}}
+                        {{--  @slot('title') {{ Lang::get('misc.passengers') }} @endslot --}}
+                        {{--  @slot('name') passengers @endslot --}}
+                        {{--  @slot('value') {{ $passengers ?? 1 }} @endslot --}}
+                    {{--  @endcomponent --}}
+                {{--  </div> --}}
                 <div class="col-lg-9 col-md-12"></div>
                 <div class="col-md-6 col-lg-3">
                     <button type="submit" class="btn-form1-submit">{{ Lang::get('misc.search') }}</button>
