@@ -23,18 +23,18 @@
                             <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'bus']) }}">{{ Lang::get('menu.bus_tickets') }}</a>
                             </li>
-                            {{--                            <li>--}}
+                            {{--                            <li> --}}
                             {{--                                <a href="{{ route('listings_rt', ['route_type' => 'carpooling']) }}">{{ Lang::get('menu.carpooling_tickets') }}</a>--}}
                             {{--                            </li>--}}
                         </ul>
-                        @if(Auth::check())
-                            <div class="footer-block-cart">
-                                <a href="{{ route('cart') }}">
-                                    <div class="txt1">{{ count($cart_items ?? []) }}</div>
-                                    <div class="txt2">{{ Lang::get('misc.items_in_your_cart') }}</div>
-                                </a>
-                            </div>
-                        @endif
+                      {{--     @if(Auth::check()) --}}
+                           {{--    <div class="footer-block-cart"> --}}
+                               {{--    <a href="{{ route('cart') }}"> --}}
+                                   {{--    <div class="txt1">{{ count($cart_items ?? []) }}</div> --}}
+                                   {{--    <div class="txt2">{{ Lang::get('misc.items_in_your_cart') }}</div> --}}
+                               {{--    </a> --}}
+                           {{--    </div> --}}
+                       {{--    @endif --}}
                     </div>
                     <div class="col-md-6 col-lg-5">
                         <div class="footer-block-title">{{ Lang::get('misc.footer_about') }}</div>

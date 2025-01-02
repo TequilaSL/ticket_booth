@@ -38,7 +38,6 @@ return [
     'detailed_info' => 'විස්තරාත්මක තොරතුරු',
     'view_vehicle_images' => 'වහන ඡායාරූප',
     'refundable' => 'ආපසු ගෙවිය හැකිය',
-    'stopping_time_search' => 'නවතා ගතවීම',
     'trip_duration' => 'ගමන කාලය',
     'hours' => '{0}|{1} පැය|[2,*] පැය',
     'minutes' => '{0}|{1} මිනිත්තු|[2,*] මිනිත්තු',

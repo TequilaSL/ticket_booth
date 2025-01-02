@@ -12,7 +12,7 @@
         @component('components.misc.form')
             @slot('form_id') popup-form2 @endslot
             @slot('class') form-horizontal registerForm @endslot
-            @slot('subtitle') {!! Lang::get('auth.agree_terms_of_use') !!} @endslot
+            @slot('subtitle') {!! Lang::get('auth.sign_in_redirect_message') !!} @endslot
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.mobile_phone') }} @endslot
                 @slot('name') phone_number @endslot

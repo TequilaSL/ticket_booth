@@ -43,7 +43,6 @@ return [
     'details' => 'დეტალები',
     'detailed_info' => 'დეტალური ინფორმაცია',
     'refundable' => 'დაბრუნებადი',
-    'stopping_time_search' => 'გაჩერება',
     'trip_duration' => 'მგზავრობის ხანგრძლივობა',
     'view_vehicle_images' => 'იხილეთ სურათები',
     'hours' => 'საათი',
