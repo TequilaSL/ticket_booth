@@ -2638,10 +2638,10 @@ $(document).ready(function () {
             context: this,
             data: formData,
             success: function (data) {
+                location.reload();
                 if (data.status === 1) {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
-                    location.reload();
                     scrollTo();
                 } else {
                     $(this)

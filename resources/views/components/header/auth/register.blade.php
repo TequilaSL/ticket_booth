@@ -1,9 +1,9 @@
 <div class="signup-btn-wrapper">
-    @if((new \Jenssegers\Agent\Agent)->isMobile())
-        <a href="{{ route('mobile.signup') }}" class="signup-btn">{{ Lang::get('auth.registration') }}</a>
-    @else
+    {{-- @if((new \Jenssegers\Agent\Agent)->isMobile()) --}}
+        {{-- <a href="{{ route('mobile.signup') }}" class="signup-btn">{{ Lang::get('auth.registration') }}</a> --}}
+    {{-- @else --}}
         <button class="signup-btn signup-button">{{ Lang::get('auth.registration') }}</button>
-    @endif
+     {{-- @endif --}}
 
     <div class="signup-popup-wrapper">
         <button type="button" class="close" aria-label="Close"></button>

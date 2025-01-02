@@ -1,9 +1,9 @@
 <div class="login-btn-wrapper @if(Session::get('popup') == 'login') open @endif">
-    @if((new \Jenssegers\Agent\Agent)->isMobile())
-        <a href="{{ route('mobile.login') }}" class="login-btn">{{ Lang::get('auth.login') }}</a>
-    @else
+    {{-- @if((new \Jenssegers\Agent\Agent)->isMobile())  --}}
+       {{--  <a href="{{ route('mobile.login') }}" class="login-btn">{{ Lang::get('auth.login') }}</a> --}}
+    {{-- @else --}}
         <button class="login-btn login-button">{{ Lang::get('auth.login') }}</button>
-    @endif
+    {{-- @endif --}}
     <div class="login-popup-wrapper">
         <button type="button" class="close" aria-label="Close"></button>
         <div class="title">{{ Lang::get('auth.login') }}</div>
