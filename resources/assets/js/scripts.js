@@ -4925,6 +4925,7 @@ $(document).ready(function () {
 
     let selectedSeats = [];
 
+    let seat_counts = 0;
     function chooseSeat() {
         let that = $(this);
         if (
@@ -4933,8 +4934,6 @@ $(document).ready(function () {
         ) {
             let ticket_passengers = $(".ticket-passengers");
             let ticket_totals = $(".details-of-payment-total");
-            let seat_counts =
-                ticket_passengers.children(".ticket-passenger").length;
             let seat_number = that.find("span").html().replace(/\s/g, "");
             let ticket_passenger_seat = $(".ticket-passenger-seat");
             if (!that.hasClass("seat-active")) {
@@ -4961,8 +4960,8 @@ $(document).ready(function () {
                         },
                         success: function (data) {
                             if (data && Object.keys(data).length > 0) {
-                                if (seat_counts < 1) {
-                                    ticket_totals.removeClass("hidden");
+                                ticket_totals.removeClass("hidden");
+                                if (seat_counts === 1) {
                                     ticket_passengers
                                         .append(data)
                                         .removeClass("hidden");
@@ -4993,9 +4992,9 @@ $(document).ready(function () {
                         },
                     });
                 }
-                $("#amount").val(seat_counts + 1);
+                $("#amount").val(++seat_counts);
                 $(".details-of-payment-total .txt2 span").html(
-                    (seat_counts + 1) *
+                    (seat_counts) *
                         parseFloat($('input[name="price"]').val()).toFixed(2)
                 );
             } else {
@@ -5008,13 +5007,13 @@ $(document).ready(function () {
                     })
                     .parents(".ticket-passenger")
                     .remove();
-                if (seat_counts < 60) {
-                    ticket_passengers.addClass("hidden");
-                    ticket_totals.addClass("hidden");
-                }
-                $("#amount").val(seat_counts - 1);
+                // if (seat_counts < 60) {
+                //     ticket_passengers.addClass("hidden");
+                //     ticket_totals.addClass("hidden");
+                // }
+                $("#amount").val(--seat_counts);
                 $(".details-of-payment-total .txt2 span").html(
-                    (seat_counts - 1) *
+                    (seat_counts) *
                         parseFloat($('input[name="price"]').val()).toFixed(2)
                 );
             }
@@ -5023,25 +5022,19 @@ $(document).ready(function () {
 
     $(document).on("click", ".ticket-passenger-close a", function (e) {
         e.preventDefault();
-        let ticket_passengers = $(".ticket-passengers");
         let this_seat = $(this)
             .parent()
             .parent()
             .find(".ticket-passenger-seat")
             .find("span")
             .html();
-        let seat_counts =
-            ticket_passengers.children(".ticket-passenger").length;
-        // if (seat_counts < 2) {
-        //     ticket_passengers.addClass("hidden");
-        // }
         $(this).parent().parent().remove();
         $(".vehicle-seat span:contains(" + this_seat + ")")
             .parent()
             .removeClass("seat-active");
-        $("#amount").val(seat_counts - 1);
+        $("#amount").val(--seat_counts);
         $(".details-of-payment-total .txt2 span").html(
-            (seat_counts - 1) *
+            (seat_counts) *
                 parseFloat($('input[name="price"]').val()).toFixed(2)
         );
     });

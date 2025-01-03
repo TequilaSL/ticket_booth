@@ -166,18 +166,21 @@ class BookingController extends ValidationController
                 $jData[$key]['departure_date'] = $priku['departure_date'];
                 $jData[$key]['payment_method'] = $data['payment_method'];
                 $jData[$key]['user_id'] = $id;
-                $jData[$key]['status'] = '1';
                 $jData[$key]['price'] = $price;
                 $jData[$key]['currency_id'] = $currency;
 
+                $ticket_number=0;
+                $transaction_id=0;
                 foreach ($data['seats'] as $index => $val) {
-                    Log::info($data['seats'][$index]);
                     $jData[$key]['seat_number'] = $data['seats'][$index];
                     $insert = $this->store($jData[$key]);
-
                     $uData[$key]['id'] = $insert->id;
-                    $uData[$key]['ticket_number'] = $hashti->encode($insert->id);
-                    $uData[$key]['transaction_id'] = $hashit->encode($uData[0]['id']);
+                    if($index==0){
+                        $ticket_number = $hashti->encode($insert->id);
+                        $transaction_id = $hashit->encode($uData[0]['id']);
+                    }
+                    $uData[$key]['ticket_number'] = $ticket_number;
+                    $uData[$key]['transaction_id'] = $transaction_id;
                     $this->update($uData[$key]);
                 }
 
@@ -419,7 +422,7 @@ class BookingController extends ValidationController
             $data['passenger'] = $ui['users']['name'];
             $data['seat_number'] = $ui['seat_number'];
 
-            //            User::where('id', $ui['user_id'])->first()->notify(
+//            User::where('id', $ui['user_id'])->first()->notify(
 //                new TicketOrder($data,
 //                    $locale,
 //                    route('secure_ticket', ['id' => md5($ui['ticket_number'])] )
