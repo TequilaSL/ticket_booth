@@ -21,6 +21,7 @@ export const accessTokenRoles = (userData) => {
 }
 
 export default new Vuex.Store({
+    
     state: {
         user: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : null,
         roles: accessTokenRoles(localStorage.getItem('user')),
@@ -38,6 +39,8 @@ export default new Vuex.Store({
             state.user = userData
             state.isLoggedIn = true
             localStorage.setItem('isLoggedIn', 'true')
+            console.log('in side setuserdata user________', JSON.stringify(userData));
+            
             localStorage.setItem('user', JSON.stringify(userData))
             state.roles = accessTokenRoles(JSON.stringify(userData))
         },
@@ -79,8 +82,9 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        
         async apiCall({commit}, payload) {
-
+            console.log('store js-action');
             try {
                 const apiFind = api.find(o => o.name === payload.actionName)
                 let response
