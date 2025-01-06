@@ -21,6 +21,7 @@ export const accessTokenRoles = (userData) => {
 }
 
 export default new Vuex.Store({
+
     state: {
         user: (localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : null,
         roles: accessTokenRoles(localStorage.getItem('user')),
@@ -80,7 +81,6 @@ export default new Vuex.Store({
     },
     actions: {
         async apiCall({commit}, payload) {
-
             try {
                 const apiFind = api.find(o => o.name === payload.actionName)
                 let response
@@ -101,9 +101,9 @@ export default new Vuex.Store({
                 if (payload.actionName === 'login') {
                     let customFormData = new FormData()
                     const apiFindLogin = api.find(o => o.name === 'loginForWeb')
-                    customFormData.append('_token', payload.data.get('_token'))
-                    customFormData.append('phone_number', payload.data.get('username'))
-                    customFormData.append('password', payload.data.get('password'))
+                    customFormData.append('_token', payload.data ? payload.data._token : payload.data.get('_token') )
+                    customFormData.append('phone_number', payload.data ?  payload.data.username : payload.data.get('username'))
+                    customFormData.append('password', payload.data ? payload.data.password : payload.data.get('password'))
                     await axios.post(apiFindLogin.url, customFormData)
                 }
 

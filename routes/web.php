@@ -120,7 +120,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/auth/support-close', 'SupportController@close')->name('auth_support_close');
         Route::post('/auth/support-close-secure', 'SupportController@closeSecure')->name('auth_support_close_secure');
 
-
         Route::post('/auth/login', 'Auth\LoginController')->name('auth_login');
         Route::post('/auth/logout', 'Auth\LogoutController')->name('auth_logout');
         Route::post('/auth/register', 'Auth\RegisterController')->name('auth_register');
@@ -178,6 +177,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
     //Custom mobile pages
+    Route::post('/check-token', 'Mobile\LoginController@checkToken')->name('check-token');
     Route::get('/languages', 'Mobile\LanguagesController@view');
     Route::get('/settings', 'Mobile\SettingsController@view');
     Route::get('/login', 'Mobile\LoginController@view')->name('mobile.login');

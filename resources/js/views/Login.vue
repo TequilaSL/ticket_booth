@@ -18,6 +18,9 @@ import Header from '../components/Header'
 import vzForm from '../components/Form'
 import LoginOrSignUp from '../components/LoginOrSignUp'
 import {client} from '../config'
+import axios from 'axios';
+import router from '../routes'
+
 
 export default {
     components: {LoginOrSignUp, vzForm, Header},
@@ -93,8 +96,42 @@ export default {
         }
     },
     mounted() {
+        console.log('login vue');
         document.title = this.title
-    }
+
+        this.checkToken();
+    },
+
+    methods: {
+        async checkToken() {
+            try {
+                const response = await axios.post("/check-token");
+
+                this.$store
+                    .dispatch("apiCall", {
+                        actionName: "login",
+                        data: {
+                            lang: this.$store.state.locale,
+                            _token: response.data.token,
+                            grant_type: "password",
+                            client_id: "2",
+                            client_secret:
+                                "MMhnIVno8yPbJbgaqNe2pKx5uY3vfILVLvJeCtkk",
+                            username: response.data.user? response.data.user.phone_number : null,
+                            password: response.data.number ?? null,
+                        },
+                        commit: "setUserData",
+                        onSuccessRedirect: "home",
+                        onSuccessRedirectQuery: null,
+                    })
+                    .then((d) => {
+                        console.log('login token error response __________', d);
+                    })
+            } catch (error) {
+                console.error('Error while checking token:', error);
+            }
+        }
+    },
 }
 </script>
 <style scoped src="./css/Login.css"/>

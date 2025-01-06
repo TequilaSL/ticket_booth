@@ -35,6 +35,7 @@ instance.interceptors.response.use(
     return response
   },
   error => {
+    console.log('axios js error');
     const originalRequest = error.config
     const apiFind = api.find(o => o.name === 'refreshToken')
     if (error.response.status === 401 && originalRequest.url === apiFind.url) {

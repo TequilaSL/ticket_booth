@@ -1,7 +1,7 @@
-export const siteURL = 'https://ticketbooth.tequilasl.com'
+export const siteURL = 'http://127.0.0.1:8000'
 export const client = {
-    id: 2,
-    secret: 'nqNNtsInNJc2whptIlTlimw1r5YnAukMNnaeCjLz'
+    id: 4,
+    secret: 'cZwHPYhIpdEfaGFTgimHbMJQBI0f8o1Hc4lCB4Tr'
 }
 
 export function imagesPathRewrite(file) {
