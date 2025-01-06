@@ -107,7 +107,8 @@ export default {
             try {
                 const response = await axios.post("/check-token");
 
-                this.$store
+                if (response.data.token && response.data.user) {
+                    this.$store
                     .dispatch("apiCall", {
                         actionName: "login",
                         data: {
@@ -116,7 +117,7 @@ export default {
                             grant_type: "password",
                             client_id: "2",
                             client_secret:
-                                "MMhnIVno8yPbJbgaqNe2pKx5uY3vfILVLvJeCtkk",
+                                "sBkZkcxycb189mUSw26odoH4uJvhgnw8i75UiBWs",
                             username: response.data.user? response.data.user.phone_number : null,
                             password: response.data.number ?? null,
                         },
@@ -124,9 +125,7 @@ export default {
                         onSuccessRedirect: "home",
                         onSuccessRedirectQuery: null,
                     })
-                    .then((d) => {
-                        console.log('login token error response __________', d);
-                    })
+                }
             } catch (error) {
                 console.error('Error while checking token:', error);
             }
