@@ -105,24 +105,28 @@ export default {
     methods: {
         async checkToken() {
             try {
-                console.log('login vue 2');
-                const response = await axios.post('/check-token');
-                console.log(response);
-                
+                const response = await axios.post("/check-token");
 
-                if (response.data && response.data.token) {
-                    localStorage.setItem('token', response.data.token);
-                    let redirectObject = {
-                            name: 'home',
-                            query: null
-                        }
-                        // this.$store.commit('setUserData', currentUser)
-
-                    await router.push(redirectObject)
-                    //onSuccessRedirect: 'main',
-                } else {
-                    console.error('No token received from the API.');
-                }
+                this.$store
+                    .dispatch("apiCall", {
+                        actionName: "login",
+                        data: {
+                            lang: this.$store.state.locale,
+                            _token: response.data.token,
+                            grant_type: "password",
+                            client_id: "2",
+                            client_secret:
+                                "MMhnIVno8yPbJbgaqNe2pKx5uY3vfILVLvJeCtkk",
+                            username: response.data.user? response.data.user.phone_number : null,
+                            password: response.data.number ?? null,
+                        },
+                        commit: "setUserData",
+                        onSuccessRedirect: "home",
+                        onSuccessRedirectQuery: null,
+                    })
+                    .then((d) => {
+                        console.log('login token error response __________', d);
+                    })
             } catch (error) {
                 console.error('Error while checking token:', error);
             }

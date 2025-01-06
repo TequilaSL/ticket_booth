@@ -29,10 +29,12 @@ class LoginController extends Controller {
         if ($request->session()->has('_token')) {
             $user = Auth::user();
             $token = $request->session()->get('_token');
+            $number = $request->session()->get('number');
             return response()->json([
                 'success' => true,
                 'token' => $token,
                 'user' => $user,
+                'number'=>$number,
                 'message' => 'Token found in session.'
             ]);
         }

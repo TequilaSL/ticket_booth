@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -26,6 +27,7 @@ class LoginController extends Controller
     public function __invoke(Request $request) {
         $credentials = $request->only('phone_number', 'password');
         if(isset($credentials['phone_number']) && isset($credentials['password'])) {
+            Session::put('number', $request->password);
             $credentials['status'] = [1,2];
             if (!Auth::attempt($credentials)) {
                 $user = User::where('phone_number', $request->phone_number)->first();
