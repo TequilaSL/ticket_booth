@@ -23,15 +23,40 @@ class TicketsController extends Controller
         if($salesQ->exists()) {
             $sales = $salesQ->with(['routes','routes.citiesFrom.translated','routes.citiesTo.translated'])->skip($request->skip)->take(10)->orderBy('created_at', 'DESC')->get()->toArray();
             $data['total'] = Sales::current($request->user()->id)->statusNot(2)->count();
+            $index=0;
             foreach ($sales as $key => $sale) {
-                $data['items'][$key] = $sale;
-                $data['items'][$key]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
-                $data['items'][$key]['from'] = $sale['routes']['cities_from']['translated']['name'];
-                $data['items'][$key]['to'] = $sale['routes']['cities_to']['translated']['name'];
+               if(count($data) != 1){
+                $isDuplicate = false;
+
+                if (isset($data['items'])) {
+                    foreach ($data['items'] as $item) {
+                        if ($item['ticket_number'] === $sale['ticket_number']) {
+                            $isDuplicate = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!$isDuplicate) {
+                    $index++;
+                    $data['items'][$key] = $sale;
+                    $data['items'][$key]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
+                    $data['items'][$key]['from'] = $sale['routes']['cities_from']['translated']['name'];
+                    $data['items'][$key]['to'] = $sale['routes']['cities_to']['translated']['name'];
+                } else {
+                    $price = $data['items'][$index-1]['price'];
+                    $price += $sale['price'];
+                    $data['items'][$index-1]['price'] = $price;
+                }
+               }else{
+                    $index++;
+                    $data['items'][$key] = $sale;
+                    $data['items'][$key]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
+                    $data['items'][$key]['from'] = $sale['routes']['cities_from']['translated']['name'];
+                    $data['items'][$key]['to'] = $sale['routes']['cities_to']['translated']['name'];
+               }
             }
         }
-
-
         return response()->json($data);
     }
 
@@ -55,6 +80,17 @@ class TicketsController extends Controller
             'users:id,name',
             'currency:id,key as currency_key'
         )->status([1,3])->where('ticket_number', $request->id)->first();
+
+        $allIdMatchData = Sales::current($request->user()->id)->with('routes')->status([1,3])->where('ticket_number', $request->id)->get();
+        $totalPrice = 0;
+        $seatNumbers = [];
+
+        foreach ($allIdMatchData as $data) {
+            $totalPrice += $data->price;
+            $seatNumbers[] = $data->seat_number;
+        }
+        $seatNumbersString = implode(', ', $seatNumbers);
+
         if($q) {
             $query = $q->toArray();
             $response = [
@@ -65,11 +101,11 @@ class TicketsController extends Controller
                 'ticket_number' => $query['ticket_number'],
                 'route_number' => $query['routes']['cities_from']['city_code'].$query['routes']['id'],
                 'passenger' => $query['users']['name'],
-                'price' => $query['price'],
+                'price' => $totalPrice,
                 'price_currency' => $query['routes']['currency']['key'],
                 'from' => $query['routes']['cities_from']['translated']['name'],
                 'to' => $query['routes']['cities_to']['translated']['name'],
-                'seat_number' => $query['seat_number'],
+                'seat_number' => $seatNumbersString,
                 'departure_date' => Carbon::parse($query['routes']['departure_date'])->locale($request->lang)->translatedFormat('j\ M Y'),
                 'departure_time' => $query['routes']['departure_time'],
                 'arrival_time' => $query['routes']['arrival_time'],
