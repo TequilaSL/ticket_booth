@@ -251,7 +251,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f27509', end
 .corner-top-orange{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 3; background: url(../images/corner-top-orange.png) left top no-repeat;}
 .corner-bottom-pattern{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1; background: url(../images/corner-bottom-pattern.png) left bottom no-repeat;}
 .corner-bottom-gray{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 2; background: url(../images/corner-bottom-gray.png) left bottom no-repeat;}
-.serving-since{position: absolute; left: 15px; top: 15px; z-index: 5;}
+.serving-since{position: absolute; left: 15px; top: 15px; z-index: 200;}
 .serving-since .txt1{text-align: center; font-family: 'Montserrat'; font-weight: bold; font-size: 38px; color: #444444; line-height: 31px; background: white;}
 .serving-since .txt2{position: absolute; right: 15px; top: 70px; white-space: nowrap; font-size: 10px; font-family: 'Roboto'; font-weight: 500; text-transform: uppercase; color: #363636; letter-spacing: 0.2em;
 -webkit-transform: rotate(-90deg);
