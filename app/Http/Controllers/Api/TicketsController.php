@@ -9,6 +9,7 @@ use App\Sales;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 
 class TicketsController extends Controller
@@ -23,39 +24,23 @@ class TicketsController extends Controller
         if($salesQ->exists()) {
             $sales = $salesQ->with(['routes','routes.citiesFrom.translated','routes.citiesTo.translated'])->skip($request->skip)->take(10)->orderBy('created_at', 'DESC')->get()->toArray();
             $data['total'] = Sales::current($request->user()->id)->statusNot(2)->count();
-            $index=0;
-            foreach ($sales as $key => $sale) {
-               if(count($data) != 1){
-                $isDuplicate = false;
+            $ticketData = [];
+            
+            foreach ($sales as  $sale) {
+                $ticketNumber = $sale['ticket_number'];
 
-                if (isset($data['items'])) {
-                    foreach ($data['items'] as $item) {
-                        if ($item['ticket_number'] === $sale['ticket_number']) {
-                            $isDuplicate = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!$isDuplicate) {
-                    $index++;
-                    $data['items'][$key] = $sale;
-                    $data['items'][$key]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
-                    $data['items'][$key]['from'] = $sale['routes']['cities_from']['translated']['name'];
-                    $data['items'][$key]['to'] = $sale['routes']['cities_to']['translated']['name'];
-                } else {
-                    $price = $data['items'][$index-1]['price'];
-                    $price += $sale['price'];
-                    $data['items'][$index-1]['price'] = $price;
-                }
-               }else{
-                    $index++;
-                    $data['items'][$key] = $sale;
-                    $data['items'][$key]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
-                    $data['items'][$key]['from'] = $sale['routes']['cities_from']['translated']['name'];
-                    $data['items'][$key]['to'] = $sale['routes']['cities_to']['translated']['name'];
-               }
+            if (isset($ticketData[$ticketNumber])) {
+                $ticketData[$ticketNumber]['price'] += $sale['price'];
+            } else {
+                $ticketData[$ticketNumber] = $sale;
+                $ticketData[$ticketNumber]['departure_date'] = Carbon::parse($sale['routes']['departure_date'])->translatedFormat('j M Y');
+                $ticketData[$ticketNumber]['from'] = $sale['routes']['cities_from']['translated']['name'];
+                $ticketData[$ticketNumber]['to'] = $sale['routes']['cities_to']['translated']['name'];
             }
+        }
+
+        $data['items'] = array_values($ticketData);
+              
         }
         return response()->json($data);
     }
