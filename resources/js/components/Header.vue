@@ -7,7 +7,7 @@
                 </a>
                 <h3 class="head_title" :class="{hasParent: !hideBack}">{{ title }}</h3>
                 <router-link :to="{name: 'languages'}" class="languages_menu">
-                    <img :src="imagesPathRewrite(locales[this.$store.state.locale].flag)" :alt="locales[this.$store.state.locale].name">
+                    <div>{{ locales[this.$store.state.locale].code }}</div>
                 </router-link>
             </div>
         </div>
