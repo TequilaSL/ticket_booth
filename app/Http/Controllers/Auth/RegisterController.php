@@ -60,7 +60,7 @@ class RegisterController extends ValidationController
             'email' => 'sometimes|required|email|unique:users',
             'phone_number' => ['required', 'regex:/^\+94\d{9}$/', 'unique:users'],
             'gender_id' => 'sometimes|required|string|' . Rule::exists('genders', 'id'),
-            // 'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
+            'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
         ];
         if(!$ignorePassword) {
             $vals['password'] = 'required|string|min:5';

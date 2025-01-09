@@ -10,6 +10,9 @@
                 <a href="{{ route('listings_rt', ['route_type' => 'bus']) }}" class="nav-link">{{ Lang::get('misc.book') }}
                     <!-- <i class="fa fa-chevron-down" aria-hidden="true"></i> -->
                 </a>
+                <a href="/login" class="nav-link">{{ Lang::get('misc.login') }}
+                    <!-- <i class="fa fa-chevron-down" aria-hidden="true"></i> -->
+                </a>
                 <!-- <a href="{{ route('listings') }}" class="nav-link">{{ Lang::get('misc.book') }} <i
                         class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
                 <!-- <div class="sf-mega">

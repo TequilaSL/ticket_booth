@@ -1263,7 +1263,7 @@ transition: all 0.3s ease-out;
 
 .navbar_ .navbar-nav > li.nav2 > .nav-link{color: #363636; background: #fff; padding-left: 60px; padding-right: 30px;}
 
-.navbar_ .navbar-nav > li.nav1 > .nav-link{color: #fff; background: #c9302c; padding-left: 30px; padding-right: 30px;}
+.navbar_ .navbar-nav > li.nav1 > .nav-link{margin-bottom:5px; color: #fff; background: #c9302c; padding-left: 30px; padding-right: 30px;}
 
 .navbar_ .navbar-nav > li > .nav-link:focus,
 .navbar_ .navbar-nav > li > .nav-link:hover,
