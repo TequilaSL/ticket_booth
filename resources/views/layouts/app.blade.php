@@ -84,11 +84,11 @@
 @if(!Auth::check() || Request::routeIs(['support','register_as_partner','register_as_driver','support']))
     <script>
         var onloadCallback = function () {
-            // @if(!Auth::check())
-            // grecaptcha.render('register_element', {
-            //     'sitekey': '{{ config('services.google-recaptcha.site') }}'
-            // });
-            // @endif
+            {{--  @if(!Auth::check()) --}}
+            {{--  grecaptcha.render('register_element', { --}}
+                 {{--  'sitekey': '{{ config('services.google-recaptcha.site') }}' --}}
+            {{--  }); --}}
+             {{--  @endif --}}
             @if(Request::routeIs('register_as_partner'))
             grecaptcha.render('register_partner_element', {
                 'sitekey': '{{ config('services.google-recaptcha.site') }}'
@@ -106,9 +106,9 @@
             @endif
         };
     </script>
-    <!-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
+    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
             async defer>
-    </script> -->
+    </script> --}}
 @endif
 <script src="{{ URL::asset('js/scripts.js') }}"></script>
 </body>
