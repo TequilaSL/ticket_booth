@@ -59,7 +59,6 @@ class RegistrationController extends RegisterController {
             // User::whereId($reg->id)->first()->notify(
             //     new RegisteredAsPartnerPassword($request->lang, $newPass)
             // );
-
             $statusCode = 200;
         }
         else {

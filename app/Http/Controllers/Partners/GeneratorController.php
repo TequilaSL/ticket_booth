@@ -41,9 +41,11 @@ class GeneratorController extends Controller
             $data['user_id'] = $user_id;
             if (User::whereNotNull('affiliate_code')->whereId($user_id)->exists()) {
                 $parentId = User::with('affiliateClient')->whereId($user_id)->first()->toArray();
-                $data['tier_one_user_id'] = $parentId['affiliate_client']['user_id'];
+                $data['user_used'] = $parentId['affiliate_client']['user_id'];
             }
+           
             $data['status'] = 2;
+            $data['user_used'] = $user_id;
             $id = self::store($data)->id;
             self::update(['id' => $id], ['code' => $hs->encode($id)]);
         }

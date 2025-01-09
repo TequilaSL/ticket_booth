@@ -115,8 +115,8 @@ class RegisterController extends ValidationController
         }
 
 
-        // $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code', 'g-recaptcha-response']);
-        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number']);
+        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code', 'g-recaptcha-response']);
+        //$assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number']);
 
         $data['user'] = $request->only($assignable);
         if ($ignoreCaptcha) {
