@@ -4177,6 +4177,36 @@ $(document).ready(function () {
             .magnificPopup("open");
     });
 
+    $(document).on("click", "#toggleIcon-login-password", function (e) {
+        const icon = document.getElementById('toggleIcon-login-password');
+        const loginInput = document.getElementById('login-password');
+
+        if (loginInput.type === 'password') {
+            loginInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            loginInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
+    $(document).on("click", "#toggleIcon-registration-password", function (e) {
+        const icon = document.getElementById('toggleIcon-registration-password');
+        const registerInput = document.getElementById('registration-password');
+
+        if (registerInput.type === 'password') {
+            registerInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            registerInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
     /*----------------------------------------------------*/
     // Superfish menu.
     /*----------------------------------------------------*/

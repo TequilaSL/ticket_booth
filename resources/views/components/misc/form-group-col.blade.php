@@ -3,7 +3,7 @@
         <div class="{{ $col }} @isset($hidden) hidden @endisset">
             @endisset
             @unless(isset($hideGroup))
-                <div class="{{ $group_class ?? 'form-group' }}">
+                <div class="{{ ($group_class ?? 'form-group') . (isset($type) && $type == 'password' ? ' password-style-class' : '') }}">
                     @endunless
                     @if(isset($field) && $field == 'checkbox')
                         @isset($values)
@@ -162,6 +162,9 @@
                                            @endif
                                            autocomplete="off" @isset($disabled) disabled
                                            @endisset @isset($readonly) readonly @endisset>
+                                           @if(isset($type) && $type == 'password')
+                                           <i class="fa fa-eye" id="toggleIcon-{{ $field_id ?? $name }}"></i>
+                                           @endif
                                 @endunless
                             @endif
 
