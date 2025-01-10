@@ -43,7 +43,7 @@ class GeneratorController extends Controller
                 $parentId = User::with('affiliateClient')->whereId($user_id)->first()->toArray();
                 $data['user_used'] = $parentId['affiliate_client']['user_id'];
             }
-           
+
             $data['status'] = 2;
             $data['user_used'] = $user_id;
             $id = self::store($data)->id;
@@ -57,10 +57,10 @@ class GeneratorController extends Controller
         if (!$agent->isMobile()) {
             $data = Controller::essentialVars();
             $data['registerAs'] = [
-                [
-                    'id' => 'passenger',
-                    'name' => Lang::get('misc.passenger_partner')
-                ],
+                // [
+                //     'id' => 'passenger',
+                //     'name' => Lang::get('misc.passenger_partner')
+                // ],
                 [
                     'id' => 'driver',
                     'name' => Lang::get('misc.driver_partner')

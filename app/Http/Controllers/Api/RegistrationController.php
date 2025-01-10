@@ -46,8 +46,7 @@ class RegistrationController extends RegisterController {
         $response = $this->invokeDriverPartner($request, 'driver', true, true)['response'];
         $data = $this->invokeDriverPartner($request,'driver', true, true)['data'];
         if($response->original['status'] == 1) {
-            $newPass = rand(0000, 9999);
-            $data['user']['password'] = Hash::make($newPass);
+            $data['user']['password'] = Hash::make($request->password);
             $data['user']['locale'] = $request->lang;
             $reg = RegisterController::store($data['user']);
             $data['driver']['user_id'] = $reg->id;

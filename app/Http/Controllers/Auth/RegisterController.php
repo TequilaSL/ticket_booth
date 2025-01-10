@@ -85,7 +85,7 @@ class RegisterController extends ValidationController
     public function __invoke(Request $request)
     {
         // $data = $request->only('name', 'email', 'password', 'phone_number', 'affiliate_code', 'gender_id', 'g-recaptcha-response');
-        $data = $request->only('name', 'email', 'password', 'phone_number',  'gender_id');
+        $data = $request->only('name', 'email', 'password', 'phone_number',  'gender_id', 'affiliate_code');
         $validator = $this->validator($data);
         $errors = $validator->errors();
         if ($validator->fails()) {
@@ -115,7 +115,7 @@ class RegisterController extends ValidationController
         }
 
 
-        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code', 'g-recaptcha-response']);
+        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code']);
         //$assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number']);
 
         $data['user'] = $request->only($assignable);
