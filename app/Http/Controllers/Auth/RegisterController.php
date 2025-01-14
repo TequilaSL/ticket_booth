@@ -60,7 +60,7 @@ class RegisterController extends ValidationController
             'email' => 'sometimes|required|email|unique:users',
             'phone_number' => ['required', 'regex:/^\+94\d{9}$/', 'unique:users'],
             'gender_id' => 'sometimes|required|string|' . Rule::exists('genders', 'id'),
-            // 'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
+            'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
         ];
         if(!$ignorePassword) {
             $vals['password'] = 'required|string|min:5';
@@ -85,7 +85,7 @@ class RegisterController extends ValidationController
     public function __invoke(Request $request)
     {
         // $data = $request->only('name', 'email', 'password', 'phone_number', 'affiliate_code', 'gender_id', 'g-recaptcha-response');
-        $data = $request->only('name', 'email', 'password', 'phone_number',  'gender_id');
+        $data = $request->only('name', 'email', 'password', 'phone_number',  'gender_id', 'affiliate_code');
         $validator = $this->validator($data);
         $errors = $validator->errors();
         if ($validator->fails()) {
@@ -115,8 +115,8 @@ class RegisterController extends ValidationController
         }
 
 
-        // $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code', 'g-recaptcha-response']);
-        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number']);
+        $assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number', 'affiliate_code']);
+        //$assignable = array_merge($assignable, ['name', 'email', 'password', 'phone_number']);
 
         $data['user'] = $request->only($assignable);
         if ($ignoreCaptcha) {

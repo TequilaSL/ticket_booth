@@ -33,7 +33,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Lang::get('texts.register_as_partner') !!}
+            {{ Lang::get('titles.register_as_partner_title3') }}
+            <div>{{ Lang::get('titles.register_as_partner_title4') }}
+        </div>
         </div>
         <div class="col-md-6">
             <div class="register-as-driver-form">
@@ -76,7 +78,7 @@
                     @component('components.misc.submit-button')
                         @slot('anchor') {{ Lang::get('auth.registration') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
                     @endcomponent
-                    @slot('subtitle') {!! Lang::get('auth.sign-in-button-p') !!} @endslot
+                    @slot('subtitle') {{ Lang::get('auth.sign-in-button-p') }} @endslot
                 @endcomponent
             </div>
         </div>

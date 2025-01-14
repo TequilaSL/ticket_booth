@@ -12,14 +12,13 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+import vzForm from '../components/Form'
+import Header from '../components/Header'
+import LoginOrSignUp from '../components/LoginOrSignUp'
+import { client } from '../config'
 import lang from '../translations'
 import validations from '../validations'
-import Header from '../components/Header'
-import vzForm from '../components/Form'
-import LoginOrSignUp from '../components/LoginOrSignUp'
-import {client} from '../config'
-import axios from 'axios';
-import router from '../routes'
 
 
 export default {
@@ -115,9 +114,8 @@ export default {
                             lang: this.$store.state.locale,
                             _token: response.data.token,
                             grant_type: "password",
-                            client_id: "2",
-                            client_secret:
-                                "sBkZkcxycb189mUSw26odoH4uJvhgnw8i75UiBWs",
+                            client_id: client.id,
+                            client_secret: client.secret,
                             username: response.data.user? response.data.user.phone_number : null,
                             password: response.data.number ?? null,
                         },
