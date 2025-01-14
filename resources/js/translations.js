@@ -58,7 +58,7 @@ export default {
             fields: {
                 placeholders: {
                     name: 'სახელი, გვარი',
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     id_number: 'პირადობის ნომერი',
                     email: 'ელექტრონული ფოსტა',
                     country: 'ქვეყანა',
@@ -204,7 +204,7 @@ export default {
             button: 'შესვლა',
             fields: {
                 placeholders: {
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     password: 'პაროლი'
                 }
             },
@@ -215,7 +215,7 @@ export default {
             button: 'რეგისტრაცია',
             fields: {
                 placeholders: {
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     password: 'პაროლი',
                     affiliate_code: 'საპარტნიორო კოდი'
                 }
@@ -227,7 +227,7 @@ export default {
             button: 'გაგზავნა',
             fields: {
                 placeholders: {
-                    phone_number: '555 12 34 56'
+                    phone_number: '070 123 4567'
                 }
             }
         },
@@ -650,7 +650,7 @@ export default {
             fields: {
                 placeholders: {
                     name: 'Name, Last name',
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     id_number: 'ID Number',
                     email: 'Email address',
                     country: 'Country',
@@ -696,6 +696,8 @@ export default {
                 become_partner_sub: 'Registration',
                 ticketList: 'Tickets',
                 ticketList_sub: 'Bought tickets',
+                trackLocation: 'Track Location',
+                trackLocation_sub: 'Vehicle location track',
             }
         },
         settings: {
@@ -796,7 +798,7 @@ export default {
             button: 'Login',
             fields: {
                 placeholders: {
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     password: 'Password'
                 }
             },
@@ -807,7 +809,7 @@ export default {
             button: 'Register',
             fields: {
                 placeholders: {
-                    phone_number: '555 12 34 56',
+                    phone_number: '070 123 4567',
                     password: 'Password'
                 }
             }

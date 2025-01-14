@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
-use Intervention\Image\ImageManager as Image;
+use Intervention\Image\Drivers\Gd\Driver as ImageDriver;
+use Intervention\Image\ImageManager;
 use Jenssegers\Agent\Agent;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends ValidationController
 {
@@ -103,15 +105,15 @@ class ProfileController extends ValidationController
     }
 
     protected function avatarAction($image, $userId) {
-        $imageMake = new Image();
+        $imageMake = new ImageManager(new ImageDriver());
         // 200x200 resize
-        $image_original = $imageMake->make($image->getRealPath());
-        $image_original->orientate();
+        $image_original = $imageMake->read($image->getRealPath());
+        $image_original->orient();
         $image_original->resize(200, 200);
         Storage::disk('s3')->put('users/'. $userId.'.'.$image->extension(), $image_original->encode());
         // 30x30 resize
-        $image_resize = $imageMake->make($image->getRealPath());
-        $image_resize->orientate();
+        $image_resize = $imageMake->read($image->getRealPath());
+        $image_resize->orient();
         $image_resize->resize(30, 30);
         Storage::disk('s3')->put('users/small/'. $userId.'.'.$image->extension(), $image_resize->encode());
         User::whereId($userId)->update(['extension' => $image->extension()]);

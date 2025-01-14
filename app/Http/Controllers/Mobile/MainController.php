@@ -11,13 +11,13 @@ class MainController extends Controller {
 
     public function view() {
         $agent = new Agent();
-        if($agent->isMobile()) {
+        // if($agent->isMobile()) {
             $data['title'] = \Lang::get('titles.main');
             return view('mobile.main', $data);
-        }
-        else {
-            abort(404);
-        }
+        // }
+        // else {
+        //     abort(406);
+        // }
     }
 
 }

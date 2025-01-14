@@ -47,13 +47,13 @@ return [
     ],
 
     'google-recaptcha' => [
-        'secret' => '6LcstsMUAAAAAOJ2EtGxmc4BWIkLpqtCrRA-XmdR',
-        'site' => '6LcstsMUAAAAAGp_J4ZaetoDdTUjiRK3WgVY9Px7'
+        'secret' => '6Lcps2cqAAAAAJpNqcSD3vRMvHzBygNoISX6gW3w',
+        'site' => '6Lcps2cqAAAAAI9_W2IQJ2wnr6D7DJY67bMsHO67'
     ],
 
     'google-maps' => [
-        'project_id' => 'metal-filament-282009',
-        'key' => 'AIzaSyApA4SHaQl3plrKGyPNuaRailDgq3k034g',
+        'project_id' => 'zoombus-438705',
+        'key' => 'AIzaSyCHBELaz3Rdo3GIuRlxaC_jvVens2QSoEk',
     ],
 
     'paypal' => [

@@ -3,7 +3,7 @@
 return [
     'menu' => 'menu',
     'minibus_tickets' => 'minibus tickets',
-    'bus_tickets' => 'bus tickets',
+    'bus_tickets' => 'book tickets',
     'carpooling_tickets' => 'carpooling',
     'intercity_tickets' => 'intercity taxi tickets',
     'faq' => 'FAQ',

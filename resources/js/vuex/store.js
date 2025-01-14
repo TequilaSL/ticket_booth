@@ -35,6 +35,8 @@ export default new Vuex.Store({
     },
     mutations: {
         setUserData(state, userData) {
+            console.log('store set data ', userData);
+
             state.user = userData
             state.isLoggedIn = true
             localStorage.setItem('isLoggedIn', 'true')
@@ -80,9 +82,11 @@ export default new Vuex.Store({
     },
     actions: {
         async apiCall({commit}, payload) {
+
             try {
                 const apiFind = api.find(o => o.name === payload.actionName)
                 let response
+
                 switch (apiFind.method) {
                     case 'GET':
                         response = await axios.get(apiFind.url, {params: payload.data})
@@ -91,9 +95,11 @@ export default new Vuex.Store({
                         response = await axios.post(apiFind.url, payload.data)
                         break
                 }
+
                 if (payload.commit) {
                     commit(payload.commit, response.data)
                 }
+
                 if (payload.actionName === 'login') {
                     let customFormData = new FormData()
                     const apiFindLogin = api.find(o => o.name === 'loginForWeb')
@@ -102,6 +108,7 @@ export default new Vuex.Store({
                     customFormData.append('password', payload.data.get('password'))
                     await axios.post(apiFindLogin.url, customFormData)
                 }
+
                 if (payload.onSuccessRedirect) {
                     let redirectObject
                     if (payload.onSuccessRedirectQuery) {
@@ -118,6 +125,9 @@ export default new Vuex.Store({
                 }
                 return response
             } catch (error) {
+                console.log('Promise.reject _store__________',error.message);
+                // alert("Promise.reject store", error);
+
                 return Promise.reject(error)
             }
         },

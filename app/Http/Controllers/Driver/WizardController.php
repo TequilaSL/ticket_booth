@@ -77,7 +77,7 @@ class WizardController extends DriverController {
             $vehicleImages = json_decode($data['vehicle']['images_extension'], true);
             foreach($vehicleImages as $k => $image) {
                 if (Storage::disk('s3')->exists('drivers/vehicles/'.$data['vehicle']['id'].'/'.$image)) {
-                    $data['vehicle_images'][$k] = Storage::temporaryUrl('drivers/vehicles/'.$data['vehicle']['id'].'/'.$image, now()->addMinutes(5));
+                    $data['vehicle_images'][$k] = Storage::url('drivers/vehicles/'.$data['vehicle']['id'].'/'.$image);
                 }
             }
             $data['front_side'] = $this->vehicleFrontSide($data['vehicle']['id'] ?? null);

@@ -72,7 +72,7 @@ return [
             'continent_path' => storage_path('app/continents.json'),
             'lang' => 'en',
         ],
-        
+
         'ipgeolocation' => [
             'class' => \Torann\GeoIP\Services\IPGeoLocation::class,
             'secure' => true,
@@ -117,7 +117,9 @@ return [
     |
     */
 
-    'cache_tags' => ['torann-geoip-location'],
+    //'cache_tags' => ['torann-geoip-location'],
+    'cache_tags' => false,
+
 
     /*
     |--------------------------------------------------------------------------
@@ -141,17 +143,17 @@ return [
 
     'default_location' => [
         'ip' => '127.0.0.0',
-        'iso_code' => 'GE',
-        'country' => 'Georgia',
-        'city' => 'Tbilisi',
-        'state' => 'TB',
+        'iso_code' => 'LK',
+        'country' => 'Sri Lanka',
+        'city' => 'Colombo',
+        'state' => 'CO',
         'state_name' => 'T\'bilisi',
         'lat' => 41.7084,
         'lon' => 44.8014,
-        'timezone' => 'Asia/Tbilisi',
+        'timezone' => 'Asia/Colombo',
         'continent' => 'NA',
         'default' => true,
-        'currency' => 'GEL',
+        'currency' => 'LKR',
     ],
 
 ];

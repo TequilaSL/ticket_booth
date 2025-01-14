@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Admins;
 use App\Driver;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Notifications\RegisteredAsPartnerPassword;
@@ -55,9 +56,10 @@ class RegistrationController extends RegisterController {
                     Driver::create($data['driver']);
                 }
             }
-            User::whereId($reg->id)->first()->notify(
-                new RegisteredAsPartnerPassword($request->lang, $newPass)
-            );
+            // User::whereId($reg->id)->first()->notify(
+            //     new RegisteredAsPartnerPassword($request->lang, $newPass)
+            // );
+
             $statusCode = 200;
         }
         else {

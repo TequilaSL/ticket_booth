@@ -12,7 +12,11 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('user')
-    if (token) {
+    console.log('axios token_________', token);
+
+    // alert("axios token", token);
+
+     if (token) {
       const parsed = JSON.parse(token)
       config.headers.Authorization = 'Bearer ' + parsed.access_token
     }
@@ -24,6 +28,8 @@ instance.interceptors.request.use(
     return config
   },
   error => {
+    console.log('Promise.reject__________', error);
+    // alert("axios error 01", originalRequest);
     Promise.reject(error)
   }
 )
@@ -34,6 +40,10 @@ instance.interceptors.response.use(
   },
   error => {
     const originalRequest = error.config
+    console.log('res errors________', error.message);
+
+    // alert("axios error 02", originalRequest);
+
     const apiFind = api.find(o => o.name === 'refreshToken')
     if (error.response.status === 401 && originalRequest.url === apiFind.url) {
       store.dispatch('logout')

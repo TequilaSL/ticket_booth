@@ -7,9 +7,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav sf-menu clearfix">
             <li class="nav1 nav-item sub-menu">
-                <a href="{{ route('listings') }}" class="nav-link">{{ Lang::get('misc.book') }} <i
-                        class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                <div class="sf-mega">
+                <a href="{{ route('listings_rt', ['route_type' => 'bus']) }}" class="nav-link">{{ Lang::get('misc.book') }}
+                    <!-- <i class="fa fa-chevron-down" aria-hidden="true"></i> -->
+                </a>
+                <!-- <a href="{{ route('listings') }}" class="nav-link">{{ Lang::get('misc.book') }} <i
+                        class="fa fa-chevron-down" aria-hidden="true"></i></a> -->
+                <!-- <div class="sf-mega">
                     <ul>
                         <li>
                             <a href="{{ route('listings_rt', ['route_type' => 'minibus']) }}">
@@ -30,7 +33,7 @@
 {{--                            </a>--}}
 {{--                        </li>--}}
                     </ul>
-                </div>
+                </div> -->
             </li>
             @if($faqs)
                 <li class="nav2 nav-item sub-menu2">
@@ -54,11 +57,11 @@
                     {{ Lang::get('auth.become_partner') }}
                 </a>
             </li>
-            <li class="nav4 nav-item">
+            <!-- <li class="nav4 nav-item">
                 <a href="{{ (Auth::check()) ? route('driver_registration') : route('register_as_driver') }}" class="nav-link">
                     {{ Lang::get('auth.become_driver') }}
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </nav>

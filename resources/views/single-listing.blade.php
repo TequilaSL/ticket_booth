@@ -44,8 +44,8 @@
             <div class="info d-flex">
                 <div class="info1">
                     <div class="img1">
-                        <img src="{{ Storage::temporaryUrl('cities/'.$result['cities_from']['id'].'.'.$result['cities_from']['extension'], now()->addMinutes(5)) }}"
-                             alt="{{ $result['cities_from']['translated']['name'] }}" class="img-fluid">
+                    <img src="{{ '/images/'.$result['cities_from']['id'].'.svg'}}"
+                    alt="{{ $result['cities_from']['translated']['name'] }}" class="img-fluid">
                     </div>
                     <div class="txt1 from_city" itemprop="itinerary" itemtype="http://schema.org/City">{{ $result['cities_from']['translated']['name'] }}</div>
                     <div class="txt2 bigger">
@@ -65,8 +65,8 @@
                 </div>
                 <div class="info3">
                     <div class="img1">
-                        <img src="{{ Storage::temporaryUrl('cities/'.$result['cities_to']['id'].'.'.$result['cities_to']['extension'], now()->addMinutes(5)) }}"
-                             alt="{{ $result['cities_to']['translated']['name'] }}" class="img-fluid">
+                    <img src="{{ '/images/'.$result['cities_to']['id'].'.svg' }}"
+                    alt="{{ $result['cities_to']['translated']['name'] }}" class="img-fluid">
                     </div>
                     <div class="txt1 to_city" itemprop="itinerary" itemtype="http://schema.org/City">{{ $result['cities_to']['translated']['name'] }}</div>
                     <div class="txt2 bigger">
@@ -122,10 +122,9 @@
                             @foreach($result['vehicles']['fullspecifications'] as $specs)
                                 <div class="col-md-6">
                                     <div class="ticket-info-service clearfix">
-                                        <figure><img
-                                                src="{{ Storage::temporaryUrl('vehicle-features/'.$specs['pivot']['vehicle_specification_id'].'.'.$specs['extension'], now()->addMinutes(5)) }}"
-                                                alt="{{ $specs['translated']['name'] }}" class="img-fluid"></figure>
-                                        <div class="caption">{{ $specs['translated']['name'] }}</div>
+                                    <figure><img
+                                                src="{{ '/images/'.$specs['pivot']['vehicle_specification_id'].'.'.$specs['extension'] }}"
+                                                alt="{{ $specs['translated']['name'] }}" class="img-fluid"></figure>                                        <div class="caption">{{ $specs['translated']['name'] }}</div>
                                     </div>
                                 </div>
                             @endforeach

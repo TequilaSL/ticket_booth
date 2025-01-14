@@ -17,8 +17,8 @@
     <script src="{{ URL::asset('js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ URL::asset('js/moment.js') }}"></script>
     <script src="{{ URL::asset('js/listingMaps.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google-maps.key') }}&callback=initMap"
-            async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config(key: 'services.google-maps.key') }}&callback=initMap" async></script>
+
 @endpush
 
 

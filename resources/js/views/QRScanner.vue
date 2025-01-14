@@ -132,6 +132,8 @@ export default {
             this.success = null;
         },
         onDecode(result) {
+            console.log('on Decode ', result);
+            
             if (result && result.length) {
                 this.cameraOff();
                 this.isLoading = true;
@@ -139,10 +141,14 @@ export default {
                     actionName: 'parseQR',
                     data: {lang: this.$store.state.locale, QRData: result}
                 }).then(data => {
+                    console.log('on Decode then', result);
+
                     this.isLoading = false;
                     this.ticket = data.data;
                     this.success = validations[this.$store.state.locale].QRScanner.success;
                 }).catch(e => {
+                    console.log('on Decode error', result);
+
                     this.isLoading = false;
                     this.formParams.errorProp = e.response.data.text;
                     this.count++;
@@ -150,6 +156,7 @@ export default {
             }
         },
         cameraOn() {
+            console.log('on cameraOn ');
             this.showCamera = true;
             this.footerItems = [
                 {
@@ -166,6 +173,7 @@ export default {
             this.incrementCount = this.$store.state.new_notifications;
         },
         async onInit(promise) {
+            console.log('on onInit ');
             try {
                 await promise
             } catch (error) {

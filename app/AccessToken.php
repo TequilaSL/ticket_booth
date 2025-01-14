@@ -5,7 +5,9 @@ namespace App;
 use Laravel\Passport\Bridge\AccessToken as PassportAccessToken;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Key;
+use Lcobucci\JWT\Configuration;
 use Lcobucci\JWT\Signer\Rsa\Sha256;
+use Lcobucci\JWT\Signer\Key\InMemory;
 use League\OAuth2\Server\CryptKey;
 
 class AccessToken extends PassportAccessToken {
@@ -20,18 +22,29 @@ class AccessToken extends PassportAccessToken {
     }
 
     public function convertToJWT(CryptKey $privateKey) {
-        $builder = new Builder();
-        $builder->permittedFor($this->getClient()->getIdentifier())
+        $signingKey = InMemory::file($privateKey->getKeyPath(), $privateKey->getPassPhrase() ?? '');
+        $verificationKey = InMemory::plainText(file_get_contents($privateKey->getKeyPath()));  // Adjust this if a separate public key is used
+
+        $config = Configuration::forAsymmetricSigner(
+            new Sha256(),
+            $signingKey,
+            $verificationKey
+        );
+
+        $now = new \DateTimeImmutable();
+
+        $token = $config->builder()
+            ->permittedFor($this->getClient()->getIdentifier())
             ->identifiedBy($this->getIdentifier(), true)
-            ->issuedAt(time())
-            ->canOnlyBeUsedAfter(time())
-            ->expiresAt($this->getExpiryDateTime()->getTimestamp())
+            ->issuedAt($now)
+            ->canOnlyBeUsedAfter($now)
+            ->expiresAt($this->getExpiryDateTime())
             ->relatedTo($this->getUserIdentifier())
             ->withClaim('scopes', $this->getScopes())
-            ->withClaim('roles', $this->getRoles());
+            ->withClaim('roles', $this->getRoles())
+            ->getToken($config->signer(), $config->signingKey());
 
-        return $builder
-            ->getToken(new Sha256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()));
+        return $token->toString();
     }
 
     public function getRoles() {

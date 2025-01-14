@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Zoombus'),
+    'name' => env('APP_NAME', 'Ticket-Boooth'),
 
 
     /*
@@ -132,6 +132,8 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -179,6 +181,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Laravel\Passport\PassportServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
@@ -242,10 +245,19 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+
     ],
 
     //custom variables, defined by zoombus
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default AWS s3 bucket
+    |--------------------------------------------------------------------------
+    */
+    'aws_url'=> env('AWS_URL', 'https://zoombus-web.s3.eu-north-1.amazonaws.com/'),
 
     /*
     |--------------------------------------------------------------------------

@@ -2,31 +2,38 @@
     <div v-if="!isLoading">
         <Header :title="title" :showBack="true" :showLogo="false"/>
         <section>
-            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://zoombus.net/'+$store.state.locale+'/listings' : 'https://zoombus.net/listings'">
+            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://ticketbooth.tequilasl.com/'+$store.state.locale+'/listings' : 'https://ticketbooth.tequilasl.com/listings'">
                 <v-btn class="submit gradiented no-margins-vertical">
                     {{ lang.buyTickets }}
                 </v-btn>
             </a>
             <div class="list" v-if="data.items && data.items.length">
-                <router-link :to="{name: 'singleTicket', params: {id: item.ticket_number }}" :key="i" v-for="(item, i) in data.items">
-                    <div class="item">
+                <div class="div-container" :key="i" v-for="(item, i) in data.items">
+                    <router-link :to="{name: 'singleTicket', params: {id: item.ticket_number }}">
+                        <div class="item">
+                            <div class="image_block">
+                                <img :src="imagesPathRewrite('transport/minibus.svg')" alt="Bus">
+                            </div>
+                            <div class="description">
+                                <p class="route_title"><span>{{ item.departure_date }}</span></p>
+                                <p class="route_destination">
+                                    {{ item.from }}
+                                    <img :src="imagesPathRewrite('arrow-right.svg')" alt="Arrow">
+                                    {{ item.to }}
+                                </p>
+                            </div>
+                            <div class="content">
+                                <div class="amount">{{ item.price }} <span>gel</span></div>
+                            </div>
+                        </div>
+                    </router-link>
+                    <router-link :to="{name: 'locationTrack', params: {id: item.ticket_number }}">
                         <div class="image_block">
-                            <img :src="imagesPathRewrite('transport/minibus.svg')" alt="Bus">
+                            <img :src="imagesPathRewrite('driver/route_icon3x.svg')" alt="Bus" />
                         </div>
-                        <div class="description">
-                            <p class="route_title"><span>{{ item.departure_date }}</span></p>
-                            <p class="route_destination">
-                                {{ item.from }}
-                                <img :src="imagesPathRewrite('arrow-right.svg')" alt="Arrow">
-                                {{ item.to }}
-                            </p>
-                        </div>
-                        <div class="content">
-                            <div class="amount">{{ item.price }} <span>gel</span></div>
-                            <p class="details error--text">{{ lang.ticketList.details }}</p>
-                        </div>
-                    </div>
-                </router-link>
+                    </router-link>
+
+                </div>
             </div>
             <div class="centered" v-else>
                 <h2>{{ lang.ticketList.no_data }}</h2>

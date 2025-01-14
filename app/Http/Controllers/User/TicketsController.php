@@ -42,11 +42,11 @@ class TicketsController extends ValidationController
         }
         else {
             if (config('app.locale') != 'en') {
-                Cache::store('memcached')->put('locale', config('app.locale'));
+                Cache::store('file')->put('locale', config('app.locale'));
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('bought_tickets')));
             }
-            if (Cache::store('memcached')->has('locale')) {
-                $data['locale'] = Cache::store('memcached')->pull('locale');
+            if (Cache::store('file')->has('locale')) {
+                $data['locale'] = Cache::store('file')->pull('locale');
             }
             $data['title'] = \Lang::get('titles.ticket_list');
             return view('mobile.main', $data);
@@ -137,21 +137,22 @@ class TicketsController extends ValidationController
         if ($agent->isMobile()) {
             $http = new Client;
             if (config('app.locale') != 'en') {
-                Cache::store('memcached')->put('locale', config('app.locale'));
+                Cache::store('file')->put('locale', config('app.locale'));
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
-            $response = $http->post('https://zoombus.net/oauth/token', [
+
+            $response = $http->post('https://ticketbooth.tequilasl.com/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => '2',
-                    'client_secret' => 'gUEYEHw2PJGGinTS7b3xDpq2ZhFH6y7fNbht4cBQ',
+                    'client_secret' => 'nqNNtsInNJc2whptIlTlimw1r5YnAukMNnaeCjLz',
                     'username' => $data['tickets']['users']['phone_number'],
                     'password' => $data['tickets']['users']['password']
                 ]
             ]);
 
-            if (Cache::store('memcached')->has('locale')) {
-                $data['locale'] = Cache::store('memcached')->pull('locale');
+            if (Cache::store('file')->has('locale')) {
+                $data['locale'] = Cache::store('file')->pull('locale');
             }
 
             $data['response'] = (string)$response->getBody();

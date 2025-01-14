@@ -113,6 +113,15 @@ class User extends Authenticatable {
         $query->where('status', 3);
     }
 
+    /**
+     * Define an accessor for the `extension` attribute.
+     */
+    public function getExtensionAttribute()
+    {
+        // Default to 'jpg' if extension is not set
+        return $this->attributes['extension'] ?? 'jpg';
+    }
+
     public function photoExists() {
         if (Storage::disk('s3')->exists('users/' . $this->id . '.'.$this->extension)) {
             return true;
@@ -125,18 +134,17 @@ class User extends Authenticatable {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/' . $id . '.'.$extension)) {
-            return Storage::temporaryUrl('users/'.$id.'.'.$user->extension, now()->addMinutes(5));
+            return Storage::url('users/'.$id.'.'.$extension);
         } else {
             return '/images/users/default.png';
         }
     }
 
-
     public function photoSmallById($id) {
         $user = User::whereId($id)->first('extension');
         $extension = $user->extension ?? 'jpg';
         if (Storage::disk('s3')->exists('users/small/' . $id . '.'.$extension)) {
-            return Storage::temporaryUrl('users/small/' . $id . '.'.$extension, now()->addMinutes(5));
+            return Storage::url('users/small/' . $id . '.'.$extension);
         } else {
             return '/images/users/small/default.png';
         }
@@ -152,7 +160,7 @@ class User extends Authenticatable {
 
     public function photo() {
         if (Storage::disk('s3')->exists('users/' . $this->id . '.' . $this->extension)) {
-            return Storage::temporaryUrl('users/' . $this->id . '.'.$this->extension, now()->addMinutes(5));
+            return Storage::url('users/' . $this->id . '.'.$this->extension);
         } else {
             return '/images/users/default.png';
         }
@@ -160,7 +168,7 @@ class User extends Authenticatable {
 
     public function photoSmall() {
         if (Storage::disk('s3')->exists('users/small/' . $this->id . '.' . $this->extension)) {
-            return Storage::temporaryUrl('users/small/' . $this->id . '.'.$this->extension, now()->addMinutes(5));
+            return Storage::url('users/small/' . $this->id . '.'.$this->extension);
         } else {
             return '/images/users/small/default.png';
         }
@@ -198,7 +206,6 @@ class User extends Authenticatable {
         return $this->hasMany('App\Payouts', 'user_id');
     }
 
-
     public function admin() {
         return $this->hasOne('App\Admins', 'user_id');
     }
@@ -206,7 +213,6 @@ class User extends Authenticatable {
     public function affiliate() {
         return $this->hasMany('App\AffiliateCodes', 'user_id');
     }
-
 
     public function gender() {
         return $this->belongsTo('App\Gender', 'gender_id');

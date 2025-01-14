@@ -52,7 +52,7 @@ class RoutesController extends DriverController
 
         $projectId = config('services.google-maps.project_id');
         $gcloud = new ServiceBuilder([
-            'keyFilePath' => public_path('metal-filament-282009-ae53ff7ad2b1.json'),
+            'keyFilePath' => public_path('zoombus-438705-0a6690f8b970.json'),
             'projectId' => $projectId
         ]);
 

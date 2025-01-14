@@ -1,32 +1,377 @@
 [
     {
         "address_id": 1,
-        "name": "სადგურის მოედანი",
-        "locale": "ka"
+        "name": "කොළඹ",
+        "locale": "si"
     },
     {
         "address_id": 1,
-        "name": "Привокзальная площадь",
-        "locale": "ru"
+        "name": "Colombo",
+        "locale": "en"
     },
     {
         "address_id": 1,
-        "name": "Station Square",
+        "name": "கொழும்பு",
+        "locale": "ta"
+    },
+    {
+        "address_id": 2,
+        "name": "ගම්පහ",
+        "locale": "si"
+    },
+    {
+        "address_id": 2,
+        "name": "Gampaha",
         "locale": "en"
     },
     {
         "address_id": 2,
-        "name": "მახინჯაურის მოედანი",
-        "locale": "ka"
+        "name": "கம்பஹா",
+        "locale": "ta"
     },
     {
-        "address_id": 2,
-        "name": "Площадь Махинджаури",
-        "locale": "ru"
+        "address_id": 3,
+        "name": "කළුතර",
+        "locale": "si"
     },
     {
-        "address_id": 2,
-        "name": "Makhinjauri Square",
+        "address_id": 3,
+        "name": "Kalutara",
         "locale": "en"
+    },
+    {
+        "address_id": 3,
+        "name": "களுத்துறை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 4,
+        "name": "මහනුවර",
+        "locale": "si"
+    },
+    {
+        "address_id": 4,
+        "name": "Kandy",
+        "locale": "en"
+    },
+    {
+        "address_id": 4,
+        "name": "கண்டி",
+        "locale": "ta"
+    },
+    {
+        "address_id": 5,
+        "name": "මාතලේ",
+        "locale": "si"
+    },
+    {
+        "address_id": 5,
+        "name": "Matale",
+        "locale": "en"
+    },
+    {
+        "address_id": 5,
+        "name": "மாத்தளை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 6,
+        "name": "නුවරඑළිය",
+        "locale": "si"
+    },
+    {
+        "address_id": 6,
+        "name": "Nuwara Eliya",
+        "locale": "en"
+    },
+    {
+        "address_id": 6,
+        "name": "நுவரேலியா",
+        "locale": "ta"
+    },
+    {
+        "address_id": 7,
+        "name": "ගාල්ල",
+        "locale": "si"
+    },
+    {
+        "address_id": 7,
+        "name": "Galle",
+        "locale": "en"
+    },
+    {
+        "address_id": 7,
+        "name": "காலி",
+        "locale": "ta"
+    },
+    {
+        "address_id": 8,
+        "name": "මාතර",
+        "locale": "si"
+    },
+    {
+        "address_id": 8,
+        "name": "Matara",
+        "locale": "en"
+    },
+    {
+        "address_id": 8,
+        "name": "மாத்தறை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 9,
+        "name": "හම්බන්තොට",
+        "locale": "si"
+    },
+    {
+        "address_id": 9,
+        "name": "Hambantota",
+        "locale": "en"
+    },
+    {
+        "address_id": 9,
+        "name": "ஹம்பாந்தோட்டை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 10,
+        "name": "යාපනය",
+        "locale": "si"
+    },
+    {
+        "address_id": 10,
+        "name": "Jaffna",
+        "locale": "en"
+    },
+    {
+        "address_id": 10,
+        "name": "யாழ்ப்பாணம்",
+        "locale": "ta"
+    },
+    {
+        "address_id": 11,
+        "name": "කිළිනොච්චි",
+        "locale": "si"
+    },
+    {
+        "address_id": 11,
+        "name": "Kilinochchi",
+        "locale": "en"
+    },
+    {
+        "address_id": 11,
+        "name": "கிளிநொச்சி",
+        "locale": "ta"
+    },
+    {
+        "address_id": 12,
+        "name": "මන්නාරම",
+        "locale": "si"
+    },
+    {
+        "address_id": 12,
+        "name": "Mannar",
+        "locale": "en"
+    },
+    {
+        "address_id": 12,
+        "name": "மன்னார்",
+        "locale": "ta"
+    },
+    {
+        "address_id": 13,
+        "name": "වවුනියාව",
+        "locale": "si"
+    },
+    {
+        "address_id": 13,
+        "name": "Vavuniya",
+        "locale": "en"
+    },
+    {
+        "address_id": 13,
+        "name": "வவுனியா",
+        "locale": "ta"
+    },
+    {
+        "address_id": 14,
+        "name": "මුලතිව්",
+        "locale": "si"
+    },
+    {
+        "address_id": 14,
+        "name": "Mullaitivu",
+        "locale": "en"
+    },
+    {
+        "address_id": 14,
+        "name": "முல்லைத்தீவு",
+        "locale": "ta"
+    },
+    {
+        "address_id": 15,
+        "name": "තෙල්ලිපളෙයි",
+        "locale": "si"
+    },
+    {
+        "address_id": 15,
+        "name": "Batticaloa",
+        "locale": "en"
+    },
+    {
+        "address_id": 15,
+        "name": "மட்டக்களப்பு",
+        "locale": "ta"
+    },
+    {
+        "address_id": 16,
+        "name": "අම්පාර",
+        "locale": "si"
+    },
+    {
+        "address_id": 16,
+        "name": "Ampara",
+        "locale": "en"
+    },
+    {
+        "address_id": 16,
+        "name": "அம்பாறை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 17,
+        "name": "ත්‍රිකුණාමලය",
+        "locale": "si"
+    },
+    {
+        "address_id": 17,
+        "name": "Trincomalee",
+        "locale": "en"
+    },
+    {
+        "address_id": 17,
+        "name": "திருகோணமலை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 18,
+        "name": "කුඩාලි",
+        "locale": "si"
+    },
+    {
+        "address_id": 18,
+        "name": "Kurunegala",
+        "locale": "en"
+    },
+    {
+        "address_id": 18,
+        "name": "குருணாகல்",
+        "locale": "ta"
+    },
+    {
+        "address_id": 19,
+        "name": "පුත්තලම",
+        "locale": "si"
+    },
+    {
+        "address_id": 19,
+        "name": "Puttalam",
+        "locale": "en"
+    },
+    {
+        "address_id": 19,
+        "name": "புத்தளம்",
+        "locale": "ta"
+    },
+    {
+        "address_id": 20,
+        "name": "අනුරාධපුරය",
+        "locale": "si"
+    },
+    {
+        "address_id": 20,
+        "name": "Anuradhapura",
+        "locale": "en"
+    },
+    {
+        "address_id": 20,
+        "name": "அனுராதபுரம்",
+        "locale": "ta"
+    },
+    {
+        "address_id": 21,
+        "name": "පොළොන්නරුව",
+        "locale": "si"
+    },
+    {
+        "address_id": 21,
+        "name": "Polonnaruwa",
+        "locale": "en"
+    },
+    {
+        "address_id": 21,
+        "name": "பொலன்னறுவை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 22,
+        "name": "බදුල්ල",
+        "locale": "si"
+    },
+    {
+        "address_id": 22,
+        "name": "Badulla",
+        "locale": "en"
+    },
+    {
+        "address_id": 22,
+        "name": "பதுளை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 23,
+        "name": "මොණරාගල",
+        "locale": "si"
+    },
+    {
+        "address_id": 23,
+        "name": "Monaragala",
+        "locale": "en"
+    },
+    {
+        "address_id": 23,
+        "name": "மொணராகலை",
+        "locale": "ta"
+    },
+    {
+        "address_id": 24,
+        "name": "රත්නපුර",
+        "locale": "si"
+    },
+    {
+        "address_id": 24,
+        "name": "Ratnapura",
+        "locale": "en"
+    },
+    {
+        "address_id": 24,
+        "name": "இரத்தினபுரி",
+        "locale": "ta"
+    },
+    {
+        "address_id": 25,
+        "name": "කෑගල්ල",
+        "locale": "si"
+    },
+    {
+        "address_id": 25,
+        "name": "Kegalle",
+        "locale": "en"
+    },
+    {
+        "address_id": 25,
+        "name": "கேகாலை",
+        "locale": "ta"
     }
 ]

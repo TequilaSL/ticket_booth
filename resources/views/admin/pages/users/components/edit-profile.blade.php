@@ -29,7 +29,7 @@
                             @foreach(json_decode($vehicle['images_extension'], true) as $i => $vi)
                                 @if(\Illuminate\Support\Facades\Storage::disk('s3')->exists('drivers/vehicles/'.$vehicle['id'].'/'.$vi))
                                     <li>
-                                        <img src="{{ \Illuminate\Support\Facades\Storage::temporaryUrl('drivers/vehicles/'.$vehicle['id'].'/'.$vi, now()->addMinutes(5)) }}"
+                                        <img src="{{ \Illuminate\Support\Facades\Storage::url('drivers/vehicles/'.$vehicle['id'].'/'.$vi) }}"
                                              alt="Image {{ $i }}" class="img-thumbnail"/>
                                     </li>
                                     @endif
