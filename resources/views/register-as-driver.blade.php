@@ -72,11 +72,11 @@
                         @slot('name') affiliate_code @endslot
                         @slot('value') {{ $affiliateCode ?? null }} @endslot
                     @endcomponent
-                    {{-- <div id="register_driver_element"></div> --}}
+                    <div id="register_driver_element"></div>
                     @component('components.misc.submit-button')
                         @slot('anchor') {{ Lang::get('auth.registration') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
                     @endcomponent
-                    @slot('subtitle') {!! Lang::get('auth.sign-in-button-p') !!} @endslot
+                    @slot('subtitle') {{ Lang::get('auth.sign-in-button-p') }} @endslot
                 @endcomponent
             </div>
         </div>

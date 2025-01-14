@@ -5,6 +5,7 @@
              class="img-fluid avatar-small"><span>{{ Lang::get('auth.my_account') }}</span>
     </a>
     <div class="dropdown-menu" aria-labelledby="dropdownTemplates">
+        <a class="dropdown-item" href="/main">{{ Lang::get('menu.home') }}</a>
         <a class="dropdown-item" href="{{ route('profile') }}">{{ Lang::get('menu.profile') }}</a>
         <a class="dropdown-item" href="{{ route('bought_tickets') }}">{{ Lang::get('menu.bought_tickets') }}</a>
         @if(!isset($isDriver))
