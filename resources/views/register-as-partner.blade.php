@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-md-6">
             {{ Lang::get('titles.register_as_partner_title3') }}
-            <div>{{ Lang::get('titles.register_as_partner_title4') }}
+            <div>{!! Lang::get('titles.register_as_partner_title4') !!}
         </div>
         </div>
         <div class="col-md-6">
