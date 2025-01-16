@@ -42,7 +42,7 @@
                 @component('components.misc.form')
                     @slot('form_id') registerAsDriverForm @endslot
                     @component('components.misc.form-group-col')
-                        @slot('label') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                        @slot('label') {{Lang::get('auth.fullname') }} @endslot
                         @slot('name') name @endslot
                         @slot('value') @endslot
                     @endcomponent

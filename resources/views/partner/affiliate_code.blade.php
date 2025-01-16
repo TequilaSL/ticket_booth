@@ -24,7 +24,7 @@
                 @slot('row_inside') @endslot
                 <input type="hidden" name="lang" value="{{ config('app.locale') }}">
                 @component('components.misc.form-group-col')
-                    @slot('label') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                    @slot('label') {{ Lang::get('auth.fullname') }} @endslot
                     @slot('name') name @endslot
                     @slot('value') @endslot
                     @slot('col') col-md-6 @endslot

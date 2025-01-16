@@ -56,10 +56,12 @@ class RegisterController extends ValidationController
     protected function validatorFields($ignoreCaptcha = false, $ignorePassword = false)
     {
         $vals = [
-            'name' => 'required|string|max:255',
-            'email' => 'sometimes|required|email|unique:users',
             'phone_number' => ['required', 'regex:/^\+94\d{9}$/', 'unique:users'],
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'sometimes|required|email|unique:users',
             'gender_id' => 'sometimes|required|string|' . Rule::exists('genders', 'id'),
+            'terms_and_condition' => 'required',
             'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
         ];
         if(!$ignorePassword) {
@@ -74,6 +76,7 @@ class RegisterController extends ValidationController
 
     protected function validator(array $data, array $addition = null, $ignoreCaptcha = false, $ignorePassword = false)
     {
+
         $vals = $this->validatorFields($ignoreCaptcha, $ignorePassword);
 
         if ($addition) {
@@ -85,13 +88,14 @@ class RegisterController extends ValidationController
     public function __invoke(Request $request)
     {
         // $data = $request->only('name', 'email', 'password', 'phone_number', 'affiliate_code', 'gender_id', 'g-recaptcha-response');
-        $data = $request->only('name', 'email', 'password', 'phone_number',  'gender_id', 'affiliate_code');
+        $data = $request->only('first_name','last_name', 'email', 'password', 'phone_number',  'gender_id', 'affiliate_code', 'terms_and_condition');
         $validator = $this->validator($data);
         $errors = $validator->errors();
         if ($validator->fails()) {
             $response = array('status' => 0, 'text' => $errors->first());
         } else {
                 $data['password'] = Hash::make($data['password']);
+                $data['name'] = $data['first_name'].' '.$data['last_name'];
                 $this->store($data);
 
                  $mailSend=new MailController();

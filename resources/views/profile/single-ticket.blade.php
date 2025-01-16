@@ -14,7 +14,8 @@
     <div class="ticket-print d-flex mg-t-30" id="single_ticket">
         <div class="ticket-print-left">
             <div class="ticket-print-header">
-                <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="" class="img-fluid"></figure>
+                <div class="caption-ticketbooth">TicketBooth.lk</div>
+                <!-- <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="" class="img-fluid"></figure> -->
                 <div class="caption">
                     {{ Lang::get('misc.travel_ticket') }}
                 </div>
@@ -103,8 +104,9 @@
         </div>
         <div class="ticket-print-right">
             <div class="ticket-print-header">
-                <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="Ticket print bus"
-                             class="img-fluid"></figure>
+            <div class="caption-ticketbooth">TicketBooth.lk</div>
+                <!-- <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="Ticket print bus"
+                             class="img-fluid"></figure> -->
             </div>
             <div class="ticket-print-footer"></div>
             <div class="print-row">
@@ -159,7 +161,7 @@
             </div>
         </div>
     </div>
-    @component('components.misc.form-group-col', ['alertify' => $deleteAlertify ?? []])
+    <!-- @component('components.misc.form-group-col', ['alertify' => $deleteAlertify ?? []])
         @slot('field') button @endslot
         @slot('type') button @endslot
         @slot('class') btn-cancel ticket_cancel @endslot
@@ -168,7 +170,7 @@
         @slot('faicon') fa-trash @endslot
         @slot('label') &nbsp; @endslot
         @slot('anchor') {{ Lang::get('auth.cancel_ticket') }} @endslot
-    @endcomponent
+    @endcomponent -->
     <div class="print-section">
         <div class="print-ticket"><i class="fa fa-print"></i> {{ Lang::get('misc.print') }}</div>
     </div>
