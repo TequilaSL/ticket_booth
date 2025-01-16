@@ -19,8 +19,13 @@
                 @slot('no_id') @endslot
             @endcomponent
             @component('components.misc.form-group-col')
-                @slot('label') {{ Lang::get('auth.name') }}, {{ Lang::get('auth.lastname') }} @endslot
-                @slot('name') name @endslot
+                @slot('label') {{ Lang::get('auth.firstname') }} @endslot
+                @slot('name') first_name @endslot
+                @slot('no_id') @endslot
+            @endcomponent
+            @component('components.misc.form-group-col')
+                @slot('label') {{ Lang::get('auth.lastname') }} @endslot
+                @slot('name') last_name @endslot
                 @slot('no_id') @endslot
             @endcomponent
             @component('components.misc.form-group-col')
@@ -39,6 +44,12 @@
                 @slot('no_id') @endslot
                 @slot('name') gender_id @endslot
                 @slot('label') {{ Lang::get('auth.gender') }} @endslot
+                @endcomponent
+            @component('components.misc.form-group-col', ['value' => true])
+                @slot('field') checkbox @endslot
+                @slot('field_id') terms_and_condition @endslot
+                @slot('name') terms_and_condition @endslot
+                @slot('label') {!! Lang::get('auth.terms_and_condition') !!} @endslot
             @endcomponent
             <div id="register_element"></div>
             @component('components.misc.submit-button')

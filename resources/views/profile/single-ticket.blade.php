@@ -14,7 +14,8 @@
     <div class="ticket-print d-flex mg-t-30" id="single_ticket">
         <div class="ticket-print-left">
             <div class="ticket-print-header">
-                <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="" class="img-fluid"></figure>
+                <div class="caption-ticketbooth">TicketBooth.lk</div>
+                <!-- <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="" class="img-fluid"></figure> -->
                 <div class="caption">
                     {{ Lang::get('misc.travel_ticket') }}
                 </div>
@@ -103,8 +104,9 @@
         </div>
         <div class="ticket-print-right">
             <div class="ticket-print-header">
-                <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="Ticket print bus"
-                             class="img-fluid"></figure>
+            <div class="caption-ticketbooth">TicketBooth.lk</div>
+                <!-- <figure><img src="{{ URL::asset('/images/ticket-print-img-bus.png') }}" alt="Ticket print bus"
+                             class="img-fluid"></figure> -->
             </div>
             <div class="ticket-print-footer"></div>
             <div class="print-row">

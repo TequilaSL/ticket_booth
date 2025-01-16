@@ -175,7 +175,7 @@ return [
     'percent' => '%',
     'total_sold' => 'Total tickets sold',
     'phone_number' => 'Phone number',
-    'name_last_name' => 'Name, Last name',
+    'name_last_name' => 'Full name',
     'tier_1_percent' => 'Tier 1 Percent',
     'tier_2_percent' => 'Tier 2 Percent',
     'passenger_percent' => 'Passenger Percent',

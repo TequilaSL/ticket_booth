@@ -1186,12 +1186,13 @@ flex-wrap: wrap;
 .ticket-print-left{position: relative; overflow: hidden; width: 70%; background: url(../images/map.png) center center no-repeat #fbfbfb; box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.08); border-radius: 20px; background-size: cover; padding: 80px 20px 30px;}
 .ticket-print-left:before{content: ''; display: block; border-left: 2px dashed #44475c; position: absolute; right: 0; top: 20px; bottom: 20px;}
 
-.ticket-print-header{height: 40px; background: #03a276; position: absolute; left: 0; top: 0; width: 100%;}
+.ticket-print-header{height: 40px; background: #c9302c; position: absolute; left: 0; top: 0; width: 100%;}
 .ticket-print-header figure{margin: 8px 0 0 30px;}
 .ticket-print-header .caption{font-size: 20px; text-transform: uppercase; font-family: 'Roboto Condensed'; font-weight: 400; color: #fff; position: absolute; right: 40px; top: 10px;}
+.ticket-print-header .caption-ticketbooth{font-size: 20px; text-transform: uppercase; font-family: 'Roboto Condensed'; font-weight: 400; color: #fff; position: absolute; left: 40px; top: 10px;}
 .language_ge .ticket-print-header .caption{font-family: 'bpg_nino_mtavrulibold';}
 
-.ticket-print-footer{height: 10px; background: #03a276; position: absolute; left: 0; bottom: 0; width: 100%;}
+.ticket-print-footer{height: 10px; background: #c9302c; position: absolute; left: 0; bottom: 0; width: 100%;}
 
 .print-row{margin-right: -5px;margin-left: -5px;
 display: -webkit-box;
@@ -2775,6 +2776,21 @@ td.inline-block {
     padding:0.5rem 1rem;
 }
 
+input[name="terms_and_condition"] + label {
+    display: block !important;
+}
+
+input[name="terms_and_condition"] {
+    position: relative;
+    margin: 0;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
+}
+
+.form-group:has(input[name="terms_and_condition"]) {
+    display: flex;
+    justify-content: center;
+}
 
 .intl-tel-input {display:block;}
 

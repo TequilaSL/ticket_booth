@@ -53,7 +53,7 @@ export default {
             avatar: 'Adjust avatar',
             fields: {
                 placeholders: {
-                    name: 'Name, Last name',
+                    name: 'Full name',
                     phone_number: '070 123 4567',
                     id_number: 'ID Number',
                     email: 'Email address',
@@ -249,7 +249,7 @@ export default {
             caption2: 'Bank information',
             fields: {
                 placeholders: {
-                    name: 'Name, last name'
+                    name: 'Full name'
                 },
                 labels: {
                     name: 'Beneficiary',
@@ -1230,7 +1230,7 @@ export default {
             avatar: 'Adjust avatar',
             fields: {
                 placeholders: {
-                    name: 'Name, Last name',
+                    name: 'Full name',
                     phone_number: '070 123 4567',
                     id_number: 'ID Number',
                     email: 'Email address',
@@ -1426,7 +1426,7 @@ export default {
             caption2: 'Bank information',
             fields: {
                 placeholders: {
-                    name: 'Name, last name'
+                    name: 'Full name'
                 },
                 labels: {
                     name: 'Beneficiary',
