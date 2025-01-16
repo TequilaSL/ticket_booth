@@ -161,7 +161,7 @@
             </div>
         </div>
     </div>
-    @component('components.misc.form-group-col', ['alertify' => $deleteAlertify ?? []])
+    <!-- @component('components.misc.form-group-col', ['alertify' => $deleteAlertify ?? []])
         @slot('field') button @endslot
         @slot('type') button @endslot
         @slot('class') btn-cancel ticket_cancel @endslot
@@ -170,7 +170,7 @@
         @slot('faicon') fa-trash @endslot
         @slot('label') &nbsp; @endslot
         @slot('anchor') {{ Lang::get('auth.cancel_ticket') }} @endslot
-    @endcomponent
+    @endcomponent -->
     <div class="print-section">
         <div class="print-ticket"><i class="fa fa-print"></i> {{ Lang::get('misc.print') }}</div>
     </div>
