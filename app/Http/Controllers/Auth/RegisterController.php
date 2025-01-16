@@ -85,6 +85,24 @@ class RegisterController extends ValidationController
         return Validator::make($data, $vals);
     }
 
+    protected function driverValidator(array $data, array $addition = null, $ignorePassword = false)
+    {
+        $vals = [
+            'phone_number' => ['required', 'regex:/^\+94\d{9}$/', 'unique:users'],
+            'email' => 'sometimes|required|email|unique:users',
+            'gender_id' => 'sometimes|required|string|' . Rule::exists('genders', 'id'),
+            'affiliate_code' => 'nullable|unique:users|' . Rule::exists('affiliate_codes', 'code')->where('status', 2),
+        ];
+        if(!$ignorePassword) {
+            $vals['password'] = 'required|string|min:5';
+        }
+
+        if ($addition) {
+            $vals = array_merge($vals, $addition);
+        }
+        return Validator::make($data, $vals);
+    }
+
     public function __invoke(Request $request)
     {
         // $data = $request->only('name', 'email', 'password', 'phone_number', 'affiliate_code', 'gender_id', 'g-recaptcha-response');
@@ -129,7 +147,7 @@ class RegisterController extends ValidationController
         if($ignorePassword) {
             unset($assignable[array_search('password', $assignable)]);
         }
-        $response = ValidationController::response($this->validator($data['user'], null, $ignoreCaptcha, $ignorePassword), \Lang::get('auth.registration_successful'));
+        $response = ValidationController::response($this->driverValidator($data['user'], null, $ignorePassword), \Lang::get('auth.registration_successful'));
         if (!$ignoreCaptcha) {
             if ($response->original['status'] == 1) {
                 // if (!$this->validateRecaptcha($data['user']['g-recaptcha-response'])) {
