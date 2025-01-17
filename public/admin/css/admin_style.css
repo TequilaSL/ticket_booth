@@ -30,6 +30,8 @@
 
 .draggable-vehicle{overflow: hidden;}
 
+.page-content-wrap .draggable-vehicle{ zoom: 53%; }
+
 .vehicle-scheme-wrapper {
     display:none;
 }
