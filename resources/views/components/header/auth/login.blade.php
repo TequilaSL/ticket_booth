@@ -23,7 +23,7 @@
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.password') }} @endslot
                 @slot('name') password @endslot
-                @slot('field_id') login-password @endslot
+                @slot('field_id') homepage-password @endslot
                 @slot('type') password @endslot
             @endcomponent
             @component('components.misc.submit-button')

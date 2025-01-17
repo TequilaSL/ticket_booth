@@ -61,6 +61,7 @@
                 @component('components.misc.form-group-col')
                     @slot('label') {{ Lang::get('auth.password') }} @endslot
                     @slot('name') password @endslot
+                    @slot('type') password @endslot
                     @slot('col') col-md-6 @endslot
                     @slot('value') @endslot
                     @slot('faicon') fa-user-o @endslot
