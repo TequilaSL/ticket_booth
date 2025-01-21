@@ -10,6 +10,8 @@ return [
     'login' => 'login',
     'cancel_ticket' => 'Cancel ticket',
     'registration' => 'registration',
+    'email_verification' => 'email verification',
+    'verify_email' => 'verify email',
     'mobile_phone' => 'Phone number',
     'email_address' => 'Email address',
     'become_partner' => 'become a partner',

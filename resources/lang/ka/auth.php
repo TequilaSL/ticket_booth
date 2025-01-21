@@ -10,6 +10,8 @@ return [
     'login' => 'შესვლა',
     'cancel_ticket' => 'ბილეთის გაუქმება',
     'registration' => 'რეგისტრაცია',
+    'verify_email' => 'verify email',
+    'email_verification' => 'email verification',
     'become_partner' => 'გახდი პარტნიორი',
     'become_driver' => 'გახდი მძღოლი',
     'mobile_phone' => 'მობილური ტელეფონის ნომერი',

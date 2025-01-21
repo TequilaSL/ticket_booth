@@ -31,7 +31,7 @@
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.email_address') }} @endslot
                 @slot('name') email @endslot
-                @slot('no_id') @endslot
+                @slot('field_id') verified_email @endslot
             @endcomponent
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.password') }} @endslot

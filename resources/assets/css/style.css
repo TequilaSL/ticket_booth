@@ -309,6 +309,13 @@ transition: all 0.3s ease-out;
 .language_ge .signup-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
 .signup-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
 
+.open .email-verification-popup-wrapper{display: block;}
+.email-verification-popup-wrapper{display: none; position: absolute; z-index: 100; background: #fff; width: 400px; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25); padding: 30px; right: 0; max-width: 100%;}
+.email-verification-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
+.email-verification-popup-wrapper .title{text-transform:uppercase; font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
+.language_ge .email-verification-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
+.email-verification-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+
 .divider-tc{float: right;}
 
 .currency{float: right;}
