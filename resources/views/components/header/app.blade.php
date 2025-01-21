@@ -18,6 +18,7 @@
                         @include('components.header.auth.login')
                         <span class="top-buttons-divider">/</span>
                         @include('components.header.auth.register')
+                        @include('components.header.auth.emailVerification')
                     </div>
                 @endif
                 <div class="divider divider-tc"></div>

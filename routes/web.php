@@ -122,6 +122,10 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('/auth/login', 'Auth\LoginController')->name('auth_login');
         Route::post('/auth/logout', 'Auth\LogoutController')->name('auth_logout');
+
+        Route::post('/auth/verification-email', 'Auth\EmailVerificationController@sendVerificationEmail')->name('verification_email');
+        Route::get('/auth/verify-email/{email}/{token}', 'Auth\EmailVerificationController@verifyEmail')->name('email_verify');
+
         Route::post('/auth/register', 'Auth\RegisterController')->name('auth_register');
         Route::post('/auth/register-driver', 'Auth\RegisterAsDriverController')->name('auth_register_driver');
         Route::post('/auth/register-partner', 'Auth\RegisterAsPartnerController')->name('auth_register_partner');

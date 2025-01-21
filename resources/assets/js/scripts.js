@@ -89,12 +89,12 @@ $(document).ready(function () {
     $("#sign-in-button-p").on("click", function (e) {
         e.preventDefault();
         openLoginForm();
-        closeRegisterForm();
+        closeEmailVerificationForm();
     });
 
     $("#sign-up-button-p").on("click", function (e) {
         e.preventDefault();
-        openRegisterForm();
+        openEmailVerificationForm();
         closeLoginForm();
     });
 
@@ -102,8 +102,19 @@ $(document).ready(function () {
     // login and register functions.
     /*----------------------------------------------------*/
 
+    window.openRegisterForm = openRegisterForm;
+    window.closeEmailVerificationForm = closeEmailVerificationForm;
+
     function openLoginForm (e) {
         $(".login-btn-wrapper").addClass("open");
+    };
+
+    function openEmailVerificationForm (e) {
+        $(".email-verification-btn-wrapper").addClass("open");
+    };
+
+    function closeEmailVerificationForm (e) {
+        $(".email-verification-btn-wrapper").removeClass("open");
     };
 
     function openRegisterForm (e) {
@@ -120,12 +131,20 @@ $(document).ready(function () {
 
 
     /*----------------------------------------------------*/
+    // Modal email verification.
+    /*----------------------------------------------------*/
+    $(".email-verification-popup-wrapper .close").on("click", function (e) {
+        e.preventDefault();
+        closeEmailVerificationForm();
+    });
+
+    /*----------------------------------------------------*/
     // Modal login.
     /*----------------------------------------------------*/
     $(".login-button").on("click", function (e) {
         e.preventDefault();
         openLoginForm();
-        closeRegisterForm();
+        closeEmailVerificationForm();
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
@@ -138,13 +157,14 @@ $(document).ready(function () {
     /*----------------------------------------------------*/
     $(".signup-button").on("click", function (e) {
         e.preventDefault();
-        openRegisterForm();
+        // openRegisterForm();
         closeLoginForm();
+        openEmailVerificationForm();
     });
 
     $(".signup-popup-wrapper .close").on("click", function (e) {
         e.preventDefault();
-        closeRegisterForm();
+        closeEmailVerificationForm();
     });
 
     /*----------------------------------------------------*/
@@ -2729,6 +2749,62 @@ $(document).ready(function () {
         });
     });
 
+    let emailVerificationForm = $("#email-verification-form");
+    emailVerificationForm.submit(function (e) {
+        e.preventDefault();
+        $(".response")
+            .css("display", "none")
+            .removeClass(
+                "response-success response-danger response-warning response-info"
+            );
+        let formData = emailVerificationForm.serializeArray();
+        $.ajax({
+            url: route("verification_email"),
+            type: "POST",
+            context: this,
+            data: formData,
+            success: function (data) {
+                if (data.status === 1) {
+                    closeRegisterForm();
+                    openLoginForm();
+                    $(".login-popup-wrapper .response")
+                    .css("display", "inline-block")
+                    .addClass("response-success")
+                    .html(data.text);
+                } else {
+                    $(this)
+                        .parent()
+                        .find(".response")
+                        .css("display", "inline-block")
+                        .addClass("response-danger")
+                        .html(data.text);
+                }
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+            error: function (data) {
+                $(this)
+                    .parent()
+                    .find(".response")
+                    .css("display", "inline-block")
+                    .addClass("response-danger")
+                    .html(data.responseJSON.text);
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+        });
+    });
+
+
+
     const currentPath = window.location.pathname;
     const routeRegex = /^\/listings\/\d+-[a-zA-Z]+-[a-zA-Z]+-date-\d{4}-\d{2}-\d{2}$/;
     const targetElement = document.querySelector(".ticket-scheme");
@@ -5302,4 +5378,16 @@ $(window).on("load", function () {
             ],
         });
     }
+
+    checkForVerifiedEmails()
 });
+
+function checkForVerifiedEmails(params) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const verifiedEmail = urlParams.get('verified_email');
+
+    if (verifiedEmail) {
+        openRegisterForm()
+        document.getElementById('verified_email').value = verifiedEmail;
+    }
+}
