@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Validator;
 class EmailVerificationController extends Controller
 {
     protected $validTokens = [];
-    public function showEmailForm()
-    {
-        return view('auth.verify-email');
-    }
 
     public function sendVerificationEmail(Request $request)
     {
@@ -46,6 +42,6 @@ class EmailVerificationController extends Controller
             session()->forget("verification_token_email");
             return redirect()->route('index',['verified_email' => $email]);
         }
-        return redirect()->route('show.email.form')->withErrors(['email' => 'Invalid or expired verification link.']);
+        return redirect()->route('index',['verified_email' => null]);
     }
 }

@@ -90,6 +90,7 @@ $(document).ready(function () {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeRegisterForm();
     });
 
     $("#sign-up-button-p").on("click", function (e) {
@@ -104,6 +105,7 @@ $(document).ready(function () {
 
     window.openRegisterForm = openRegisterForm;
     window.closeEmailVerificationForm = closeEmailVerificationForm;
+    window.openEmailVerificationForm = openEmailVerificationForm;
 
     function openLoginForm (e) {
         $(".login-btn-wrapper").addClass("open");
@@ -5408,5 +5410,15 @@ function checkForVerifiedEmails(params) {
     if (verifiedEmail) {
         openRegisterForm()
         document.getElementById('verified_email').value = verifiedEmail;
+        $(".signup-popup-wrapper .response")
+        .css({"display": "flex", "justify-content": "center"})
+        .addClass("response-success")
+        .html('Email verification process success!</br> Please complete the signup.');
+    } else {
+        openEmailVerificationForm()
+        $(".email-verification-popup-wrapper .response")
+        .css("display", "inline-block")
+        .addClass("response-danger")
+        .html('Something went wrong, please try again!');
     }
 }
