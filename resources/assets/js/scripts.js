@@ -145,6 +145,7 @@ $(document).ready(function () {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeLoginForm();
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
