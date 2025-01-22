@@ -90,6 +90,7 @@ $(document).ready(function () {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeRegisterForm();
     });
 
     $("#sign-up-button-p").on("click", function (e) {
@@ -104,6 +105,7 @@ $(document).ready(function () {
 
     window.openRegisterForm = openRegisterForm;
     window.closeEmailVerificationForm = closeEmailVerificationForm;
+    window.openEmailVerificationForm = openEmailVerificationForm;
 
     function openLoginForm (e) {
         $(".login-btn-wrapper").addClass("open");
@@ -145,6 +147,7 @@ $(document).ready(function () {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeLoginForm();
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
@@ -2658,7 +2661,7 @@ $(document).ready(function () {
             context: this,
             data: formData,
             success: function (data) {
-                location.reload();
+                // location.reload();
                 if (data.status === 1) {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
@@ -2767,10 +2770,13 @@ $(document).ready(function () {
                 if (data.status === 1) {
                     closeRegisterForm();
                     openLoginForm();
-                    $(".login-popup-wrapper .response")
+                    $(".email-verification-popup-wrapper .response")
                     .css("display", "inline-block")
                     .addClass("response-success")
                     .html(data.text);
+
+                    document.getElementById("verification-email-input").disabled = true;
+                    document.querySelector("#email-verification-form button[type='submit']").disabled = true;
                 } else {
                     $(this)
                         .parent()
@@ -4283,6 +4289,21 @@ $(document).ready(function () {
         }
     });
 
+    $(document).on("click", "#toggleIcon-homepage-password", function (e) {
+        const icon = document.getElementById('toggleIcon-homepage-password');
+        const homepageInput = document.getElementById('homepage-password');
+
+        if (homepageInput.type === 'password') {
+            homepageInput.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            homepageInput.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+
     /*----------------------------------------------------*/
     // Superfish menu.
     /*----------------------------------------------------*/
@@ -5389,5 +5410,15 @@ function checkForVerifiedEmails(params) {
     if (verifiedEmail) {
         openRegisterForm()
         document.getElementById('verified_email').value = verifiedEmail;
+        $(".signup-popup-wrapper .response")
+        .css({"display": "flex", "justify-content": "center"})
+        .addClass("response-success")
+        .html('Email verification process success!</br> Please complete the signup.');
+    } else {
+        openEmailVerificationForm()
+        $(".email-verification-popup-wrapper .response")
+        .css("display", "inline-block")
+        .addClass("response-danger")
+        .html('Something went wrong, please try again!');
     }
 }

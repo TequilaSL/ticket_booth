@@ -2576,6 +2576,16 @@ td.inline-block {
     margin:10px 0;
 }
 
+.email-verification-popup-wrapper .response-success {
+    display: flex !important;
+    padding: 10px 10px;
+}
+
+button:disabled, button:disabled:hover {
+    cursor: not-allowed;
+    background: linear-gradient(to right, #6e6161 0%, #1a1616 100%);
+}
+
 .response-persistent {
     width:100%;
     text-align:center;
