@@ -42,6 +42,6 @@ class EmailVerificationController extends Controller
             session()->forget("verification_token_email");
             return redirect()->route('index',['verified_email' => $email]);
         }
-        return redirect()->route('index',['verified_email' => null]);
+        return redirect()->route('index',['verified_email' => 'error']);
     }
 }

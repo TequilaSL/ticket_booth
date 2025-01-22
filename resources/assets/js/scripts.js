@@ -5403,22 +5403,24 @@ $(window).on("load", function () {
     checkForVerifiedEmails()
 });
 
-function checkForVerifiedEmails(params) {
+function checkForVerifiedEmails() {
     const urlParams = new URLSearchParams(window.location.search);
     const verifiedEmail = urlParams.get('verified_email');
 
     if (verifiedEmail) {
-        openRegisterForm()
-        document.getElementById('verified_email').value = verifiedEmail;
-        $(".signup-popup-wrapper .response")
-        .css({"display": "flex", "justify-content": "center"})
-        .addClass("response-success")
-        .html('Email verification process success!</br> Please complete the signup.');
-    } else {
-        openEmailVerificationForm()
-        $(".email-verification-popup-wrapper .response")
-        .css("display", "inline-block")
-        .addClass("response-danger")
-        .html('Something went wrong, please try again!');
+        if (verifiedEmail == 'error') {
+            openEmailVerificationForm()
+            $(".email-verification-popup-wrapper .response")
+            .css("display", "inline-block")
+            .addClass("response-danger")
+            .html('Something went wrong, please try again!');
+        } else {
+            openRegisterForm()
+            document.getElementById('verified_email').value = verifiedEmail;
+            $(".signup-popup-wrapper .response")
+            .css({"display": "flex", "justify-content": "center"})
+            .addClass("response-success")
+            .html('Email verification process success!</br> Please complete the signup.');
+        }
     }
 }
