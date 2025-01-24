@@ -175,8 +175,8 @@ transition: all 0.3s ease-out;
 .login-popup-wrapper .title{font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
 .language_ge .login-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
 .login-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2;}
-.password-style-class{ align-items: center; right: 5px; position: relative; }
-.password-style-class > i{ position: absolute; right: 10px;  top: 35px; }
+.password-style-class{ align-items: center; right: 5px; position: relative; display: flex;}
+.password-style-class > i{ position: absolute; right: 10px;}
 #toggleIcon-homepage-password { top: 20px !important; }
 
 .signup-btn-wrapper{display: inline-block;}

@@ -12,7 +12,6 @@
         @component('components.misc.form')
             @slot('form_id') popup-form2 @endslot
             @slot('class') form-horizontal registerForm @endslot
-            @slot('subtitle') {!! Lang::get('auth.sign_in_redirect_message') !!} @endslot
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.mobile_phone') }} @endslot
                 @slot('name') phone_number @endslot
@@ -31,12 +30,13 @@
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.email_address') }} @endslot
                 @slot('name') email @endslot
+                @slot('readonly') @endslot
                 @slot('field_id') verified_email @endslot
             @endcomponent
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.password') }} @endslot
                 @slot('name') password @endslot
-                @slot('field_id') homepage-password @endslot
+                @slot('field_id') homepage-reg-password @endslot
                 @slot('type') password @endslot
             @endcomponent
             @component('components.misc.form-group-col', ['values' => $gender])
