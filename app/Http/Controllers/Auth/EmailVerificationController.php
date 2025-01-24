@@ -14,7 +14,7 @@ class EmailVerificationController extends Controller
     public function sendVerificationEmail(Request $request)
     {
         $data = $request->only('email');
-        $validator = Validator::make($data, ['email' => 'required|email']);
+        $validator = Validator::make($data, ['email' => 'required|email|unique:users']);
         $errors = $validator->errors();
         if ($validator-> fails()) {
             $response = array('status' => 0, 'text' => $errors->first());
