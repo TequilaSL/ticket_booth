@@ -137,7 +137,9 @@ $(document).ready(function () {
     /*----------------------------------------------------*/
     $(".email-verification-popup-wrapper .close").on("click", function (e) {
         e.preventDefault();
+        window.history.replaceState({}, document.title, window.location.pathname);
         closeEmailVerificationForm();
+        checkForVerifiedEmails()
     });
 
     /*----------------------------------------------------*/
@@ -147,7 +149,7 @@ $(document).ready(function () {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
-        closeLoginForm();
+        closeRegisterForm();
     });
 
     $(".login-popup-wrapper .close").on("click", function (e) {
@@ -168,6 +170,7 @@ $(document).ready(function () {
     $(".signup-popup-wrapper .close").on("click", function (e) {
         e.preventDefault();
         closeEmailVerificationForm();
+        closeRegisterForm();
     });
 
     /*----------------------------------------------------*/
@@ -4259,9 +4262,9 @@ $(document).ready(function () {
             .magnificPopup("open");
     });
 
-    $(document).on("click", "#toggleIcon-login-password", function (e) {
-        const icon = document.getElementById('toggleIcon-login-password');
-        const loginInput = document.getElementById('login-password');
+    $(document).on("click", "#toggleIcon-homepage-login-password", function (e) {
+        const icon = document.getElementById('toggleIcon-homepage-login-password');
+        const loginInput = document.getElementById('homepage-login-password');
 
         if (loginInput.type === 'password') {
             loginInput.type = 'text';
@@ -4289,9 +4292,9 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on("click", "#toggleIcon-homepage-password", function (e) {
-        const icon = document.getElementById('toggleIcon-homepage-password');
-        const homepageInput = document.getElementById('homepage-password');
+    $(document).on("click", "#toggleIcon-homepage-reg-password", function (e) {
+        const icon = document.getElementById('toggleIcon-homepage-reg-password');
+        const homepageInput = document.getElementById('homepage-reg-password');
 
         if (homepageInput.type === 'password') {
             homepageInput.type = 'text';
@@ -5422,5 +5425,10 @@ function checkForVerifiedEmails() {
             .addClass("response-success")
             .html('Email verification process success!</br> Please complete the signup.');
         }
+    } else {
+        $(".email-verification-popup-wrapper .response")
+        .css("display", "")
+        .removeClass("response-danger response-success")
+        .html("");
     }
 }
