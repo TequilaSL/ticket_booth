@@ -2,6 +2,15 @@
 
 return [
 
+    'providers' => [
+        Laravel\Socialite\SocialiteServiceProvider::class,
+    ],
+
+    'aliases' => [
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+    ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -257,7 +266,7 @@ return [
     | Default AWS s3 bucket
     |--------------------------------------------------------------------------
     */
-    'aws_url'=> env('AWS_URL', 'https://zoombus-web.s3.eu-north-1.amazonaws.com/'),
+    'aws_url' => env('AWS_URL', 'https://zoombus-web.s3.eu-north-1.amazonaws.com/'),
 
     /*
     |--------------------------------------------------------------------------

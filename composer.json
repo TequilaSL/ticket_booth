@@ -20,6 +20,7 @@
         "laravel/nexmo-notification-channel": "^3.0",
         "laravel/passport": "^10.2",
         "laravel/sail": "*",
+        "laravel/socialite": "^5.17",
         "laravel/tinker": "^2.0",
         "lcobucci/jwt": "^4.0",
         "league/flysystem-aws-s3-v3": "^3.0",

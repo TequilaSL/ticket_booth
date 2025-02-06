@@ -15,6 +15,9 @@
             @component('components.misc.submit-button')
                 @slot('anchor') {{ Lang::get('auth.verify_email') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
             @endcomponent
+            <div class="btn btn-danger btn1" id="signUpByGoogle">
+            {{ Lang::get('auth.google_signup') }}
+            </div>
         @endcomponent
     </div>
 </div>

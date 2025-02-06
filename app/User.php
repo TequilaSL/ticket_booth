@@ -93,7 +93,7 @@ class User extends Authenticatable {
      * @var array
      */
     public $fillable = [
-        'name', 'email', 'password', 'phone_number', 'country_id', 'city', 'id_number', 'affiliate_code', 'status', 'gender_id', 'birth_date', 'subscribed', 'locale'
+        'name', 'email','google_id', 'password', 'phone_number', 'country_id', 'city', 'id_number', 'affiliate_code', 'status', 'gender_id', 'birth_date', 'subscribed', 'locale'
     ];
 
     public function scopeCurrent($query, $user = null) {

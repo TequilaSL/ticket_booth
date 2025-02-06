@@ -25,6 +25,13 @@
                 @slot('name') password @endslot
                 @slot('field_id') homepage-login-password @endslot
                 @slot('type') password @endslot
+                @endcomponent
+                @component('components.misc.form-group-col')
+                @slot('label') {{ Lang::get('auth.password') }} @endslot
+                @slot('name') google-id @endslot
+                @slot('field') hidden @endslot
+                @slot('type') google_id @endslot
+                @slot('hiddenGoogleId') google_id @endslot
             @endcomponent
             @component('components.misc.submit-button')
                 @slot('anchor') {{ Lang::get('auth.enter_system') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
