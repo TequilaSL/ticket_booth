@@ -92,26 +92,26 @@ export default {
                         plb: true,
                         labelImage: 'form/lock.svg'
                     },
-                    {
-                        placeholder: lang[this.$store.state.locale].profile.fields.placeholders.country,
-                        field: 'select',
-                        singleLine: true,
-                        plb: true,
-                        value: 80,
-                        values: Countries[this.$store.state.locale],
-                        name: 'country_id',
-                        labelImage: 'form/marker.svg'
-                    },
-                    {
-                        placeholder: lang[this.$store.state.locale].partnerRegister.fields.placeholders.accountType,
-                        field: 'select',
-                        singleLine: true,
-                        value: 'driver',
-                        values: lang[this.$store.state.locale].partnerRegister.accountTypes,
-                        plb: true,
-                        name: 'account_type',
-                        labelImage: 'form/user.svg'
-                    },
+                    // {
+                    //     placeholder: lang[this.$store.state.locale].profile.fields.placeholders.country,
+                    //     field: 'select',
+                    //     singleLine: true,
+                    //     plb: true,
+                    //     value: 80,
+                    //     values: Countries[this.$store.state.locale],
+                    //     name: 'country_id',
+                    //     labelImage: 'form/marker.svg'
+                    // },
+                    // {
+                    //     placeholder: lang[this.$store.state.locale].partnerRegister.fields.placeholders.accountType,
+                    //     field: 'select',
+                    //     singleLine: true,
+                    //     value: 'driver',
+                    //     values: lang[this.$store.state.locale].partnerRegister.accountTypes,
+                    //     plb: true,
+                    //     name: 'account_type',
+                    //     labelImage: 'form/user.svg'
+                    // },
                     {
                         placeholder: lang[this.$store.state.locale].signup.fields.placeholders.affiliate_code,
                         field: 'input',

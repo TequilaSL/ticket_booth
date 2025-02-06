@@ -53,6 +53,8 @@ class ListingController extends Controller {
         } else {
             if (\Auth::check()) {
                 $data['current_user'] = 1;
+            } else {
+                 return null;
             }
         }
         return view('components.booking-seat', $data)->render();
@@ -155,13 +157,13 @@ class ListingController extends Controller {
                 $query->places('citiesTo.translate', $searchData['to']);
             }
         }
+        // dd($query->count());
 
-
-        if (!empty($data['route_type'])) {
-            $query->whereHas('vehicles', function ($qu) use ($data) {
-                $qu->whereIn('type', $data['route_type']);
-            });
-        }
+        // if (!empty($data['route_type'])) {
+        //     $query->whereHas('vehicles', function ($qu) use ($data) {
+        //         $qu->whereIn('type', $data['route_type']);
+        //     });
+        // }
 
         $this->sortBy($query, $sort_by);
 
@@ -240,7 +242,7 @@ class ListingController extends Controller {
             if (in_array($request->route_type, array_column($data['all_route_types'], 'slug'))) {
                 $data['route_type'] = [$data['all_route_types'][array_search($request->route_type, array_column($data['all_route_types'], 'slug'))]['id']];
             } else {
-                abort(404);
+                abort(404,"No Result");
             }
         } else {
             $data['route_type'] = [1, 2];

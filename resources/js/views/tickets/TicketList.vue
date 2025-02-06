@@ -2,7 +2,7 @@
     <div v-if="!isLoading">
         <Header :title="title" :showBack="true" :showLogo="false"/>
         <section>
-            <a :href="($store.state.locale && $store.state.locale !== 'en') ? 'https://ticketbooth.tequilasl.com/'+$store.state.locale+'/listings' : 'https://ticketbooth.tequilasl.com/listings'">
+        <a :href="($store.state.locale && $store.state.locale !== 'en') ? defaultSiteUrl+'/'+$store.state.locale+'/listings' : `${defaultSiteUrl}/listings`">
                 <v-btn class="submit gradiented no-margins-vertical">
                     {{ lang.buyTickets }}
                 </v-btn>
@@ -23,7 +23,7 @@
                                 </p>
                             </div>
                             <div class="content">
-                                <div class="amount">{{ item.price }} <span>gel</span></div>
+                                <div class="amount">{{ item.price }} <span>lkr</span></div>
                             </div>
                         </div>
                     </router-link>
@@ -54,7 +54,7 @@
 <script>
 import lang from "../../translations"
 import VLoading from "../../components/Loading"
-import {boughtTicketsPerPage, imagesPathRewrite} from "../../config"
+import {boughtTicketsPerPage, imagesPathRewrite, siteURL} from "../../config"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 
@@ -79,6 +79,7 @@ export default {
     data() {
         return {
             title: lang[this.$store.state.locale].ticketList.title,
+            defaultSiteUrl: siteURL,
             isLoading: true,
             listLoading: false,
             data: [],

@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header :title="title" :show-back="true" :show-logo="false" :hideLogoText="true" :parent="parent"/>
         <section>
             <div id="map" style="width: 100%; height: 90vh"></div>
         </section>
@@ -12,25 +13,19 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import vzForm from "../../components/Form";
 import vLoading from "../../components/Loading";
-import { googleMaps } from "../../config";
+import { googleMaps, siteURL } from "../../config";
 import axios from "axios";
+import lang from '../../translations';
 
 export default {
     components: { vzForm, Header, Footer, vLoading },
     data() {
         return {
             key: googleMaps.key,
-            coordinates: [
-                { lat: 6.8696, lng: 79.8808 },
-                { lat: 6.869378, lng: 79.881143 },
-                { lat: 6.869245, lng: 79.881917 },
-                { lat: 6.868774, lng: 79.882523 },
-                { lat: 6.868646, lng: 79.882737 },
-                { lat: 6.868356, lng: 79.88326 },
-            ],
             map: null,
             marker: null,
             currentIndex: 0,
+            title: lang[this.$store.state.locale].passengerArea.title
         };
     },
     mounted() {
@@ -47,7 +42,7 @@ export default {
         async updateLocation() {
             try {
                 const response = await axios.get(
-                    "https://ticketbooth.tequilasl.com/proxy-location"
+                    `${siteURL}/proxy-location`
                 );
                 if (response.data) {
                     const { longitude, latitude } = response.data;
@@ -86,22 +81,14 @@ export default {
             );
 
             this.marker = new AdvancedMarkerElement({
-                position: this.coordinates[0],
+                position: { lat: 6.8696, lng: 79.8808 },
                 map: this.map,
                 content: this.createBusIcon(),
                 title: "Kohuwala",
             });
-            this.updateLocation();
-            setInterval(this.updateLocation, 2000);
-        },
-
-        updateMarkerPosition() {
-            this.currentIndex =
-                (this.currentIndex + 1) % this.coordinates.length;
-            const nextPosition = this.coordinates[this.currentIndex];
-            this.marker.position = nextPosition;
-            this.map.setCenter(nextPosition);
-        },
+            await this.updateLocation();
+            await setInterval(this.updateLocation, 2000);
+        }
     },
 };
 </script>

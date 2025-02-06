@@ -33,7 +33,9 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            {!! Lang::get('texts.register_as_partner') !!}
+            {{ Lang::get('titles.register_as_partner_title3') }}
+            <div>{!! Lang::get('titles.register_as_partner_title4') !!}
+        </div>
         </div>
         <div class="col-md-6">
             <div class="register-as-driver-form">
@@ -42,7 +44,7 @@
                 @component('components.misc.form')
                     @slot('form_id') registerAsPartnerForm @endslot
                     @component('components.misc.form-group-col')
-                        @slot('label') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                        @slot('label') {{ Lang::get('auth.fullname') }} @endslot
                         @slot('name') name @endslot
                         @slot('value') @endslot
                     @endcomponent
@@ -76,7 +78,7 @@
                     @component('components.misc.submit-button')
                         @slot('anchor') {{ Lang::get('auth.registration') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
                     @endcomponent
-                    @slot('subtitle') {!! Lang::get('auth.agree_terms_of_use') !!} @endslot
+                    @slot('subtitle') {{ Lang::get('auth.sign-in-button-p') }} @endslot
                 @endcomponent
             </div>
         </div>

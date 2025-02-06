@@ -7,12 +7,14 @@ use Carbon\Carbon;
 use Hashids\Hashids;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use App\User;
 use App\Sales;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 
 class ApiController extends Controller {
     public function login(Request $request) {
+        Log::info("Login");
         $hash = new Hashids('', 32);
         $lang = $request->header('lang');
         $credentials['phone_number'] = $request->server('PHP_AUTH_USER');

@@ -154,12 +154,12 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                        <span class="new_row new_one row_minibus"><i
+                        <span class="new_row new_one row_bus"><i
                                 class="fa fa-plus"></i> {{ Lang::get('driver.new_row') }}</span>
                 </div>
                 <div class="scheme_container">
                     @component('components.vehicle-schemes', ['seat_positioning' => $vehicle['seat_positioning'] ?? $scheme])
-                        @slot('route_type') {{ $vehicle['route_types']['key'] ?? 'minibus' }} @endslot
+                        @slot('route_type') {{ $vehicle['route_types']['key'] ?? 'bus' }} @endslot
                         @slot('editable') @endslot
                         @slot('show_info') @endslot
                     @endcomponent

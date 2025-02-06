@@ -18,7 +18,7 @@
                             </p>
                         </div>
                         <div class="content">
-                            <div class="amount">{{ item.total_sold }} <span>gel</span></div>
+                            <div class="amount">{{ item.total_sold }} <span>lkr</span></div>
                             <p class="details error--text">{{ lang.salesByRoute.details }}</p>
                         </div>
                     </div>

@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="#tab-withdrawals" role="tab" data-toggle="tab">
-                            {{ Lang::get('admin_menu.withdrawals') }} <span class="label label-success">{{ $user['total_withdrawn'] ?? 0 }} GEL</span>
+                            {{ Lang::get('admin_menu.withdrawals') }} <span class="label label-success">{{ $user['total_withdrawn'] ?? 0 }} LKR</span>
                         </a>
                     </li>
                     @if(isset($isDriver))

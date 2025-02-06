@@ -160,7 +160,7 @@ section .list .ticket .second_box .departure_time p.time {
 section .list .ticket .third_box {
     margin: 0 20px;
     display: grid;
-    grid-template-columns: 60% 25% 15%;
+    grid-template-columns: 44% 41% 15%;
 }
 section .list .ticket .third_box .destination {
     display: flex;

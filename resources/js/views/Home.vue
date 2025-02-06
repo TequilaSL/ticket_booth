@@ -66,13 +66,13 @@ export default {
                     title: lang[this.$store.state.locale].home.boxes.profile,
                     subTitle: lang[this.$store.state.locale].home.boxes.profile_sub
                 },
-                {
-                    name: 'vehicles',
-                    image: 'driver/transport.svg',
-                    color: '#F79A1D',
-                    title: lang[this.$store.state.locale].home.boxes.vehicles,
-                    subTitle: lang[this.$store.state.locale].home.boxes.vehicles_sub
-                },
+                // {
+                //     name: 'vehicles',
+                //     image: 'driver/transport.svg',
+                //     color: '#F79A1D',
+                //     title: lang[this.$store.state.locale].home.boxes.vehicles,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.vehicles_sub
+                // },
                 {
                     name: 'routes',
                     image: 'driver/route_icon3x.svg',
@@ -94,17 +94,17 @@ export default {
                     title: lang[this.$store.state.locale].home.boxes.scanner,
                     subTitle: lang[this.$store.state.locale].home.boxes.scanner_sub
                 },
-                {
-                    name: 'partnerArea',
-                    image: 'driver/partner.svg',
-                    color: '#6B6BC9',
-                    title: (this.$store.state.roles.includes('partner')) ?
-                        lang[this.$store.state.locale].home.boxes.partners :
-                        lang[this.$store.state.locale].home.boxes.become_partner,
-                    subTitle: (this.$store.state.roles.includes('partner')) ?
-                        lang[this.$store.state.locale].home.boxes.partners_sub :
-                        lang[this.$store.state.locale].home.boxes.become_partner_sub,
-                },
+                // {
+                //     name: 'partnerArea',
+                //     image: 'driver/partner.svg',
+                //     color: '#6B6BC9',
+                //     title: (this.$store.state.roles.includes('partner')) ?
+                //         lang[this.$store.state.locale].home.boxes.partners :
+                //         lang[this.$store.state.locale].home.boxes.become_partner,
+                //     subTitle: (this.$store.state.roles.includes('partner')) ?
+                //         lang[this.$store.state.locale].home.boxes.partners_sub :
+                //         lang[this.$store.state.locale].home.boxes.become_partner_sub,
+                // },
                 {
                     name: 'faq',
                     image: 'driver/support.svg',
@@ -112,20 +112,20 @@ export default {
                     title: lang[this.$store.state.locale].home.boxes.help,
                     subTitle: lang[this.$store.state.locale].home.boxes.help_sub,
                 },
-                {
-                    name: 'ticketList',
-                    image: 'ticket_icon.svg',
-                    color: '#33881c',
-                    title: lang[this.$store.state.locale].home.boxes.ticketList,
-                    subTitle: lang[this.$store.state.locale].home.boxes.ticketList_sub
-                },
-                {
-                    name: 'locationTrack',
-                    image: 'ticket_icon.svg',
-                    color: '#33881c',
-                    title: lang[this.$store.state.locale].home.boxes.trackLocation,
-                    subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
-                }
+                // {
+                //     name: 'ticketList',
+                //     image: 'ticket_icon.svg',
+                //     color: '#33881c',
+                //     title: lang[this.$store.state.locale].home.boxes.ticketList,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.ticketList_sub
+                // },
+                // {
+                //     name: 'locationTrack',
+                //     image: 'ticket_icon.svg',
+                //     color: '#33881c',
+                //     title: lang[this.$store.state.locale].home.boxes.trackLocation,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
+                // }
             ]
         } else {
             this.boxes = [
@@ -143,27 +143,27 @@ export default {
                     title: lang[this.$store.state.locale].home.boxes.ticketList,
                     subTitle: lang[this.$store.state.locale].home.boxes.ticketList_sub
                 },
-                {
-                    name: 'driverArea',
-                    image: 'driver/bank.svg',
-                    color: '#14A969',
-                    title: lang[this.$store.state.locale].home.boxes.become_driver,
-                    subTitle: lang[this.$store.state.locale].home.boxes.become_driver_sub
-                },
-                {
-                    name: 'partnerArea',
-                    image: 'driver/partner.svg',
-                    color: '#6B6BC9',
-                    title: lang[this.$store.state.locale].home.boxes.become_partner,
-                    subTitle: lang[this.$store.state.locale].home.boxes.become_partner_sub
-                },
-                {
-                    name: 'locationTrack',
-                    image: 'ticket_icon.svg',
-                    color: '#33881c',
-                    title: lang[this.$store.state.locale].home.boxes.trackLocation,
-                    subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
-                }
+                // {
+                //     name: 'driverArea',
+                //     image: 'driver/bank.svg',
+                //     color: '#14A969',
+                //     title: lang[this.$store.state.locale].home.boxes.become_driver,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.become_driver_sub
+                // },
+                // {
+                //     name: 'partnerArea',
+                //     image: 'driver/partner.svg',
+                //     color: '#6B6BC9',
+                //     title: lang[this.$store.state.locale].home.boxes.become_partner,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.become_partner_sub
+                // },
+                // {
+                //     name: 'locationTrack',
+                //     image: 'ticket_icon.svg',
+                //     color: '#33881c',
+                //     title: lang[this.$store.state.locale].home.boxes.trackLocation,
+                //     subTitle: lang[this.$store.state.locale].home.boxes.trackLocation_sub
+                // }
             ]
         }
     },

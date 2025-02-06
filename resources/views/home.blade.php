@@ -85,15 +85,15 @@
             @endcomponent
         @endslot
 
-        @slot('field4')
-            @component('components.misc.input')
-                @slot('inner_class') passengers @endslot
-                @slot('title') {{ Lang::get('misc.passengers') }} @endslot
-                @slot('name') passengers @endslot
-                @slot('value') 1 @endslot
-                @slot('noId') @endslot
-            @endcomponent
-        @endslot
+      {{--  @slot('field4') --}}
+            {{--  @component('components.misc.input') --}}
+                {{--  @slot('inner_class') passengers @endslot --}}
+                {{--  @slot('title') {{ Lang::get('misc.passengers') }} @endslot --}}
+                {{--  @slot('name') passengers @endslot --}}
+                {{--  @slot('value') 1 @endslot --}}
+                {{--  @slot('noId') @endslot --}}
+            {{--  @endcomponent --}}
+       {{--   @endslot --}}
 
 
     @endcomponent

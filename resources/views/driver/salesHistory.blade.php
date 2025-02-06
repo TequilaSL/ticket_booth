@@ -30,13 +30,13 @@
     <div class="row">
         <div class="col-md-6 col-lg-6 span-bold-ge left">
             {{ Lang::get('status.total_unapproved') }}: <span class="eng-bold yellow size20">{{ $total_unapproved ?? 0 }}</span>
-            <img src="{{ URL::asset('images/currencies/GEL.png') }}" alt="GEL">
+            <img src="{{ URL::asset('images/currencies/lkrimage.png') }}" alt="lkr image">
             <br>{{ Lang::get('status.total_unapproved_count') }}: <span class="eng-bold yellow size20">{{ $total_unapproved_count ?? 0 }}</span>
             <br>{{ Lang::get('status.total_refunded') }}: <span class="eng-bold red size20">{{ $total_refunded_count ?? 0 }}</span>
         </div>
         <div class="col-md-6 col-lg-6 span-bold-ge right">
             {{ Lang::get('status.total_approved') }}: <span class="eng-bold green size20">{{ $total_approved ?? 0 }}</span>
-            <img src="{{ URL::asset('images/currencies/GEL.png') }}" alt="GEL">
+            <img src="{{ URL::asset('images/currencies/lkr.png') }}" alt="lkr image">
             <br>{{ Lang::get('status.total_approved_count') }}: <span class="eng-bold green size20">{{ $total_approved_count ?? 0 }}</span>
             <br>{{ Lang::get('status.total_sold_by_driver') }}: <span class="eng-bold blue size20">{{ $total_driver_reserved_count ?? 0 }}</span>
         </div>

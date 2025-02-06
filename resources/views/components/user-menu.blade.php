@@ -1,5 +1,5 @@
 <div class="user-menu-wrapper">
-    <ul class="user-menu d-flex justify-content-between sf-menu">
+    <ul class="user-menu d-flex justify-content-around sf-menu">
         <li>
             <a href="#"
                @if(in_array(Request::route()->getName(), ['profile','drivers_license','edit_password','bought_tickets','financial'])) class="active" @endif>
@@ -92,12 +92,12 @@
                     <i class="fa fa-address-card" aria-hidden="true"></i> {{Lang::get('menu.bought_tickets')}}
                 </a>
             </li>
-            <li>
-                <a href="{{ route('driver_registration') }}" class="noDrop @if(Request::route()->getName() == 'driver_registration') active @endif">
-                    <i class="fa fa-drivers-license" aria-hidden="true"></i>
-                    {{ Lang::get('menu.register_as_driver') }}
-                </a>
-            </li>
+           {{--  <li> --}}
+                {{-- <a href="{{ route('driver_registration') }}" class="noDrop @if(Request::route()->getName() == 'driver_registration') active @endif"> --}}
+                    {{-- <i class="fa fa-drivers-license" aria-hidden="true"></i> --}}
+                    {{-- {{ Lang::get('menu.register_as_driver') }} --}}
+                {{-- </a> --}}
+            {{-- </li>  --}}
         @endif
         @if(isset($isPartner) && Auth::user()->partner()->active()->exists())
             <li>
@@ -126,13 +126,13 @@
                     </ul>
                 </div>
             </li>
-        @else
-            <li>
+       {{-- @else
+            <li class="sadasd">
                 <a href="{{ route('partner_registration') }}" class="noDrop @if(Request::route()->getName() == 'partner_registration') active @endif">
                     <i class="fa fa-handshake-o" aria-hidden="true"></i>
                     {{ Lang::get('menu.register_as_partner') }}
                 </a>
-            </li>
+            </li>--}}
         @endif
 
     </ul>

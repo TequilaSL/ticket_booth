@@ -114,7 +114,7 @@
                     <fieldset disabled="disabled">
                         @component('components.misc.form-group-col')
                             @slot('name') your_name @endslot
-                            @slot('label') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                            @slot('label') {{ Lang::get('auth.fullname') }} @endslot
                             @slot('placeholder') @endslot
                         @endcomponent
                         @component('components.misc.form-group-col')

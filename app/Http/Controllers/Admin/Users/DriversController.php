@@ -124,7 +124,7 @@ class DriversController extends AdminController {
                 ],
             ];
             $drivers[$key]['created_at'] = Carbon::parse($val['driver']['created_at'])->translatedFormat('Y-m-d');
-            $drivers[$key]['total_sold'] = array_sum(array_column($val['balance_updates'], 'amount')).' GEL'; //future multiple currency
+            $drivers[$key]['total_sold'] = array_sum(array_column($val['balance_updates'], 'amount')).' LKR'; //future multiple currency
             $drivers[$key]['withdrawn'] = array_sum(array_column($val['payouts'] ?? [], 'amount')); //future multiple currency
             $drivers[$key]['country_id'] = view('components.img', ['tooltip' => true, 'class' => 'img-fluid', 'title' => $val['country']['translated']['name'], 'src' => $user->countryImageById($val['country']['code'])])->render();
             $drivers[$key]['avatar'] = view('components.img', ['src' => $user->photoSmallById($val['id'])])->render();

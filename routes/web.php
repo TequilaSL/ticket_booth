@@ -1,11 +1,14 @@
 <?php
+use App\Http\Controllers\Auth\LoginController;
+use App\User;
+use Laravel\Socialite\Facades\Socialite;
 
 
 Route::group(['middleware' => ['web']], function () {
 
     Route::group([
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => (!(new \Jenssegers\Agent\Agent())->isMobile()) ? ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] : []
+        'middleware' => (!(new \Jenssegers\Agent\Agent())->isMobile()) ? ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'] : ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
         Route::get('/', 'HomePageController')->name('index');
@@ -120,9 +123,15 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/auth/support-close', 'SupportController@close')->name('auth_support_close');
         Route::post('/auth/support-close-secure', 'SupportController@closeSecure')->name('auth_support_close_secure');
 
-
         Route::post('/auth/login', 'Auth\LoginController')->name('auth_login');
         Route::post('/auth/logout', 'Auth\LogoutController')->name('auth_logout');
+
+        Route::post('/auth/verification-email', 'Auth\EmailVerificationController@sendVerificationEmail')->name('verification_email');
+        Route::get('/auth/verify-email/{email}/{token}', 'Auth\EmailVerificationController@verifyEmail')->name('email_verify');
+
+        Route::post('/auth/verification-mobile', 'Auth\MobileVerificationController@sendVerificationMessage')->name('verification_mobile');
+        Route::post('/auth/verify-otp', 'Auth\MobileVerificationController@verifyMobile')->name('verify_otp');
+
         Route::post('/auth/register', 'Auth\RegisterController')->name('auth_register');
         Route::post('/auth/register-driver', 'Auth\RegisterAsDriverController')->name('auth_register_driver');
         Route::post('/auth/register-partner', 'Auth\RegisterAsPartnerController')->name('auth_register_partner');
@@ -178,6 +187,7 @@ Route::group(['middleware' => ['web']], function () {
 
 
     //Custom mobile pages
+    Route::post('/check-token', 'Mobile\LoginController@checkToken')->name('check-token');
     Route::get('/languages', 'Mobile\LanguagesController@view');
     Route::get('/settings', 'Mobile\SettingsController@view');
     Route::get('/login', 'Mobile\LoginController@view')->name('mobile.login');
@@ -347,8 +357,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/admin/logout', 'Admin\AdminController@logout')->name('admin_logout');
 
-
-
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/auth/google/callback', [LoginController::class, 'googleLogin']);
+    Route::get('/auth/google/redirect', function () {
+        return Socialite::driver('google')->stateless()->redirect();
+    });
 });
 
 Route::get('/{any}', function () {

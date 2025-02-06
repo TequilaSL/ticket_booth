@@ -34,7 +34,7 @@
                     </div>
                 @endif
 
-                <div class="minibus-pattern-edit has-vehicle-scheme">
+                <div class="bus-pattern-edit has-vehicle-scheme">
                     @component('components.vehicle-schemes', ['seat_positioning' => $vehicle['seat_positioning']])
                         @slot('route_type') {{ $vehicle['route_types']['key'] }} @endslot
                         @slot('editable') @endslot

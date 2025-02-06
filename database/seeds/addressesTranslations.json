@@ -373,5 +373,95 @@
         "address_id": 25,
         "name": "கேகாலை",
         "locale": "ta"
+    },
+    {
+        "city_id": 26,
+        "name": "මීගමුව",
+        "locale": "si"
+    },
+    {
+        "city_id": 26,
+        "name": "Negombo",
+        "locale": "en"
+    },
+    {
+        "city_id": 26,
+        "name": "நெகோம்போ",
+        "locale": "ta"
+    },
+    {
+        "city_id": 27,
+        "name": "දඹුල්ල",
+        "locale": "si"
+    },
+    {
+        "city_id": 27,
+        "name": "Dambulla",
+        "locale": "en"
+    },
+    {
+        "city_id": 27,
+        "name": "தம்புள்ளை",
+        "locale": "ta"
+    },
+    {
+        "city_id": 28,
+        "name": "කොට්ටාව",
+        "locale": "si"
+    },
+    {
+        "city_id": 28,
+        "name": "Kottawa",
+        "locale": "en"
+    },
+    {
+        "city_id": 28,
+        "name": "கொட்டாவா",
+        "locale": "ta"
+    },
+    {
+        "city_id": 29,
+        "name": "කඩවත",
+        "locale": "si"
+    },
+    {
+        "city_id": 29,
+        "name": "Kadawatha",
+        "locale": "en"
+    },
+    {
+        "city_id": 29,
+        "name": "கடவத்த",
+        "locale": "ta"
+    },
+    {
+        "city_id": 30,
+        "name": "කතරගම",
+        "locale": "si"
+    },
+    {
+        "city_id": 30,
+        "name": "Kataragama",
+        "locale": "en"
+    },
+    {
+        "city_id": 30,
+        "name": "கதிர்காமம்",
+        "locale": "ta"
+    },
+    {
+        "city_id": 31,
+        "name": "අක්කරේපත්තුව",
+        "locale": "si"
+    },
+    {
+        "city_id": 31,
+        "name": "Akkareipattu",
+        "locale": "en"
+    },
+    {
+        "city_id": 31,
+        "name": "அக்கரைப்பற்று",
+        "locale": "ta"
     }
 ]

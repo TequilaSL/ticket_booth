@@ -14,27 +14,27 @@
                             <li class="red"><a
                                     href="{{ route('register_as_partner') }}">{{ Lang::get('auth.become_partner') }}</a>
                             </li>
-                            <li class="blue"><a
+                            <!-- <li class="blue"><a
                                     href="{{ route('register_as_driver') }}">{{ Lang::get('auth.become_driver') }}</a>
-                            </li>
+                            </li> -->
                             <!-- <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'minibus']) }}">{{ Lang::get('menu.minibus_tickets') }}</a>
                             </li> -->
                             <li>
                                 <a href="{{ route('listings_rt', ['route_type' => 'bus']) }}">{{ Lang::get('menu.bus_tickets') }}</a>
                             </li>
-                            {{--                            <li>--}}
+                            {{--                            <li> --}}
                             {{--                                <a href="{{ route('listings_rt', ['route_type' => 'carpooling']) }}">{{ Lang::get('menu.carpooling_tickets') }}</a>--}}
                             {{--                            </li>--}}
                         </ul>
-                        @if(Auth::check())
-                            <div class="footer-block-cart">
-                                <a href="{{ route('cart') }}">
-                                    <div class="txt1">{{ count($cart_items ?? []) }}</div>
-                                    <div class="txt2">{{ Lang::get('misc.items_in_your_cart') }}</div>
-                                </a>
-                            </div>
-                        @endif
+                      {{--     @if(Auth::check()) --}}
+                           {{--    <div class="footer-block-cart"> --}}
+                               {{--    <a href="{{ route('cart') }}"> --}}
+                                   {{--    <div class="txt1">{{ count($cart_items ?? []) }}</div> --}}
+                                   {{--    <div class="txt2">{{ Lang::get('misc.items_in_your_cart') }}</div> --}}
+                               {{--    </a> --}}
+                           {{--    </div> --}}
+                       {{--    @endif --}}
                     </div>
                     <div class="col-md-6 col-lg-5">
                         <div class="footer-block-title">{{ Lang::get('misc.footer_about') }}</div>
@@ -69,16 +69,6 @@
                     <div class="col-md-3">
                         <div class="pre-footer-block">
                             <figure>
-                                <img src="{{ URL::asset('images/icon-globe.png') }}" alt="" class="img-fluid">
-                            </figure>
-                            <div class="caption">
-                                {{ Lang::get('misc.footer_feature_1') }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pre-footer-block">
-                            <figure>
                                 <img src="{{ URL::asset('images/icon-hands.png') }}" alt="" class="img-fluid">
                             </figure>
                             <div class="caption">
@@ -101,7 +91,7 @@
                     @endif
                 </div>
             </div>
-            <div class="copyrights">made by <a href="#">web technology l.t.d.</a></div>
+            <div class="copyrights">made by <a href="https://tequilasl.com/" target="_blank">TEQUILA SRI LANKA</a></div>
         </div>
     </div>
 </div>

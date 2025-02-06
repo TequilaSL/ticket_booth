@@ -12,12 +12,14 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
+import vzForm from '../components/Form'
+import Header from '../components/Header'
+import LoginOrSignUp from '../components/LoginOrSignUp'
+import { client } from '../config'
 import lang from '../translations'
 import validations from '../validations'
-import Header from '../components/Header'
-import vzForm from '../components/Form'
-import LoginOrSignUp from '../components/LoginOrSignUp'
-import {client} from '../config'
+
 
 export default {
     components: {LoginOrSignUp, vzForm, Header},
@@ -83,7 +85,9 @@ export default {
                         ],
                         type: 'password',
                         plb: true,
-                        labelImage: 'form/lock.svg'
+                        labelImage: 'form/lock.svg',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     }
                 ]
             }
@@ -91,8 +95,40 @@ export default {
         }
     },
     mounted() {
+        console.log('login vue');
         document.title = this.title
-    }
+
+        this.checkToken();
+    },
+
+    methods: {
+        async checkToken() {
+            try {
+                const response = await axios.post("/check-token");
+
+                if (response.data.token && response.data.user) {
+                    this.$store
+                    .dispatch("apiCall", {
+                        actionName: "login",
+                        data: {
+                            lang: this.$store.state.locale,
+                            _token: response.data.token,
+                            grant_type: "password",
+                            client_id: client.id,
+                            client_secret: client.secret,
+                            username: response.data.user? response.data.user.phone_number : null,
+                            password: response.data.number ?? null,
+                        },
+                        commit: "setUserData",
+                        onSuccessRedirect: "home",
+                        onSuccessRedirectQuery: null,
+                    })
+                }
+            } catch (error) {
+                console.error('Error while checking token:', error);
+            }
+        }
+    },
 }
 </script>
 <style scoped src="./css/Login.css"/>

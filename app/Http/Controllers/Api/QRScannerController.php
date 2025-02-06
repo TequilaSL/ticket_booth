@@ -46,16 +46,17 @@ class QRScannerController extends Controller {
                 'routes.citiesTo.translated',
                 'routes.currency:id,key'
             ])->where('ticket_number', $ticket_number)->status(3)->first()->toArray();
+            $seat_numbers = Sales::where('ticket_number', $ticket_number)->status(3)->pluck('seat_number')->toArray();
             $this->balanceUpdate($sale_info['id']);
             $response = [
                 'status' => 1,
                 'ticket_number' => $sale_info['ticket_number'],
                 'passenger' => $sale_info['users']['name'],
-                'price' => $sale_info['price'],
+                'price' => $sale_info['price'] * count($seat_numbers),
                 'price_currency' => $sale_info['routes']['currency']['key'],
                 'from' => $sale_info['routes']['cities_from']['translated']['name'],
                 'to' => $sale_info['routes']['cities_to']['translated']['name'],
-                'seat_number' => $sale_info['seat_number'],
+                'seat_number' => implode(', ', $seat_numbers),
                 'departure_date' => Carbon::parse($sale_info['routes']['departure_date'])->locale($locale)->translatedFormat('j\ M Y'),
                 'departure_time' => $sale_info['routes']['departure_time'],
                 'arrival_time' => $sale_info['routes']['arrival_time'],

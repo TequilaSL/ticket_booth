@@ -135,8 +135,8 @@ body.language_ge{font-weight: 400; font-family: 'dejavu_sansextralight';}
 .language .dropdown-toggle img{margin-right: 20px;vertical-align: top; border-radius: 0; margin-top: 14px; display: inline-block;}
 .language .dropdown-toggle span{display: inline-block; vertical-align: top; line-height: 20px; padding-top: 23px;}
 
-.language .dropdown-menu{width: 120px; min-width: 120px; margin: 0 0 0 -15px; padding: 0; border: none; background: #fff; border-radius: 0; border-top: none; box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.1);}
-.language .dropdown-menu .dropdown-item{border-top: none; text-decoration: none; display: block; padding: 13px 15px; color: #333;font-family: 'Roboto'; font-weight: 500; font-size: 10px; line-height: 23px; text-transform: uppercase;}
+.language .dropdown-menu{width: 90px; min-width: 90px; margin: 0 0 0 -15px; padding: 0; border: none; background: #fff; border-radius: 0; border-top: none; box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.1);}
+.language .dropdown-menu .dropdown-item{border-top: none; text-decoration: none; display: block; padding: 3px 15px; color: #333;font-family: 'Roboto'; font-weight: 500; font-size: 12px; line-height: 23px; text-transform: uppercase;}
 .language .dropdown-menu .dropdown-item:hover{background: #f2f2f4; color: #333333;}
 .language .dropdown-menu .dropdown-item:first-child{border-top: none;}
 .language .dropdown-menu .dropdown-item img{margin-right: 20px; vertical-align: top; border-radius: 0;}
@@ -292,7 +292,10 @@ transition: all 0.3s ease-out;
 .login-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
 .login-popup-wrapper .title{ text-transform:uppercase; font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
 .language_ge .login-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
-.login-popup-wrapper .sub-title{font-size: 9px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+.login-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+.password-style-class{ align-items: center; right: 5px; position: relative; display: flex;}
+.password-style-class > i{ position: absolute; right: 10px; }
+#toggleIcon-homepage-password { top: 20px !important; }
 
 .signup-btn-wrapper{display: inline-block;}
 .signup-btn{display: block; text-decoration: none; color: #333333; cursor: pointer;line-height: 20px; font-size: 11px; font-weight: 500; text-transform: uppercase; padding: 0; background: none; border: none; letter-spacing: 0.1em; padding-top: 26px; vertical-align: top;}
@@ -304,7 +307,21 @@ transition: all 0.3s ease-out;
 .signup-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
 .signup-popup-wrapper .title{text-transform:uppercase; font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
 .language_ge .signup-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
-.signup-popup-wrapper .sub-title{font-size: 9px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+.signup-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+
+.open .email-verification-popup-wrapper{display: block;}
+.email-verification-popup-wrapper{display: none; position: absolute; z-index: 100; background: #fff; width: 400px; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25); padding: 30px; right: 0; max-width: 100%;}
+.email-verification-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
+.email-verification-popup-wrapper .title{text-transform:uppercase; font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
+.language_ge .email-verification-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
+.email-verification-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
+
+.open .mobile-verification-popup-wrapper{display: block;}
+.mobile-verification-popup-wrapper{display: none; position: absolute; z-index: 100; background: #fff; width: 400px; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25); padding: 30px; right: 0; max-width: 100%;}
+.mobile-verification-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
+.mobile-verification-popup-wrapper .title{text-transform:uppercase; font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
+.language_ge .mobile-verification-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
+.mobile-verification-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2; font-family: 'bpg_nino_mtavrulibold', sans-serif;}
 
 .divider-tc{float: right;}
 
@@ -312,11 +329,11 @@ transition: all 0.3s ease-out;
 .currency .dropdown-toggle{display: block; font-family: 'Roboto'; font-size: 11px; text-decoration: none; line-height: 46px; padding: 0; color: #333333; font-weight: 500; text-transform: uppercase;}
 .currency .dropdown-toggle::after{content: "\f078"; font-family: "FontAwesome"; border: none; margin-left: 0; font-size: 8px; vertical-align: top; width: auto; padding-left: 3px; line-height: 20px; padding-top: 23px;}
 .currency .dropdown-toggle img{margin-right: 5px;vertical-align: top; border-radius: 0; margin-top: 21px; display: inline-block;}
-.currency .dropdown-toggle span{display: inline-block; vertical-align: top; line-height: 20px; padding-top: 23px;}
+.currency .dropdown-toggle span{display: inline-block; vertical-align: top; line-height: 20px; padding-top: 26px;}
 .currency .no-after::after {content:"" !important; display:none !important;}
 
 .currency .dropdown-menu{width: 95px; min-width: 95px; margin: 0 0 0 -15px; padding: 0; border: none; background: #fff; border-radius: 0; border-top: none; box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.1);}
-.currency .dropdown-menu .dropdown-item{border-top: none; text-decoration: none; display: block; padding: 13px 15px; color: #333;font-family: 'Roboto'; font-weight: 500; font-size: 10px; line-height: 23px; text-transform: uppercase;}
+.currency .dropdown-menu .dropdown-item{border-top: none; text-decoration: none; display: block; padding: 3px 30px; color: #333;font-family: 'Roboto'; font-weight: 500; font-size: 12px; line-height: 23px; text-transform: uppercase;}
 .currency .dropdown-menu .dropdown-item:hover{background: #f2f2f4; color: #333333;}
 .currency .dropdown-menu .dropdown-item:first-child{border-top: none;}
 .currency .dropdown-menu .dropdown-item img{margin-right: 5px; vertical-align: top; border-radius: 0;}
@@ -372,8 +389,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f27509', end
 .corner-top-orange{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 3; background: url(../images/corner-top-orange.png) left top no-repeat;}
 .corner-bottom-pattern{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 1; background: url(../images/corner-bottom-pattern.png) left bottom no-repeat;}
 .corner-bottom-gray{position: absolute; left: 0; top: 0; width: 100%; height: 100%; z-index: 2; background: url(../images/corner-bottom-gray.png) left bottom no-repeat;}
-.serving-since{position: absolute; left: 15px; top: 15px; z-index: 5;}
-.serving-since .txt1{text-align: center; font-family: 'Montserrat'; font-weight: bold; font-size: 38px; color: #444444; line-height: 31px;}
+.serving-since{position: absolute; left: 15px; top: 15px; z-index: 250;}
+.serving-since .txt1{text-align: center; font-family: 'Montserrat'; font-weight: bold; font-size: 38px; color: #444444; line-height: 31px; background: white;}
 .serving-since .txt2{position: absolute; right: 15px; top: 70px; white-space: nowrap; font-size: 10px; font-family: 'Roboto'; font-weight: 500; text-transform: uppercase; color: #363636; letter-spacing: 0.2em;
 -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
@@ -585,7 +602,7 @@ body.language_ge .datepicker-days {
 .select2-container--default .select2-results__option--highlighted[aria-selected]{background: #f68a06; color: #fff;}
 
 /* ============================= mobile tickets ====================== */
-.mobile-tickets-wrapper{display: none; position: relative; z-index: 40; padding-top: 60px;}
+.mobile-tickets-wrapper{display: none; position: relative; z-index: 40; padding-top: 120px;}
 .mobile-tickets{display: block; padding: 0; margin: 0 auto; list-style: none; max-width: 90%;}
 .mobile-tickets li{display: block; padding-bottom: 10px;}
 .mobile-tickets li a{text-align: center; display: block; text-decoration: none; border: 1px solid #333333; border-radius: 25px; font-size: 15px; text-transform: uppercase; color: #333333; font-family: 'Roboto Condensed'; letter-spacing: 0.05em; background: #fff; padding: 10px;
@@ -685,7 +702,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdb367', end
 
 .ticket-details-left-col2 .info .info3{width: 25%; text-align: right;}
 
-.ticket-details-left-col2 .details{text-align: center; position: absolute; left: 0; width: 100%; bottom: 0;}
+.ticket-details-left-col2 .details{text-align: center; position: absolute; left: 0; width: 100%;}
 .ticket-details-left-col2 .details a{display: inline-block; text-decoration: none; background: #50d089; font-size: 9px; color: #fff; border-radius: 3px; padding: 1px 20px; letter-spacing: 0.2em;
 transition: all 0.3s ease-out;
 }
@@ -695,10 +712,10 @@ transition: all 0.3s ease-out;
 .opened .ticket-details-left-col2 .details a{background: #ff3065;}
 .opened .ticket-details-left-col2 .details a:hover{background: #252941;}
 
-.ticket-details-left-col3{ text-align:center; width: 17%;padding: 20px 40px 0; margin-top: 20px; margin-bottom: 20px; border-left: 2px solid #efefef; border-right: 2px solid #efefef;}
+.ticket-details-left-col3{ text-align:center; width: 17%; display:flex; justify-content: center; align-items: center; border-left: 2px solid #efefef; border-right: 2px solid #efefef;}
 .language_ge .ticket-details-left-col3 .txt1{font-weight: 400; font-size: 24px; color: #111d59; font-family: 'Roboto';}
 .ticket-details-left-col3 .txt1{font-weight: 400; font-size: 24px; color: #111d59; font-family: 'Roboto';}
-.ticket-details-left-col3 .txt1 span{display: inline-block; width: 11px; height: 13px; margin-left: 5px;}
+.ticket-details-left-col3 .txt1 span{margin-left: 5px; font-size: 13px;}
 .ticket-details-left-col3 .txt2 span{display: block; padding: 1px 5px; border-radius: 3px; background: #f79904; color: #fff; font-family: 'Roboto Condensed'; font-weight: 400; font-size: 12px;}
 .language_ge .ticket-details-left-col3 .txt2 span{font-family: 'dejavu_sansextralight';}
 
@@ -709,7 +726,7 @@ transition: all 0.3s ease-out;
 }
 .ticket-details-right .txt1 a:hover{background: #f79904;}
 .language_ge .ticket-details-right .txt1 a{font-family: 'bpg_nino_mtavrulibold';}
-.ticket-details-right .txt2 span{display: block; padding: 1px 10px; border-radius: 3px; background: #def9be; color: #84a85a; font-family: 'Roboto Condensed'; font-weight: 300; font-size: 12px; margin-top: 10px;}
+.ticket-details-right .txt2 span{display: block; padding: 1px 10px; border-radius: 3px; background: #def9be; color: #000000; font-family: 'Roboto Condensed'; font-weight: 300; font-size: 12px; margin-top: 10px;}
 .language_ge .ticket-details-right .txt2 span{font-family: 'dejavu_sansextralight';}
 
 /* ============================= ticket info ====================== */
@@ -873,7 +890,7 @@ flex-wrap: wrap;
 
 .bus-scheme-wrapper {width:100%;text-align: center;position: relative;}
 .bus-scheme-start {float:left; background: url(../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
-.bus-scheme-pattern {position:static;float:left; width:905px; height: 278px; background: url(../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.bus-scheme-pattern {position:static;float:left; width:760px; height: 278px; background: url(../images/bus-scheme-pattern.png) 0 0 repeat-x; }
 .bus-scheme-end {float:left; background: url("../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
 
 .bus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
@@ -926,79 +943,210 @@ flex-wrap: wrap;
 .bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
 .bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
 
-/* ============================= minibus scheme ====================== */
-.minibus-scheme{width: 825px; height: 391px; background: url(../images/microbus-scheme.png) 0 0 no-repeat; }
-.minibus-scheme .vehicle-seat{width: 113px; height: 61px; background: url(../images/microbus-seat.png) 0 0 no-repeat;}
-.minibus-scheme .vehicle-seat.seat-chosen{background-image: url(../images/microbus-seat-chosen.png);}
-.minibus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../images/microbus-seat-active-driver.png);}
+
+/* ============================= bus scheme ====================== */
+.medium-bus-scheme .vehicle-seat{width: 73px; height: 40px; background: url(../images/bus-seat.png) 0 0 no-repeat;}
+.medium-bus-scheme .vehicle-seat.seat-chosen{background-image: url(../images/bus-seat-chosen.png);}
+.medium-bus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../images/bus-seat-chosen-driver.png);}
+.medium-bus-scheme .vehicle-seat:not(.seat-chosen):hover,
+.medium-bus-scheme .vehicle-seat.seat-active{background-image: url(../images/bus-seat-active.png);}
+
+.medium-bus-scheme .vehicle-seat-mini{width: 47px; height: 40px; background: url(../images/bus-seat-small.png) 0 0 no-repeat;}
+.medium-bus-scheme .vehicle-seat-mini.seat-chosen{background-image: url(../images/bus-seat-chosen-small.png);}
+.medium-bus-scheme .vehicle-seat-mini:not(.seat-chosen):hover,
+.medium-bus-scheme .vehicle-seat-mini.seat-active{background-image: url(../images/bus-seat-active-small.png);}
+
+.medium-bus-scheme-wrapper {width:100%;text-align: center;position: relative;}
+.medium-bus-scheme-start {float:left; background: url(../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
+.medium-bus-scheme-pattern {position:static;float:left; width:675px; height: 278px; background: url(../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.medium-bus-scheme-end {float:left; background: url("../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
+
+.medium-bus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat2{left: 172px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat3{left: 172px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat4{left: 172px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat5{left: 247px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat6{left: 247px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat7{left: 247px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat8{left: 247px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat9{left: 322px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat10{left: 322px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat11{left: 322px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat12{left: 322px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat13{left: 397px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat14{left: 397px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat15{left: 397px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat16{left: 397px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat17{left: 472px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat18{left: 472px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat19{left: 472px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat20{left: 472px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat21{left: 547px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat22{left: 547px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat23{left: 547px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat24{left: 547px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat25{left: 622px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat26{left: 622px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat27{left: 622px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat28{left: 622px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat29{left: 697px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat30{left: 697px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat31{left: 697px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat32{left: 697px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat33{left: 772px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat34{left: 772px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat35{left: 772px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat36{left: 772px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat37{left: 847px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat38{left: 847px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat39{left: 847px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat40{left: 847px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat41{left: 922px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat42{left: 922px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat43{left: 922px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat44{left: 922px; bottom: 200px;}
+.medium-bus-scheme .vehicle-seat45{left: 997px; bottom: 40px;}
+.medium-bus-scheme .vehicle-seat46{left: 997px; bottom: 80px;}
+.medium-bus-scheme .vehicle-seat47{left: 997px; bottom: 120px;}
+.medium-bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
+.medium-bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
+
+
+
+/* ============================= bus scheme ====================== */
+.large-bus-scheme .vehicle-seat{width: 73px; height: 40px; background: url(../images/bus-seat.png) 0 0 no-repeat;}
+.large-bus-scheme .vehicle-seat.seat-chosen{background-image: url(../images/bus-seat-chosen.png);}
+.large-bus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../images/bus-seat-chosen-driver.png);}
+.large-bus-scheme .vehicle-seat:not(.seat-chosen):hover,
+.large-bus-scheme .vehicle-seat.seat-active{background-image: url(../images/bus-seat-active.png);}
+
+.large-bus-scheme .vehicle-seat-mini{width: 47px; height: 40px; background: url(../images/bus-seat-small.png) 0 0 no-repeat;}
+.large-bus-scheme .vehicle-seat-mini.seat-chosen{background-image: url(../images/bus-seat-chosen-small.png);}
+.large-bus-scheme .vehicle-seat-mini:not(.seat-chosen):hover,
+.large-bus-scheme .vehicle-seat-mini.seat-active{background-image: url(../images/bus-seat-active-small.png);}
+
+.large-bus-scheme-wrapper {width:100%;text-align: center;position: relative;}
+.large-bus-scheme-start {float:left; background: url(../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
+.large-bus-scheme-pattern {position:static;float:left; width:840px; height: 278px; background: url(../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.large-bus-scheme-end {float:left; background: url("../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
+
+.large-bus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat2{left: 172px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat3{left: 172px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat4{left: 172px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat5{left: 247px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat6{left: 247px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat7{left: 247px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat8{left: 247px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat9{left: 322px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat10{left: 322px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat11{left: 322px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat12{left: 322px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat13{left: 397px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat14{left: 397px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat15{left: 397px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat16{left: 397px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat17{left: 472px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat18{left: 472px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat19{left: 472px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat20{left: 472px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat21{left: 547px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat22{left: 547px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat23{left: 547px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat24{left: 547px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat25{left: 622px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat26{left: 622px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat27{left: 622px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat28{left: 622px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat29{left: 697px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat30{left: 697px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat31{left: 697px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat32{left: 697px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat33{left: 772px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat34{left: 772px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat35{left: 772px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat36{left: 772px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat37{left: 847px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat38{left: 847px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat39{left: 847px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat40{left: 847px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat41{left: 922px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat42{left: 922px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat43{left: 922px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat44{left: 922px; bottom: 200px;}
+.large-bus-scheme .vehicle-seat45{left: 997px; bottom: 40px;}
+.large-bus-scheme .vehicle-seat46{left: 997px; bottom: 80px;}
+.large-bus-scheme .vehicle-seat47{left: 997px; bottom: 120px;}
+.large-bus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
+.large-bus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
+
+
+/* ============================= bus scheme ====================== */
+.minibus-scheme .vehicle-seat{width: 73px; height: 40px; background: url(../images/bus-seat.png) 0 0 no-repeat;}
+.minibus-scheme .vehicle-seat.seat-chosen{background-image: url(../images/bus-seat-chosen.png);}
+.minibus-scheme .vehicle-seat.seat-chosen.seat-chosen-pre{background-image: url(../images/bus-seat-chosen-driver.png);}
 .minibus-scheme .vehicle-seat:not(.seat-chosen):hover,
-.minibus-scheme .vehicle-seat.seat-active{background-image: url(../images/microbus-seat-active.png);}
+.minibus-scheme .vehicle-seat.seat-active{background-image: url(../images/bus-seat-active.png);}
 
-.minibus-scheme .vehicle-seat.seat-chosen.seat-man:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/microbus-seat-man.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-.minibus-scheme .vehicle-seat.seat-chosen.seat-woman:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/microbus-seat-woman.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-
+.minibus-scheme .vehicle-seat-mini{width: 47px; height: 40px; background: url(../images/bus-seat-small.png) 0 0 no-repeat;}
+.minibus-scheme .vehicle-seat-mini.seat-chosen{background-image: url(../images/bus-seat-chosen-small.png);}
+.minibus-scheme .vehicle-seat-mini:not(.seat-chosen):hover,
+.minibus-scheme .vehicle-seat-mini.seat-active{background-image: url(../images/bus-seat-active-small.png);}
 
 .minibus-scheme-wrapper {width:100%;text-align: center;position: relative;}
-.minibus-scheme-start {float:left; background: url(../images/microbus-scheme-start.png) 0 0 no-repeat; width:309px; height: 391px; }
-.minibus-scheme-pattern {position:static;float:left; width: 368px; height: 391px; background: url(../images/microbus-pattern.png) 0 0 repeat-x; }
-.minibus-scheme-end {float:left; background: url("../images/microbus-scheme-end.png") no-repeat; width:39px; height:391px;}
+.minibus-scheme-start {float:left; background: url(../images/bus-scheme-start.png) 0 0 no-repeat; width:160px; height: 278px; }
+.minibus-scheme-pattern {position:static;float:left; width:730px; height: 278px; background: url(../images/bus-scheme-pattern.png) 0 0 repeat-x; }
+.minibus-scheme-end {float:left; background: url("../images/bus-scheme-end.png") no-repeat; width:48px; height:278px;}
 
-
-
-/*.minibus-pattern-edit { display:none;} TODO: ?? why I added this ? */
-
-.minibus-scheme .vehicle-seat.seat-active:after,
-.minibus-scheme .vehicle-seat:hover:after {top: 21px;}
-
-.minibus-scheme .vehicle-seat span{width: 32px; height: 32px; border-radius: 32px; line-height: 30px; font-size: 20px; left: 40px; top: 14px;}
-
-.minibus-scheme .vehicle-seat1{left:155px; bottom: 245px;}
-.minibus-scheme .vehicle-seat2{left:310px;bottom: 75px;}
-.minibus-scheme .vehicle-seat3{left:310px;bottom: 135px;}
-.minibus-scheme .vehicle-seat4{left:310px;bottom: 255px;}
-.minibus-scheme .vehicle-seat5{left: 430px; bottom: 75px;}
-.minibus-scheme .vehicle-seat6{left: 430px;  bottom: 135px;}
-.minibus-scheme .vehicle-seat7{left: 430px;  bottom: 255px;}
-.minibus-scheme .vehicle-seat8{left: 550px;  bottom: 75px;}
-.minibus-scheme .vehicle-seat9{left: 550px;  bottom: 135px;}
-.minibus-scheme .vehicle-seat10{left: 550px; bottom: 195px;}
-.minibus-scheme .vehicle-seat11{left: 550px; bottom: 255px;}
-
-
-/* ============================= carpooling ======================= */
-.carpooling-scheme-pattern {width: 866px; height: 363px; background: url(../images/taxi-scheme.png) 0 0 no-repeat; }
-.carpooling-scheme-pattern .vehicle-seat{width: 113px; height: 61px; background: url(../images/taxi-seat.png) 0 0 no-repeat;}
-.carpooling-scheme-pattern .vehicle-seat.seat-chosen{background-image: url(../images/taxi-seat-chosen.png);}
-.carpooling-scheme-pattern .vehicle-seat:not(.seat-chosen):hover,
-.carpooling-scheme-pattern .vehicle-seat.seat-active{background-image: url(../images/taxi-seat-active.png);}
-
-.carpooling-scheme-pattern .vehicle-seat.seat-chosen.seat-man:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/taxi-seat-man.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-.carpooling-scheme-pattern .vehicle-seat.seat-chosen.seat-woman:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/taxi-seat-woman.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-
-.carpooling-scheme-pattern .vehicle-seat.seat-active:after,
-.carpooling-scheme-pattern .vehicle-seat:hover:after {top: 21px;}
-
-.carpooling-scheme-pattern .vehicle-seat span{width: 32px; height: 32px; border-radius: 32px; line-height: 30px; font-size: 20px; left: 40px; top: 14px;}
-
-/* ============================= taxi scheme ====================== */
-.taxi-scheme{width: 866px; height: 363px; background: url(../images/taxi-scheme.png) 0 0 no-repeat; }
-.taxi-scheme .vehicle-seat{width: 113px; height: 61px; background: url(../images/taxi-seat.png) 0 0 no-repeat;}
-.taxi-scheme .vehicle-seat.seat-chosen{background-image: url(../images/taxi-seat-chosen.png);}
-.taxi-scheme .vehicle-seat:not(.seat-chosen):hover,
-.taxi-scheme .vehicle-seat.seat-active{background-image: url(../images/taxi-seat-active.png);}
-
-.taxi-scheme .vehicle-seat.seat-chosen.seat-man:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/taxi-seat-man.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-.taxi-scheme .vehicle-seat.seat-chosen.seat-woman:before{content: ''; display: block; width: 31px; height: 31px; background: url(../images/taxi-seat-woman.png) 0 0 no-repeat; position: absolute; left: 40px; top: 14px;}
-
-.taxi-scheme .vehicle-seat.seat-active:after,
-.taxi-scheme .vehicle-seat:hover:after {top: 21px;}
-
-.taxi-scheme .vehicle-seat span{width: 32px; height: 32px; border-radius: 32px; line-height: 30px; font-size: 20px; left: 40px; top: 14px;}
-
-.taxi-scheme .vehicle-seat1{left: 391px; bottom: 213px;}
-.taxi-scheme .vehicle-seat2{left: 530px; bottom: 213px;}
-.taxi-scheme .vehicle-seat3{left: 530px; bottom: 153px;}
-.taxi-scheme .vehicle-seat4{left: 530px; bottom: 93px;}
+.minibus-scheme .vehicle-seat1{left: 172px; bottom: 40px;}
+.minibus-scheme .vehicle-seat2{left: 172px; bottom: 80px;}
+.minibus-scheme .vehicle-seat3{left: 172px; bottom: 160px;}
+.minibus-scheme .vehicle-seat4{left: 172px; bottom: 200px;}
+.minibus-scheme .vehicle-seat5{left: 247px; bottom: 40px;}
+.minibus-scheme .vehicle-seat6{left: 247px; bottom: 80px;}
+.minibus-scheme .vehicle-seat7{left: 247px; bottom: 160px;}
+.minibus-scheme .vehicle-seat8{left: 247px; bottom: 200px;}
+.minibus-scheme .vehicle-seat9{left: 322px; bottom: 40px;}
+.minibus-scheme .vehicle-seat10{left: 322px; bottom: 80px;}
+.minibus-scheme .vehicle-seat11{left: 322px; bottom: 160px;}
+.minibus-scheme .vehicle-seat12{left: 322px; bottom: 200px;}
+.minibus-scheme .vehicle-seat13{left: 397px; bottom: 40px;}
+.minibus-scheme .vehicle-seat14{left: 397px; bottom: 80px;}
+.minibus-scheme .vehicle-seat15{left: 397px; bottom: 160px;}
+.minibus-scheme .vehicle-seat16{left: 397px; bottom: 200px;}
+.minibus-scheme .vehicle-seat17{left: 472px; bottom: 40px;}
+.minibus-scheme .vehicle-seat18{left: 472px; bottom: 80px;}
+.minibus-scheme .vehicle-seat19{left: 472px; bottom: 160px;}
+.minibus-scheme .vehicle-seat20{left: 472px; bottom: 200px;}
+.minibus-scheme .vehicle-seat21{left: 547px; bottom: 40px;}
+.minibus-scheme .vehicle-seat22{left: 547px; bottom: 80px;}
+.minibus-scheme .vehicle-seat23{left: 547px; bottom: 160px;}
+.minibus-scheme .vehicle-seat24{left: 547px; bottom: 200px;}
+.minibus-scheme .vehicle-seat25{left: 622px; bottom: 40px;}
+.minibus-scheme .vehicle-seat26{left: 622px; bottom: 80px;}
+.minibus-scheme .vehicle-seat27{left: 622px; bottom: 160px;}
+.minibus-scheme .vehicle-seat28{left: 622px; bottom: 200px;}
+.minibus-scheme .vehicle-seat29{left: 697px; bottom: 40px;}
+.minibus-scheme .vehicle-seat30{left: 697px; bottom: 80px;}
+.minibus-scheme .vehicle-seat31{left: 697px; bottom: 160px;}
+.minibus-scheme .vehicle-seat32{left: 697px; bottom: 200px;}
+.minibus-scheme .vehicle-seat33{left: 772px; bottom: 40px;}
+.minibus-scheme .vehicle-seat34{left: 772px; bottom: 80px;}
+.minibus-scheme .vehicle-seat35{left: 772px; bottom: 160px;}
+.minibus-scheme .vehicle-seat36{left: 772px; bottom: 200px;}
+.minibus-scheme .vehicle-seat37{left: 847px; bottom: 40px;}
+.minibus-scheme .vehicle-seat38{left: 847px; bottom: 80px;}
+.minibus-scheme .vehicle-seat39{left: 847px; bottom: 160px;}
+.minibus-scheme .vehicle-seat40{left: 847px; bottom: 200px;}
+.minibus-scheme .vehicle-seat41{left: 922px; bottom: 40px;}
+.minibus-scheme .vehicle-seat42{left: 922px; bottom: 80px;}
+.minibus-scheme .vehicle-seat43{left: 922px; bottom: 160px;}
+.minibus-scheme .vehicle-seat44{left: 922px; bottom: 200px;}
+.minibus-scheme .vehicle-seat45{left: 997px; bottom: 40px;}
+.minibus-scheme .vehicle-seat46{left: 997px; bottom: 80px;}
+.minibus-scheme .vehicle-seat47{left: 997px; bottom: 120px;}
+.minibus-scheme .vehicle-seat48{left: 997px; bottom: 160px;}
+.minibus-scheme .vehicle-seat49{left: 997px; bottom: 200px;}
 
 
 .form-control::placeholder {color:#AAA;}
@@ -1054,12 +1202,13 @@ flex-wrap: wrap;
 .ticket-print-left{position: relative; overflow: hidden; width: 70%; background: url(../images/map.png) center center no-repeat #fbfbfb; box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.08); border-radius: 20px; background-size: cover; padding: 80px 20px 30px;}
 .ticket-print-left:before{content: ''; display: block; border-left: 2px dashed #44475c; position: absolute; right: 0; top: 20px; bottom: 20px;}
 
-.ticket-print-header{height: 40px; background: #03a276; position: absolute; left: 0; top: 0; width: 100%;}
+.ticket-print-header{height: 40px; background: #c9302c; position: absolute; left: 0; top: 0; width: 100%;}
 .ticket-print-header figure{margin: 8px 0 0 30px;}
 .ticket-print-header .caption{font-size: 20px; text-transform: uppercase; font-family: 'Roboto Condensed'; font-weight: 400; color: #fff; position: absolute; right: 40px; top: 10px;}
+.ticket-print-header .caption-ticketbooth{font-size: 20px; text-transform: uppercase; font-family: 'Roboto Condensed'; font-weight: 400; color: #fff; position: absolute; left: 40px; top: 10px;}
 .language_ge .ticket-print-header .caption{font-family: 'bpg_nino_mtavrulibold';}
 
-.ticket-print-footer{height: 10px; background: #03a276; position: absolute; left: 0; bottom: 0; width: 100%;}
+.ticket-print-footer{height: 10px; background: #c9302c; position: absolute; left: 0; bottom: 0; width: 100%;}
 
 .print-row{margin-right: -5px;margin-left: -5px;
 display: -webkit-box;
@@ -1658,7 +1807,7 @@ transition: all 0.3s ease-out;
 
 .navbar_ .navbar-nav > li.nav2 > .nav-link{color: #000000; background: #fff; padding-left: 60px; padding-right: 30px;}
 
-.navbar_ .navbar-nav > li.nav1 > .nav-link{color: #fff; background: #c9302c; padding-left: 30px; padding-right: 30px;}
+.navbar_ .navbar-nav > li.nav1 > .nav-link{margin-bottom:5px; color: #fff; background: #c9302c; padding-left: 30px; padding-right: 30px;}
 
 .navbar_ .navbar-nav > li > .nav-link:focus,
 .navbar_ .navbar-nav > li > .nav-link:hover,
@@ -2038,21 +2187,25 @@ td.inline-block {
     .front .serving-since{display: none;}
     .front .corner-top-orange{display: none;}
     .front .corner-top-gray{display: none;}
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 }
 
 @media (max-width: 1599.98px) {
     .phone1-txt{display: none;}
     .divider-pp{display: none;}
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 }
 
 @media (max-width: 1399.98px) {
     .serving-since{display: none;}
     .corner-top-orange{display: none;}
     .corner-top-gray{display: none;}
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 }
 
 
 @media (min-width: 1260px) {
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 }
@@ -2091,16 +2244,16 @@ td.inline-block {
     .user-menu > li > a em{right: 10px;}
 
 
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (min-width: 992px) {
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 }
 @media (min-width: 992px) and (max-width: 1259.98px) {
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 }
@@ -2204,23 +2357,23 @@ td.inline-block {
 
     .details-of-payment-buttons .btn-continue-shopping{float: none;}
 
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 }
 @media (min-width: 768px) {
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 }
 @media (max-width: 767.98px) {
     .fixed-menu{display: none;}
 
-    .front-section-wrapper{display: none;}
+    /* .front-section-wrapper{display: none;} */
 
     .currency{display: none;}
     .divider-tc{display: none;}
@@ -2256,7 +2409,7 @@ td.inline-block {
 
     .front-section-title{padding-top: 0;}
 
-    .front-section{padding-top: 30px; padding-bottom: 20px;}
+    .front-section{padding-top: 115px; padding-bottom: 20px;}
 
     .mobile-tickets-wrapper{display: block;}
 
@@ -2334,7 +2487,7 @@ td.inline-block {
 
     .user-menu > li{width: 100%;}
 
-
+    .bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
 
 
 
@@ -2361,6 +2514,8 @@ td.inline-block {
         box-shadow: 0px 48px 106px 0px rgba(175, 189, 198, 0.15);
     }
 .margin-minus{margin-top: -25px;}
+.bottom-btn-div-container .bottom-btn-section{ font-size: 11px; padding: 0 10px; }
+
 }
 
 .imgicon-size{width:29%;}
@@ -2426,6 +2581,21 @@ td.inline-block {
     font-weight:700;
     font-size:12px;
     margin:10px 0;
+}
+
+.email-verification-popup-wrapper .response-success {
+    display: flex !important;
+    padding: 10px 10px;
+}
+
+/* .mobile-verification-popup-wrapper .response-success {
+    display: flex !important;
+    padding: 10px 10px;
+} */
+
+button:disabled, button:disabled:hover {
+    cursor: not-allowed;
+    background: linear-gradient(to right, #6e6161 0%, #1a1616 100%);
 }
 
 .response-persistent {
@@ -2637,6 +2807,21 @@ td.inline-block {
     padding:0.5rem 1rem;
 }
 
+input[name="terms_and_condition"] + label {
+    display: block !important;
+}
+
+input[name="terms_and_condition"] {
+    position: relative;
+    margin: 0;
+    margin-bottom: .5rem;
+    margin-right: .5rem;
+}
+
+.form-group:has(input[name="terms_and_condition"]) {
+    display: flex;
+    justify-content: center;
+}
 
 .intl-tel-input {display:block;}
 

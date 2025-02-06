@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\TryCatch;
+use Exception;
+
+class MobileVerificationController extends Controller
+{
+    protected $validTokens = [];
+
+    public function sendVerificationMessage(Request $request)
+    {
+        try {
+            $requestdata = $request->only('phone_number', 'password', 'password_confirmation');
+            $validator = Validator::make($requestdata, ['phone_number' => 'required|phone:AUTO|unique:users', 'password' => 'required|min:8|confirmed']);
+            if ($validator-> fails()) {
+                return response()->json(['status' => 0, 'text' => $validator->errors()->first()]);
+            }
+
+            $otp = strval(rand(1000, 9999));
+            $requestdata['otp'] = $otp;
+            $requestdata['body'] = 'This is your OTP: '. $otp;
+
+            session()->put("user_details", array_merge(session("user_details", []), [
+                'phone_number'=> $requestdata['phone_number'],
+                'password'=> Hash::make($requestdata['password']),
+                'otp'=>$otp
+            ]));
+
+            $smsResponse = $this->sendMassageForMobile($requestdata);
+
+            if (!$smsResponse['success']) {
+                return response()->json(['status' => 2, 'text' => 'OTP sending failed! Please try again.']);
+            }
+
+            return response()->json(['status' => 1, 'text' => 'If entered mobile is correct, you will receive an OTP. Please enter it here.']);
+        } catch (\Throwable $th) {
+            Log::error("Error in sendVerificationMessage: " . $th->getMessage());
+            return response()->json(['status' => 3, 'text' => 'Something went wrong!']);
+        }
+    }
+
+    public function sendMassageForMobile($data)
+    {
+        try {
+            $contact = $data['phone_number'];
+            $queryParams = http_build_query([
+                'recipient' =>  $contact,
+                'sender_id' => 'TextLKDemo',
+                'message' => $data['body'],
+            ]);
+
+            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
+            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')->post($url);
+
+            if ($response->failed()) {
+                Log::error("SMS API failed: " . $response->body());
+                return ['success' => false, 'message' => 'Failed to send OTP!'];
+            }
+
+            return ['success' => true, 'message' => 'OTP sent successfully!'];
+        } catch (\Throwable $th) {
+            Log::error("Error in sendMassageForMobile: " . $th->getMessage());
+            return ['success' => false, 'message' => 'Something went wrong while sending OTP!'];
+        }
+    }
+
+    public function verifyMobile(Request $request)
+    {
+        try {
+            $data = $request->only('phone_number', 'otp_code');
+            $storedData = session("user_details");
+
+            if (!$storedData) {
+                return response()->json(['status' => 2, 'text' => 'Session expired or invalid request!']);
+            }
+
+            if ($storedData['phone_number'] !== $data['phone_number'] || $storedData['otp'] !== $data['otp_code']) {
+                Log::info('OTP verification failed', ['input' => $data, 'stored' => $storedData]);
+                return response()->json(['status' => 2, 'text' => 'Invalid OTP or phone number. Please try again.']);
+            }
+
+            $user = User::where('email', $storedData['email'] ?? null)->first();
+            if ($user) {
+                return response()->json(['status' => 3, 'text' => 'Duplicate user email address!']);
+            }
+
+            Log::info('avater ',[$storedData['avatar']]);
+            $user = User::create([
+                'name' => $storedData['name'] ?? 'User',
+                'email' => $storedData['email'] ?? null,
+                'google_id' => $storedData['google_id'] ?? null,
+                'phone_number' => $storedData['phone_number'],
+                'password' => $storedData['password'],
+                'country_id' => "1"
+            ]);
+            session()->forget("user_details");
+            Auth::login($user);
+            return response()->json(['status' => 1, 'text' => 'User registered successfully!']);
+        } catch (\Throwable $th) {
+            Log::error("Error in verifyMobile: " . $th->getMessage());
+            return response()->json(['status' => 3, 'text' => 'Something went wrong! Please try again later.']);
+        }
+    }
+}

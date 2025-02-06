@@ -8,7 +8,7 @@
                 @if(Auth::check())
                     @component('components.header.cart', ['items' => $cart_items ?? []])
                         @slot('total') {{ array_sum(array_column(array_column($cart_items ?? [], 'sales'), 'price')) }} @endslot
-                        @slot('current_currency_key') {{ $current_currency_key ?? 'GEL' }} @endslot
+                        @slot('current_currency_key') {{ $current_currency_key ?? 'LKR' }} @endslot
                     @endcomponent
                     @component('components.header.notifications', ['items' => $notifications ?? [], 'number_of_items' => $new_notifications ?? 0, 'current_locale' => $current_locale])
                     @endcomponent
@@ -18,6 +18,8 @@
                         @include('components.header.auth.login')
                         <span class="top-buttons-divider">/</span>
                         @include('components.header.auth.register')
+                        @include('components.header.auth.emailVerification')
+                        @include('components.header.auth.mobileVerification')
                     </div>
                 @endif
                 <div class="divider divider-tc"></div>

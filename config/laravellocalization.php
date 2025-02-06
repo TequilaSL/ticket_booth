@@ -2,8 +2,9 @@
 
 return [
     'supportedLocales' => [
-        'ka' => ['name' => 'Geo', 'id' => 1],
-        'en' => ['name' => 'Eng', 'id' => 2],
+        'en' => ['name' => 'Eng', 'id' => 1],
+        'si' => ['name' => 'Sin', 'id' => 2],
+        'ta' => ['name' => 'Tam', 'id' => 3],
     ],
     'useAcceptLanguageHeader' => true,
     'hideDefaultLocaleInURL' => true,

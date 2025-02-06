@@ -59,7 +59,7 @@ class Controller extends BaseController {
         if ($time) {
             $exp = explode(":", $time);
 
-            $return = \Lang::get('misc.stopping_time_search') . ' ';
+            $return = ' ';
             if ($exp[0] > 0) {
                 $return .= (int)$exp[0];
                 $return .= ' ' . trans_choice('misc.hours', $exp[0]);

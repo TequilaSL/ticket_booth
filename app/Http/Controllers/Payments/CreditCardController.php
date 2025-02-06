@@ -18,7 +18,6 @@ class CreditCardController extends BookingController
         $data['transaction_id'] = $transaction_id;
         $result = $this->confirmTest($data['transaction_id'], $data['total']);
         $data['qrCodeUrl'] = $result;
-        Log::info('viewCreditCardForm QR Code URL', ['qrCodeUrl' => $data['qrCodeUrl']]);
         if (empty($data['qrCodeUrl'])) {
             return 'success error';
         }

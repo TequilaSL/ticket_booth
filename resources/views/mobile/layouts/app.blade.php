@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>{{ $title ?? 'Title' }}</title>
+    <title>TicketBooth.lk</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('images/favicon.png') }}"/>
     @hasSection('description')

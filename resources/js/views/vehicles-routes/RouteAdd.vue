@@ -118,7 +118,7 @@ export default {
             })
 
             this.formParams.items.find(d => d.name === 'currency_id').values = [
-                {value: 1, text: 'GEL'} // Hardcoded
+                {value: 1, text: 'LKR'} // Hardcoded
             ]
 
 

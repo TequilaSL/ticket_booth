@@ -281,7 +281,7 @@ export default {
         document.title = this.title
         this.$store.dispatch('apiCall', {actionName: 'routeConstructor', data: {lang: this.$store.state.locale, id: this.$route.params.id, width: window.innerWidth}}).then(data => {
             this.formParams.items.find(d => d.name === 'currency_id').values = [
-                {value: 1, text: 'GEL'} // Hardcoded
+                {value: 1, text: 'LKR'} // Hardcoded
             ]
 
             this.parent = (this.$store.state.routeEditHideForm) ? 'currentSales' : this.$route.meta.parent

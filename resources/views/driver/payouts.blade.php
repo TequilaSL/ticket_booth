@@ -34,7 +34,7 @@
         @endif
         <div class="span-bold-ge">{{ Lang::get('misc.balance') }}: <span
                 class="eng-bold red size20">{{ $balance ?? 0 }}</span>
-            <img src="{{ URL::asset('images/currencies/GEL.png') }}" alt="GEL">
+            <img src="{{ URL::asset('images/currencies/lkr.png') }}" alt="lkr image">
             <!-- Future currency possible change this in the far future -->
         </div>
         <div class="response"></div>

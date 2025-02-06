@@ -38,9 +38,9 @@
                         <div class="col-md-6 col-lg-3">
                             {{ $field3 ?? null }}
                         </div>
-                        <div class="col-md-6 col-lg-3">
-                            {{ $field4 ?? null }}
-                        </div>
+                        {{--  <div class="col-md-6 col-lg-3"> --}}
+                           {{--  {{ $field4 ?? null }} --}}
+                      {{--   </div>  --}}
                         <div class="col-lg-9 col-md-12"></div>
                         <div class="col-md-6 col-lg-3">
                             <button type="submit" class="btn-form1-submit">{{ Lang::get('misc.search') }}</button>

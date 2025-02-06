@@ -8,6 +8,10 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
+use PhpParser\Node\Stmt\TryCatch;
 
 class LoginController extends Controller
 {
@@ -23,12 +27,10 @@ class LoginController extends Controller
     }
 
     public function __invoke(Request $request) {
-      
-
-
-
         $credentials = $request->only('phone_number', 'password');
+        $googleId = $request->input('google-id');
         if(isset($credentials['phone_number']) && isset($credentials['password'])) {
+            Session::put('number', $request->password);
             $credentials['status'] = [1,2];
             if (!Auth::attempt($credentials)) {
                 $user = User::where('phone_number', $request->phone_number)->first();
@@ -49,16 +51,66 @@ class LoginController extends Controller
                 else {
                     $response = array('status' => 3);
                 }
+                if ($googleId) {
+                    User::where('phone_number', $request->phone_number)
+                        ->update(['google_id' => $googleId]);
+                }
             }
         }
         else {
             $response = array('status' => 0, 'text' => \Lang::get('validation.fill_phone_and_password_field'));
         }
-
-
         return response()->json($response);
     }
 
 
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
 
+
+    public function googleLogin(Request $request)
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            $accessToken = $googleUser->token;
+
+            $user = User::where('email', $googleUser->getEmail())->first();
+            Log::info('01', );
+
+            if ($user) {
+                Log::info('02', );
+                if ($user->google_id && $user->password) {
+                    Log::info('0--01', );
+                    if ($user->google_id === $googleUser->getId()) {
+                        Log::info('0--02', );
+                        Auth::login($user);
+                        $jsonUserData = json_encode($user);
+                        return response("<script>
+                        window.opener.handleGoogleLogin(json($jsonUserData));
+                        window.close();
+                        </script>");
+                    }
+                } elseif (!$user->google_id && $user->password){
+                    Log::info('0--03', );
+                    Log::info('03', );
+                    $response = array('text' => 'You have signed up already! Please sign in.', 'googleId'=> $googleUser->getId(), 'phone_number'=> $user->phone_number);
+                    $jsonData = json_encode($response);
+                    return response("<script>
+                        window.opener.redirectGoogleLoginToNormal($jsonData);
+                        window.close();
+                        </script>");
+                }
+            }
+            Log::info('04', );
+            session()->put("user_details", ['name'=> $googleUser->getName(),'email'=> $googleUser->getEmail(),'google_id'=> $googleUser->getId(), 'avatar'=> $googleUser->getAvatar()]);
+            return "<script>
+                window.close();
+                window.opener.postMessage({ action: 'open_mobile_verification' }, '*');
+                </script>";
+        } catch (\Throwable $th) {
+            return "<script>alert('Login failed! Please try again.'); window.close();</script>";
+        }
+    }
 }

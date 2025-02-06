@@ -1,13 +1,13 @@
 [
     {
         "country_id": 1,
-        "name": "ශ්‍රී ලංකා",
-        "locale": "sn"
+        "name": "Sri Lanka",
+        "locale": "en"
     },
     {
         "country_id": 1,
-        "name": "Sri Lanka",
-        "locale": "en"
+        "name": "ශ්‍රී ලංකා",
+        "locale": "si"
     },
     {
         "country_id": 1,

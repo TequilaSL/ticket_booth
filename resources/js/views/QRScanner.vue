@@ -12,7 +12,7 @@
                             <p class="title_area">{{ lang.salesHistory.passenger }}</p>
                             <p class="passenger_name">{{ ticket.passenger }}</p>
                         </div>
-                        <p class="price">{{ ticket.price }} <span>gel</span></p>
+                        <p class="price">{{ ticket.price }} <span>lkr</span></p>
                     </div>
                     <div class="second_box">
                         <div class="from">
@@ -133,7 +133,7 @@ export default {
         },
         onDecode(result) {
             console.log('on Decode ', result);
-            
+
             if (result && result.length) {
                 this.cameraOff();
                 this.isLoading = true;
