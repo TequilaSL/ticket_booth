@@ -99,6 +99,39 @@ $(document).ready(function () {
         closeLoginForm();
     });
 
+    $("#signUpByGoogle").on("click", function (e) {
+        const width = 500, height = 600;
+        const left = (screen.width - width) / 2;
+        const top = (screen.height - height) / 2;
+
+        const googleAuthPopup = window.open(
+            "/auth/google/redirect",
+            "Google Login",
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
+
+        if (!googleAuthPopup || googleAuthPopup.closed || typeof googleAuthPopup.closed == 'undefined') {
+            alert("Popup blocked! Please allow popups and try again.");
+        }
+    });
+
+    window.handleGoogleLogin = function (user) {
+        console.log("Google User:", user);
+        localStorage.setItem("user", JSON.stringify(user));
+        window.location.reload();
+    };
+
+    window.redirectGoogleLoginToNormal = function (param) {
+        closeEmailVerificationForm()
+        openLoginForm()
+        $(".login-popup-wrapper .response")
+        .css("display", "inline-block")
+        .addClass("response-success")
+        .html(param.text);
+        $("#google_id").val(param.googleId);
+        $("#phone_number2").val(param.phone_number);
+    };
+
     /*----------------------------------------------------*/
     // login and register functions.
     /*----------------------------------------------------*/
@@ -106,6 +139,8 @@ $(document).ready(function () {
     window.openRegisterForm = openRegisterForm;
     window.closeEmailVerificationForm = closeEmailVerificationForm;
     window.openEmailVerificationForm = openEmailVerificationForm;
+    window.closeMobileVerificationForm = closeMobileVerificationForm;
+    window.openMobileVerificationForm = openMobileVerificationForm;
 
     function openLoginForm (e) {
         $(".login-btn-wrapper").addClass("open");
@@ -115,8 +150,16 @@ $(document).ready(function () {
         $(".email-verification-btn-wrapper").addClass("open");
     };
 
+    function openMobileVerificationForm (e) {
+        $(".mobile-verification-btn-wrapper").addClass("open");
+    };
+
     function closeEmailVerificationForm (e) {
         $(".email-verification-btn-wrapper").removeClass("open");
+    };
+
+    function closeMobileVerificationForm (e) {
+        $(".mobile-verification-btn-wrapper").removeClass("open");
     };
 
     function openRegisterForm (e) {
@@ -130,6 +173,16 @@ $(document).ready(function () {
     function closeRegisterForm (e) {
         $(".signup-btn-wrapper").removeClass("open");
     };
+
+
+    /*----------------------------------------------------*/
+    // Modal mobile verification.
+    /*----------------------------------------------------*/
+    $(".mobile-verification-popup-wrapper .close").on("click", function (e) {
+        e.preventDefault();
+        window.history.replaceState({}, document.title, window.location.pathname);
+        closeMobileVerificationForm();
+    });
 
 
     /*----------------------------------------------------*/
@@ -2669,6 +2722,7 @@ $(document).ready(function () {
                     window.location.href = data.text;
                 } else if (data.status === 3) {
                     scrollTo();
+                    location.reload()
                 } else {
                     $(this)
                         .parent()
@@ -2812,7 +2866,79 @@ $(document).ready(function () {
         });
     });
 
+    let mobileVerificationForm = $("#mobile-verification-form");
+    window.mobileVerificationForm = mobileVerificationForm;
+    let submitButton = mobileVerificationForm.find('button[type="submit"]');
+    mobileVerificationForm.submit(function (e) {
+        e.preventDefault();
+        $(".response")
+            .css("display", "none")
+            .removeClass(
+                "response-success response-danger response-warning response-info"
+            );
+        let formData = mobileVerificationForm.serializeArray();
+        let otpCode = formData.find((field) => field.name === "otp_code")?.value || "";
+        let apiUrl = otpCode ? route("verify_otp") : route("verification_mobile");
 
+        formData.push({
+            name: "phone_number",
+            value: $(this)
+                .find('input[name="phone_number"]')
+                .intlTelInput("getNumber"),
+        });
+
+        $.ajax({
+            url: apiUrl,
+            type: "POST",
+            context: this,
+            data: formData,
+            success: function (data) {
+                if (data.status === 1) {
+                    if (otpCode) {
+                        closeMobileVerificationForm();
+                        window.location.reload();
+                    } else {
+                        $(".mobile-verification-popup-wrapper .response")
+                        .css("display", "inline-block")
+                        .addClass("response-success")
+                        .html(data.text);
+
+                        let formGroups = mobileVerificationForm.find(".form-group");
+                        formGroups.hide();
+                        formGroups.last().show();
+                        submitButton.text('VERIFY OTP')
+                    }
+                } else {
+                    $(this)
+                        .parent()
+                        .find(".response")
+                        .css("display", "inline-block")
+                        .addClass("response-danger")
+                        .html(data.text);
+                }
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+            error: function (data) {
+                $(this)
+                    .parent()
+                    .find(".response")
+                    .css("display", "inline-block")
+                    .addClass("response-danger")
+                    .html(data.responseJSON.text);
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+        });
+    });
 
     const currentPath = window.location.pathname;
     const routeRegex = /^\/listings\/\d+-[a-zA-Z]+-[a-zA-Z]+-date-\d{4}-\d{2}-\d{2}$/;
@@ -5341,6 +5467,10 @@ $(document).ready(function () {
 
 /////////////////////// load
 $(window).on("load", function () {
+
+    let formGroups = mobileVerificationForm.find(".form-group");
+    formGroups.last().hide();
+
     $(".vehicle-scheme-wrapper").css("display", "block");
 
     // Details.
@@ -5432,3 +5562,10 @@ function checkForVerifiedEmails() {
         .html("");
     }
 }
+
+window.addEventListener("message", function(event) {
+    if (event.data && event.data.action === "open_mobile_verification") {
+        closeEmailVerificationForm()
+        openMobileVerificationForm();
+    }
+});

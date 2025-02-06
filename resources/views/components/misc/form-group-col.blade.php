@@ -91,7 +91,7 @@
                                     @slot('name') {{ $name }} @endslot
                                 @endcomponent
                             @elseif(isset($field) && $field == 'hidden')
-                                <input type="hidden" class="{{ $class ?? null }}" name="{{ $name ?? null }}"
+                                <input type="hidden" class="{{ $class ?? null }}" name="{{ $name ?? null }}" id="{{ $hiddenGoogleId ?? null}}"
                                        value="{{ $value ?? null }}">
                             @elseif(isset($field) && $field == 'textarea')
                                 <textarea autocomplete="off" placeholder="{{ $placeholder ?? $label ?? null }}"

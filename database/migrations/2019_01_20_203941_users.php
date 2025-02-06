@@ -17,8 +17,8 @@ class Users extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->nullable()->unique();
-            $table->string('phone_number')->unique();
-            $table->string('password');
+            $table->string('phone_number')->nullable();
+            $table->string('password')->nullable();
             $table->tinyInteger('status')->default(2); // 2 to activate mobile phone, 1 phone activated, 3 suspended
             $table->tinyInteger('subscribed')->default(1); // 1 subscribed, 0 unsubscribed
             $table->string('id_number')->nullable();

@@ -1,4 +1,7 @@
 <?php
+use App\Http\Controllers\Auth\LoginController;
+use App\User;
+use Laravel\Socialite\Facades\Socialite;
 
 
 Route::group(['middleware' => ['web']], function () {
@@ -125,6 +128,9 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::post('/auth/verification-email', 'Auth\EmailVerificationController@sendVerificationEmail')->name('verification_email');
         Route::get('/auth/verify-email/{email}/{token}', 'Auth\EmailVerificationController@verifyEmail')->name('email_verify');
+
+        Route::post('/auth/verification-mobile', 'Auth\MobileVerificationController@sendVerificationMessage')->name('verification_mobile');
+        Route::post('/auth/verify-otp', 'Auth\MobileVerificationController@verifyMobile')->name('verify_otp');
 
         Route::post('/auth/register', 'Auth\RegisterController')->name('auth_register');
         Route::post('/auth/register-driver', 'Auth\RegisterAsDriverController')->name('auth_register_driver');
@@ -351,8 +357,11 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/admin/logout', 'Admin\AdminController@logout')->name('admin_logout');
 
-
-
+    Route::get('/auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.login');
+    Route::get('/auth/google/callback', [LoginController::class, 'googleLogin']);
+    Route::get('/auth/google/redirect', function () {
+        return Socialite::driver('google')->stateless()->redirect();
+    });
 });
 
 Route::get('/{any}', function () {
