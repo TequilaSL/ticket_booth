@@ -17,12 +17,14 @@
                 @slot('label') {{ Lang::get('auth.password') }} @endslot
                 @slot('class') mobile-verification-input form-control @endslot
                 @slot('name') password @endslot
+                @slot('type') password @endslot
                 @slot('field_id') password-input @endslot
             @endcomponent
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.password_confirm') }} @endslot
                 @slot('class') mobile-verification-input form-control @endslot
                 @slot('name') password_confirmation @endslot
+                @slot('type') password @endslot
                 @slot('field_id') password_confirmation @endslot
             @endcomponent
             @component('components.misc.form-group-col')

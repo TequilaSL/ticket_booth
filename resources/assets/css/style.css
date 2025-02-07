@@ -2025,6 +2025,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#851dad', end
 #popup-form2 select.form-control{border-radius: 1px; padding-top:5px; outline: none !important; box-shadow: none !important;}
 #popup-form2 .btn1{margin-top: 0;}
 
+/* other popup forms */
+#mobile-verification-form .form-group label{display: none;}
+
 @media (max-width: 1798px) {
     #fixed-menu {display: none;}
 }

@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver as ImageDriver;
 use Exception;
 
 class MobileVerificationController extends Controller
@@ -30,12 +31,15 @@ class MobileVerificationController extends Controller
             $otp = strval(rand(1000, 9999));
             $requestdata['otp'] = $otp;
             $requestdata['body'] = 'This is your OTP: '. $otp;
+            Log::info('session data 1 ',[session("user_details")]);
 
             session()->put("user_details", array_merge(session("user_details", []), [
                 'phone_number'=> $requestdata['phone_number'],
                 'password'=> Hash::make($requestdata['password']),
                 'otp'=>$otp
             ]));
+            Log::info('session data 1 ',[session("user_details")]);
+
 
             $smsResponse = $this->sendMassageForMobile($requestdata);
 
@@ -75,6 +79,41 @@ class MobileVerificationController extends Controller
         }
     }
 
+    protected function uploadGoogleAvatar($avatarUrl, $userId){
+        if (!$avatarUrl) {
+            return false;
+        }
+
+        try {
+            $imageMake = new ImageManager(new ImageDriver());
+
+            $response = Http::get($avatarUrl);
+            if (!$response->successful()) {
+                return false;
+            }
+
+            $imageData = $imageMake->read($response->body());
+            $imageData->orient();
+
+            $extension = 'jpg';
+
+            $image_original = clone $imageData;
+            $image_original->resize(200, 200);
+            Storage::disk('s3')->put("users/{$userId}.{$extension}", $image_original->encode());
+
+            $image_resize = clone $imageData;
+            $image_resize->resize(30, 30);
+            Storage::disk('s3')->put("users/small/{$userId}.{$extension}", $image_resize->encode());
+
+            User::whereId($userId)->update(['extension' => $extension]);
+
+            return true;
+        } catch (Exception $e) {
+            Log::error("Google Avatar Upload Failed: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function verifyMobile(Request $request)
     {
         try {
@@ -104,6 +143,12 @@ class MobileVerificationController extends Controller
                 'password' => $storedData['password'],
                 'country_id' => "1"
             ]);
+            Log::info('avater ',[$user]);
+
+            if ($storedData['avatar']) {
+                $this->uploadGoogleAvatar($storedData['avatar'], $user->id);
+            }
+
             session()->forget("user_details");
             Auth::login($user);
             return response()->json(['status' => 1, 'text' => 'User registered successfully!']);

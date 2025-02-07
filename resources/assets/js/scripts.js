@@ -107,6 +107,7 @@ $(document).ready(function () {
         const googleAuthPopup = window.open(
             "/auth/google/redirect",
             "Google Login",
+            '_blank',
             `width=${width},height=${height},top=${top},left=${left}`
         );
 
@@ -4387,51 +4388,19 @@ $(document).ready(function () {
             })
             .magnificPopup("open");
     });
+    $(document).on("click", "[id^='toggleIcon-']", function () {
+        const icon = this;
+        const inputId = icon.id.replace("toggleIcon-", "");
+        const passwordInput = document.getElementById(inputId);
 
-    $(document).on("click", "#toggleIcon-homepage-login-password", function (e) {
-        const icon = document.getElementById('toggleIcon-homepage-login-password');
-        const loginInput = document.getElementById('homepage-login-password');
+        if (passwordInput) {
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 
-        if (loginInput.type === 'password') {
-            loginInput.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            loginInput.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
+            icon.classList.toggle("fa-eye");
+            icon.classList.toggle("fa-eye-slash");
         }
     });
 
-    $(document).on("click", "#toggleIcon-registration-password", function (e) {
-        const icon = document.getElementById('toggleIcon-registration-password');
-        const registerInput = document.getElementById('registration-password');
-
-        if (registerInput.type === 'password') {
-            registerInput.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            registerInput.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    });
-
-    $(document).on("click", "#toggleIcon-homepage-reg-password", function (e) {
-        const icon = document.getElementById('toggleIcon-homepage-reg-password');
-        const homepageInput = document.getElementById('homepage-reg-password');
-
-        if (homepageInput.type === 'password') {
-            homepageInput.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            homepageInput.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-        }
-    });
 
     /*----------------------------------------------------*/
     // Superfish menu.
