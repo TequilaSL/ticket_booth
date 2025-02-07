@@ -86,9 +86,11 @@ class LoginController extends Controller
                     if ($user->google_id === $googleUser->getId()) {
                         Log::info('0--02', );
                         Auth::login($user);
-                        $jsonUserData = json_encode($user);
+                        $response = array('status'=> 1, 'user'=> $user);
+                        $jsonUserData = json_encode($response);
+                        Log::info('0--0--1', [$jsonUserData]);
                         return response("<script>
-                        window.opener.handleGoogleLogin(json($jsonUserData));
+                        window.opener.handleGoogleLogin($jsonUserData);
                         window.close();
                         </script>");
                     }
