@@ -148,5 +148,41 @@
         "code": "KE",
         "country_id": 1,
         "extension": "jpeg"
+    },
+    {
+        "id": "26",
+        "code": "ME",
+        "country_id": 1,
+        "extension": "jpeg"
+    },
+    {
+        "id": "27",
+        "code": "DA",
+        "country_id": 1,
+        "extension": "jpeg"
+    },
+    {
+        "id": "28",
+        "code": "KO",
+        "country_id": 1,
+        "extension": "jpeg"
+    },
+    {
+        "id": "29",
+        "code": "KAD",
+        "country_id": 1,
+        "extension": "jpeg"
+    },
+    {
+        "id": "30",
+        "code": "KAT",
+        "country_id": 1,
+        "extension": "jpeg"
+    },
+    {
+        "id": "31",
+        "code": "AK",
+        "country_id": 1,
+        "extension": "jpeg"
     }
 ]

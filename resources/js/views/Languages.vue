@@ -5,7 +5,6 @@
             <div class="lang_list">
                 <a @click="changeLanguage(locale)" v-for="(locale,k) in localeKeys" :key="k" class="single_list">
                     <div class="lang" :class="locale">
-                        <img :src="imagesPathRewrite(locales[locale].flag)" :alt="locales[locale].name">
                         <p class="lang_title">{{ locales[locale].name }}</p>
                     </div>
                 </a>
@@ -18,21 +17,17 @@
     </div>
 </template>
 <script>
-
 import locales from '../languages'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import {imagesPathRewrite} from '../config'
-
 import lang from '../translations'
-import VLoading from "../components/Loading";
+import VLoading from "../components/Loading"
 
 export default {
     components: {VLoading, Header, Footer},
     data() {
         return {
             componentKey: 0,
-            imagesPathRewrite: imagesPathRewrite,
             locales: locales,
             currentLocale: '',
             localeKeys: Object.keys(locales),

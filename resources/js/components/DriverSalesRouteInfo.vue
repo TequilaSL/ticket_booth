@@ -10,7 +10,7 @@
             </div>
             <div class="balance_info">
                 <p class="balance_title">{{ lang.driverSalesRouteInfo.total_sold_currency }}</p>
-                <p class="balance">{{ data.total_sold_currency }} <span>gel</span></p>
+                <p class="balance">{{ data.total_sold_currency }} <span>lkr</span></p>
                 <p class="ticket_title">{{ lang.driverSalesRouteInfo.total_sold }}</p>
                 <p class="ticket_amount">{{ data.total_sold }}</p>
             </div>
@@ -19,7 +19,7 @@
             <div class="header_box">
                 <div class="balance_box">
                     <p class="title_area">{{ lang.driverSalesRouteInfo.total_sold_currency }}</p>
-                    <p class="today_balance">{{ data.total_sold_currency }} <span>gel</span></p>
+                    <p class="today_balance">{{ data.total_sold_currency }} <span>lkr</span></p>
                 </div>
                 <div class="ticket_box">
                     <p class="title_area">{{ lang.driverSalesRouteInfo.total_sold }}</p>

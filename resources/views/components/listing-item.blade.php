@@ -46,8 +46,8 @@
                                     {{ trans_choice('misc.hours_short', gmdate('H', $tt)) }}
                                 </div>
                                 <div class="line1"></div>
-                                <div
-                                    class="txt2">{{ Controller::timeForHumans($result['stopping_time']) }}</div>
+                               {{--  <div
+                                   class="txt2">{{ Controller::timeForHumans($result['stopping_time']) }}</div> --}}
                             </div>
                             <div class="info3">
                                 <div class="time1">{{ $result['arrival_time'] }}</div>
@@ -63,8 +63,8 @@
                         <div class="details"><a href="#">{{ Lang::get('misc.details') }}</a></div>
                     </div>
                     <div class="ticket-details-left-col3">
-                        <div class="txt1">{{ $result['price'] }}<span></span></div>
-                        <div class="txt2"><span>{{ Lang::get('misc.refundable') }}</span></div>
+                        <div class="txt1">{{ $result['price'] }}<span>{{$result['currency']['currency_key']}}</span></div>
+                        <!-- <div class="txt2"><span>{{ Lang::get('misc.refundable') }}</span></div> -->
                     </div>
                 </div>
                 <div class="ticket-details-right">

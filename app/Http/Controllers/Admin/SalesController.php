@@ -284,10 +284,10 @@ class SalesController extends AdminController
             ['name' => Lang::get('admin.status_purchased'), 'value' => Sales::whereStatus(1)->count(), 'label' => 'success'],
             ['name' => Lang::get('admin.status_parsed'), 'value' => Sales::whereStatus(3)->count(), 'label' => 'success'],
             ['name' => Lang::get('admin.status_refunded'), 'value' => Sales::whereStatus(4)->count(), 'label' => 'danger', 'divide' => true],
-            ['name' => Lang::get('admin.total_in_currency'), 'value' => Sales::status([1, 3])->sum('price') . ' GEL', 'label' => 'success'],
-            ['name' => Lang::get('admin.driver_earnings'), 'value' => BalanceUpdates::whereType(1)->sum('amount') . ' GEL', 'label' => 'success'],
-            ['name' => Lang::get('admin.affiliate_earnings'), 'value' => BalanceUpdates::where('type', 2)->orWhere('type', 3)->sum('amount') . ' GEL', 'label' => 'success'],
-            ['name' => Lang::get('admin.zoombus_earnings'), 'value' => BalanceUpdates::whereType(4)->sum('amount') . ' GEL', 'label' => 'success'],
+            ['name' => Lang::get('admin.total_in_currency'), 'value' => Sales::status([1, 3])->sum('price') . ' LKR', 'label' => 'success'],
+            ['name' => Lang::get('admin.driver_earnings'), 'value' => BalanceUpdates::whereType(1)->sum('amount') . ' LKR', 'label' => 'success'],
+            ['name' => Lang::get('admin.affiliate_earnings'), 'value' => BalanceUpdates::where('type', 2)->orWhere('type', 3)->sum('amount') . ' LKR', 'label' => 'success'],
+            ['name' => Lang::get('admin.zoombus_earnings'), 'value' => BalanceUpdates::whereType(4)->sum('amount') . ' LKR', 'label' => 'success'],
 
         ];
         $data['dateDefs'] = [0];

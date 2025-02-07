@@ -42,7 +42,7 @@
                 @component('components.misc.form')
                     @slot('form_id') registerAsDriverForm @endslot
                     @component('components.misc.form-group-col')
-                        @slot('label') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                        @slot('label') {{Lang::get('auth.fullname') }} @endslot
                         @slot('name') name @endslot
                         @slot('value') @endslot
                     @endcomponent
@@ -72,11 +72,11 @@
                         @slot('name') affiliate_code @endslot
                         @slot('value') {{ $affiliateCode ?? null }} @endslot
                     @endcomponent
-                    {{-- <div id="register_driver_element"></div> --}}
+                    <div id="register_driver_element"></div>
                     @component('components.misc.submit-button')
                         @slot('anchor') {{ Lang::get('auth.registration') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> @endslot
                     @endcomponent
-                    @slot('subtitle') {!! Lang::get('auth.agree_terms_of_use') !!} @endslot
+                    @slot('subtitle') {{ Lang::get('auth.sign-in-button-p') }} @endslot
                 @endcomponent
             </div>
         </div>

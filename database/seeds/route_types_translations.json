@@ -1,32 +1,93 @@
 [
     {
         "route_type_id": 1,
-        "name": "მიკროავტობუსი",
-        "locale": "ka"
+        "name": "2*1 මිනි බස්",
+        "locale": "si"
     },
     {
         "route_type_id": 1,
-        "name": "Mini bus",
+        "name": "2*1 mini bus",
         "locale": "en"
     },
     {
         "route_type_id": 1,
-        "name": "Мини автобус",
-        "locale": "ru"
+        "name": "2*1 மினி பஸ்",
+        "locale": "ta"
     },
     {
         "route_type_id": 2,
-        "name": "ავტობუსი",
-        "locale": "ka"
+        "name": "3*1 මිනි බස්",
+        "locale": "si"
     },
     {
         "route_type_id": 2,
-        "name": "Bus",
+        "name": "3*1 mini bus",
         "locale": "en"
     },
     {
         "route_type_id": 2,
-        "name": "автобус",
-        "locale": "ru"
+        "name": "3*1 மினி பஸ்",
+        "locale": "ta"
+    },
+
+    {
+        "route_type_id": 3,
+        "name": "2*2 මධ්‍යම බස්",
+        "locale": "si"
+    },
+    {
+        "route_type_id": 3,
+        "name": "2*2 medium bus",
+        "locale": "en"
+    },
+    {
+        "route_type_id": 3,
+        "name": "2*2 மத்திய பஸ்",
+        "locale": "ta"
+    },
+    {
+        "route_type_id": 4,
+        "name": "2*3 මධ්‍යම බස්",
+        "locale": "si"
+    },
+    {
+        "route_type_id": 4,
+        "name": "2*3 medium bus",
+        "locale": "en"
+    },
+    {
+        "route_type_id": 4,
+        "name": "2*3 மத்திய பஸ்",
+        "locale": "ta"
+    },
+    {
+        "route_type_id": 5,
+        "name": "2*2 විශාල බස්",
+        "locale": "si"
+    },
+    {
+        "route_type_id": 5,
+        "name": "2*2 large bus",
+        "locale": "en"
+    },
+    {
+        "route_type_id": 5,
+        "name": "2*2 பெரிய பஸ்",
+        "locale": "ta"
+    },
+    {
+        "route_type_id": 6,
+        "name": "2*3 විශාල බස්",
+        "locale": "si"
+    },
+    {
+        "route_type_id": 6,
+        "name": "2*3 large bus",
+        "locale": "en"
+    },
+    {
+        "route_type_id": 6,
+        "name": "2*3 பெரிய பஸ்",
+        "locale": "ta"
     }
 ]

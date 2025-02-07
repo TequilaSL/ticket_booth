@@ -1,9 +1,9 @@
 <div class="signup-btn-wrapper">
-    @if((new \Jenssegers\Agent\Agent)->isMobile())
-        <a href="{{ route('mobile.signup') }}" class="signup-btn">{{ Lang::get('auth.registration') }}</a>
-    @else
+    {{-- @if((new \Jenssegers\Agent\Agent)->isMobile()) --}}
+        {{-- <a href="{{ route('mobile.signup') }}" class="signup-btn">{{ Lang::get('auth.registration') }}</a> --}}
+    {{-- @else --}}
         <button class="signup-btn signup-button">{{ Lang::get('auth.registration') }}</button>
-    @endif
+     {{-- @endif --}}
 
     <div class="signup-popup-wrapper">
         <button type="button" class="close" aria-label="Close"></button>
@@ -12,26 +12,31 @@
         @component('components.misc.form')
             @slot('form_id') popup-form2 @endslot
             @slot('class') form-horizontal registerForm @endslot
-            @slot('subtitle') {!! Lang::get('auth.agree_terms_of_use') !!} @endslot
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.mobile_phone') }} @endslot
                 @slot('name') phone_number @endslot
                 @slot('no_id') @endslot
             @endcomponent
             @component('components.misc.form-group-col')
-                @slot('label') {{ Lang::get('auth.name') }}, {{ Lang::get('auth.lastname') }} @endslot
-                @slot('name') name @endslot
+                @slot('label') {{ Lang::get('auth.firstname') }} @endslot
+                @slot('name') first_name @endslot
+                @slot('no_id') @endslot
+            @endcomponent
+            @component('components.misc.form-group-col')
+                @slot('label') {{ Lang::get('auth.lastname') }} @endslot
+                @slot('name') last_name @endslot
                 @slot('no_id') @endslot
             @endcomponent
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.email_address') }} @endslot
                 @slot('name') email @endslot
-                @slot('no_id') @endslot
+                @slot('readonly') @endslot
+                @slot('field_id') verified_email @endslot
             @endcomponent
             @component('components.misc.form-group-col')
                 @slot('label') {{ Lang::get('auth.password') }} @endslot
                 @slot('name') password @endslot
-                @slot('no_id') @endslot
+                @slot('field_id') homepage-reg-password @endslot
                 @slot('type') password @endslot
             @endcomponent
             @component('components.misc.form-group-col', ['values' => $gender])
@@ -39,6 +44,12 @@
                 @slot('no_id') @endslot
                 @slot('name') gender_id @endslot
                 @slot('label') {{ Lang::get('auth.gender') }} @endslot
+                @endcomponent
+            @component('components.misc.form-group-col', ['value' => true])
+                @slot('field') checkbox @endslot
+                @slot('field_id') terms_and_condition @endslot
+                @slot('name') terms_and_condition @endslot
+                @slot('label') {!! Lang::get('auth.terms_and_condition') !!} @endslot
             @endcomponent
             <div id="register_element"></div>
             @component('components.misc.submit-button')

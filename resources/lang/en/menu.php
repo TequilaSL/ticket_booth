@@ -24,6 +24,7 @@ return [
     'route_registration' => 'Routes registration',
     'routes' => 'Registered Routes',
     'bought_tickets' => 'Bought tickets',
+    'home' => 'Home',
     'partner_account' => 'Partner\'s account',
     'affiliate_code' => 'Affiliate Code',
     'list_of_partners' => 'Partner\'s list and data',

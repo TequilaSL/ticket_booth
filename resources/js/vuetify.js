@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import en from './locales/en'
-import ka from './locales/ka'
+import si from './locales/si'
+import ta from './locales/ta'
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(Vuetify)
@@ -11,8 +12,8 @@ const opts = {
     iconfont: 'mdiSvg'
   },
   lang: {
-    locales: { en, ka },
-    current: localStorage.getItem('locale') || 'ka'
+    locales: { en, si, ta },
+    current: localStorage.getItem('locale') || 'en'
   },
   theme: {
     themes: {
