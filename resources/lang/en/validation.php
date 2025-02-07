@@ -7,7 +7,7 @@ return [
     'please_fill_out_this_field' => 'Please fill out this field',
     'refund_not_allowed' => 'You are not allowed to cancel this ticket',
     'refund_successful' => 'Ticket has been successfully canceled and refunded',
-    'refund_modal' => 'Are you sure you want to cancel this ticket? Refund amount will be :amount GEL',
+    'refund_modal' => 'Are you sure you want to cancel this ticket? Refund amount will be :amount LKR',
     'fill_phone_and_password_field' => 'Please fill mobile phone and password fields to log in.',
     'current_code_unused' => 'You can\'t generate new code unless current one is used',
     'phone' => 'Phone number format is invalid.',

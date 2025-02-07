@@ -200,7 +200,7 @@ class PartnersController extends AdminController
                 ]
             ];
             $partners[$key]['created_at'] = Carbon::parse($val['partner']['created_at'])->translatedFormat('Y-m-d');
-            $partners[$key]['total_sold'] = array_sum(array_column($val['balance_updates'], 'amount')).' GEL'; //future multiple currency
+            $partners[$key]['total_sold'] = array_sum(array_column($val['balance_updates'], 'amount')).' LKR'; //future multiple currency
             $partners[$key]['withdrawn'] = array_sum(array_column($val['payouts'] ?? [], 'amount')); //future multiple currency
             $partners[$key]['country_id'] = view('components.img', ['tooltip' => 'yes', 'class' => 'img-fluid', 'title' => $val['country']['translated']['name'], 'src' => $user->countryImageById($val['country']['code'])])->render();
             $partners[$key]['avatar'] = view('components.img', ['src' => $user->photoSmallById($val['id'])])->render();

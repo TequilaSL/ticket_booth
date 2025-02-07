@@ -7,12 +7,14 @@
                 </a>
                 <h3 class="head_title" :class="{hasParent: !hideBack}">{{ title }}</h3>
                 <router-link :to="{name: 'languages'}" class="languages_menu">
-                    <img :src="imagesPathRewrite(locales[this.$store.state.locale].flag)" :alt="locales[this.$store.state.locale].name">
+                    <div>{{ locales[this.$store.state.locale].code }}</div>
                 </router-link>
             </div>
         </div>
         <div class="header_logo" :class="{mt30: additionalMarginTop}" v-if="showLogo">
-            <img :src="imagesPathRewrite('logo_setting.svg')" alt="Logo setting">
+            <a href="/" class="logo">
+                <img :src="imagesPathRewrite('logo_setting.svg')" alt="Logo setting">
+            </a>
             <p class="logo_caption">{{ caption }}</p>
             <h1 class="company_title" :class="{largerLogo: largerLogo}" v-if="!hideLogoText">TicketBooth</h1>
             <div class="caption2" v-if="caption2">{{ caption2 }}</div>

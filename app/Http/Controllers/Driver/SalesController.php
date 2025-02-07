@@ -105,10 +105,10 @@ class SalesController extends DriverController {
                 $data[$k]['the_route'] = $r['cities_from']['translated']['name'] . ' ' . view('components.font-awesome', ['icon' => 'fa-arrow-right'])->render() . ' ' . $r['cities_to']['translated']['name'];
                 $data[$k]['the_transport'] = $r['vehicles']['manufacturers']['name'] . ' ' . $r['vehicles']['model'] . ' / ' . $r['vehicles']['license_plate'];
                 $data[$k]['departure_date'] = Carbon::parse($r['departure_date'])->format('Y-m-d');
-                $data[$k]['price'] = $r['price'] . ' GEL';
+                $data[$k]['price'] = $r['price'] . ' LKR';
                 $data[$k]['total_sold'] = $r['sales_count'];
-                $data[$k]['total_sold_currency'] = $totalSoldCurrency . ' GEL (' . $percentage . '%)';
-                $data[$k]['total_company_currency'] = $companyPriceWithCurrency . ' GEL (' . $companyPercentage . '%)';
+                $data[$k]['total_sold_currency'] = $totalSoldCurrency . ' LKR (' . $percentage . '%)';
+                $data[$k]['total_company_currency'] = $companyPriceWithCurrency . ' LKR (' . $companyPercentage . '%)';
                 $data[$k]['actions'] = view('components.table-actions', ['actions' => $actions])->render();
             }
 

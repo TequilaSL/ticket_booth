@@ -19,7 +19,7 @@
                     @slot('name') name[] @endslot
                     @slot('no_id') @endslot
                     @isset($current_user) @slot('value') {{ Auth::user()->name }} @endslot @endisset
-                    @slot('placeholder') {{ Lang::get('auth.name').', '.Lang::get('auth.lastname') }} @endslot
+                    @slot('placeholder') {{ Lang::get('auth.fullname') }} @endslot
                     @if(isset($preserving) && $preserving == 1)
                         @slot('disabled') @endslot
                         @slot('value') {{ Lang::get('auth.name_not_required')}} @endslot

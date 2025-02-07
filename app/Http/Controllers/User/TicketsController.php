@@ -141,11 +141,11 @@ class TicketsController extends ValidationController
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
 
-            $response = $http->post('https://ticketbooth.tequilasl.com/oauth/token', [
+            $response = $http->post('http://127.0.0.1:8000/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id' => '2',
-                    'client_secret' => 'nqNNtsInNJc2whptIlTlimw1r5YnAukMNnaeCjLz',
+                    'client_id' => '4',
+                    'client_secret' => 'cZwHPYhIpdEfaGFTgimHbMJQBI0f8o1Hc4lCB4Tr',
                     'username' => $data['tickets']['users']['phone_number'],
                     'password' => $data['tickets']['users']['password']
                 ]

@@ -35,7 +35,7 @@
                         <div class="counter-number-group mb-15">
 
                             <span class="counter-number">{{ $total_sales ?? 0 }}</span>
-                            <span class="counter-number-related">GEL</span>
+                            <span class="counter-number-related">LKR</span>
                         </div>
                         @if($vs_prev_year != 0)
                             <div class="counter-label">
@@ -70,7 +70,7 @@
                         </div>
                         <div class="counter-number-group mb-10">
                             <span class="counter-number">{{ $monthly_sales ?? 0 }}</span>
-                            <span class="counter-number-related">GEL</span>
+                            <span class="counter-number-related">LKR</span>
                         </div>
                         @if($vs_prev_month != 0)
                             <div class="counter-label">
@@ -106,7 +106,7 @@
                         </div>
                         <div class="counter-number-group mb-10">
                             <span class="counter-number">{{ $daily_sales ?? 0 }}</span>
-                            <span class="counter-number-related">GEL</span>
+                            <span class="counter-number-related">LKR</span>
                         </div>
                         @if($vs_prev_day != 0)
                             <div class="counter-label">

@@ -3,7 +3,7 @@
         <div class="{{ $col }} @isset($hidden) hidden @endisset">
             @endisset
             @unless(isset($hideGroup))
-                <div class="{{ $group_class ?? 'form-group' }}">
+                <div class="{{ ($group_class ?? 'form-group') . (isset($type) && $type == 'password' ? ' password-style-class' : '') }}">
                     @endunless
                     @if(isset($field) && $field == 'checkbox')
                         @isset($values)
@@ -75,13 +75,8 @@
                                                         selected
                                                     @endif
                                                 @endisset>
-{{
-    (!empty($valuez['translated']['name']) && is_string($valuez['translated']['name']))
-        ? $valuez['translated']['name']
-        : (is_string($valuez['text'] ?? null)
-            ? ($valuez['text'] ?? $valuez['name'] ?? $valuez)
-            : null)
-}}                                            </option>
+                                                {{ (!empty($valuez['translated'])) ? $valuez['translated']['name'] : $valuez['text'] ?? $valuez['name'] ?? $valuez }}
+                                          </option>
                                         @endforeach
                                     @endisset
                                 </select>
@@ -96,7 +91,7 @@
                                     @slot('name') {{ $name }} @endslot
                                 @endcomponent
                             @elseif(isset($field) && $field == 'hidden')
-                                <input type="hidden" class="{{ $class ?? null }}" name="{{ $name ?? null }}"
+                                <input type="hidden" class="{{ $class ?? null }}" name="{{ $name ?? null }}" id="{{ $hiddenGoogleId ?? null}}"
                                        value="{{ $value ?? null }}">
                             @elseif(isset($field) && $field == 'textarea')
                                 <textarea autocomplete="off" placeholder="{{ $placeholder ?? $label ?? null }}"
@@ -167,6 +162,9 @@
                                            @endif
                                            autocomplete="off" @isset($disabled) disabled
                                            @endisset @isset($readonly) readonly @endisset>
+                                           @if(isset($type) && $type == 'password')
+                                           <i class="fa fa-eye" id="toggleIcon-{{ $field_id ?? $name }}"></i>
+                                           @endif
                                 @endunless
                             @endif
 

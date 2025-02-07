@@ -30,13 +30,13 @@
         <div class="form-group">
             <label class="col-md-4 col-xs-5 control-label">{{ Lang::get('admin.balance') }}</label>
             <div class="col-md-8 col-xs-7"><span
-                   class="badge badge-success">{{ $userInfo['balance'] ?? 0 }} GEL</span></div> {{-- FUTURE currency--}}
+                   class="badge badge-success">{{ $userInfo['balance'] ?? 0 }} LKR</span></div> {{-- FUTURE currency--}}
         </div>
 
         <div class="form-group">
             <label class="col-md-4 col-xs-5 control-label">{{ Lang::get('admin.withdrawn') }}</label>
             <div class="col-md-8 col-xs-7 line-height-30"><span
-                    class="badge badge-danger">{{ $userInfo['total_withdrawn'] ?? 0 }} GEL {{-- FUTURE currency--}}</span></div>
+                    class="badge badge-danger">{{ $userInfo['total_withdrawn'] ?? 0 }} LKR {{-- FUTURE currency--}}</span></div>
         </div>
     </div>
 

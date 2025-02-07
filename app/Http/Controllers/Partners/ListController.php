@@ -41,7 +41,7 @@ class ListController extends Controller {
                 $q->where('tier_one_user_id', \Auth::user()->id)->where('status', 1);
             })->whereDoesntHave('activeVehicles');
         $existsP = $partners->exists();
-
+        
         if ($existsV) {
             $vehiclesQ = $vehicles->with([
                 'affiliate',

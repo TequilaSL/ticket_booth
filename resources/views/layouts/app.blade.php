@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>@yield('title')</title>
+    <title>TicketBooth.lk</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="{{ URL::asset('images/favicon.png') }}"/>
     @hasSection('description')
@@ -34,9 +34,11 @@
     <div class="site-content-wrapper">
         <div class="corner-top-orange"></div>
         <div class="serving-since">
-            <div class="txt1">
+            <a href="{{ route('index') }}" class="logo">
+                <div class="txt1">
                 <img src="{{ URL::asset('images/qr-code.svg') }}" alt="qr-code">
             </div>
+            </a>
             <!-- <div class="txt1">20<br>19</div> -->
             <!-- <div class="txt2">{{ Lang::get('misc.online_since') }}</div> -->
         </div>
@@ -84,11 +86,11 @@
 @if(!Auth::check() || Request::routeIs(['support','register_as_partner','register_as_driver','support']))
     <script>
         var onloadCallback = function () {
-            // @if(!Auth::check())
-            // grecaptcha.render('register_element', {
-            //     'sitekey': '{{ config('services.google-recaptcha.site') }}'
-            // });
-            // @endif
+            {{--  @if(!Auth::check()) --}}
+            {{--  grecaptcha.render('register_element', { --}}
+                 {{--  'sitekey': '{{ config('services.google-recaptcha.site') }}' --}}
+            {{--  }); --}}
+             {{--  @endif --}}
             @if(Request::routeIs('register_as_partner'))
             grecaptcha.render('register_partner_element', {
                 'sitekey': '{{ config('services.google-recaptcha.site') }}'
@@ -106,9 +108,9 @@
             @endif
         };
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
+    {{-- <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl={{ config('app.locale') }}"
             async defer>
-    </script>
+    </script> --}}
 @endif
 <script src="{{ URL::asset('js/scripts.js') }}"></script>
 </body>
