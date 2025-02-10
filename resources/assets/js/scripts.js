@@ -118,7 +118,7 @@ $(document).ready(function () {
 
     window.handleGoogleLogin = function (user) {
         console.log("Google User:", user);
-        localStorage.setItem("user", JSON.stringify(user));
+        // localStorage.setItem("user", JSON.stringify(user));
         window.location.reload();
     };
 
