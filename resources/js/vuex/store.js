@@ -1,10 +1,10 @@
+import jwt from 'jsonwebtoken'
 import Vue from 'vue'
 import Vuex from 'vuex'
 import api from '../api'
 import axios from '../axios'
-import router from '../routes'
 import locales from '../languages'
-import jwt from 'jsonwebtoken'
+import router from '../routes'
 
 Vue.use(Vuex)
 
@@ -104,7 +104,9 @@ export default new Vuex.Store({
                     customFormData.append('_token', payload.data ? payload.data._token : payload.data.get('_token') )
                     customFormData.append('phone_number', payload.data ?  payload.data.username : payload.data.get('username'))
                     customFormData.append('password', payload.data ? payload.data.password : payload.data.get('password'))
-                    await axios.post(apiFindLogin.url, customFormData)
+                    if (customFormData.get('_token') && customFormData.get('phone_number') && customFormData.get('password')) {
+                        // await axios.post(apiFindLogin.url, customFormData)
+                    }
                 }
 
                 if (payload.onSuccessRedirect) {
