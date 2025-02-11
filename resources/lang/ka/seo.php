@@ -11,6 +11,7 @@ return [
     'partners_list_title' => 'პარტნიორთა სია / მონაცემები | Zoombus',
     'affiliate_code_title' => 'საპარტნიორო კოდი | Zoombus',
     'driver_payouts' => 'გამოთხოვის ისტორია | Zoombus',
+    'vehicle_details' => 'vehicle details',
     'registered_routes_title' => 'რეგისტრირებული მარშრუტები | Zoombus',
     'partner_payouts' => 'პარტნიორის გამოთხოვის ისტორია | Zoombus',
     'listing_title' => 'ყველა მარშრუტი | Zoombus',

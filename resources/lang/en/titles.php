@@ -117,6 +117,10 @@ return [
     'partner_payouts' => 'Partner\'s payouts',
     'partner_payouts2' => 'All your payout history as a partner.',
 
+    //Partner Payouts
+    'vehicle_details' => 'Vehicle Details',
+    'vehicle_details2' => 'All your vehicle details as a partner.',
+
     //Affiliate Code
     'affiliate_code' => 'Affiliate Code',
     'affiliate_code2' => 'View your affiliate code and send it to a mobile number if you desire.',

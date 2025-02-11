@@ -1186,6 +1186,39 @@ $(document).ready(function () {
         });
     }
 
+    let vehicleDetailsTable = $("#vehicleDetailsTable");
+    if (vehicleDetailsTable.length > 0) {
+        vehicleDetailsTable.DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: route("payout_data"),
+                type: "POST",
+                data: { _token: CSRF_TOKEN, type: "driver" },
+                dataType: "JSON",
+            },
+            columnDefs: [
+                { className: "eng", targets: [1, 3, 4] },
+                { className: "eng lh-2 inline-block", targets: 2 },
+            ],
+            columns: [
+                { data: "phone_number" },
+                { data: "vehicle_type" },
+                { data: "number_of_seats" },
+                { data: "route_number" },
+                { data: "milage" },
+                { data: "status" },
+                { data: "speed_limit" },
+            ],
+            createdRow: function (row, data, index) {
+                $(row).addClass("trsize cntr");
+            },
+            language: {
+                url: "/js/dataTables." + lang + ".lang",
+            },
+        });
+    }
+
     $("#PayoutDriverForm").submit(function (e) {
         e.preventDefault();
         $(".response")

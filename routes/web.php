@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\Auth\LoginController;
-use App\User;
+use App\Http\Controllers\Partners\VehiclesController;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -88,6 +88,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/partner', 'Partners\ProfitController@view')->name('partner_profit');
         Route::get('/partner/payouts', 'Partners\PartnerPayoutController@view')->name('partner_payouts');
         Route::get('/partner/sales', 'Partners\SalesController@view')->name('partner_sales');
+        Route::get('/partner/vehicles', [VehiclesController::class, 'view'])->name('partner_vehicles');
+        Route::get('/partner/vehicles/live_tracking', [VehiclesController::class, 'view'])->name('partner_live_tracking');
+        Route::get('/partner/vehicles/milage_details', [VehiclesController::class, 'view'])->name('partner_milage_details');
+        Route::get('/partner/vehicles/manage_speed', [VehiclesController::class, 'view'])->name('partner_manage_speed');
 
 
         //Zoombus ajax
