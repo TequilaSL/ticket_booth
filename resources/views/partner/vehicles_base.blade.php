@@ -32,9 +32,9 @@
         @if(Session::get('alert'))
             <div class="response-persistent {{ Session::get('alert') }}">{{ Session::get('text') }}</div>
         @endif
-        <div class="span-bold-ge">{{ Lang::get('misc.total_vehicles') }}: <span
-                class="eng-bold red size20">{{ $vehicleCount ?? 0 }}</span>
-        </div>
+        <!-- <div class="span-bold-ge">{{ Lang::get('misc.total_vehicles') }}: <span
+                class="eng-bold red size20">{{ $recordsTotal ?? 0 }}</span>
+        </div> -->
         <div class="response"></div>
         @component('components.misc.form')
             @slot('row_inside') @endslot
@@ -59,18 +59,28 @@
                 <thead>
                 <tr>
                     <th class="th-sm">{{ Lang::get('misc.phone_number') }}</th>
-                    <th class="th-sm">{{ Lang::get('misc.vehicle_type') }} </th>
+                    <th class="th-sm">{{ Lang::get('misc.license_plate') }} </th>
+                    <th class="th-sm">{{ Lang::get('misc.vehicle_name') }} </th>
+                    <th class="th-sm">{{ Lang::get('misc.driver_name') }} </th>
                     <th class="th-sm">{{ Lang::get('misc.number_of_seats') }} </th>
-                    <th class="th-sm">{{ Lang::get('misc.route_number') }} </th>
-                    <th class="th-sm">{{ Lang::get('misc.milage') }}</th>
+                    <th class="th-sm">{{ Lang::get('misc.route_name') }} </th>
                     <th class="th-sm">{{ Lang::get('misc.status') }}</th>
                     <th class="th-sm">{{ Lang::get('misc.speed_limit') }} </th>
+                    <th class="th-sm">Action</th> <!-- ✅ New Column for Button -->
                 </tr>
                 </thead>
                 <tbody>
 
                 </tbody>
             </table>
+        </div>
+
+        <div class="vehicle-scheme-partner milage-section">
+
+        </div>
+
+        <div class="vehicle-scheme-partner live-tracking-section">
+
         </div>
 
     </div>

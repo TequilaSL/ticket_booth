@@ -89,6 +89,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('/partner/payouts', 'Partners\PartnerPayoutController@view')->name('partner_payouts');
         Route::get('/partner/sales', 'Partners\SalesController@view')->name('partner_sales');
         Route::get('/partner/vehicles', [VehiclesController::class, 'view'])->name('partner_vehicles');
+        Route::post('/partner/vehicles/details', [VehiclesController::class, 'allVehicleData'])->name('partner_vehicle_data');
         Route::get('/partner/vehicles/live_tracking', [VehiclesController::class, 'view'])->name('partner_live_tracking');
         Route::get('/partner/vehicles/milage_details', [VehiclesController::class, 'view'])->name('partner_milage_details');
         Route::get('/partner/vehicles/manage_speed', [VehiclesController::class, 'view'])->name('partner_manage_speed');

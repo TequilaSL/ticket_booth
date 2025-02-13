@@ -1192,7 +1192,7 @@ $(document).ready(function () {
             processing: true,
             serverSide: true,
             ajax: {
-                url: route("payout_data"),
+                url: route("partner_vehicle_data"),
                 type: "POST",
                 data: { _token: CSRF_TOKEN, type: "driver" },
                 dataType: "JSON",
@@ -1203,12 +1203,15 @@ $(document).ready(function () {
             ],
             columns: [
                 { data: "phone_number" },
-                { data: "vehicle_type" },
+                { data: "license_plate" },
+                { data: "vehicle_name" },
+                { data: "driver_name" },
                 { data: "number_of_seats" },
-                { data: "route_number" },
+                { data: "route_name" },
                 { data: "milage" },
                 { data: "status" },
                 { data: "speed_limit" },
+                { data: "actions", orderable: false, searchable: false }, // Action column
             ],
             createdRow: function (row, data, index) {
                 $(row).addClass("trsize cntr");
@@ -1670,13 +1673,28 @@ $(document).ready(function () {
             $("#arrival_day").parent().parent().addClass("hidden");
             $("#departure_date").parent().parent().removeClass("hidden");
             $("#arrival_date").parent().parent().removeClass("hidden");
+            setDepatureDateType(true);
         } else if ($(this).val() === "2") {
             $("#departure_day").parent().parent().removeClass("hidden");
             $("#arrival_day").parent().parent().removeClass("hidden");
             $("#departure_date").parent().parent().addClass("hidden");
             $("#arrival_date").parent().parent().addClass("hidden");
+            setDepatureDateType(false);
         }
     });
+
+    function setDepatureDateType(val) {
+        let datePicker = $("#departure_date_multiple");
+        let options = {
+            orientation: "bottom auto",
+            format: "d MM yyyy",
+            language: lang,
+            startView: 2,
+            multidate: val
+        };
+        datePicker.datepicker(options);
+    }
+
 
     let boughtTickets = $("#bought-tickets");
     if (boughtTickets.length > 0) {

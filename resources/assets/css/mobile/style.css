@@ -146,6 +146,10 @@ transition: all 0.3s ease-out;
 .account .dropdown-toggle img{margin-right: 15px;vertical-align: top; border-radius: 0; margin-top: 11px; display: inline-block; border-radius: 50%;}
 .account .dropdown-toggle span{display: inline-block; vertical-align: top; line-height: 20px; padding-top: 23px;}
 
+.vehicle-details-anchor::after{line-height: 0 !important; padding-top: 12px !important;}
+.vehicle-details-anchor { line-height: 25px !important; }
+.vehicle-details-dropdown { float: none !important; }
+
 .account .dropdown-menu{margin: 0; padding: 0; border: none; background: #fff; border-radius: 0; border-top: none; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1); margin-left: -65px;}
 .account .dropdown-menu .dropdown-item{border-top: none; text-decoration: none; display: block; padding: 10px 70px 10px 30px; color: #191919; font-size: 12px; line-height: 20px; position: relative;
 transition: all 0.3s ease-out;
@@ -197,7 +201,7 @@ transition: all 0.3s ease-out;
 .email-verification-popup-wrapper .title{font-size: 20px; color: #444444; font-family: 'Roboto Condensed'; font-weight: bold; text-align: center; padding: 30px 0;}
 .language_ge .email-verification-popup-wrapper .title{font-weight: 400; font-family: 'bpg_nino_mtavrulibold';}
 .email-verification-popup-wrapper .sub-title{font-size: 13px; color: #808080; font-weight: 300; line-height: 2;}
-/* 
+/*
 .open .mobile-verification-popup-wrapper{display: block;}
 .mobile-verification-popup-wrapper{display: none; position: absolute; z-index: 100; background: #fff; width: 400px; box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.25); padding: 30px; right: 0; max-width: 100%;}
 .mobile-verification-popup-wrapper .close{padding: 0; margin: 0; font-weight: 400; position: absolute;right: 10px;top: 10px; width: 30px; height: 30px; background: url(../images/close.png) center center no-repeat; opacity: 1; z-index: 2;}
@@ -552,6 +556,14 @@ flex-wrap: wrap;
 .ticket-scheme .txt1{text-align: center; color: #31343f; font-size: 19px; font-family: 'Roboto Condensed'; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding-bottom: 10px;}
 .language_ge .ticket-scheme .txt1{font-family: 'bpg_nino_mtavrulibold';}
 .ticket-scheme .txt2{color: #494d64; font-size: 12px; text-align: center;}
+
+
+/* ============================= vehicle scheme partner====================== */
+.vehicle-scheme-partner{position: relative; margin-bottom: 10px; background: #fff; box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.08); border-radius: 0px; padding: 30px; display: none;}
+.vehicle-scheme-partner .txt1{text-align: center; color: #31343f; font-size: 19px; font-family: 'Roboto Condensed'; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding-bottom: 10px;}
+.language_ge .vehicle-scheme-partner .txt1{font-family: 'bpg_nino_mtavrulibold';}
+.vehicle-scheme-partner .txt2{color: #494d64; font-size: 12px; text-align: center;}
+.vehicle-scheme-partner .hide{color: #494d64; font-size: 12px; text-align: center;}
 
 
 /* ============================= vehicle scheme ====================== */

@@ -7,11 +7,16 @@
     <div class="dropdown-menu" aria-labelledby="dropdownTemplates">
         <a class="dropdown-item" href="/login">{{ Lang::get('menu.home') }}</a>
         <a class="dropdown-item" href="{{ route('profile') }}">{{ Lang::get('menu.profile') }}</a>
-        <a class="dropdown-item" href="{{ route('bought_tickets') }}">{{ Lang::get('menu.bought_tickets') }}</a>
-        @if(!isset($isDriver))
+        {{-- @if(!isset($isDriver))
             <a class="dropdown-item" href="{{ route('driver_registration') }}">{{ Lang::get('menu.become_driver') }}</a>
         @else
             <a class="dropdown-item" href="{{ route('driver_profit') }}">{{ Lang::get('menu.driver_profile') }}</a>
+        @endif --}}
+         @if(isset($isDriver))
+            <a class="dropdown-item" href="{{ route('driver_profit') }}">{{ Lang::get('menu.driver_profile') }}</a>
+        @endif
+        @if(isset($isPartner))
+            <a class="dropdown-item" href="{{ route('partner_vehicles') }}">{{ Lang::get('menu.vehicle_details') }}</a>
         @endif
         @if(!isset($isPartner))
             <a class="dropdown-item"
@@ -19,7 +24,9 @@
         @else
             <a class="dropdown-item" href="{{ route('partner_profit') }}">{{ Lang::get('menu.partner_profile') }}</a>
         @endif
-
+        @if(!isset($isPartner) && !isset($isDriver))
+            <a class="dropdown-item" href="{{ route('bought_tickets') }}">{{ Lang::get('menu.bought_tickets') }}</a>
+        @endif
         <a class="dropdown-item" href="{{ route('financial') }}">{{ Lang::get('menu.financial_parameters') }}</a>
         <a class="dropdown-item logout" href="javascript:void(0)">{{ Lang::get('menu.logout') }}</a>
     </div>

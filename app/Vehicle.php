@@ -105,7 +105,7 @@ class Vehicle extends Model {
     }
 
     public function fullspecifications() {
-        return $this->belongsToMany('App\VehicleSpecs', 'vehicles_specifications', 'vehicle_id', 'vehicle_specification_id');
+        return $this->belongsToMany( VehicleSpecs::class, 'vehicles_specifications', 'vehicle_id', 'vehicle_specification_id');
     }
 
     public function routeTypes() {
