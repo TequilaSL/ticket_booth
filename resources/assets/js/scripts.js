@@ -1208,7 +1208,6 @@ $(document).ready(function () {
                 { data: "driver_name" },
                 { data: "number_of_seats" },
                 { data: "route_name" },
-                { data: "milage" },
                 { data: "status" },
                 { data: "speed_limit" },
                 { data: "actions", orderable: false, searchable: false }, // Action column
@@ -1221,6 +1220,26 @@ $(document).ready(function () {
             },
         });
     }
+
+    $(document).on('click', '.change-speed-limit', function(event) {
+        $('#speedLimitPopup').show();
+    });
+
+    $('#closeSpeedLimitPopup').on('click', function() {
+        $('#speedLimitPopup').hide();
+    });
+
+    // Handle Mileage Section
+    $(document).on('click', '.view-mileage', function() {
+        $('#mileageSection').show();
+        $('#liveTrackingSection').hide();
+    });
+
+    // Handle Live Tracking Section
+    $(document).on('click', '.live-tracking', function() {
+        $('#liveTrackingSection').show();
+        $('#mileageSection').hide();
+    });
 
     $("#PayoutDriverForm").submit(function (e) {
         e.preventDefault();
