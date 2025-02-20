@@ -4976,7 +4976,8 @@ $('#closeLiveTracking').on('click', async function() {
                 context: this,
                 success: function (data) {
                     if (data.status === 1) {
-                        var imagePath = data.text; // Assuming data.text contains the image URL
+                        var imagePath = data.text;
+                        let qrFileName = data.fileName // Assuming data.text contains the image URL
 
                         // Inline CSS for modal
                         var modalCss = `
@@ -5139,10 +5140,9 @@ $('#closeLiveTracking').on('click', async function() {
                           img.src = blobUrl;
                           document.body.appendChild(img);
 
-                          const filename = imagePath.substring(imagePath.lastIndexOf('/') + 1);
                           const a = document.createElement('a');
                           a.href = blobUrl;
-                          a.download = filename;
+                          a.download = qrFileName;
                           a.click();
                         })
                         .catch(error => console.error('Error fetching the file:', error));
