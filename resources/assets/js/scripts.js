@@ -14,8 +14,8 @@ async function initializeMap(param) {
 
         // Update the h6 elements
         $(".vehicle-details-section").html(`
-            <h6>Vehicle name:  ${vehicleName}</h6>
-            <h6>Vehicle liense plate:  ${licensePlate}</h6>
+            <p>Vehicle name:  ${vehicleName} <br>
+            Vehicle license plate:  ${licensePlate}</p>
         `);
     }
 
@@ -40,7 +40,7 @@ async function initializeMap(param) {
     });
 
     // Start fetching GPS data
-    getGpsTrackerAuthToken();
+    await getGpsTrackerAuthToken();
     } catch (error) {
         console.error("Map Initialization Error:", error);
         alertify.error(error);
@@ -53,7 +53,7 @@ function retryLoadMap() {
     initializeMap();
 }
 
-function getGpsTrackerAuthToken() {
+async function getGpsTrackerAuthToken() {
     $.ajax({
         url: "http://openapi.itracksense.com/api/user/GetLoginToken",
         type: "POST",
@@ -62,11 +62,10 @@ function getGpsTrackerAuthToken() {
             "LoginName": username,
             "PassWord": password
         }),
-        success: function (response) {
+        success: async function (response) {
             if (response.Code === 200) {
                 apiToken = response.Data;
-                console.log("API Token:", apiToken);
-                fetchVehicleLocationData(); // Start fetching GPS data
+                await fetchVehicleLocationData(); // Start fetching GPS data
             } else {
                 console.error("Failed to get API Token:", response.ErrMsg);
                 alertify.error(response.ErrMsg);
@@ -78,7 +77,7 @@ function getGpsTrackerAuthToken() {
         }
     });
 }
-function fetchVehicleLocationData() {
+async function fetchVehicleLocationData() {
     $.ajax({
         url: "http://openapi.itracksense.com/api/vehicle/GetCurrentVehicleInfo",
         type: "POST",
@@ -92,7 +91,6 @@ function fetchVehicleLocationData() {
         success: function (response) {
             if (response.Code === 200) {
                 const vehicleData = response.Data.data[0];  // Access first vehicle's data
-                console.log(vehicleData);
 
                 const latitude = vehicleData.Lat;
                 const longitude = vehicleData.Lon;
@@ -1362,7 +1360,7 @@ $('#closeLiveTracking').on('click', async function() {
         $('#speedLimitPopup').hide();
     });
 
-    $('#vehicleDetailsTable tbody').on('click', '.dropdown-item', function(e) {
+    $('#vehicleDetailsTable tbody').on('click', '.dropdown-item',async function(e) {
         e.preventDefault();
         var actionType = $(this).attr("class").split(' ')[1];
         var id = $(this).data("id");
@@ -1372,7 +1370,7 @@ $('#closeLiveTracking').on('click', async function() {
         console.log("Row Data:", rowData);
 
         if (actionType === 'live-tracking') {
-            initializeMap(rowData)
+            await initializeMap(rowData)
             $('#liveTrackingSection').show();
             document.getElementById("liveTrackingSection").scrollIntoView({ behavior: "smooth" });
             $('#mileageSection').hide();
