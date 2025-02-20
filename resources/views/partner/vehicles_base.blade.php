@@ -11,17 +11,21 @@
 @stop
 
 @push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css"/>
     <link href="{{ URL::asset('css/smoothness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/tables.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
+<script src="{{ URL::asset('js/alertify.min.js') }}"></script>
     <script src="{{ URL::asset('js/jquery-ui.js') }}"></script>
     <script src="{{ URL::asset('js/datatables.js') }}"></script>
 
     <script src="{{ URL::asset('js/moment.js') }}"></script>
     <script src="{{ URL::asset('js/moment-with-locales.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ config(key: 'services.google-maps.key') }}&v=weekly&loading=async&map_ids={{ config(key: 'services.google-maps.map_ids') }}" async defer></script>
 @endpush
 
 @section('title1', Lang::get('titles.vehicle_details'))
@@ -65,7 +69,6 @@
                     <th class="th-sm">{{ Lang::get('misc.number_of_seats') }} </th>
                     <th class="th-sm">{{ Lang::get('misc.route_name') }} </th>
                     <th class="th-sm">{{ Lang::get('misc.status') }}</th>
-                    <th class="th-sm">{{ Lang::get('misc.speed_limit') }} </th>
                     <th class="th-sm">Action</th> <!-- ✅ New Column for Button -->
                 </tr>
             </thead>
@@ -88,10 +91,11 @@
     </div>
 
     <div class="vehicle-scheme-partner" id="liveTrackingSection" style="display: none;">
+        <button type="button" class="close" id="closeLiveTracking" aria-label="Close">X</button>
         <h3>Live Tracking</h3>
-        <p>Live location tracking details will appear here.</p>
+        <div class="vehicle-details-section">Live Tracking</div>
+        <div id="map" style="width: 100%; height: 400px;"></div>
     </div>
 
 </div>
 @endsection
-  

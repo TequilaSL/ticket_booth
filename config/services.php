@@ -67,6 +67,7 @@ return [
     'google-maps' => [
         'project_id' => 'zoombus-438705',
         'key' => 'AIzaSyCHBELaz3Rdo3GIuRlxaC_jvVens2QSoEk',
+        'map_ids' => 'be012d0836c3b5d3'
     ],
 
     'paypal' => [

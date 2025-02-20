@@ -80,7 +80,7 @@ class VehiclesController extends Controller
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownActions' . $v['id'] . '">
                     <a class="dropdown-item change-speed-limit" href="javascript:void(0)" data-id="' . $v['id'] . '">Speed Limit</a>
-                    <a class="dropdown-item view-mileage" href="javascript:void(0)" data-id="' . $v['id'] . '">Mileage</a>
+                    <a class="dropdown-item view-milage" href="javascript:void(0)" data-id="' . $v['id'] . '">Mileage</a>
                     <a class="dropdown-item live-tracking" href="javascript:void(0)" data-id="' . $v['id'] . '">Live Tracking</a>
                 </div>
             </div>';

@@ -1,6 +1,139 @@
 $(document).ready(function () {
-    // function route(name) {}
-    // Temp.
+let map;
+let marker;
+let apiToken;
+let trackingInterval; // To store the interval ID
+const username = "Shiran";  // Replace with your GPS login account
+const password = "S123456";  // Replace with your GPS login password
+const vehiclePlate = "8020";
+
+async function initializeMap(param) {
+    if (param) {
+        var licensePlate = param.license_plate;
+        var vehicleName = param.vehicle_name;
+
+        // Update the h6 elements
+        $(".vehicle-details-section").html(`
+            <h6>Vehicle name:  ${vehicleName}</h6>
+            <h6>Vehicle liense plate:  ${licensePlate}</h6>
+        `);
+    }
+
+    try {
+    const defaultLocation = { lat: 6.9271, lng: 79.8612 }; // Colombo, Sri Lanka
+
+    const { Map } = await google.maps.importLibrary("maps");
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+    // Initialize the map
+    map = new Map(document.getElementById("map"), {
+        zoom: 14,
+        center: defaultLocation,
+        mapId: "22981a254bd9a54e"  // Replace with your Map ID
+    });
+
+    // Create marker at default location
+    marker = new AdvancedMarkerElement({
+        position: defaultLocation,
+        map: map,
+        title: 'GPS Tracker'
+    });
+
+    // Start fetching GPS data
+    getGpsTrackerAuthToken();
+    } catch (error) {
+        console.error("Map Initialization Error:", error);
+        alertify.error(error);
+    }
+}
+
+function retryLoadMap() {
+    errorOccurred = false;
+    document.getElementById("error-message").style.display = "none";
+    initializeMap();
+}
+
+function getGpsTrackerAuthToken() {
+    $.ajax({
+        url: "http://openapi.itracksense.com/api/user/GetLoginToken",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            "LoginName": username,
+            "PassWord": password
+        }),
+        success: function (response) {
+            if (response.Code === 200) {
+                apiToken = response.Data;
+                console.log("API Token:", apiToken);
+                fetchVehicleLocationData(); // Start fetching GPS data
+            } else {
+                console.error("Failed to get API Token:", response.ErrMsg);
+                alertify.error(response.ErrMsg);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Login error:", error);
+            alertify.error(error);
+        }
+    });
+}
+function fetchVehicleLocationData() {
+    $.ajax({
+        url: "http://openapi.itracksense.com/api/vehicle/GetCurrentVehicleInfo",
+        type: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + apiToken
+        },
+        data: JSON.stringify({
+            "VehiclePlates": vehiclePlate
+        }),
+        success: function (response) {
+            if (response.Code === 200) {
+                const vehicleData = response.Data.data[0];  // Access first vehicle's data
+                console.log(vehicleData);
+
+                const latitude = vehicleData.Lat;
+                const longitude = vehicleData.Lon;
+
+                // Update marker position
+                const currentLocation = {
+                    lat: latitude,
+                    lng: longitude
+                };
+
+                marker.position = currentLocation;
+                map.setCenter(currentLocation);
+            } else {
+                console.error("Failed to get GPS data:", response.ErrMsg);
+                alertify.error("Something went wrong. Please try again later!");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Failed to fetch GPS data:", error);
+            alertify.error(error);
+        }
+    });
+}
+
+function startTracking() {
+    fetchVehicleLocationData();
+    trackingInterval = setInterval(fetchVehicleLocationData, 5000);
+}
+
+function stopTracking() {
+    clearInterval(trackingInterval);
+}
+
+
+$('#closeLiveTracking').on('click', async function() {
+    $('#liveTrackingSection').hide();
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+        });
+});
 
     const lang = $("html").attr("lang");
     let tooltipsDateTime;
@@ -1187,8 +1320,9 @@ $(document).ready(function () {
     }
 
     let vehicleDetailsTable = $("#vehicleDetailsTable");
+    let tableInstance;
     if (vehicleDetailsTable.length > 0) {
-        vehicleDetailsTable.DataTable({
+        tableInstance = vehicleDetailsTable.DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -1209,7 +1343,6 @@ $(document).ready(function () {
                 { data: "number_of_seats" },
                 { data: "route_name" },
                 { data: "status" },
-                { data: "speed_limit" },
                 { data: "actions", orderable: false, searchable: false }, // Action column
             ],
             createdRow: function (row, data, index) {
@@ -1221,24 +1354,32 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click', '.change-speed-limit', function(event) {
-        $('#speedLimitPopup').show();
-    });
+    // $(document).on('click', '.change-speed-limit', function(event) {
+    //     $('#speedLimitPopup').show();
+    // });
 
     $('#closeSpeedLimitPopup').on('click', function() {
         $('#speedLimitPopup').hide();
     });
 
-    // Handle Mileage Section
-    $(document).on('click', '.view-mileage', function() {
-        $('#mileageSection').show();
-        $('#liveTrackingSection').hide();
-    });
+    $('#vehicleDetailsTable tbody').on('click', '.dropdown-item', function(e) {
+        e.preventDefault();
+        var actionType = $(this).attr("class").split(' ')[1];
+        var id = $(this).data("id");
+        var rowData = tableInstance.row($(this).closest('tr')).data();
+        console.log("Action Type:", actionType);
+        console.log("ID:", id);
+        console.log("Row Data:", rowData);
 
-    // Handle Live Tracking Section
-    $(document).on('click', '.live-tracking', function() {
-        $('#liveTrackingSection').show();
-        $('#mileageSection').hide();
+        if (actionType === 'live-tracking') {
+            initializeMap(rowData)
+            $('#liveTrackingSection').show();
+            document.getElementById("liveTrackingSection").scrollIntoView({ behavior: "smooth" });
+            $('#mileageSection').hide();
+        } else if (actionType === 'view-milage') {
+            $('#mileageSection').show();
+            $('#liveTrackingSection').hide();
+        }
     });
 
     $("#PayoutDriverForm").submit(function (e) {
