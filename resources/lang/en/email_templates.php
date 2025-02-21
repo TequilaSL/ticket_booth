@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'registered_as_partner_title' => 'Your new account at Zoombus',
-    'forgot_password_title' => 'Your new password | Zoombus',
+    'registered_as_partner_title' => 'Your new account at TicketBooth.lk',
+    'forgot_password_title' => 'Your new password | TicketBooth.lk',
 
     'route_reminder_title' => 'Route reminder!',
     'route_reminder_text' => '

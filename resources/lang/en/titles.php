@@ -148,7 +148,7 @@ return [
 
     //Forgot password
     'forgot_password1' => 'Forgot password?',
-    'forgot_password2' => 'Enter your phone number below to receive a new password',
+    'forgot_password2' => 'Enter your phone number below to receive a new password. <br>You change your password only once, otherwise contact the customer support.',
 
     //Support tickets
     'support1' => 'Support / Contact us',

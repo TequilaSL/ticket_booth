@@ -151,8 +151,7 @@ return [
 
     //Forgot password
     'forgot_password1' => 'დაგავიწყდათ პაროლი?',
-    'forgot_password2' => 'შეიყვანეთ თქვენი ტელეფონის ნომერი, სადაც მოკლეტექსტური შეტყობინებით მიიღებთ ახალ პაროლს. გთხოვთ გაითვალისწინოთ, რომ ახალი
-    პაროლის მოთხოვნა შესაძლებელია მხოლოდ თვეში ერთხელ.',
+    'forgot_password2' => 'Enter your phone number below to receive a new password. <br>You change your password only once, otherwise contact the customer support.',
 
     //Support tickets
     'support1' => 'დახმარება / კონტაქტი',

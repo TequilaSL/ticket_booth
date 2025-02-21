@@ -2602,6 +2602,8 @@ $('#closeLiveTracking').on('click', async function() {
                         .css("display", "inline-block")
                         .addClass("response-success")
                         .html(data.text);
+                        $('#forgotPasswordForm').find('input, button').prop('disabled', true);
+                        openLoginForm();
                 } else {
                     $(this)
                         .parent()

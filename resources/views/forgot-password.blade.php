@@ -20,8 +20,7 @@
 
 
 @section('title1', $title_page ?? Lang::get('titles.forgot_password1'))
-@section('title2', Lang::get('titles.forgot_password2'))
-
+@section('title2') {!! Lang::get('titles.forgot_password2') !!} @endsection
 @section('content')
     <div class="response"></div>
     @component('components.misc.form')
