@@ -47,30 +47,31 @@ class ListingController extends Controller {
     }
 
     public function chooseSeat(Request $request) {
-        $userId = \Auth::user()->id;
-        $driver = Driver::where('user_id', $userId)->first();
-        $partner = Partner::where('user_id', $userId)->first();
+        if (\Auth::check()) {
+            $userId = \Auth::user()->id;
+            $driver = Driver::where('user_id', $userId)->first();
+            $partner = Partner::where('user_id', $userId)->first();
 
-        if ($driver || $partner) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'User not eligible',
-            ]);
-        } else {
-            $gender = Controller::essentialVars(['gender'])['gender'];
-            $data = $request->only(['seat_number', 'number', 'preserving']);
-            $data['gender'] = $gender;
-            if ($data['number'] != 1) {
-                unset($data['number']);
+            if ($driver || $partner) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'User not eligible',
+                ]);
             } else {
-                if (\Auth::check()) {
-                    $data['current_user'] = 1;
+                $gender = Controller::essentialVars(['gender'])['gender'];
+                $data = $request->only(['seat_number', 'number', 'preserving']);
+                $data['gender'] = $gender;
+                if ($data['number'] != 1) {
+                    unset($data['number']);
                 } else {
-                     return null;
+                    $data['current_user'] = 1;
                 }
+                return view('components.booking-seat', $data)->render();
             }
-            return view('components.booking-seat', $data)->render();
-        }
+        } else {
+            return null;
+       }
+
     }
 
 
