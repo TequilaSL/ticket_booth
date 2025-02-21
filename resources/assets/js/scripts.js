@@ -5397,6 +5397,9 @@ $('#closeLiveTracking').on('click', async function() {
                             $(".loading-web").css("display", "none");
                         },
                         success: function (data) {
+                            if (data.status === 'error') {
+                                return;
+                            }
                             if (data && Object.keys(data).length > 0) {
                                 ticket_totals.removeClass("hidden");
                                 if (seat_counts === 1) {

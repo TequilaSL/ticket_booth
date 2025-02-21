@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Routes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Driver;
+use App\Partner;
 
 class ListingController extends Controller {
 
@@ -45,19 +47,30 @@ class ListingController extends Controller {
     }
 
     public function chooseSeat(Request $request) {
-        $gender = Controller::essentialVars(['gender'])['gender'];
-        $data = $request->only(['seat_number', 'number', 'preserving']);
-        $data['gender'] = $gender;
-        if ($data['number'] != 1) {
-            unset($data['number']);
+        $userId = \Auth::user()->id;
+        $driver = Driver::where('user_id', $userId)->first();
+        $partner = Partner::where('user_id', $userId)->first();
+
+        if ($driver || $partner) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not eligible',
+            ]);
         } else {
-            if (\Auth::check()) {
-                $data['current_user'] = 1;
+            $gender = Controller::essentialVars(['gender'])['gender'];
+            $data = $request->only(['seat_number', 'number', 'preserving']);
+            $data['gender'] = $gender;
+            if ($data['number'] != 1) {
+                unset($data['number']);
             } else {
-                 return null;
+                if (\Auth::check()) {
+                    $data['current_user'] = 1;
+                } else {
+                     return null;
+                }
             }
+            return view('components.booking-seat', $data)->render();
         }
-        return view('components.booking-seat', $data)->render();
     }
 
 
