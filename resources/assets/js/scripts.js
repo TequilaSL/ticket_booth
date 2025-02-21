@@ -3343,6 +3343,8 @@ $('#closeLiveTracking').on('click', async function() {
             $(this).find(".datepicker").datepicker("getDate")
         ).format("YYYY-MM-DD");
         formData.push({ name: "birth_date", value: psdate });
+        const emailField = document.getElementById('email');
+        formData.push({ name: 'email', value: emailField.value });
         formData.push({
             name: "phone_number",
             value: $(this)

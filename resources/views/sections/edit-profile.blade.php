@@ -73,6 +73,7 @@
                 @slot('label') {{ Lang::get('auth.email_address') }} @endslot
                 @slot('name') email @endslot
                 @slot('type') email @endslot
+                @slot('disabled') @endslot
                 @slot('col') col-md-6 @endslot
                 @slot('faicon') fa-envelope-o @endslot
             @endcomponent
