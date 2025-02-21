@@ -90,22 +90,8 @@
         <li>
             <a href="{{ route('partner_vehicles') }}"
                 @if(in_array(Request::route()->getName(), ['live_tracking','milage_details','manage_speed',])) class="active" @endif>
-                <i class="fa fa-bus" aria-hidden="true"></i> {{ Lang::get('menu.vehicle_details') }} <em
-                    class="fa fa-chevron-down" aria-hidden="true"></em>
+                <i class="fa fa-bus" aria-hidden="true"></i> {{ Lang::get('menu.vehicle_details') }}
             </a>
-            <div class="sf-mega">
-                <ul>
-                    <li class="@if(Request::route()->getName() == 'partner_live_tracking') active @endif">
-                        <a href="{{ route('partner_live_tracking') }}">{{ Lang::get('menu.live_tracking') }}</a>
-                    </li>
-                    <li class="@if(Request::route()->getName() == 'partner_milage_details') active @endif">
-                        <a href="{{ route('partner_milage_details') }}">{{ Lang::get('menu.milage_details') }}</a>
-                    </li>
-                    <li class="@if(Request::route()->getName() == 'partner_manage_speed') active @endif">
-                        <a href="{{ route('partner_manage_speed') }}">{{ Lang::get('menu.speed_limit') }}</a>
-                    </li>
-                </ul>
-            </div>
         </li>
         <li>
             <a href="{{ route('partner_profit') }}"
