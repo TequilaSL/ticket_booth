@@ -17,6 +17,7 @@ use Jenssegers\Agent\Agent;
 use Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Validator;
+use Illuminate\Support\Facades\Log;
 
 class TicketsController extends ValidationController
 {
@@ -72,7 +73,13 @@ class TicketsController extends ValidationController
                 'routes.addressTo.translated',
                 'users:id,name',
                 'currency:id,key as currency_key'
-            )->status([1, 3])->where('ticket_number', $id)->first()->toArray();
+            )->status([1, 3])->where('ticket_number', $id)->get()->toArray();
+
+            if (!empty($tickets)) {
+                $tickets[0]['seat_number'] = implode(', ', array_column($tickets, 'seat_number'));
+            }
+
+            $data['tickets'] = $tickets[0] ?? [];
             $request = new Request();
             $request->id = $data['tickets']['id'];
             $checkRefundAmount = (new BookingController())->checkRefundAmount($request);
@@ -202,17 +209,34 @@ class TicketsController extends ValidationController
 
 
         $data = [];
+        $transaction_data = [];
 
         foreach ($tickets as $key => $val) {
-            $data[$key]['departure_date'] = Carbon::parse($val['routes']['departure_date'])->format('Y-m-d');
-            $data[$key]['route_type'] = $val['routes']['vehicles']['route_types']['translated']['name'];
-            $data[$key]['route_id'] = $val['routes']['cities_from']['city_code'] . $val['route_id'];
-            $data[$key]['the_route'] = $val['routes']['cities_from']['translated']['name'] . ' ' . view('components.font-awesome', ['icon' => 'fa-arrow-right'])->render() . ' ' . $val['routes']['cities_to']['translated']['name'];
-            $data[$key]['the_transport'] = $val['routes']['vehicles']['manufacturers']['manufacturer_name'] . ' ' . $val['routes']['vehicles']['model'] . ' / ' . $val['routes']['vehicles']['license_plate'];
-            $data[$key]['seat'] = $val['seat_number'];
-            $data[$key]['price'] = $val['price'] . $val['currency']['currency_key'];
-            $data[$key]['ticket'] = view('components.a', ['class' => 'blue', 'href' => route('single_ticket', ['id' => $val['ticket_number']]), 'anchor' => Lang::get('misc.view_ticket')])->render();
-            $data[$key]['status'] = StatusController::fetch($val['status'], '', [], [1 => ['label' => 'warning', 'text' => Lang::get('misc.bought')], 3 => ['icon' => 'fa-check', 'label' => 'success', 'text' => Lang::get('misc.approved')]]);
+            $transaction_id = $val['transaction_id'];
+            $price = floatval($val['price']);
+
+            if (!isset($transaction_data[$transaction_id])) {
+                $transaction_data[$transaction_id] = [
+                    'departure_date' => Carbon::parse($val['routes']['departure_date'])->format('Y-m-d'),
+                    'route_type' => $val['routes']['vehicles']['route_types']['translated']['name'],
+                    'route_id' => $val['routes']['cities_from']['city_code'] . $val['route_id'],
+                    'the_route' => $val['routes']['cities_from']['translated']['name'] . ' ' . view('components.font-awesome', ['icon' => 'fa-arrow-right'])->render() . ' ' . $val['routes']['cities_to']['translated']['name'],
+                    'the_transport' => $val['routes']['vehicles']['manufacturers']['manufacturer_name'] . ' ' . $val['routes']['vehicles']['model'] . ' / ' . $val['routes']['vehicles']['license_plate'],
+                    'seat' => $val['seat_number'],
+                    'price' => $price,
+                    'currency_key' => $val['currency']['currency_key'],
+                    'ticket' => view('components.a', ['class' => 'blue', 'href' => route('single_ticket', ['id' => $val['ticket_number']]), 'anchor' => Lang::get('misc.view_ticket')])->render(),
+                    'status' => StatusController::fetch($val['status'], '', [], [1 => ['label' => 'warning', 'text' => Lang::get('misc.bought')], 3 => ['icon' => 'fa-check', 'label' => 'success', 'text' => Lang::get('misc.approved')]])
+                ];
+            } else {
+                $transaction_data[$transaction_id]['price'] += $price;
+                $transaction_data[$transaction_id]['seat'] .= ', ' . $val['seat_number'];
+            }
+        }
+        foreach ($transaction_data as $record) {
+            $data[] = array_merge($record, [
+                'price' => $record['price'] . $record['currency_key']
+            ]);
         }
 
         return datatables()->of($data ?? [])->rawColumns(['the_route', 'the_transport', 'status', 'ticket'])->toJson();

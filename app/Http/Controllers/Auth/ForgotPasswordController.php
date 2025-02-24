@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Jenssegers\Agent\Agent;
 use Mcamara\LaravelLocalization\LaravelLocalization;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class ForgotPasswordController extends ValidationController
 {
@@ -34,16 +36,44 @@ class ForgotPasswordController extends ValidationController
         $data = $request->only('phone_number');
         $response = ValidationController::response($this->validator($data), \Lang::get('validation.sms_successfully_sent'));
         if($response->original['status'] == 1) {
-            $newPass = rand(1000, 9999);
+            $newPass = rand(100000, 999999);
             $user = User::wherePhoneNumber($data['phone_number'])->first();
             $cur = $user->locale;
             User::wherePhoneNumber($data['phone_number'])->whereIn('status', [1,2])->update(['status' => 1, 'password' => \Hash::make($newPass)]);
-            $user->notify(
-                new ForgotPasswordSend($cur, $newPass)
-            );
-            ForgotPassword::create(['phone_number' => $data['phone_number']]);
+            // sending email instead of sms
+            // $user->notify(
+            //     new ForgotPasswordSend($cur, $newPass)
+            // );
+            try {
+                $this->sendSMSForForgotPassword($data['phone_number'], $newPass);
+                ForgotPassword::create(['phone_number' => $data['phone_number']]);
+            } catch (\Throwable $th) {
+                \Log::error('SMS Sending Failed: ' . $th->getMessage());
+                return response()->json([
+                    'status' => 0,
+                    'text' => 'Failed to send SMS. Please try again later.'
+                ], 500);
+            }
         }
         return response()->json($response->original);
+    }
+
+    private function sendSMSForForgotPassword($phoneNumber, $newPass) {
+        $data = [
+            'phone_number' => [$phoneNumber],
+            'body' => \Lang::get('notifications.forgot_password', ['password' => $newPass])
+        ];
+
+        $contact = $data['phone_number'][0];
+        $queryParams = http_build_query([
+            'recipient' => $contact,
+            'sender_id' => env('TEXT_LK_SENDER_ID'),
+            'message' => $data['body'],
+        ]);
+
+        $url = env('TEXT_LK_URL') . '?' . $queryParams;
+        return Http::withToken(env('TEXT_LK_API_TOKEN'))
+        ->post($url);
     }
 
     public function view() {

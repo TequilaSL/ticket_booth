@@ -11,6 +11,7 @@ return [
     'affiliate_code_title' => 'Register | Zoombus',
     'partners_list_title' => 'List of Partners and their data | Zoombus',
     'driver_payouts' => 'Driver Payouts | Zoombus',
+    'vehicle_details' => 'vehicle details',
     'partner_payouts' => 'Partner Payouts | Zoombus',
     'registered_routes_title' => 'Routes | Zoombus',
     'listing_title' => 'Route listing | Zoombus',

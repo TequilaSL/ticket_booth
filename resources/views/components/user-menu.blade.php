@@ -85,55 +85,61 @@
                     </ul>
                 </div>
             </li>
-        @else
-            <li>
-                <a href="{{ route('bought_tickets') }}"
-                   class="@if(Request::route()->getName() == 'bought_tickets') active @endif">
-                    <i class="fa fa-address-card" aria-hidden="true"></i> {{Lang::get('menu.bought_tickets')}}
-                </a>
-            </li>
-           {{--  <li> --}}
-                {{-- <a href="{{ route('driver_registration') }}" class="noDrop @if(Request::route()->getName() == 'driver_registration') active @endif"> --}}
-                    {{-- <i class="fa fa-drivers-license" aria-hidden="true"></i> --}}
-                    {{-- {{ Lang::get('menu.register_as_driver') }} --}}
-                {{-- </a> --}}
-            {{-- </li>  --}}
         @endif
         @if(isset($isPartner) && Auth::user()->partner()->active()->exists())
-            <li>
-                <a href="{{ route('partner_profit') }}"
-                   @if(in_array(Request::route()->getName(), ['partner_profit','partner_code','partner_list','partner_sales','partner_payouts'])) class="active" @endif>
-                    <i class="fa fa-handshake-o" aria-hidden="true"></i> {{ Lang::get('menu.partner_account') }} <em
-                        class="fa fa-chevron-down" aria-hidden="true"></em>
-                </a>
-                <div class="sf-mega">
-                    <ul>
-                        <li class="@if(Request::route()->getName() == 'partner_profit') active @endif">
-                            <a href="{{ route('partner_profit') }}">{{ Lang::get('menu.profit_balance') }}</a>
-                        </li>
-                        <li class="@if(Request::route()->getName() == 'partner_code') active @endif">
-                            <a href="{{ route('partner_code') }}">{{ Lang::get('menu.register_your_partner') }}</a>
-                        </li>
-                        <li class="@if(Request::route()->getName() == 'partner_list') active @endif">
-                            <a href="{{ route('partner_list') }}">{{ Lang::get('menu.list_of_partners') }}</a>
-                        </li>
-                        <li class="@if(Request::route()->getName() == 'partner_sales') active @endif">
-                            <a href="{{ route('partner_sales') }}">{{ Lang::get('menu.partner_sales') }}</a>
-                        </li>
-                        <li class="@if(Request::route()->getName() == 'partner_payouts') active @endif">
-                            <a href="{{ route('partner_payouts') }}">{{ Lang::get('menu.payout_history') }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-       {{-- @else
-            <li class="sadasd">
-                <a href="{{ route('partner_registration') }}" class="noDrop @if(Request::route()->getName() == 'partner_registration') active @endif">
-                    <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                    {{ Lang::get('menu.register_as_partner') }}
-                </a>
-            </li>--}}
-        @endif
+        <li>
+            <a href="{{ route('partner_vehicles') }}"
+                @if(in_array(Request::route()->getName(), ['live_tracking','milage_details','manage_speed',])) class="active" @endif>
+                <i class="fa fa-bus" aria-hidden="true"></i> {{ Lang::get('menu.vehicle_details') }}
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('partner_profit') }}"
+                @if(in_array(Request::route()->getName(), ['partner_profit','partner_code','partner_list','partner_sales','partner_payouts'])) class="active" @endif>
+                <i class="fa fa-handshake-o" aria-hidden="true"></i> {{ Lang::get('menu.partner_account') }} <em
+                    class="fa fa-chevron-down" aria-hidden="true"></em>
+            </a>
+            <div class="sf-mega">
+                <ul>
+                    <li class="@if(Request::route()->getName() == 'partner_profit') active @endif">
+                        <a href="{{ route('partner_profit') }}">{{ Lang::get('menu.profit_balance') }}</a>
+                    </li>
+                    <li class="@if(Request::route()->getName() == 'partner_code') active @endif">
+                        <a href="{{ route('partner_code') }}">{{ Lang::get('menu.register_your_partner') }}</a>
+                    </li>
+                    <li class="@if(Request::route()->getName() == 'partner_list') active @endif">
+                        <a href="{{ route('partner_list') }}">{{ Lang::get('menu.list_of_partners') }}</a>
+                    </li>
+                    <li class="@if(Request::route()->getName() == 'partner_sales') active @endif">
+                        <a href="{{ route('partner_sales') }}">{{ Lang::get('menu.partner_sales') }}</a>
+                    </li>
+                    <li class="@if(Request::route()->getName() == 'partner_payouts') active @endif">
+                        <a href="{{ route('partner_payouts') }}">{{ Lang::get('menu.payout_history') }}</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    {{-- @else
+        <li class="sadasd">
+            <a href="{{ route('partner_registration') }}" class="noDrop @if(Request::route()->getName() == 'partner_registration') active @endif">
+                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                {{ Lang::get('menu.register_as_partner') }}
+            </a>
+        </li>--}}
+        @else
+        <li>
+            <a href="{{ route('bought_tickets') }}"
+                class="@if(Request::route()->getName() == 'bought_tickets') active @endif">
+                <i class="fa fa-address-card" aria-hidden="true"></i> {{Lang::get('menu.bought_tickets')}}
+            </a>
+        </li>
+        {{--  <li> --}}
+            {{-- <a href="{{ route('driver_registration') }}" class="noDrop @if(Request::route()->getName() == 'driver_registration') active @endif"> --}}
+                {{-- <i class="fa fa-drivers-license" aria-hidden="true"></i> --}}
+                {{-- {{ Lang::get('menu.register_as_driver') }} --}}
+            {{-- </a> --}}
+        {{-- </li>  --}}
+    @endif
 
     </ul>
 </div>

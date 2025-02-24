@@ -262,6 +262,10 @@ transition: all 0.3s ease-out;
 .account .dropdown-toggle img{margin-right: 15px;vertical-align: top; border-radius: 0; margin-top: 11px; display: inline-block; border-radius: 50%;}
 .account .dropdown-toggle span{display: inline-block; vertical-align: top; line-height: 20px; padding-top: 23px;}
 
+.vehicle-details-anchor::after{line-height: 0 !important; padding-top: 12px !important;}
+.vehicle-details-anchor { line-height: 25px !important; }
+.vehicle-details-dropdown { float: none !important; }
+
 .language_ge .account .dropdown-toggle span {font-family: 'bpg_nino_mtavrulinormal', sans-serif; font-weight: 700; line-height:1.9; font-size:12px; letter-spacing: 0.08em;}
 
 .account .dropdown-menu{margin: 0; padding: 0; border: none; background: #fff; border-radius: 0; border-top: none; box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1); margin-left: -65px;}
@@ -342,7 +346,7 @@ transition: all 0.3s ease-out;
 .top2{position: relative; background: #fff;}
 
 
-header{position: absolute; left: 43%; bottom: -68px; margin-left: -37px; z-index: 30;}
+header{position: absolute; bottom: -68px; z-index: 30; display: flex; justify-content: center; width: 100%; left: 0 !important}
 header div a img { width: 230px;}
 
 .fixed-menu{position: fixed; right: 50px; top: 0; z-index: 120; width: 66px;}
@@ -400,7 +404,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f27509', end
 
 .site-content{position: relative; padding-bottom: 70px;}
 
-#content{position: relative; padding-top: 60px; padding-bottom: 0px; z-index: 40;}
+#content{position: relative; padding-top: 80px; padding-bottom: 0px; z-index: 40;}
 #content2{position: relative; padding-top: 0px; padding-bottom: 0px; z-index: 40;}
 
 .span-engl{font-family: 'Roboto'; font-weight: 300;}
@@ -793,6 +797,12 @@ flex-wrap: wrap;
 .ticket-scheme .txt1{text-align: center; color: #31343f; font-size: 19px; font-family: 'Roboto Condensed'; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding-bottom: 10px;}
 .language_ge .ticket-scheme .txt1{font-family: 'bpg_nino_mtavrulibold';}
 .ticket-scheme .txt2{color: #494d64; font-size: 12px; text-align: center;}
+
+/* ============================= vehicle scheme partner======================*/
+.vehicle-scheme-partner{position: relative; margin-bottom: 10px; background: #fff; box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.08); border-radius: 0px; padding: 30px; display: none;}
+.vehicle-scheme-partner .txt1{text-align: center; color: #31343f; font-size: 19px; font-family: 'Roboto Condensed'; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding-bottom: 10px;}
+.language_ge .vehicle-scheme-partner .txt1{font-family: 'bpg_nino_mtavrulibold';}
+.vehicle-scheme-partner .txt2{color: #494d64; font-size: 12px; text-align: center;}
 
 
 /* ============================= vehicle scheme ====================== */
@@ -2266,7 +2276,7 @@ td.inline-block {
 .single_ticket_mobile .navbar {display: none;}
 
 @media (max-width: 991.98px) {
-
+    #content { padding-top: 115px;}
     .phone1{display: none;}
     .divider-ps{display: none;}
     .social-block{display: none;}

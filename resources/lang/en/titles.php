@@ -117,6 +117,10 @@ return [
     'partner_payouts' => 'Partner\'s payouts',
     'partner_payouts2' => 'All your payout history as a partner.',
 
+    //Partner Payouts
+    'vehicle_details' => 'Vehicle Details',
+    'vehicle_details2' => 'All your vehicle details as a partner.',
+
     //Affiliate Code
     'affiliate_code' => 'Affiliate Code',
     'affiliate_code2' => 'View your affiliate code and send it to a mobile number if you desire.',
@@ -144,7 +148,7 @@ return [
 
     //Forgot password
     'forgot_password1' => 'Forgot password?',
-    'forgot_password2' => 'Enter your phone number below to receive a new password',
+    'forgot_password2' => 'Enter your phone number below to receive a new password. <br>You change your password only once, otherwise contact the customer support.',
 
     //Support tickets
     'support1' => 'Support / Contact us',

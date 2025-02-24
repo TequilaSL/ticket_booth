@@ -45,20 +45,20 @@
 </template>
 
 <script>
-import {imagesPathRewrite} from '../../config'
-import lang from '../../translations'
+import { imagesPathRewrite } from '../../config'
 import Countries from '../../countries'
+import lang from '../../translations'
+import { email } from '../../validationFunctions'
 import validations from '../../validations'
-import {email} from '../../validationFunctions'
 
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import vzForm from '../../components/Form'
+import Header from '../../components/Header'
 import vLoading from '../../components/Loading'
 
-import {mdiCamera} from '@mdi/js'
-import WizardSteps from '../../components/WizardSteps'
+import { mdiCamera } from '@mdi/js'
 import AvatarCropper from "../../components/AvatarCropper"
+import WizardSteps from '../../components/WizardSteps'
 
 const minBirthDate = new Date();
 minBirthDate.setFullYear(minBirthDate.getFullYear() - 100);
@@ -141,7 +141,8 @@ export default {
                         ],
                         labelImage: 'form/phone.svg',
                         plb: true,
-                        value: ''
+                        value: '',
+                        disabled: true
                     },
                     {
                         placeholder: lang[this.$store.state.locale].profile.fields.placeholders.email,
@@ -155,7 +156,8 @@ export default {
                         ],
                         value: '',
                         plb: true,
-                        labelImage: 'form/mail.svg'
+                        labelImage: 'form/mail.svg',
+                        disabled: true
                     },
                     {
                         placeholder: lang[this.$store.state.locale].profile.fields.placeholders.id_number,

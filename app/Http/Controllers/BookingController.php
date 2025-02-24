@@ -210,8 +210,11 @@ class BookingController extends ValidationController
                     //return form for Cartu Payments
                     $cc = new CreditCardController();
                     //TODO: credit card payment
-                    $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
-                    // return $cc->viewCreditCardForm($uData[0]['transaction_id'], $total);
+                    $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total, $data['name']);
+                    if (is_array($data['name'])) {
+                        $name = implode(', ', $data['name']);
+                    }
+                    $response->original['fileName'] = $name . ' - ' . now()->format('Y-m-d H:i:s');
 
                 } else if ($data['payment_method'] == 2) {
                     //return redirect URL for PayPal
