@@ -485,7 +485,7 @@ class BookingController extends ValidationController
 
         $queryParams = http_build_query([
             'recipient' => $contact,
-            'sender_id' => 'TextLKDemo',
+            'sender_id' => 'TextLKAlert',
             'message' => $data['body'],
         ]);
 

@@ -60,7 +60,7 @@ class MobileVerificationController extends Controller
             $contact = $data['phone_number'];
             $queryParams = http_build_query([
                 'recipient' =>  $contact,
-                'sender_id' => 'TextLKDemo',
+                'sender_id' => 'TextLKAlert',
                 'message' => $data['body'],
             ]);
 
@@ -70,6 +70,12 @@ class MobileVerificationController extends Controller
             if ($response->failed()) {
                 Log::error("SMS API failed: " . $response->body());
                 return ['success' => false, 'message' => 'Failed to send OTP!'];
+            }
+
+            $responseData = $response->json();
+            if (isset($responseData['status']) && $responseData['status'] === 'error') {
+                Log::error("SMS API error: " . $responseData['message']);
+                return ['success' => false, 'message' => 'Failed to send OTP! ' . $responseData['message']];
             }
 
             return ['success' => true, 'message' => 'OTP sent successfully!'];

@@ -46,7 +46,7 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true, 
+            'serve' => true,
             'throw' => false,
         ],
 
@@ -75,6 +75,7 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'temporary_url' => true,
+            'visibility' => 'public',
         ],
 
     ],
