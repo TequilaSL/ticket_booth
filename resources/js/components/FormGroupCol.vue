@@ -8,23 +8,24 @@
                 </label>
                 <input type="hidden" :name="item.name" :value="item.value" v-if="item.field === 'hidden'">
                 <v-text-field
-                    v-else-if="item.field === 'input'"
+                v-else-if="item.field === 'input'"
                     :rules="item.rules"
                     v-model="item.value"
-                    :type="item.type || 'text'"
+                    :type="item.type === 'password' ? getInputType(item) : item.type"
                     :class="item.class || 'form-control'"
                     :name="item.name"
                     :label="item.hardLabel"
                     :placeholder="item.placeholder"
                     :spellcheck="item.spellcheck || false"
                     :id="item.id"
-                    :value="item.value"
-                    :ref="item.name"
                     autocomplete="off"
                     :disabled="item.disabled || false"
                 />
-                <label :class="{plb: item.plb, selectLabel: (item.field === 'select')}" class="password-show-hide" v-if="item?.pwShowIcon" :for="item.id" @click="pwStatus = !pwStatus" >
-                    <img :src="showHidePassword(item.id)" :alt="item.name" v-if="item.labelImage">
+                <label :class="{plb: item.plb, selectLabel: (item.field === 'select')}" class="password-show-hide" v-if="item?.pwShowIcon" :for="item.id"
+                    @click="togglePasswordVisibility(item.name)" >
+                    <img :src="pwVisibility[item.name] ? imagesPathRewrite('form/show.png') : imagesPathRewrite('form/hide.png')"
+                        :alt="item.name"
+                        v-if="item.labelImage">
                 </label>
                 <template v-else-if="item.field === 'autocomplete'">
                     <div class="interlink" v-if="item.interlinked">
@@ -297,14 +298,12 @@
     </div>
 </template>
 <script>
-import {imagesPathRewrite, vehicleSeats} from '../config'
+import { mdiCheck, mdiChevronDown, mdiChevronLeft, mdiChevronRight, mdiClose, mdiCloseCircle } from '@mdi/js'
+import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+import { VueTelInput } from 'vue-tel-input'
+import { imagesPathRewrite, vehicleSeats } from '../config'
 import lang from '../translations'
-import {VueTelInput} from 'vue-tel-input'
-import {mdiChevronDown, mdiChevronLeft, mdiChevronRight, mdiClose, mdiCloseCircle, mdiCheck} from '@mdi/js'
 import validations from '../validations'
-
-
-import {Swiper, SwiperSlide, directive} from 'vue-awesome-swiper'
 
 export default {
     components: {VueTelInput, Swiper, SwiperSlide},
@@ -340,6 +339,7 @@ export default {
     data() {
         return {
             pwStatus: false,
+            pwVisibility: {},
             tickIcon: mdiCheck,
             uploadedImages: [],
             displayPrev: [],
@@ -407,20 +407,8 @@ export default {
                 }
             }
         },
-        showHidePassword() {
-            const pwElement = document.getElementsByName('password')[0]
-            if (pwElement) {
-                if (this.pwStatus) {
-                pwElement.type = 'text';
-                return imagesPathRewrite('form/show.png');
-            } else {
-                pwElement.type = 'password';
-                return imagesPathRewrite('form/hide.png');
-            }
-            } else {
-                return imagesPathRewrite('form/hide.png');
-            }
-
+        togglePasswordVisibility(itemName) {
+            this.$set(this.pwVisibility, itemName, !this.pwVisibility[itemName]);
         },
         vehicleSeatClass(item, value) {
             if (item.reserving) {
@@ -574,6 +562,13 @@ export default {
                 }
             } else if (date && date.length) {
                 return date.length + ' ' + lang[this.$store.state.locale].dates_selected
+            }
+        }
+    },
+    computed: {
+        getInputType() {
+            return (item) => {
+                return this.pwVisibility[item.name] ? 'text' : 'password';
             }
         }
     }

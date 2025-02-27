@@ -9,12 +9,11 @@
 </template>
 
 <script>
-import lang from '../../translations'
-import validations from '../../validations'
-
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import vzForm from '../../components/Form'
+import Header from '../../components/Header'
+import lang from '../../translations'
+import validations from '../../validations'
 
 export default {
     components: {vzForm, Header, Footer},
@@ -43,7 +42,9 @@ export default {
                         ],
                         plb: true,
                         value: '',
-                        labelImage: 'form/unlock.svg'
+                        labelImage: 'form/unlock.svg',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     },
                     {
                         placeholder: lang[this.$store.state.locale].changePassword.fields.placeholders.newPassword,
@@ -55,7 +56,9 @@ export default {
                         ],
                         labelImage: 'form/unlock.svg',
                         plb: true,
-                        value: ''
+                        value: '',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     },
                     {
                         placeholder: lang[this.$store.state.locale].changePassword.fields.placeholders.repeatNewPassword,
@@ -68,7 +71,9 @@ export default {
                         ],
                         value: '',
                         plb: true,
-                        labelImage: 'form/unlock.svg'
+                        labelImage: 'form/unlock.svg',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     }
                 ]
             }
