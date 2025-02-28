@@ -1,7 +1,7 @@
 import axios from 'axios'
 import api from './api'
-import store from './vuex/store'
 import { client } from './config'
+import store from './vuex/store'
 
 const instance = axios.create({
   headers: {
@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('user')
-    console.log('axios token_________', token);
+    console.log('axios token_________', token ? true:false);
 
      if (token) {
       const parsed = JSON.parse(token)

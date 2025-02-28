@@ -172,6 +172,7 @@
         <div class="ticket-passengers hidden">
             <div class="title">{{ Lang::get('misc.passengers') }}</div>
         </div>
+        @if(!isset($isDriver) && !isset($isPartner))
         <div class="details-of-payment">
             <div class="response"></div>
             <div class="title">{{ Lang::get('misc.details_of_payment') }}</div>
@@ -239,6 +240,7 @@
                 <span>*</span> {!!  Lang::get('misc.payment_note', ['value' => route('terms_of_use')]) !!}
             </div>
         </div>
+        @endif
     @endcomponent
 
 

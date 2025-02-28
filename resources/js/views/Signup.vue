@@ -8,13 +8,12 @@
     </div>
 </template>
 <script>
-import lang from '../translations'
-import validations from '../validations'
-import Header from '../components/Header'
 import vzForm from '../components/Form'
+import Header from '../components/Header'
 import LoginOrSignUp from '../components/LoginOrSignUp'
-import {email} from '../validationFunctions'
-import Countries from '../countries'
+import lang from '../translations'
+import { email } from '../validationFunctions'
+import validations from '../validations'
 
 export default {
     components: {LoginOrSignUp, vzForm, Header},
@@ -90,7 +89,9 @@ export default {
                         ],
                         type: 'password',
                         plb: true,
-                        labelImage: 'form/lock.svg'
+                        labelImage: 'form/lock.svg',
+                        pwShowIcon: 'form/show.png',
+                        pwHideIcon: 'form/hide.png'
                     },
                     // {
                     //     placeholder: lang[this.$store.state.locale].profile.fields.placeholders.country,

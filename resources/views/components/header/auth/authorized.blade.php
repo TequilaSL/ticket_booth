@@ -18,10 +18,7 @@
         @if(isset($isPartner))
             <a class="dropdown-item" href="{{ route('partner_vehicles') }}">{{ Lang::get('menu.vehicle_details') }}</a>
         @endif
-        @if(!isset($isPartner))
-            <a class="dropdown-item"
-               href="{{ route('partner_registration') }}">{{ Lang::get('menu.become_partner') }}</a>
-        @else
+        @if(isset($isPartner))
             <a class="dropdown-item" href="{{ route('partner_profit') }}">{{ Lang::get('menu.partner_profile') }}</a>
         @endif
         @if(!isset($isPartner) && !isset($isDriver))

@@ -84,7 +84,6 @@ export default new Vuex.Store({
             try {
                 const apiFind = api.find(o => o.name === payload.actionName)
                 let response
-
                 switch (apiFind.method) {
                     case 'GET':
                         response = await axios.get(apiFind.url, {params: payload.data})
@@ -99,13 +98,15 @@ export default new Vuex.Store({
                 }
 
                 if (payload.actionName === 'login') {
-                    let customFormData = new FormData()
                     const apiFindLogin = api.find(o => o.name === 'loginForWeb')
-                    customFormData.append('_token', payload.data ? payload.data._token : payload.data.get('_token') )
-                    customFormData.append('phone_number', payload.data ?  payload.data.username : payload.data.get('username'))
-                    customFormData.append('password', payload.data ? payload.data.password : payload.data.get('password'))
-                    if (customFormData.get('_token') && customFormData.get('phone_number') && customFormData.get('password')) {
-                        // await axios.post(apiFindLogin.url, customFormData)
+                    if (payload.data) {
+                        payload.data.append('phone_number', payload.data.get('username'))
+                        const loginResponse = await axios.post(apiFindLogin.url, payload.data)
+                        // if (loginResponse.status === 0 ) {
+                        //     response.data.phone_number = payload.data.get('phone_number')
+                        // } else {
+                        //     // handle error
+                        // }
                     }
                 }
 
@@ -125,9 +126,7 @@ export default new Vuex.Store({
                 }
                 return response
             } catch (error) {
-                console.log('Promise.reject _store__________',error.message);
-                // alert("Promise.reject store", error);
-
+                console.error('API Call Error:', error)
                 return Promise.reject(error)
             }
         },
