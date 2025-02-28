@@ -107,18 +107,19 @@ export default {
                 const response = await axios.post("/check-token");
 
                 if (response.data.token && response.data.user) {
+                    const formData = new FormData();
+                    formData.append('lang', this.$store.state.locale);
+                    formData.append('_token', response.data.token);
+                    formData.append('grant_type', 'password');
+                    formData.append('client_id', client.id);
+                    formData.append('client_secret', client.secret);
+                    formData.append('username', response.data.user ? response.data.user.phone_number : '');
+                    formData.append('password', response.data.number ?? '');
+
                     this.$store
                     .dispatch("apiCall", {
                         actionName: "login",
-                        data: {
-                            lang: this.$store.state.locale,
-                            _token: response.data.token,
-                            grant_type: "password",
-                            client_id: client.id,
-                            client_secret: client.secret,
-                            username: response.data.user? response.data.user.phone_number : null,
-                            password: response.data.number ?? null,
-                        },
+                        data: formData,
                         commit: "setUserData",
                         onSuccessRedirect: "home",
                         onSuccessRedirectQuery: null,

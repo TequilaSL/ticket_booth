@@ -249,7 +249,6 @@ $('#closeLiveTracking').on('click', async function() {
 
     window.handleGoogleLogin = function (user) {
         console.log("Google User:", user);
-        // localStorage.setItem("user", JSON.stringify(user));
         window.location.reload();
     };
 
@@ -448,11 +447,9 @@ $('#closeLiveTracking').on('click', async function() {
             data: { _token: CSRF_TOKEN },
             dataType: "JSON",
             success: function (data) {
-                if (data.status === 1) {
-                    window.location.href = data.text;
-                } else if (data.status === 3) {
-                    location.reload();
-                }
+                localStorage.removeItem("user");
+                localStorage.removeItem("isLoggedIn");
+                window.location.href = data.text;
             },
         });
     });

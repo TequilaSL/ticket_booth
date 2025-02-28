@@ -13,17 +13,13 @@ class LogoutController extends Controller {
     }
 
     public function __invoke() {
-
         if (Auth::check()) {
             Auth::logout();
             \Session::flash('popup', 'login');
-            $response = array('status' => 1, 'text' => ((new Agent)->isMobile()) ? redirect()->route('mobile.login')->getTargetUrl() : redirect()->intended('/')->getTargetUrl());
-
+            $response = array('status' => 1, 'text' => (new Agent)->isMobile() ? route('mobile.login') : url('/'));
         } else {
             $response = array('status' => 0, 'text' => \Lang::get('validation.method_not_allowed'));
         }
         return response()->json($response);
     }
-
-
 }
