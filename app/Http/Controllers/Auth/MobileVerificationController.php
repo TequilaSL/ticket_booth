@@ -151,7 +151,7 @@ class MobileVerificationController extends Controller
             ]);
             Log::info('avater ',[$user]);
 
-            if ($storedData['avatar']) {
+            if (!empty($storedData['avatar']) && isset($user) && isset($user->id)) {
                 $this->uploadGoogleAvatar($storedData['avatar'], $user->id);
             }
 
