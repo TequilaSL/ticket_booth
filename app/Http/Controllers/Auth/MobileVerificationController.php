@@ -140,7 +140,7 @@ class MobileVerificationController extends Controller
                 return response()->json(['status' => 3, 'text' => 'Duplicate user email address!']);
             }
 
-            Log::info('avater ',[$storedData['avatar']]);
+            // Log::info('avater ',[$storedData['avatar']]);
             $user = User::create([
                 'name' => $storedData['name'] ?? 'User',
                 'email' => $storedData['email'] ?? null,
