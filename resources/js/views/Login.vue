@@ -114,7 +114,7 @@ export default {
                     formData.append('client_id', client.id);
                     formData.append('client_secret', client.secret);
                     formData.append('username', response.data.user ? response.data.user.phone_number : '');
-                    formData.append('password', response.data.number ?? '');
+                    formData.append('password', response.data.user ? response.data.user.password : '');
 
                     this.$store
                     .dispatch("apiCall", {
