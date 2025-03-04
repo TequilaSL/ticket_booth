@@ -97,18 +97,18 @@ export default new Vuex.Store({
                     commit(payload.commit, response.data)
                 }
 
-                if (payload.actionName === 'login') {
-                    const apiFindLogin = api.find(o => o.name === 'loginForWeb')
-                    if (payload.data) {
-                        payload.data.append('phone_number', payload.data.get('username'))
-                        const loginResponse = await axios.post(apiFindLogin.url, payload.data)
-                        // if (loginResponse.status === 0 ) {
-                        //     response.data.phone_number = payload.data.get('phone_number')
-                        // } else {
-                        //     // handle error
-                        // }
-                    }
-                }
+                // if (payload.actionName === 'login' ) {
+                //     const apiFindLogin = api.find(o => o.name === 'loginForWeb')
+                //     if (payload.data) {
+                //         payload.data.append('phone_number', payload.data.get('username'))
+                //         const loginResponse = await axios.post(apiFindLogin.url, payload.data)
+                //         // if (loginResponse.status === 0 ) {
+                //         //     response.data.phone_number = payload.data.get('phone_number')
+                //         // } else {
+                //         //     // handle error
+                //         // }
+                //     }
+                // }
 
                 if (payload.onSuccessRedirect) {
                     let redirectObject
