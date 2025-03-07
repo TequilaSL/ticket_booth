@@ -33,7 +33,7 @@ return [
     'partnership_code_not_required' => 'Affiliate code (Not Required)',
     'affiliate_code' => 'Affiliate code',
     'sign_up_redirect_message' => '',
-    'sign_in_redirect_message' => 'Already have an account ? <a href="#" role="button"  id="sign-in-button-p">Login</a>',
+    'sign_in_redirect_message' => 'Already have an account ? <a href="#" role="button"  class="sign-in-button-p">Login</a>',
     'agree_terms_of_use_forgot' => '<div class="text-center mb-10"><a href="' . route('forgot_password') . '" class="text-center">forgot password?</a></div>
     Don\'t have an account ? <a href="#" role="button" id="sign-up-button-p">Signup</a>',
     'banned' => 'Your account has been suspended',

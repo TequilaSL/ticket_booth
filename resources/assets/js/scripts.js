@@ -217,10 +217,11 @@ $('#closeLiveTracking').on('click', async function() {
         }
     });
 
-    $("#sign-in-button-p").on("click", function (e) {
+    $(".sign-in-button-p").on("click", function (e) {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeMobileVerificationForm();
         closeRegisterForm();
     });
 
