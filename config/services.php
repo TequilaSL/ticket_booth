@@ -19,13 +19,20 @@ return [
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URI'),
         'scopes' => [
-        'openid',
-        'profile',
-        'email',
-        'https://www.googleapis.com/auth/user.phonenumbers.read', // Request phone number
-    ],
+            'openid',
+            'profile',
+            'email',
+            'https://www.googleapis.com/auth/user.phonenumbers.read', // Request phone number
+        ],
     ],
 
+    'smsGateway' => [
+        'text_lk' => [
+            'url' => env('TEXT_LK_URL'),
+            'sender_id' => env('TEXT_LK_SENDER_ID'),
+            'api_token' => env('TEXT_LK_API_TOKEN'),
+        ],
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

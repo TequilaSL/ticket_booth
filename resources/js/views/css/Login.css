@@ -32,8 +32,7 @@ section .name_title h4 {
     text-align: right;
     display:inline-block;
     float:right;
-    margin-bottom: 1rem;
     font-size: 12px;
-    margin-top: -8px;
+    margin-top: 10px;
 }
 

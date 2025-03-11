@@ -168,6 +168,16 @@ export default {
                 short: 'Dec'
             }
         },
+        forgot: {
+            title: 'Forgot password?',
+            title_sub: 'Enter your phone number below to receive a new password. Otherwise contact the customer support.',
+            button: 'Send new Password',
+            fields: {
+                placeholders: {
+                    phone_number: '071 234 5678',
+                }
+            }
+        },
         changePassword: {
             title: 'Change password',
             saveButton: 'Save',
