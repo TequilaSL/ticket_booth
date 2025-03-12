@@ -2956,13 +2956,13 @@ input[name="terms_and_condition"] {
     background-color:#252941 !important;
 }
 
-#vehicle_model, #license_plate, #price, #departure_time, #arrival_time, #route_duration_hour, #stopping_time, #price, #manufacturer, #model, #year, #phone_number2, #phone_number,
+#vehicle_model, #license_plate, #price, #departure_time, #arrival_time, #route_duration_hour, #price, #manufacturer, #model, #year, #phone_number2, #phone_number,
 input[name="phone_number"], input[name="email"], input[name="affiliate_code"], #id_number {
     font-family: 'Roboto', sans-serif;
 }
 
 .language_ge #price::placeholder, .language_ge #route_duration_hour::placeholder .language_ge #model::placeholder, .language_ge #license_plate::placeholder,
-.language_ge input[name="email"]::placeholder, .language_ge input[name="affiliate_code"]::placeholder, .language_ge #id_number::placeholder, #stopping_time::placeholder {
+.language_ge input[name="email"]::placeholder, .language_ge input[name="affiliate_code"]::placeholder, .language_ge #id_number::placeholder {
     font-family: 'dejavu_sansextralight', sans-serif;
 }
 

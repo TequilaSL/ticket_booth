@@ -103,7 +103,7 @@ class Routes extends Model {
 
 
     protected $fillable = [
-        'type', 'user_id', 'vehicle_id', 'from', 'from_address', 'to', 'to_address', 'currency_id', 'stopping_time', 'price',
+        'type', 'user_id', 'vehicle_id', 'from', 'from_address', 'to', 'to_address', 'currency_id', 'price',
         'departure_time', 'arrival_time', 'departure_date', 'arrival_date', 'valid_till', 'status'
     ];
 

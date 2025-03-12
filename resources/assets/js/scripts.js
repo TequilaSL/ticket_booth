@@ -754,53 +754,32 @@ $('#closeLiveTracking').on('click', async function() {
             data: formData,
             success: function (data) {
                 if (data.status === 1) {
-                    if (
-                        $(this).find('input[name="continue"]').val() === "yes"
-                    ) {
+                    if ($(this).find('input[name="continue"]').val() === "yes") {
                         $(".wizard-container").empty();
                         let wizardComplete = $(".wizard-complete");
                         $(".progress-bar").addClass("completed");
                         wizardComplete.removeClass("hidden");
                         $(".title1").html(wizardComplete.find("h1").html());
-                        setTimeout(function () {
-                            window.location.href = route("drivers_license");
-                        }, 10000);
+                        window.location.href = route("drivers_license");
                     } else {
                         resp.css("display", "inline-block")
                             .addClass("response-success")
                             .html(data.text);
-                        setTimeout(function () {
-                            window.location.href = route("routes_list");
-                        }, 5000);
-                        $("html, body").animate(
-                            {
-                                scrollTop: resp.offset().top - 150,
-                            },
-                            1000
-                        );
+                        window.location.href = route("routes_list");
+                        $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000 );
                     }
                 } else {
                     resp.css("display", "inline-block")
                         .addClass("response-danger")
                         .html(data.text);
-                    $("html, body").animate(
-                        {
-                            scrollTop: resp.offset().top - 150,
-                        },
-                        1000
-                    );
+                    $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000);
                 }
             },
             error: function (data) {
                 resp.css("display", "inline-block")
                     .addClass("response-danger")
                     .html(data.responseJSON.text);
-                $("html, body").animate(
-                    {
-                        scrollTop: resp.offset().top - 150,
-                    },
-                    1000
-                );
+                $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000);
             },
         });
     });
@@ -1796,7 +1775,6 @@ $('#closeLiveTracking').on('click', async function() {
                 { data: "the_route" },
                 { data: "departure_date" },
                 { data: "the_time" },
-                { data: "stopping_time" },
                 { data: "address_from.translated.name" },
                 { data: "address_to.translated.name" },
                 { data: "price" },
@@ -1804,7 +1782,7 @@ $('#closeLiveTracking').on('click', async function() {
                 { data: "actions", className: "fsize" },
             ],
             columnDefs: [
-                { className: "eng", targets: [0, 1, 4, 5, 8, 9, 10] },
+                { className: "eng", targets: [0, 1, 4, 5, 7, 8, 9] },
                 {
                     targets: 3,
                     render: function (data) {
@@ -2981,6 +2959,9 @@ $('#closeLiveTracking').on('click', async function() {
             data: formData,
             success: function (data) {
                 if (data.status === 1) {
+                    const url = new URL(window.location);
+                    url.searchParams.delete('verified_email');
+                    window.history.replaceState({}, document.title, url.toString());
                     closeRegisterForm();
                     openLoginForm();
                     $(".login-popup-wrapper .response")
