@@ -48,8 +48,8 @@
                     </th>
                     <th class="th-sm">{{ Lang::get('misc.tier_1_percent') }}
                     </th>
-                    <th class="th-sm">{{ Lang::get('misc.tier_2_percent') }}
-                    </th>
+                    {{-- <th class="th-sm">{{ Lang::get('misc.tier_2_percent') }}
+                    </th>--}}
                     <th class="th-sm">{{ Lang::get('misc.passenger_percent') }}
                     </th>
                 </tr>
