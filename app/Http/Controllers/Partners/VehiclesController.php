@@ -71,6 +71,10 @@ class VehiclesController extends Controller
                 ->toJson();
         }
 
+        foreach ($vehs as $key => $val) {
+            $vehs[$key]['status'] = view('components.status-admin', ['text' => StatusController::statusLabelVU($val['status'], 'en'), 'class' => StatusController::statusLabelClass($val['status'])])->render();
+        }
+
         $data = collect($vehs)->map(function ($v) {
             $dropdown = '
             <div class="vehicle-details-dropdown account dropdown">

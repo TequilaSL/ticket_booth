@@ -12,7 +12,6 @@
             padding: 0;
         }
         .email-wrapper {
-            width: 100%;
             background-color: #f4f4f9;
             padding: 20px;
         }
@@ -39,7 +38,7 @@
         .email-button {
             display: inline-block;
             background-color: #252941;
-            color: #ffffff;
+            color: #ffffff !important;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;

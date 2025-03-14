@@ -48,8 +48,6 @@
                     </th>
                     <th class="th-sm">{{ Lang::get('driver.time') }}
                     </th>
-                    <th class="th-sm">{{ Lang::get('driver.stopping_time') }}
-                    </th>
                     <th class="th-sm">{{ Lang::get('driver.departure_address') }}
                     </th>
                     <th class="th-sm">{{ Lang::get('driver.arrival_address') }}

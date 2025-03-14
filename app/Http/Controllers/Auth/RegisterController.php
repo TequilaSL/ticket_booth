@@ -21,12 +21,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Services\SMSService;
+use Illuminate\Support\Facades\Lang;
 
 class RegisterController extends ValidationController
 {
-    public function __construct()
+    protected $smsService;
+
+    public function __construct(SMSService $smsService)
     {
         parent::__construct();
+        $this->smsService = $smsService;
     }
 
     public function getAllUser()
@@ -117,10 +122,10 @@ class RegisterController extends ValidationController
                 $this->store($data);
 
                  $mailSend=new MailController();
-                 $data['subject'] = 'TicketBooth registration successfull !';
-                 $data['body'] = 'We hereby inform you that you have registered with TicketBooth.lk successfully';
+                 $data['subject'] = Lang::get('email_templates.user_success_registration_email_title');
+                 $data['body'] = Lang::get('email_templates.user_success_registration_email_body');
                  $mailSend->sendMail($data);
-                 $this->sendMassageForMobile($data);
+                 $this->sendSMS( $data['phone_number'],    $data['body']);
 
                 $response = array('status' => 1, 'text' => \Lang::get('auth.registration_successful'));
 
@@ -187,22 +192,9 @@ class RegisterController extends ValidationController
         return view('register-as-' . $page, $data);
     }
 
-    public function sendMassageForMobile($data)
+    public function sendSMS($phoneNumber, $newPass)
     {
-        $contact = $data['phone_number'];
-
-            $queryParams = http_build_query([
-                'recipient' =>  $contact,
-                'sender_id' => 'TextLKAlert',
-                'message' => $data['body'],
-            ]);
-
-            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
-
-            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
-            ->post($url);
-
-            Log::info($response->body());
+        return $this->smsService->sendSMS($phoneNumber, $newPass);
     }
 
 

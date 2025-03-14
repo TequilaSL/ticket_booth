@@ -178,6 +178,7 @@ return [
     'percent' => '%',
     'total_sold' => 'გაყიდული ბილეთების რაოდენობა',
     'phone_number' => 'ტელეფონის ნომერი',
+    'vehicle_type' => 'Vehicle Type',
     'name_last_name' => 'სახელი, გვარი',
     'tier_1_percent' => 'I დონის პარტნიორი',
     'tier_2_percent' => 'II დონის პარტნიორი',

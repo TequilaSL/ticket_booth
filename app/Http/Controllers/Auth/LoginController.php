@@ -97,7 +97,7 @@ class LoginController extends Controller
                 } elseif (!$user->google_id && $user->password){
                     Log::info('0--03', );
                     Log::info('03', );
-                    $response = array('text' => 'You have signed up already! Please sign in.', 'googleId'=> $googleUser->getId(), 'phone_number'=> $user->phone_number);
+                    $response = array('text' => \Lang::get('validation.already_signup'), 'googleId'=> $googleUser->getId(), 'phone_number'=> $user->phone_number);
                     $jsonData = json_encode($response);
                     return response("<script>
                         window.opener.redirectGoogleLoginToNormal($jsonData);

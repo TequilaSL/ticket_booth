@@ -29,14 +29,16 @@ use Illuminate\Support\Facades\Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use App\Services\SMSService;
 
 
 class BookingController extends ValidationController
 {
-
-    public function __construct()
+    protected $smsService;
+    public function __construct(SMSService $smsService)
     {
         parent::__construct();
+        $this->smsService = $smsService;
     }
 
     public static function store($data)
@@ -208,7 +210,7 @@ class BookingController extends ValidationController
             if ($data['action'] == "buy") {
                 if ($data['payment_method'] == 1) {
                     //return form for Cartu Payments
-                    $cc = new CreditCardController();
+                    $cc = app(CreditCardController::class);
                     //TODO: credit card payment
                     $response->original['text'] = $cc->viewCreditCardForm($uData[0]['transaction_id'], $total, $data['name']);
                     if (is_array($data['name'])) {
@@ -218,7 +220,7 @@ class BookingController extends ValidationController
 
                 } else if ($data['payment_method'] == 2) {
                     //return redirect URL for PayPal
-                    $pp = new PayPalClient();
+                    $pp = app(PayPalClient::class);
                     $response->original['status'] = 2;
                     $response->original['text'] = $pp->createOrder($ppD);
                 }
@@ -227,10 +229,10 @@ class BookingController extends ValidationController
                 $response->original['text'] = Lang::get('cart.successfully_added');
             }
             $mailSend = new MailController();
-            $data['subject'] = 'TicketBooth booking successfull !';
-            $data['body'] = 'We hereby inform you that you have booked a bus ticket through our website.';
+            $data['subject'] = Lang::get('email_templates.ticket_booked_email_title');
+            $data['body'] = Lang::get('email_templates.ticket_booked_email_body');
             $mailSend->sendMail($data);
-            $this->sendMassageForMobile($data);
+            $this->sendSMS($data['phone_number'][0], $data['body']);
         }
         return response()->json($response->original);
 
@@ -318,7 +320,7 @@ class BookingController extends ValidationController
                 $amountToReturnToPassenger = $amountDriver;
             }
             if ($first['payment_method'] == 2) {
-                (new PayPalClient())->refundOrder($first['paypal_capture_id'], $amountToReturnToPassenger);
+                (app(PayPalClient::class))->refundOrder($first['paypal_capture_id'], $amountToReturnToPassenger);
             } else if ($first['payment_method'] == 1) {
                 //TODO: credit card or paypal refund action goes here with $amountToReturnToPassenger as the amount to return
             }
@@ -477,25 +479,10 @@ class BookingController extends ValidationController
         }
     }
 
-    public function sendMassageForMobile($data)
+    public function sendSMS($phoneNumber, $newPass)
     {
+        return $this->smsService->sendSMS($phoneNumber, $newPass);
 
-        $contact = $data['phone_number'][0];
-        $userName = $data['name'][0];
-
-        $queryParams = http_build_query([
-            'recipient' => $contact,
-            'sender_id' => 'TextLKAlert',
-            'message' => $data['body'],
-        ]);
-
-        $url = 'https://app.text.lk/api/v3/sms/send?' . $queryParams;
-
-        $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')
-            ->post($url);
-        Log::info('ok');
-
-        Log::info($response->body());
     }
 
 

@@ -217,10 +217,11 @@ $('#closeLiveTracking').on('click', async function() {
         }
     });
 
-    $("#sign-in-button-p").on("click", function (e) {
+    $(".sign-in-button-p").on("click", function (e) {
         e.preventDefault();
         openLoginForm();
         closeEmailVerificationForm();
+        closeMobileVerificationForm();
         closeRegisterForm();
     });
 
@@ -232,23 +233,28 @@ $('#closeLiveTracking').on('click', async function() {
 
     $("#signUpByGoogle").on("click", function (e) {
         const width = 500, height = 600;
-        const left = (screen.width - width) / 2;
-        const top = (screen.height - height) / 2;
+        const left = (screen.width - width) / 4;
+        const top = (screen.height - height) / 4;
 
-        const googleAuthPopup = window.open(
-            "/auth/google/redirect",
-            "Google Login",
-            '_blank',
-            `width=${width},height=${height},top=${top},left=${left}`
-        );
+        const googleAuthPopup = window.open("", "Google Login", "width=500,height=600");
+        // const googleAuthPopup = window.open(
+        //     "/auth/google/redirect",
+        //     "Google Login",
+        //     `width=${width},height=${height},top=${top},left=${left}`
+        // );
 
-        if (!googleAuthPopup || googleAuthPopup.closed || typeof googleAuthPopup.closed == 'undefined') {
+        if (!googleAuthPopup || googleAuthPopup.closed || typeof googleAuthPopup.closed === 'undefined') {
             alert("Popup blocked! Please allow popups and try again.");
+            return;
         }
+
+        googleAuthPopup.location.href = "/auth/google/redirect";
+        googleAuthPopup.focus();
     });
 
+    //I th
     window.handleGoogleLogin = function (user) {
-        console.log("Google User:", user);
+        // console.log("Google User:", user);
         window.location.reload();
     };
 
@@ -753,53 +759,32 @@ $('#closeLiveTracking').on('click', async function() {
             data: formData,
             success: function (data) {
                 if (data.status === 1) {
-                    if (
-                        $(this).find('input[name="continue"]').val() === "yes"
-                    ) {
+                    if ($(this).find('input[name="continue"]').val() === "yes") {
                         $(".wizard-container").empty();
                         let wizardComplete = $(".wizard-complete");
                         $(".progress-bar").addClass("completed");
                         wizardComplete.removeClass("hidden");
                         $(".title1").html(wizardComplete.find("h1").html());
-                        setTimeout(function () {
-                            window.location.href = route("drivers_license");
-                        }, 10000);
+                        window.location.href = route("drivers_license");
                     } else {
                         resp.css("display", "inline-block")
                             .addClass("response-success")
                             .html(data.text);
-                        setTimeout(function () {
-                            window.location.href = route("routes_list");
-                        }, 5000);
-                        $("html, body").animate(
-                            {
-                                scrollTop: resp.offset().top - 150,
-                            },
-                            1000
-                        );
+                        window.location.href = route("routes_list");
+                        $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000 );
                     }
                 } else {
                     resp.css("display", "inline-block")
                         .addClass("response-danger")
                         .html(data.text);
-                    $("html, body").animate(
-                        {
-                            scrollTop: resp.offset().top - 150,
-                        },
-                        1000
-                    );
+                    $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000);
                 }
             },
             error: function (data) {
                 resp.css("display", "inline-block")
                     .addClass("response-danger")
                     .html(data.responseJSON.text);
-                $("html, body").animate(
-                    {
-                        scrollTop: resp.offset().top - 150,
-                    },
-                    1000
-                );
+                $("html, body").animate({ scrollTop: resp.offset().top - 150, }, 1000);
             },
         });
     });
@@ -1795,7 +1780,6 @@ $('#closeLiveTracking').on('click', async function() {
                 { data: "the_route" },
                 { data: "departure_date" },
                 { data: "the_time" },
-                { data: "stopping_time" },
                 { data: "address_from.translated.name" },
                 { data: "address_to.translated.name" },
                 { data: "price" },
@@ -1803,7 +1787,7 @@ $('#closeLiveTracking').on('click', async function() {
                 { data: "actions", className: "fsize" },
             ],
             columnDefs: [
-                { className: "eng", targets: [0, 1, 4, 5, 8, 9, 10] },
+                { className: "eng", targets: [0, 1, 4, 5, 7, 8, 9] },
                 {
                     targets: 3,
                     render: function (data) {
@@ -2980,6 +2964,9 @@ $('#closeLiveTracking').on('click', async function() {
             data: formData,
             success: function (data) {
                 if (data.status === 1) {
+                    const url = new URL(window.location);
+                    url.searchParams.delete('verified_email');
+                    window.history.replaceState({}, document.title, url.toString());
                     closeRegisterForm();
                     openLoginForm();
                     $(".login-popup-wrapper .response")

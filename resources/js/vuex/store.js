@@ -110,6 +110,10 @@ export default new Vuex.Store({
                 //     }
                 // }
 
+                if (payload.actionName === 'forgot') {
+                    await router.push('login')
+                }
+
                 if (payload.onSuccessRedirect) {
                     let redirectObject
                     if (payload.onSuccessRedirectQuery) {

@@ -25,7 +25,6 @@ return [
     'to_date' => 'ჩასვლის თარიღი',
     'departure_time' => 'გასვლის დრო',
     'arrival_time' => 'ჩასვლის დრო',
-    'stopping_time' => 'გაჩერების დრო',
     'from_address' => 'საიდან (მისამართი)',
     'to_address' => 'სად (მისამართი)',
     'price' => 'ფასი',

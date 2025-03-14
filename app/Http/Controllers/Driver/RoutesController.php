@@ -384,7 +384,7 @@ class RoutesController extends DriverController
         //dd($request->departure_date);
         $req = [
             'vehicle_id', 'from', 'departure_date', 'departure_time', 'from_address',
-            'to', 'route_duration_hour', 'to_address', 'stopping_time',
+            'to', 'route_duration_hour', 'to_address',
             'currency_id', 'price', 'type', 'continue'
         ];
 
@@ -708,7 +708,7 @@ class RoutesController extends DriverController
             $data[$key]['currency']['currency_key'] = $val['currency']['currency_key'];
         }
 
-        return datatables()->of($data)->rawColumns(['the_route', 'the_transport', 'actions', 'the_time', 'stopping_time'])->toJson();
+        return datatables()->of($data)->rawColumns(['the_route', 'the_transport', 'actions', 'the_time'])->toJson();
     }
 
     public function viewAdd()

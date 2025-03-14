@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver as ImageDriver;
 use Exception;
+use App\Services\SMSService;
+use Illuminate\Support\Facades\Lang;
+
 
 class MobileVerificationController extends Controller
 {
     protected $validTokens = [];
+    protected $smsService;
+
+    public function __construct(SMSService $smsService){
+        parent::__construct();
+        $this->smsService = $smsService;
+    }
 
     public function sendVerificationMessage(Request $request)
     {
@@ -40,49 +49,23 @@ class MobileVerificationController extends Controller
             ]));
             Log::info('session data 1 ',[session("user_details")]);
 
+            $smsResponse = $this->sendSMS($requestdata['phone_number'],$requestdata['body']);
 
-            $smsResponse = $this->sendMassageForMobile($requestdata);
+            // if (!$smsResponse['success']) {
+            //     return response()->json(['status' => 2, 'text' => 'OTP sending failed! Please try again.']);
+            // }
 
-            if (!$smsResponse['success']) {
-                return response()->json(['status' => 2, 'text' => 'OTP sending failed! Please try again.']);
-            }
-
-            return response()->json(['status' => 1, 'text' => 'If entered mobile is correct, you will receive an OTP. Please enter it here.']);
+            return response()->json(['status' => 1, 'text' => \Lang::get('validation.if_mobile_correct_for_otp')]);
         } catch (\Throwable $th) {
             Log::error("Error in sendVerificationMessage: " . $th->getMessage());
             return response()->json(['status' => 3, 'text' => 'Something went wrong!']);
         }
     }
 
-    public function sendMassageForMobile($data)
+    public function sendSMS($phoneNumber, $message)
     {
-        try {
-            $contact = $data['phone_number'];
-            $queryParams = http_build_query([
-                'recipient' =>  $contact,
-                'sender_id' => 'TextLKAlert',
-                'message' => $data['body'],
-            ]);
+        return $this->smsService->sendSMS($phoneNumber, $message);
 
-            $url = 'https://app.text.lk/api/v3/sms/send?'.$queryParams;
-            $response = Http::withToken('62|u9MhYN6e0faDAOlFyWznAxII9cDFtbCNo65IEKvNdcd92f65')->post($url);
-
-            if ($response->failed()) {
-                Log::error("SMS API failed: " . $response->body());
-                return ['success' => false, 'message' => 'Failed to send OTP!'];
-            }
-
-            $responseData = $response->json();
-            if (isset($responseData['status']) && $responseData['status'] === 'error') {
-                Log::error("SMS API error: " . $responseData['message']);
-                return ['success' => false, 'message' => 'Failed to send OTP! ' . $responseData['message']];
-            }
-
-            return ['success' => true, 'message' => 'OTP sent successfully!'];
-        } catch (\Throwable $th) {
-            Log::error("Error in sendMassageForMobile: " . $th->getMessage());
-            return ['success' => false, 'message' => 'Something went wrong while sending OTP!'];
-        }
     }
 
     protected function uploadGoogleAvatar($avatarUrl, $userId){
@@ -132,12 +115,12 @@ class MobileVerificationController extends Controller
 
             if ($storedData['phone_number'] !== $data['phone_number'] || $storedData['otp'] !== $data['otp_code']) {
                 Log::info('OTP verification failed', ['input' => $data, 'stored' => $storedData]);
-                return response()->json(['status' => 2, 'text' => 'Invalid OTP or phone number. Please try again.']);
+                return response()->json(['status' => 2, 'text' => \Lang::get('validation.invalid_otp_or_mobile')]);
             }
 
             $user = User::where('email', $storedData['email'] ?? null)->first();
             if ($user) {
-                return response()->json(['status' => 3, 'text' => 'Duplicate user email address!']);
+                return response()->json(['status' => 3, 'text' => \Lang::get('validation.duplicate_email')]);
             }
 
             // Log::info('avater ',[$storedData['avatar']]);
@@ -157,6 +140,8 @@ class MobileVerificationController extends Controller
 
             session()->forget("user_details");
             Auth::login($user);
+            $smsResponse = $this->sendSMS($storedData['phone_number'],Lang::get('email_templates.user_success_registration_email_body'));
+
             return response()->json(['status' => 1, 'text' => 'User registered successfully!']);
         } catch (\Throwable $th) {
             Log::error("Error in verifyMobile: " . $th->getMessage());

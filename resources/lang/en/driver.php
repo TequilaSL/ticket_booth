@@ -19,7 +19,6 @@ return [
     'to_date' => 'Arrival date',
     'departure_time' => 'Departure time',
     'arrival_time' => 'Arrival time',
-    'stopping_time' => 'Stopping time',
     'from_address' => 'From address',
     'to_address' => 'To address',
     'price' => 'Price',
