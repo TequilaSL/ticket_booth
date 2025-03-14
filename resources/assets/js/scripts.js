@@ -233,23 +233,28 @@ $('#closeLiveTracking').on('click', async function() {
 
     $("#signUpByGoogle").on("click", function (e) {
         const width = 500, height = 600;
-        const left = (screen.width - width) / 2;
-        const top = (screen.height - height) / 2;
+        const left = (screen.width - width) / 4;
+        const top = (screen.height - height) / 4;
 
-        const googleAuthPopup = window.open(
-            "/auth/google/redirect",
-            "Google Login",
-            '_blank',
-            `width=${width},height=${height},top=${top},left=${left}`
-        );
+        const googleAuthPopup = window.open("", "Google Login", "width=500,height=600");
+        // const googleAuthPopup = window.open(
+        //     "/auth/google/redirect",
+        //     "Google Login",
+        //     `width=${width},height=${height},top=${top},left=${left}`
+        // );
 
-        if (!googleAuthPopup || googleAuthPopup.closed || typeof googleAuthPopup.closed == 'undefined') {
+        if (!googleAuthPopup || googleAuthPopup.closed || typeof googleAuthPopup.closed === 'undefined') {
             alert("Popup blocked! Please allow popups and try again.");
+            return;
         }
+
+        googleAuthPopup.location.href = "/auth/google/redirect";
+        googleAuthPopup.focus();
     });
 
+    //I th
     window.handleGoogleLogin = function (user) {
-        console.log("Google User:", user);
+        // console.log("Google User:", user);
         window.location.reload();
     };
 

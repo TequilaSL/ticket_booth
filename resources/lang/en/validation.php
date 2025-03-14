@@ -135,4 +135,10 @@ return [
     'string' => ':attribute should be a valid text.',
     'timezone' => ':attribute should be a valid timezone.',
     'url' => ':attribute should be a valid URL',
+    'new_password_is'=> 'Your new password is: ',
+    'sms_send_fail'=> 'Failed to send SMS. Please try again later. ',
+    'already_signup'=> 'You have signed up already! Please sign in.',
+    'if_mobile_correct_for_otp'=> 'If entered mobile is correct, you will receive an OTP. Please enter it here.',
+    'invalid_otp_or_mobile'=> 'Invalid OTP or phone number. Please try again.',
+    'duplicate_email'=> 'Duplicate user email address!',
 ];

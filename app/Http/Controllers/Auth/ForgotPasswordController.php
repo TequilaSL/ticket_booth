@@ -28,9 +28,9 @@ class ForgotPasswordController extends ValidationController
         }
     }
 
-    public function sendGenertedPassword($phoneNumber, $newPass)
+    public function sendSMS($phoneNumber, $newPass)
     {
-        return $this->smsService->sendGenertedPassword($phoneNumber, $newPass);
+        return $this->smsService->sendSMS($phoneNumber, $newPass);
     }
 
     protected function validator(array $data)
@@ -52,22 +52,18 @@ class ForgotPasswordController extends ValidationController
             // $user->notify(
                 //     new ForgotPasswordSend($cur, $newPass)
                 // );
-                try {
-                    $newPass = rand(100000, 999999);
-                    $smsGeneration = $this->sendGenertedPassword($data['phone_number'], 'Your new password is: '.$newPass);
-
-                    User::wherePhoneNumber($data['phone_number'])->whereIn('status', [1,2])->update(['status' => 1, 'password' => \Hash::make($newPass)]);
-
-
-                    $response->original['text'] = $smsGeneration['text'];
-                    $statusCode = 200;
-                    return redirect()->route('/login')->with('success', \Lang::get('validation.sms_successfully_sent'));
-                    // ForgotPassword::create(['phone_number' => $data['phone_number']]);
+            try {
+                $newPass = rand(100000, 999999);
+                $smsGeneration = $this->sendSMS($data['phone_number'], \Lang::get('validation.new_password_is').$newPass);
+                User::wherePhoneNumber($data['phone_number'])->whereIn('status', [1,2])->update(['status' => 1, 'password' => \Hash::make($newPass)]);
+                $response->original['text'] = $smsGeneration['text'];
+                $statusCode = 200;
+                // ForgotPassword::create(['phone_number' => $data['phone_number']]);
             } catch (\Throwable $th) {
                 LogHelper::error('SMS Sending Failed: ' . $th->getMessage());
                 return response()->json([
                     'status' => 0,
-                    'text' => 'Failed to send SMS. Please try again later.'
+                    'text' => \Lang::get('validation.sms_send_fail')
                 ], 500);
             }
         } else {

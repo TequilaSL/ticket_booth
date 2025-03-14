@@ -36,19 +36,18 @@ class ForgotPasswordController extends FPC {
 
             try {
                 $newPass = rand(100000, 999999);
-                $smsGeneration = $this->sendGenertedPassword($data['phone_number'], 'Your new password is: '.$newPass);
+                $smsGeneration = $this->sendSMS($data['phone_number'], \Lang::get('validation.new_password_is').$newPass);
 
                 User::wherePhoneNumber($data['phone_number'])->whereIn('status', [1,2])
                 ->first()->update(['status' => 1, 'password' => \Hash::make($newPass)]);
 
                 $response->original['text'] = $smsGeneration['text'];
                 $statusCode = 200;
-                return redirect()->route('/login')->with('success', \Lang::get('validation.sms_successfully_sent'));
             } catch (\Throwable $th) {
                 LogHelper::error('SMS Sending Failed: ' . $th->getMessage());
                 return response()->json([
                     'status' => 0,
-                    'text' => 'Failed to send SMS. Please try again later.'
+                    'text' => \Lang::get('validation.sms_send_fail')
                 ], 500);
             }
         } else {

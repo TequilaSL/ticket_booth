@@ -83,4 +83,8 @@ return [
     Sincerely,<br>
     Zoombus',
     'support_reply_anchor' => 'View replies',
+    'user_success_registration_email_title' => 'TicketBooth registration successfull !',
+    'user_success_registration_email_body' => 'We hereby inform you that you have registered with TicketBooth.lk successfully!',
+    'ticket_booked_email_title' => 'TicketBooth booking successfull !',
+    'ticket_booked_email_body' => 'We hereby inform you that you have booked a bus ticket through TicketBooth.lk.',
 ];

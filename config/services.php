@@ -22,8 +22,14 @@ return [
             'openid',
             'profile',
             'email',
-            'https://www.googleapis.com/auth/user.phonenumbers.read', // Request phone number
+            // 'https://www.googleapis.com/auth/user.phonenumbers.read', // Request phone number
         ],
+    ],
+
+    'oauth' => [
+        'client_id' => env('OAUTH_CLIENT_ID'),
+        'client_secret' => env('OAUTH_CLIENT_SECRET'),
+        'url' => env('OAUTH_URL'),
     ],
 
     'smsGateway' => [

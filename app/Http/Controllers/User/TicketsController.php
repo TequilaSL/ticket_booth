@@ -17,7 +17,6 @@ use Jenssegers\Agent\Agent;
 use Lang;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 use Validator;
-use Illuminate\Support\Facades\Log;
 
 class TicketsController extends ValidationController
 {
@@ -82,7 +81,7 @@ class TicketsController extends ValidationController
             $data['tickets'] = $tickets[0] ?? [];
             $request = new Request();
             $request->id = $data['tickets']['id'];
-            $checkRefundAmount = (new BookingController())->checkRefundAmount($request);
+            $checkRefundAmount = app(BookingController::class)->checkRefundAmount($request);
             $data['deleteAlertify'] = [
                 'confirm-msg' => $checkRefundAmount->original['text'],
                 'success-msg' => Lang::get('alerts.success_ticket_cancel'),
@@ -148,11 +147,11 @@ class TicketsController extends ValidationController
                 return redirect()->to((new LaravelLocalization())->getNonLocalizedURL(route('secure_ticket', ['id' => $id])));
             }
 
-            $response = $http->post('http://127.0.0.1:8000/oauth/token', [
+            $response = $http->post(config('services.oauth.url'), [
                 'form_params' => [
                     'grant_type' => 'password',
-                    'client_id' => '4',
-                    'client_secret' => 'cZwHPYhIpdEfaGFTgimHbMJQBI0f8o1Hc4lCB4Tr',
+                    'client_id' => config('services.oauth.client_id'),
+                    'client_secret' => config('services.oauth.client_secret'),
                     'username' => $data['tickets']['users']['phone_number'],
                     'password' => $data['tickets']['users']['password']
                 ]
@@ -173,7 +172,7 @@ class TicketsController extends ValidationController
             }
             $request = new Request();
             $request->id = $data['tickets']['id'];
-            $checkRefundAmount = (new BookingController())->checkRefundAmount($request);
+            $checkRefundAmount = app(BookingController::class)->checkRefundAmount($request);
             $data['deleteAlertify'] = [
                 'confirm-msg' => $checkRefundAmount->original['text'],
                 'success-msg' => Lang::get('alerts.success_ticket_cancel'),

@@ -8,7 +8,7 @@ use Exception;
 
 class SMSService
 {
-    public function sendGenertedPassword($phoneNumber, $message)
+    public function sendSMS($phoneNumber, $message)
     {
         try {
             // LogHelper::info('Attempting to send SMS', [
