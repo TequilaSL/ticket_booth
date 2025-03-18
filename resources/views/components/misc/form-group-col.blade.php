@@ -143,7 +143,7 @@
                             @else
                                 @if(isset($field) && $field != 'checkbox' && $field != 'radio' || !isset($field))
                                     @if(isset($type) && $type == 'password')
-                                        <div>
+                                        <div class="password-input-container">
                                             <input type="{{ $type ?? 'passowrd' }}" @isset($required) required
                                                 oninvalid="this.setCustomValidity('{{ $required }}')"
                                                 oninput="setCustomValidity('')"
@@ -151,19 +151,11 @@
                                                 @empty($no_id) id="{{ $field_id ?? $name }}"
                                                 @endempty
                                                 class="{{ $class ?? 'form-control' }} {{ $addon ?? null }}"
-                                                @isset($start_view) data-date-start-view="{{ $start_view }}" @endisset
                                                 placeholder="{{ $placeholder ?? $label ?? null }}"
                                                 @if(isset($ignoreAuth))
                                                 value="{{ $value ?? null }}"
-                                                @else
-                                                value="{{ $value ?? Auth::user()->$name ?? null }}"
                                                 @endif
-                                                @if(isset($addon) && $addon == 'typeahead') data-provide="typeahead"
-                                                @isset($typeahead) data-display="{{ $typeahead['display'] }}"
-                                                data-remote-url="{{ $typeahead['remote'] }}" @endisset
-                                                @endif
-                                                autocomplete="off" @isset($disabled) disabled
-                                                @endisset @isset($readonly) readonly @endisset>
+                                                autocomplete="off">
                                                 <i class="fa fa-eye" id="toggleIcon-{{ $field_id ?? $name }}"></i>
                                         </div>
                                     @else
