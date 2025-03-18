@@ -19,11 +19,18 @@ use Intervention\Image\Drivers\Gd\Driver as ImageDriver;
 use Intervention\Image\ImageManager;
 use Jenssegers\Agent\Agent;
 use Illuminate\Support\Facades\Log;
+use App\Services\SMSService;
+use App\Helpers\LogHelper;
+use App\Services\EmailService;
+use Illuminate\Support\Facades\Lang;
 
 class ProfileController extends ValidationController
 {
-    public function __construct() {
+    protected $smsService;
+
+    public function __construct(SMSService $smsService) {
         parent::__construct();
+        $this->smsService = $smsService;
         $agent = new Agent();
         if(!$agent->isMobile()) {
             $this->middleware('customer');
@@ -63,6 +70,12 @@ class ProfileController extends ValidationController
                 'password' => 'required|min:5|confirmed'
             ];
         }
+        else if ($validate == 'mobile') {
+            $fields = [
+                'new_mobile' => 'required|phone:AUTO|'.Rule::unique('users', 'phone_number'),
+                'password' => 'required|current_password',
+            ];
+        }
         else if ($validate == 'avatar') {
             $fields = [
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,svg|max:10000|dimensions:min_width=150,min_height=150,max_width=8000,max_height=8000',
@@ -86,7 +99,7 @@ class ProfileController extends ValidationController
         if($data['birth_date'] == 'Invalid date') {
             unset($data['birth_date']);
         }
-        $response = ValidationController::response($this->validator($data,'profile', (Driver::current()->exists() || Partner::current()->exists()) ? true : false), \Lang::get('auth.profile_updated'));
+        $response = ValidationController::response($this->validator($data,'profile', (Driver::current()->exists() || Partner::current()->exists()) ? true : false), Lang::get('auth.profile_updated'));
         if($response->original['status'] == 1) {
             $this->store($data);
         }
@@ -96,12 +109,82 @@ class ProfileController extends ValidationController
     public function password(Request $request) {
         $assignable = ['old_password','password','password_confirmation'];
         $data = $request->only($assignable);
-        $response = ValidationController::response($this->validator($data,'password'), \Lang::get('validation.password_updated'));
+        $response = ValidationController::response($this->validator($data,'password'), Lang::get('validation.password_updated'));
         if($response->original['status'] == 1) {
             $pass['password'] = Hash::make($data['password']);
             $this->store($pass);
         }
         return response()->json($response->original);
+    }
+
+    public function updateMobile(Request $request) {
+        $data = $request->only('new_mobile', 'password');
+        $response = ValidationController::response($this->validator($data,'mobile'), Lang::get('validation.mobile_number_updated'));
+        try {
+            if($response->original['status'] == 1) {
+                $otp = random_int(1000, 9999);
+                $this->sendSMS($data['new_mobile'], Lang::get('validation.otp_number_is', ['otp'=>$otp]));
+
+                session()->put("user_details", array_merge(session("user_details", []), [
+                    'new_mobile'=> $data['new_mobile'],
+                    'otp'=>$otp
+                ]));
+                $response = response()->json([
+                    'status' => 1,
+                    'text' => Lang::get('validation.if_mobile_correct_for_otp')
+                ]);
+            }
+        } catch (\Throwable $th) {
+            LogHelper::error("update mobile Error: ", [$th->getMessage()]);
+            $response = ['status' => 3, 'text' => Lang::get('validation.something_went_wrong')];
+        }
+        return response()->json($response->original);
+    }
+
+    public function verifyOtp(Request $request, EmailService $mailService) {
+        try {
+            $data = $request->only('phone_number', 'otp_code');
+            $storedData = session("user_details");
+
+            if (!$storedData) {
+                return response()->json(['status' => 2, 'text' => Lang::get('validation.session_expired_or_invalid')]);
+            }
+            if ($storedData['new_mobile'] !== $data['phone_number'] || $storedData['otp'].'' !== $data['otp_code']) {
+                return response()->json(['status' => 2, 'text' => Lang::get('validation.invalid_otp_or_mobile')]);
+            }
+            User::where('id', \Auth::user()->id)->update([
+                'phone_number' => $storedData['new_mobile']
+            ]);
+            session()->forget("user_details");
+            $this->sendSMS($data['phone_number'],Lang::get('validation.mobile_number_updated'));
+
+            $emailData = [
+                'userName' => \Auth::user()->name,
+                'userEmail' => \Auth::user()->email,
+                'newMobileNumber' => $data['phone_number'],
+                'location' => 'Colombo, Sri Lanka', // Replace with actual location
+                'device' => 'iPhone 12 Pro, iOS', // Replace with actual device
+                'time' => now()->format('l, F j, Y \a\t g:i A'), // Current time
+                'passwordResetLink' => route(name: 'forgot_password'), // Replace with actual help center link
+            ];
+            $mailService->sendEmail(
+                \Auth::user()->email,
+                Lang::get('email_templates.security_alert_mobile_update'),
+                'email.mobile-change-alert',
+                $emailData
+            );
+
+            return response()->json(['status' => 1, 'text' => Lang::get('validation.mobile_change_success')]);
+        } catch (\Throwable $th) {
+            LogHelper::error("verifyOtp Error: ", [$th->getMessage()]);
+            return response()->json(['status' => 3, 'text' => Lang::get('validation.something_went_wrong')]);
+        }
+    }
+
+
+    public function sendSMS($phoneNumber, $otp)
+    {
+        return $this->smsService->sendSMS($phoneNumber, $otp);
     }
 
     protected function avatarAction($image, $userId) {
@@ -135,10 +218,10 @@ class ProfileController extends ValidationController
         if(\Auth::user()->photoExists()) {
             Storage::disk('s3')->delete('users/'.Auth::user()->id.'.'.Auth::user()->extension);
             Storage::disk('s3')->delete('users/small/'.Auth::user()->id.'.'.Auth::user()->extension);
-            $response = array('status' => 1, 'text' => \Lang::get('auth.image_removed'));
+            $response = array('status' => 1, 'text' => Lang::get('auth.image_removed'));
         }
         else {
-            $response = array('status' => 0, 'text' => \Lang::get('auth.image_not_removed'));
+            $response = array('status' => 0, 'text' => Lang::get('auth.image_not_removed'));
         }
         return response()->json($response);
     }
@@ -146,7 +229,7 @@ class ProfileController extends ValidationController
     public function viewProfile(){
         $agent = new Agent();
         if($agent->isMobile()) {
-            $data['title'] = \Lang::get('titles.edit_profile');
+            $data['title'] = Lang::get('titles.edit_profile');
             return view('mobile.profile.edit', $data);
         }
         else {
@@ -169,11 +252,26 @@ class ProfileController extends ValidationController
     public function viewChangePassword(){
         $agent = new Agent();
         if($agent->isMobile()) {
-            $data['title'] = \Lang::get('titles.password');
+            $data['title'] = Lang::get('titles.password');
             return view('mobile.profile.change-password', $data);
         } else {
             $data = Controller::essentialVars();
             return view('profile.change-password', $data);
+        }
+    }
+
+    public function updateMobileNumber(){
+        $agent = new Agent();
+        if (Auth::check()) {
+            if($agent->isMobile()) {
+                $data['title'] = Lang::get('titles.update_mobile');
+                $data['phone_number'] = Auth::user()->phone_number;
+                return view('mobile.profile.update-mobile-number', $data);
+            } else {
+                $data = Controller::essentialVars();
+                $data['phone_number'] = Auth::user()->phone_number;
+                return view('profile.update-mobile-number', $data);
+            }
         }
     }
 

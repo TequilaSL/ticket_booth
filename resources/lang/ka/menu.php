@@ -12,6 +12,7 @@ return [
     'personal_settings' => 'პირადი მონაცემები',
     'drivers_license' => 'მართვის მოწმობა',
     'change_password' => 'პაროლის შეცვლა',
+    'update_mobile' => 'Update Mobile',
     'financial_parameters' => 'ფინანსური პარამეტრები',
     'financial' => 'ფინანსები',
     'fines' => 'ჯარიმები',

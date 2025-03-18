@@ -19,6 +19,9 @@
                     <li class="@if(Request::route()->getName() == 'edit_password') active @endif">
                         <a href="{{ route('edit_password') }}">{{Lang::get('menu.change_password')}}</a>
                     </li>
+                    <li class="@if(Request::route()->getName() == 'update_mobile') active @endif">
+                        <a href="{{ route('update_mobile') }}">{{Lang::get('menu.update_mobile')}}</a>
+                    </li>
                     @if(isset($isDriver) || isset($isPartner))
                         @if(isset($isDriver))
                         <li class="@if(Request::route()->getName() == 'bought_tickets') active @endif">

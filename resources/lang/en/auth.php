@@ -44,6 +44,8 @@ return [
     'my_account' => 'My Account',
     'old_password' => 'Current password',
     'new_password' => 'New password',
+    'old_mobile' => 'Current mobile Number',
+    'new_mobile' => 'New mobile Number',
     'new_password_confirm' => 'Confirm new password',
     'password_confirm' => 'Confirm password',
     'otp_code' => 'OTP Code',
