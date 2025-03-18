@@ -129,10 +129,7 @@ class ProfileController extends ValidationController
                     'new_mobile'=> $data['new_mobile'],
                     'otp'=>$otp
                 ]));
-                $response = response()->json([
-                    'status' => 1,
-                    'text' => Lang::get('validation.if_mobile_correct_for_otp')
-                ]);
+                $response = response()->json([ 'status' => 1, 'text' => Lang::get('validation.if_mobile_correct_for_otp')]);
             }
         } catch (\Throwable $th) {
             LogHelper::error("update mobile Error: ", [$th->getMessage()]);

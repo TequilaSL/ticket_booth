@@ -34,16 +34,11 @@ class EmailVerificationController extends Controller
                     ['verificationLink' => $verificationLink]
                 );
 
-                $response = [
-                    'status' => 1,
-                    'text' => Lang::get('validation.if_email_correct_for_confirmation')
+                $response = ['status' => 1, 'text' => Lang::get('validation.if_email_correct_for_confirmation')
                 ];
             } catch (\Exception $e) {
                 LogHelper::apiCallError('Error sending verification email', $e->getCode(), $e->getMessage());
-                $response = [
-                    'status' => 0,
-                    'text' => Lang::get('validation.verification_email_send_fail')
-                ];
+                $response = ['status' => 0, 'text' => Lang::get('validation.verification_email_send_fail')];
             }
         }
         return response()->json($response);
