@@ -176,6 +176,7 @@ return [
     'languages' => 'ენის ცვლილება',
     'main' => 'მთავარი',
     'password' => 'პაროლის შეცვლა',
+    'update_mobile' => 'Update Mobile Number',
     'register' => 'რეგისტრაცია',
     'your_ticket' => 'თქვენი ბილეთი',
     'ticket_list' => 'შეძენილი ბილეთები',

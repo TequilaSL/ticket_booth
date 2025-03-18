@@ -173,6 +173,7 @@ return [
     'languages' => 'Change language',
     'main' => 'Main',
     'password' => 'Change password',
+    'update_mobile' => 'Update Mobile Number',
     'license' => 'Drivers License',
     'financial' => 'Financial parameters',
     'register' => 'Registration',

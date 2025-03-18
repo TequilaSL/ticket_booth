@@ -12,6 +12,7 @@ return [
     'personal_settings' => 'Personal settings',
     'drivers_license' => 'Driver\'s license',
     'change_password' => 'Change password',
+    'update_mobile' => 'Update Phone Number',
     'financial_parameters' => 'Financial settings',
     'financial' => 'Financial',
     'sales' => 'Sales',

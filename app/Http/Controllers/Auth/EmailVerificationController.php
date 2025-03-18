@@ -4,14 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use App\Services\EmailService;
+use App\Helpers\LogHelper;
+use Illuminate\Support\Facades\Lang;
 
 class EmailVerificationController extends Controller
 {
     protected $validTokens = [];
 
-    public function sendVerificationEmail(Request $request)
+    public function sendVerificationEmail(Request $request, EmailService $mailService)
     {
         $data = $request->only('email');
         $validator = Validator::make($data, ['email' => 'required|email|unique:users']);
@@ -19,18 +21,30 @@ class EmailVerificationController extends Controller
         if ($validator->fails()) {
             $response = array('status' => 0, 'text' => $errors->first());
         } else {
-            $email = $request->email;
-            $token = sha1(time());
-            session()->put("verification_token_email", $token);
-            $verificationLink = route('email_verify', ['email' => $email, 'token' => $token]);
+            try {
+                $email = $request->email;
+                $token = sha1(time());
+                session()->put("verification_token_email", $token);
+                $verificationLink = route('email_verify', ['email' => $email, 'token' => $token]);
 
-            Mail::send('email.verify-email', ['verificationLink' => $verificationLink], function ($message) use ($email) {
-                $message->to($email)
-                    ->subject('Verify Your Email Address')
-                    ->from('nipuna315np@gmail.com', 'Your Application Name');
-            });
+                $mailService->sendEmail(
+                    $email,
+                    'Verify Your Email Address',
+                    'email.verify-email',
+                    ['verificationLink' => $verificationLink]
+                );
 
-            $response = array('status' => 1, 'text' => 'If the entered email is correct, you will receive a confirmation mail with a link. Please click that link to verify the email.');
+                $response = [
+                    'status' => 1,
+                    'text' => Lang::get('validation.if_email_correct_for_confirmation')
+                ];
+            } catch (\Exception $e) {
+                LogHelper::apiCallError('Error sending verification email', $e->getCode(), $e->getMessage());
+                $response = [
+                    'status' => 0,
+                    'text' => Lang::get('validation.verification_email_send_fail')
+                ];
+            }
         }
         return response()->json($response);
     }

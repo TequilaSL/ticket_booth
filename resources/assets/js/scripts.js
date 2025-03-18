@@ -291,6 +291,14 @@ $('#closeLiveTracking').on('click', async function() {
         $(".mobile-verification-btn-wrapper").addClass("open");
     };
 
+    function openMobileVerificationPopup (e) {
+        $(".mobile-update-verification-popup-wrapper").addClass("open");
+    };
+
+    function closeMobileVerificationPopup (e) {
+        $(".mobile-update-verification-popup-wrapper").removeClass("open");
+    };
+
     function closeEmailVerificationForm (e) {
         $(".email-verification-btn-wrapper").removeClass("open");
     };
@@ -330,6 +338,14 @@ $('#closeLiveTracking').on('click', async function() {
         window.history.replaceState({}, document.title, window.location.pathname);
         closeEmailVerificationForm();
         checkForVerifiedEmails()
+    });
+
+    /*----------------------------------------------------*/
+    // Modal mobile change otp verification.
+    /*----------------------------------------------------*/
+    $(".mobile-update-verification-popup-wrapper .close").on("click", function (e) {
+        e.preventDefault();
+        closeMobileVerificationPopup();
     });
 
     /*----------------------------------------------------*/
@@ -3625,6 +3641,129 @@ $('#closeLiveTracking').on('click', async function() {
                 $(this)
                     .parents()
                     .find(".response")
+                    .css("display", "inline-block")
+                    .addClass("response-danger")
+                    .html(data.responseJSON.text);
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+        });
+    });
+
+    let updateMobileNumberForm = $("#updateMobileNumberForm");
+    updateMobileNumberForm.submit(function (e) {
+        e.preventDefault();
+        $(".response")
+            .css("display", "none")
+            .removeClass(
+                "response-success response-danger response-warning response-info"
+            );
+
+        var newMobileNumber = $(this).find('input[name="phone_number"]');
+        var phoneNumber = newMobileNumber.intlTelInput("getNumber");
+        let formData = new FormData(updateMobileNumberForm[0]);
+        formData.set("new_mobile", phoneNumber);
+
+        $.ajax({
+            url: route("user_change_mobile"),
+            type: "POST",
+            context: this,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status === 1) {
+                    $(this)
+                        .parents()
+                        .find(".response-popup")
+                        .css("display", "inline-block")
+                        .addClass("response-success")
+                        .html(data.text);
+                    $('#new_phone_number').val(phoneNumber.replace(/^\+94/, '0'));
+                    openMobileVerificationPopup();
+                } else {
+                    $(this)
+                        .parents()
+                        .find(".response")
+                        .css("display", "inline-block")
+                        .addClass("response-danger")
+                        .html(data.text);
+                }
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+            error: function (data) {
+                $(this)
+                    .parents()
+                    .find(".response")
+                    .css("display", "inline-block")
+                    .addClass("response-danger")
+                    .html(data.responseJSON.text);
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+        });
+    });
+
+    let otpVerificationForm = $("#otpVerificationForm");
+    otpVerificationForm.submit(function (e) {
+        e.preventDefault();
+        $(".response")
+            .css("display", "none")
+            .removeClass(
+                "response-success response-danger response-warning response-info"
+            );
+        let formData = new FormData(otpVerificationForm[0]);
+        formData.set("phone_number", $(this).find('input[name="phone_number"]').intlTelInput("getNumber"));
+
+        $.ajax({
+            url: route("user_verify_mobile"),
+            type: "POST",
+            context: this,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data.status === 1) {
+                    $(this)
+                        .parents()
+                        .find(".response")
+                        .css("display", "inline-block")
+                        .addClass("response-success")
+                        .html(data.text);
+                        location.reload();
+                    closeMobileVerificationPopup();
+                } else {
+                    $(this)
+                        .parents()
+                        .find(".response-popup")
+                        .css("display", "inline-block")
+                        .addClass("response-danger")
+                        .html(data.text);
+                }
+                $("html, body").animate(
+                    {
+                        scrollTop: $(".response").offset().top - 150,
+                    },
+                    1000
+                );
+            },
+            error: function (data) {
+                $(this)
+                    .parents()
+                    .find(".response-popup")
                     .css("display", "inline-block")
                     .addClass("response-danger")
                     .html(data.responseJSON.text);

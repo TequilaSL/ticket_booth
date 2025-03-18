@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Partners\VehiclesController;
+use App\Http\Controllers\User\ProfileController;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['web']], function () {
         //users
         Route::get('/profile', 'User\ProfileController@viewProfile')->name('profile');
         Route::get('/edit-password', 'User\ProfileController@viewChangePassword')->name('edit_password');
+        Route::get('/update-mobile', 'User\ProfileController@updateMobileNumber')->name('update_mobile');
         Route::get('/bought-tickets', 'User\TicketsController@viewAll')->name('bought_tickets');
         Route::get('/ticket/{id}', 'User\TicketsController@view')->name('single_ticket');
         Route::get('/t/s/{id}', 'User\TicketsController@secureView')->name('secure_ticket');
@@ -147,6 +149,8 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/user/change-avatar', 'User\ProfileController@avatar')->name('user_change_avatar');
         Route::post('/user/delete-avatar', 'User\ProfileController@removeAvatar')->name('user_remove_avatar');
         Route::post('/user/change-password', 'User\ProfileController@password')->name('user_change_password');
+        Route::post('/user/change-mobile', [ProfileController::class,  'updateMobile'])->name('user_change_mobile');
+        Route::post('/user/verify-mobile', [ProfileController::class,  'verifyOtp'])->name('user_verify_mobile');
         Route::post('/driver/license', 'Driver\LicenseController')->name('driver_license');
         Route::post('/driver/license/delete-front', 'Driver\LicenseController@deleteFront')->name('driver_license_delete_front');
         Route::post('/driver/license/delete-back', 'Driver\LicenseController@deleteBack')->name('driver_license_delete_back');
