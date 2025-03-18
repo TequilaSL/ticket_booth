@@ -110,7 +110,7 @@ class MobileVerificationController extends Controller
             $storedData = session("user_details");
 
             if (!$storedData) {
-                return response()->json(['status' => 2, 'text' => 'Session expired or invalid request!']);
+                return response()->json(['status' => 2, 'text' => Lang::get('validation.session_expired_or_invalid')]);
             }
 
             if ($storedData['phone_number'] !== $data['phone_number'] || $storedData['otp'] !== $data['otp_code']) {
