@@ -36,6 +36,7 @@
             line-height: 1.5;
         }
         .email-button {
+            width: 40%;
             display: inline-block;
             background-color: #252941;
             color: #ffffff !important;
@@ -55,17 +56,12 @@
 <body>
     <div class="email-wrapper">
         <div class="email-content">
-            <h1 class="email-header">Verify Your Email Address</h1>
+            <h1 class="email-header">Verify your email address</h1>
             <p class="email-body">
                 Thank you for signing up! To complete your registration, please verify your email address by clicking the button below:
             </p>
-            <a href="{{ $verificationLink }}" class="email-button">Verify Email</a>
-            <p class="email-body">
-                If you did not create an account, no further action is required.
-            </p>
-            <div class="email-footer">
-                © {{ date('Y') }} TicketBooth.lk. All rights reserved.
-            </div>
+            <a href="{{ $verificationLink }}" class="email-button">VERIFY EMAIL</a>
+            @include('email.footer')
         </div>
     </div>
 </body>

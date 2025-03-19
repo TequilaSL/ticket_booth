@@ -70,12 +70,7 @@
         <a href="{{ $passwordResetLink }}" class="email-button">This wasn't me</a>
         <p>If this was you, you can ignore this email.</p>
 
-        <div class="footer">
-            <p>Thanks,<br>TicketBooth.lk Team</p>
-            <p>© TicketBooth.lk, Inc., 123 App Way, City, State, ZIP</p>
-            <p>This message was sent to {{ $userEmail }}</p>
-            <p> To help keep your account secure, please do not forward this email.</p>
-        </div>
+        @include('email.footer')
     </div>
 </body>
 </html>
