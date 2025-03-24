@@ -59,6 +59,7 @@
         </div>
         <p>Hi {{ $userName }},</p>
         <p>Your mobile number has been updated to <strong>{{ $newMobileNumber }}</strong>. If this wasn't you, we're here to help you take some simple steps to secure your account.</p>
+        <p>For security reasons, you have been logged out of all other devices.</p>
 
         <div class="details">
             <p><strong>Details:</strong></p>
@@ -68,8 +69,6 @@
         </div>
 
         <a href="{{ $passwordResetLink }}" class="email-button">This wasn't me</a>
-        <p>If this was you, you can ignore this email.</p>
-
         @include('email.footer')
     </div>
 </body>

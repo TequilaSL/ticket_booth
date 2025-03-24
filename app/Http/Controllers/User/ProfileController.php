@@ -23,6 +23,7 @@ use App\Services\SMSService;
 use App\Helpers\LogHelper;
 use App\Services\EmailService;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends ValidationController
 {
@@ -139,30 +140,49 @@ class ProfileController extends ValidationController
     }
 
     public function verifyOtp(Request $request, EmailService $mailService) {
+        DB::beginTransaction();
         try {
-            $data = $request->only('phone_number', 'otp_code');
+            $data = $request->only('new_mobile', 'otp_code', 'password');
             $storedData = session("user_details");
 
             if (!$storedData) {
                 return response()->json(['status' => 2, 'text' => Lang::get('validation.session_expired_or_invalid')]);
             }
-            if ($storedData['new_mobile'] !== $data['phone_number'] || $storedData['otp'].'' !== $data['otp_code']) {
+            if ($storedData['new_mobile'] !== $data['new_mobile'] || $storedData['otp'].'' !== $data['otp_code']) {
                 return response()->json(['status' => 2, 'text' => Lang::get('validation.invalid_otp_or_mobile')]);
             }
-            User::where('id', \Auth::user()->id)->update([
-                'phone_number' => $storedData['new_mobile']
-            ]);
-            session()->forget("user_details");
-            $this->sendSMS($data['phone_number'],Lang::get('validation.mobile_number_updated'));
+
+            // LogHelper::info('', [Hash::check($data['password'], \Auth::user()->password), ]);
+            // try {
+                if (!Hash::check($data['password'], \Auth::user()->password)) {
+                    return response()->json(['status' => 2, 'text' => 'The current password is incorrect.']);
+                }
+                User::where('id', \Auth::user()->id)->update([
+                    'phone_number' => $data['new_mobile']
+                ]);
+                Auth::logoutOtherDevices($data['password']);
+                $request->session()->regenerate();
+
+                // $location = getUserLocation($request->ip());
+                // $location = getUserLocation($request->ip());
+                // $device = getUserDevice();
+
+            // } catch (\Throwable $th) {
+            //     LogHelper::error( 'tryCatch error::'.\Auth::user()->password, [$th->getMessage()]);
+            // }
+            $request->session()->regenerate();
+            // LogHelper::info('', [\Auth::user()->password]);
+
+            $this->sendSMS($data['new_mobile'],Lang::get('validation.mobile_number_updated'));
 
             $emailData = [
                 'userName' => \Auth::user()->name,
                 'userEmail' => \Auth::user()->email,
-                'newMobileNumber' => $data['phone_number'],
-                'location' => 'Colombo, Sri Lanka', // Replace with actual location
-                'device' => 'iPhone 12 Pro, iOS', // Replace with actual device
-                'time' => now()->format('l, F j, Y \a\t g:i A'), // Current time
-                'passwordResetLink' => route(name: 'forgot_password'), // Replace with actual help center link
+                'newMobileNumber' => $data['new_mobile'],
+                'location' => 'Colombo, Sri Lanka',
+                'device' => 'iPhone 12 Pro, iOS',
+                'time' => now()->format('l, F j, Y \a\t g:i A'),
+                'passwordResetLink' => route(name: 'forgot_password'),
             ];
             $mailService->sendEmail(
                 \Auth::user()->email,
@@ -170,9 +190,12 @@ class ProfileController extends ValidationController
                 'email.mobile-change-alert',
                 $emailData
             );
+            session()->forget("user_details");
 
-            return response()->json(['status' => 1, 'text' => Lang::get('validation.mobile_change_success')]);
+            DB::commit();
+            return response()->json(['status' => 1, 'text' => Lang::get('validation.mobile_number_updated')]);
         } catch (\Throwable $th) {
+            DB::rollBack();
             LogHelper::error("verifyOtp Error: ", [$th->getMessage()]);
             return response()->json(['status' => 3, 'text' => Lang::get('validation.something_went_wrong')]);
         }

@@ -112,6 +112,8 @@ export default {
                 profile_sub: 'Your personal information',
                 password: 'Change password',
                 password_sub: 'Modify your password',
+                phone_number: 'Change phone number',
+                phone_number_sub: 'Modify your phone number',
                 financial: 'Financial parameters',
                 financial_sub: 'Payout methods',
                 driversLicense: 'Drivers license',
@@ -186,6 +188,18 @@ export default {
                     oldPassword: 'Current password',
                     newPassword: 'New password',
                     repeatNewPassword: 'Repeat new password'
+                }
+            }
+        },
+        changePhoneNumber: {
+            title: 'Change phone number',
+            saveButton: 'Save',
+            fields: {
+                placeholders: {
+                    phone_number: '071 234 5678',
+                    new_phone_number: 'New mobile number',
+                    password: 'Current password',
+                    otpCode: 'Otp Code',
                 }
             }
         },

@@ -1,57 +1,58 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Home from './views/Home'
 import FAQ from './views/FAQ'
-import Settings from './views/Settings'
-import Profile from './views/profile/Profile'
+import Home from './views/Home'
 import Password from './views/profile/changePassword'
-import Financial from './views/profile/Financial'
-import FinancialPayPal from './views/profile/financial/PayPalList'
-import FinancialPayPalAdd from './views/profile/financial/PayPalAdd'
-import FinancialBank from './views/profile/financial/BankAccount'
+import ChangePhoneNumber from './views/profile/ChangePhoneNumber'
 import DriversLicense from './views/profile/DriversLicense'
-import Vehicles from './views/Vehicles'
+import Financial from './views/profile/Financial'
+import FinancialBank from './views/profile/financial/BankAccount'
+import FinancialPayPalAdd from './views/profile/financial/PayPalAdd'
+import FinancialPayPal from './views/profile/financial/PayPalList'
+import Profile from './views/profile/Profile'
 import Routes from './views/Routes'
+import Settings from './views/Settings'
+import Vehicles from './views/Vehicles'
+import RouteAdd from './views/vehicles-routes/RouteAdd'
+import RouteEdit from './views/vehicles-routes/RouteEdit'
 import VehicleAdd from './views/vehicles-routes/VehicleAdd'
 import VehicleEdit from './views/vehicles-routes/VehicleEdit'
 import VehiclesList from './views/vehicles-routes/VehicleList'
-import RouteAdd from './views/vehicles-routes/RouteAdd'
-import RouteEdit from './views/vehicles-routes/RouteEdit'
 
 import Notifications from './views/Notifications'
 
 import NewTicket from './views/newTicket'
 import SupportTicket from './views/SupportTicket'
 
-import Login from './views/Login'
-import Signup from './views/Signup'
 import Forgot from './views/Forgot'
 import Languages from './views/Languages'
+import Login from './views/Login'
+import Signup from './views/Signup'
 
-import {accessTokenRoles} from './vuex/store'
+import Withdrawal from './views/driver/Withdrawal'
+import DriverArea from './views/DriverArea'
 import RouteList from './views/vehicles-routes/RouteList'
 import Wizard from './views/Wizard'
-import DriverArea from './views/DriverArea'
-import Withdrawal from './views/driver/Withdrawal'
+import { accessTokenRoles } from './vuex/store'
 
 import CurrentSales from './views/driver/CurrentSales'
+import Fines from './views/driver/Fines'
 import SalesByRoute from './views/driver/SalesByRoute'
 import SalesHistory from './views/driver/SalesHistory'
-import Fines from './views/driver/Fines'
 
-import WithdrawalPartner from './views/partner/Withdrawal'
-import PartnerArea from './views/PartnerArea'
-import PartnerSales from './views/partner/PartnerSales'
-import PartnerList from './views/partner/PartnersList'
 import PartnerDetails from './views/partner/PartnerDetails'
 import PartnerRegister from './views/partner/PartnerRegister'
-import QRScanner from './views/QRScanner'
-import SingleTicket from "./views/tickets/SingleTicket"
-import TicketList from "./views/tickets/TicketList"
-import SingleTicketSecure from "./views/tickets/SingleTicketSecure"
-import RateRoute from "./views/RateRoute"
+import PartnerSales from './views/partner/PartnerSales'
+import PartnerList from './views/partner/PartnersList'
+import WithdrawalPartner from './views/partner/Withdrawal'
+import PartnerArea from './views/PartnerArea'
 import LocationView from './views/passenger/LocationView'
+import QRScanner from './views/QRScanner'
+import RateRoute from "./views/RateRoute"
+import SingleTicket from "./views/tickets/SingleTicket"
+import SingleTicketSecure from "./views/tickets/SingleTicketSecure"
+import TicketList from "./views/tickets/TicketList"
 
 
 Vue.use(VueRouter)
@@ -99,6 +100,15 @@ routes.push(
             parent: 'settings'
         },
         component: Password
+    },
+    {
+        path: '/update-mobile',
+        name: 'changePhoneNumber',
+        meta: {
+            requiresAuth: true,
+            parent: 'settings'
+        },
+        component: ChangePhoneNumber
     },
     {
         path: '/financial',

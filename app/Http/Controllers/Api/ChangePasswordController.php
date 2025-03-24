@@ -7,10 +7,13 @@ use App\Http\Controllers\ValidationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\LaravelLocalization;
+use App\Services\SMSService;
+
 
 class ChangePasswordController extends PC {
-    public function __construct() {
-        parent::__construct();
+    public function __construct(SMSService $smsService) {
+        parent::__construct($smsService);
+        $this->smsService = $smsService;
     }
 
     public function update(Request $request) {

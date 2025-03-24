@@ -56,12 +56,12 @@
 </template>
 
 <script>
-import {imagesPathRewrite} from '../config'
-import FormGroupCol from './FormGroupCol'
-import {mdiContentSave, mdiChevronLeft, mdiChevronRight, mdiDelete} from '@mdi/js'
-import {scroller} from 'vue-scrollto/src/scrollTo'
-import validations from '../validations'
+import { mdiChevronLeft, mdiChevronRight, mdiContentSave, mdiDelete } from '@mdi/js'
+import { scroller } from 'vue-scrollto/src/scrollTo'
+import { imagesPathRewrite } from '../config'
 import lang from '../translations'
+import validations from '../validations'
+import FormGroupCol from './FormGroupCol'
 
 const props = {
     scrollToDiv: {
@@ -150,6 +150,9 @@ const props = {
     customSuccess: {
         type: Function
     },
+    customResponseHandle: {
+        type: Function
+    },
     inline: {
         type: Boolean,
         default: false
@@ -203,7 +206,7 @@ export default {
                     } else {
                         data[d.name] = d.value
                     }
-                    if (d.name === 'phone_number' || d.name === 'username') {
+                    if (d.name === 'phone_number' || d.name === 'username' || d.name === 'new_mobile') {
                         let phoneNumber = d.value.replace(/\s/g, '')
                         if (phoneNumber.startsWith('0')) {
                             phoneNumber = '+94' + phoneNumber.substr(1)
@@ -250,6 +253,7 @@ export default {
                 onSuccessRedirectQuery: this.onSuccessRedirectQuery || null
             }).then((d) => {
                 this.submitParams.loading = false
+                console.log('Form.vue____response  d.data ____________', d.data);
                 if (d.data.step) {
                     if (d.data.step === 4 && actionName === 'vehicleAdd') {
                         this.$store.commit('setWizardVehicleId', d.data.id)
@@ -262,12 +266,25 @@ export default {
                         })
                     }
                     if (!this.onSuccessRedirect) {
-                        this.error = null
-                        this.pending = null
-                        this.success = d.data.successText || this.successText || validations[this.$store.state.locale][actionName].success
-                        this.scrollTo(this.scrollToDiv || 'app')
-                        if (this.customSuccess) {
-                            this.customSuccess(this.success)
+                        if (actionName === 'changePhoneNumber' || actionName === 'verifyChangeNumberOTP') {
+                            this.formGroupColParams.actionName = actionName
+                            this.error = null
+                            this.pending = null
+                            this.success = null
+                            this.scrollTo(this.scrollToDiv || 'app')
+                            if (this.customResponseHandle) {
+                                this.customResponseHandle(d.data)
+                            }
+                            this.preserves = []
+                            return
+                        } else {
+                            this.error = null
+                            this.pending = null
+                            this.success = d.data.successText || this.successText || validations[this.$store.state.locale][actionName].success
+                            this.scrollTo(this.scrollToDiv || 'app')
+                            if (this.customSuccess) {
+                                this.customSuccess(this.success)
+                            }
                         }
                     }
                     this.preserves = []
@@ -317,7 +334,8 @@ export default {
                 items: this.items,
                 checkedRadio: this.checkedRadio,
                 checkedCheckboxes: this.checkboxes,
-                inline: this.inline
+                inline: this.inline,
+                actionName: null
             },
             submitParams: {
                 type: this.submit.type || 'submit',
@@ -340,6 +358,26 @@ export default {
                 color: (this.goBack) ? this.goBack.color || 'primary' : 'primary',
                 loading: false
             }
+        }
+    },
+    watch: {
+        successProp(newVal) {
+            console.log('Form_watch_successProdp_newvalue_____________', newVal);
+            if (this.formGroupColParams.actionName === 'verifyChangeNumberOTP') {
+                this.formGroupColParams.items[3].field = 'hidden'
+                this.formGroupColParams.items[0].value = this.formGroupColParams.items[1].value
+                this.formGroupColParams.items[1].value = ''
+                this.formGroupColParams.items[2].value = ''
+            } else {
+                this.formGroupColParams.items[3].field = 'input'
+            }
+            this.success = newVal
+        },
+        errorProp(newVal) {
+            console.log('Form_watch_errorProdp_newvalue_____________', newVal);
+            this.error = newVal
+            this.formGroupColParams.items[1].value = ''
+            this.formGroupColParams.items[2].value = ''
         }
     }
 }
