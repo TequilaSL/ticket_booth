@@ -269,6 +269,19 @@ export default {
             },
             success: 'Password has been successfully updated'
         },
+        changePhoneNumber: {
+            phone_number: {
+                required: 'Phone number is required',
+                valid: 'Phone number format is invalid'
+            },
+            password: {
+                required: 'Password is required',
+            },
+            otpCode: {
+                required: 'OTP code is required'
+            },
+            success: 'Mobile number has been successfully updated'
+        },
         forgot: {
             success: 'Password has been successfully sent'
         },

@@ -10,10 +10,14 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use App\Services\SMSService;
 
 class ProfileController extends PC {
-    public function __construct() {
-        parent::__construct();
+    protected $smsService;
+
+    public function __construct(SMSService $smsService) {
+        parent::__construct($smsService);
+        $this->smsService = $smsService;
     }
 
     public function avatarSet(Request $request) {

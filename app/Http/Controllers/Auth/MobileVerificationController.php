@@ -16,6 +16,7 @@ use Intervention\Image\Drivers\Gd\Driver as ImageDriver;
 use Exception;
 use App\Services\SMSService;
 use Illuminate\Support\Facades\Lang;
+use App\Services\EmailService;
 
 
 class MobileVerificationController extends Controller
@@ -103,7 +104,7 @@ class MobileVerificationController extends Controller
         }
     }
 
-    public function verifyMobile(Request $request)
+    public function verifyMobile(Request $request, EmailService $mailService)
     {
         try {
             $data = $request->only('phone_number', 'otp_code');
@@ -140,8 +141,18 @@ class MobileVerificationController extends Controller
 
             session()->forget("user_details");
             Auth::login($user);
-            $smsResponse = $this->sendSMS($storedData['phone_number'],Lang::get('email_templates.user_success_registration_email_body'));
+            $this->sendSMS($storedData['phone_number'],Lang::get('email_templates.user_success_registration_email_body'));
 
+            $mailService->sendEmail(
+                $storedData['email'],
+                Lang::get('email_templates.user_success_registration_email_body'),
+                'email.registration-success',
+                [
+                    'userName'=> $storedData['name'],
+                    'title'=> Lang::get('email_templates.user_success_registration_email_title'),
+                    'body'=> Lang::get('email_templates.user_success_registration_email_body')
+                ]
+            );
             return response()->json(['status' => 1, 'text' => 'User registered successfully!']);
         } catch (\Throwable $th) {
             Log::error("Error in verifyMobile: " . $th->getMessage());

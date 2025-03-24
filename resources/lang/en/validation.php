@@ -66,6 +66,9 @@ return [
             'required' => 'Please add at least one financial payout using the following <a href=":link">link</a>',
             'required_mobile' => 'Please add at least one payout method using the link below',
             'required_mobile_anchor' => 'Add payout method',
+        ],
+        'new_mobile' => [
+            'unique'=> 'Mobile number You entered is alreay exists'
         ]
     ],
     'accepted' => ':attribute should be selected.',
@@ -145,7 +148,7 @@ return [
     'duplicate_email'=> 'Duplicate user email address!',
     'otp_number_is'=> 'Your otp code is: :otp',
     'session_expired_or_invalid'=> 'Session expired or invalid request',
-    'mobile_number_updated' => 'We hereby inform you that you have updated your mobile number successfully!.',
+    'mobile_number_updated' => 'We hereby inform you that you have updated your mobile number successfully!. For security reasons, you have been logged out of all other devices.',
     'something_went_wrong' => 'Something went wrong. Please try again later !',
-    'mobile_change_success' => 'Mobile number changed successfully!',
+    'mobile_change_success' => 'Mobile number changed successfully!'
 ];

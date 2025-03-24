@@ -16,9 +16,9 @@
 import lang from '../../translations'
 import validations from '../../validations'
 
-import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import vzForm from '../../components/Form'
+import Header from '../../components/Header'
 import VLoading from '../../components/Loading'
 import WizardSteps from '../../components/WizardSteps'
 

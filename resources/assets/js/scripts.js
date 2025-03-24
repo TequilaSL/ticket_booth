@@ -3726,7 +3726,7 @@ $('#closeLiveTracking').on('click', async function() {
                 "response-success response-danger response-warning response-info"
             );
         let formData = new FormData(otpVerificationForm[0]);
-        formData.set("phone_number", $(this).find('input[name="phone_number"]').intlTelInput("getNumber"));
+        formData.set("new_mobile", $(this).find('input[name="phone_number"]').intlTelInput("getNumber"));
 
         $.ajax({
             url: route("user_verify_mobile"),

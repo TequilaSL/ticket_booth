@@ -6,10 +6,10 @@
     </div>
 </template>
 <script>
-import Header from '../components/Header'
-import lang from '../translations'
-import MenuBlock from '../components/MenuBlock'
 import Footer from '../components/Footer'
+import Header from '../components/Header'
+import MenuBlock from '../components/MenuBlock'
+import lang from '../translations'
 
 export default {
     components: {Footer, MenuBlock, Header},
@@ -42,6 +42,14 @@ export default {
                     showLine: true,
                     title: lang[this.$store.state.locale].settings.blocks.password,
                     subTitle: lang[this.$store.state.locale].settings.blocks.password_sub,
+                    rightIcon: 'right_arrow.svg'
+                },
+                {
+                    name: 'changePhoneNumber',
+                    image: 'phone.svg',
+                    showLine: true,
+                    title: lang[this.$store.state.locale].settings.blocks.phone_number,
+                    subTitle: lang[this.$store.state.locale].settings.blocks.phone_number_sub,
                     rightIcon: 'right_arrow.svg'
                 },
                 {

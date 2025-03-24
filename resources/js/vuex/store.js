@@ -94,6 +94,8 @@ export default new Vuex.Store({
                 }
 
                 if (payload.commit) {
+                    let username = payload.data.get('username');
+                    response.data.username = username;
                     commit(payload.commit, response.data)
                 }
 

@@ -1,6 +1,6 @@
 @extends('layouts.app', ['isprofile' => 1])
 
-@section('title', 'TicketBooth')
+@section('title', 'Zoombus')
 
 @section('body_class')
     @parent

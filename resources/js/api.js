@@ -55,6 +55,16 @@ export default [
         method: 'POST'
     },
     {
+        name: 'changePhoneNumber',
+        url: siteURL + '/user/change-mobile',
+        method: 'POST'
+    },
+    {
+        name: 'verifyChangeNumberOTP',
+        url: siteURL + '/user/verify-mobile',
+        method: 'POST'
+    },
+    {
         name: 'financialPrimarySet',
         url: siteURL + '/api/financial/setPrimary',
         method: 'POST'
