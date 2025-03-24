@@ -148,7 +148,7 @@ return [
     'duplicate_email'=> 'Duplicate user email address!',
     'otp_number_is'=> 'Your otp code is: :otp',
     'session_expired_or_invalid'=> 'Session expired or invalid request',
-    'mobile_number_updated' => 'We hereby inform you that you have updated your mobile number successfully!. For security reasons, you have been logged out of all other devices.',
+    'mobile_number_updated' => 'We hereby inform you that you have updated your mobile number successfully!',
     'something_went_wrong' => 'Something went wrong. Please try again later !',
     'mobile_change_success' => 'Mobile number changed successfully!'
 ];
