@@ -63,9 +63,9 @@
 
         <div class="details">
             <p><strong>Details:</strong></p>
-            <p><strong>Location:</strong> {{ $location }}</p>
-            <p><strong>Device:</strong> {{ $device }}</p>
-            <p><strong>Time:</strong> {{ $time }}</p>
+            <li><strong>Location:</strong> {{ $location }}</li>
+            <li><strong>Device:</strong> {{ $device }} ({{ $platform }})</li>
+            <li><strong>Browser:</strong> {{ $browser }}</li>
         </div>
 
         <a href="{{ $passwordResetLink }}" class="email-button">This wasn't me</a>

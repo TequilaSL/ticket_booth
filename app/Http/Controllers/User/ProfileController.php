@@ -24,6 +24,8 @@ use App\Helpers\LogHelper;
 use App\Services\EmailService;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\DB;
+use Torann\GeoIP\Facades\GeoIP;
+use Laravel\Passport\Token;
 
 class ProfileController extends ValidationController
 {
@@ -139,10 +141,19 @@ class ProfileController extends ValidationController
         return response()->json($response->original);
     }
 
+    protected function logoutOtherDevices($user){
+        $currentTokenId = Auth::guard('api')->user()->token()->id;
+
+        // Revoke all other tokens
+        Token::where('user_id', $user->id)
+            ->where('id', '!=', $currentTokenId)
+            ->update(['revoked' => true]);
+    }
+
     public function verifyOtp(Request $request, EmailService $mailService) {
         DB::beginTransaction();
         try {
-            $data = $request->only('new_mobile', 'otp_code', 'password');
+            $data = $request->only('new_mobile', 'otp_code');
             $storedData = session("user_details");
 
             if (!$storedData) {
@@ -154,14 +165,14 @@ class ProfileController extends ValidationController
 
             // LogHelper::info('', [Hash::check($data['password'], \Auth::user()->password), ]);
             // try {
-                if (!Hash::check($data['password'], \Auth::user()->password)) {
-                    return response()->json(['status' => 2, 'text' => 'The current password is incorrect.']);
-                }
+                // if (!Hash::check($data['password'], \Auth::user()->password)) {
+                //     return response()->json(['status' => 2, 'text' => 'The current password is incorrect.']);
+                // }
                 User::where('id', \Auth::user()->id)->update([
                     'phone_number' => $data['new_mobile']
                 ]);
-                Auth::logoutOtherDevices($data['password']);
-                $request->session()->regenerate();
+                // Auth::logoutOtherDevices(\Auth::user()->password);
+                // $request->session()->regenerate();
 
                 // $location = getUserLocation($request->ip());
                 // $location = getUserLocation($request->ip());
@@ -170,17 +181,25 @@ class ProfileController extends ValidationController
             // } catch (\Throwable $th) {
             //     LogHelper::error( 'tryCatch error::'.\Auth::user()->password, [$th->getMessage()]);
             // }
-            $request->session()->regenerate();
             // LogHelper::info('', [\Auth::user()->password]);
 
+            $user = Auth::user();
+            $this->logoutOtherDevices($user);
+            $newToken = $user->createToken('authToken')->accessToken;
+
             $this->sendSMS($data['new_mobile'],Lang::get('validation.mobile_number_updated'));
+
+            $location = GeoIP::getLocation($request->ip());
+            $agent = new Agent();
 
             $emailData = [
                 'userName' => \Auth::user()->name,
                 'userEmail' => \Auth::user()->email,
                 'newMobileNumber' => $data['new_mobile'],
-                'location' => 'Colombo, Sri Lanka',
-                'device' => 'iPhone 12 Pro, iOS',
+                'location' => $location->city . ', ' . $location->country,
+                'device' => $agent->device(),
+                'browser' => $agent->browser(),
+                'platform' => $agent->platform(),
                 'time' => now()->format('l, F j, Y \a\t g:i A'),
                 'passwordResetLink' => route(name: 'forgot_password'),
             ];
