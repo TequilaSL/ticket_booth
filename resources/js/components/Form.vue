@@ -362,22 +362,22 @@ export default {
     },
     watch: {
         successProp(newVal) {
-            console.log('Form_watch_successProdp_newvalue_____________', newVal);
             if (this.formGroupColParams.actionName === 'verifyChangeNumberOTP') {
                 this.formGroupColParams.items[3].field = 'hidden'
                 this.formGroupColParams.items[0].value = this.formGroupColParams.items[1].value
-                this.formGroupColParams.items[1].value = ''
-                this.formGroupColParams.items[2].value = ''
+                this.formGroupColParams.items[1].value = null
+                this.formGroupColParams.items[2].value = null
+                this.$refs.form.resetValidation();
             } else {
                 this.formGroupColParams.items[3].field = 'input'
             }
             this.success = newVal
         },
         errorProp(newVal) {
-            console.log('Form_watch_errorProdp_newvalue_____________', newVal);
             this.error = newVal
-            this.formGroupColParams.items[1].value = ''
-            this.formGroupColParams.items[2].value = ''
+            this.formGroupColParams.items[1].value = null
+            this.formGroupColParams.items[2].value = null
+            this.$refs.form.resetValidation();
         }
     }
 }

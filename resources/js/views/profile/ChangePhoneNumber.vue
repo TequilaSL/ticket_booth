@@ -39,23 +39,24 @@ export default {
                 items: [
                     {
                         placeholder: lang[this.$store.state.locale].changePhoneNumber.fields.placeholders.phone_number,
-                        field: 'phone_number',
+                        field: 'input',
                         name: 'phone_number',
                         class: 'forceEng',
                         plb: true,
                         value: this.$store.state.user.username,
-                        disabled: true
+                        disabled: true,
+                        labelImage: 'form/phone.svg'
                     },
                     {
                         placeholder: lang[this.$store.state.locale].changePhoneNumber.fields.placeholders.new_phone_number,
-                        field: 'phone_number',
+                        field: 'input',
                         type: 'number',
                         name: 'new_mobile',
                         rules: [
                             v => !!v || validations[this.$store.state.locale].changePhoneNumber.phone_number.required,                        ],
                         plb: true,
                         value: '',
-
+                        labelImage: 'form/phone.svg'
                     },
                     {
                         placeholder: lang[this.$store.state.locale].changePhoneNumber.fields.placeholders.password,
