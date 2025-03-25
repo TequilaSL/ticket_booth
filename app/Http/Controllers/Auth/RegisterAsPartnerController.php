@@ -10,11 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Jenssegers\Agent\Agent;
+use App\Services\SMSService;
 
 class RegisterAsPartnerController extends RegisterController {
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct(SMSService $smsService) {
+        $this->smsService = $smsService;
+        parent::__construct($smsService);
         if(!(new Agent())->isMobile()) {
             $this->middleware('customer')->only('viewLoggedIn', 'loggedIn');
             $this->middleware('not_partner')->only('viewLoggedIn', 'loggedIn');

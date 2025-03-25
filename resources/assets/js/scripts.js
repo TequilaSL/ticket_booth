@@ -4504,6 +4504,7 @@ $('#closeLiveTracking').on('click', async function() {
                         .css("display", "inline-block")
                         .addClass("response-success")
                         .html(data.text);
+                    registerNewPartnerForm.trigger("reset");
                 } else {
                     $(this)
                         .parent()
@@ -4615,9 +4616,7 @@ $('#closeLiveTracking').on('click', async function() {
                         .css("display", "inline-block")
                         .addClass("response-success")
                         .html(data.text);
-                    setTimeout(function () {
-                        window.location.href = route("partner_profit");
-                    }, 5000);
+                    window.location.href = route("partner_profit");
                 } else {
                     $(this)
                         .parent()
