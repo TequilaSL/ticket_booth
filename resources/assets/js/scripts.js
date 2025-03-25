@@ -1773,8 +1773,7 @@ $('#closeLiveTracking').on('click', async function() {
         item.addEventListener("click", function () {
             const selectedCurrency = this.getAttribute("data-currency");
             console.log("Selected currency:", selectedCurrency);
-            document.getElementById("currentCurrency").innerText =
-                selectedCurrency;
+            document.getElementById("currentCurrency").innerText = selectedCurrency;
         });
     });
 

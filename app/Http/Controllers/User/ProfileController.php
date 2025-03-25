@@ -141,15 +141,6 @@ class ProfileController extends ValidationController
         return response()->json($response->original);
     }
 
-    protected function logoutOtherDevices($user){
-        $currentTokenId = Auth::guard('api')->user()->token()->id;
-
-        // Revoke all other tokens
-        Token::where('user_id', $user->id)
-            ->where('id', '!=', $currentTokenId)
-            ->update(['revoked' => true]);
-    }
-
     public function verifyOtp(Request $request, EmailService $mailService) {
         DB::beginTransaction();
         try {
@@ -163,29 +154,9 @@ class ProfileController extends ValidationController
                 return response()->json(['status' => 2, 'text' => Lang::get('validation.invalid_otp_or_mobile')]);
             }
 
-            // LogHelper::info('', [Hash::check($data['password'], \Auth::user()->password), ]);
-            // try {
-                // if (!Hash::check($data['password'], \Auth::user()->password)) {
-                //     return response()->json(['status' => 2, 'text' => 'The current password is incorrect.']);
-                // }
-                User::where('id', \Auth::user()->id)->update([
-                    'phone_number' => $data['new_mobile']
-                ]);
-                // Auth::logoutOtherDevices(\Auth::user()->password);
-                // $request->session()->regenerate();
-
-                // $location = getUserLocation($request->ip());
-                // $location = getUserLocation($request->ip());
-                // $device = getUserDevice();
-
-            // } catch (\Throwable $th) {
-            //     LogHelper::error( 'tryCatch error::'.\Auth::user()->password, [$th->getMessage()]);
-            // }
-            // LogHelper::info('', [\Auth::user()->password]);
-
-            $user = Auth::user();
-            $this->logoutOtherDevices($user);
-            $newToken = $user->createToken('authToken')->accessToken;
+            User::where('id', \Auth::user()->id)->update([
+                'phone_number' => $data['new_mobile']
+            ]);
 
             $this->sendSMS($data['new_mobile'],Lang::get('validation.mobile_number_updated'));
 
