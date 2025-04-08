@@ -1769,11 +1769,83 @@ $('#closeLiveTracking').on('click', async function() {
         });
     });
 
-    document.querySelectorAll(".switch-currency").forEach((item) => {
+    function updateCurrency(currencyParam = null) {
+        // Get stored currencies from localStorage
+        let currencies = JSON.parse(localStorage.getItem("currencies"));
+        if (!currencies) return;
+
+        // Find the selected currency exchange rate
+        let selectedCurrency = currencyParam ?? localStorage.getItem("selected_currency");
+        let selectedCurrencyData = currencies.find(curr => curr.key === selectedCurrency);
+        if (!selectedCurrencyData) return;
+
+        let exchangeRate = parseFloat(selectedCurrencyData.value); // Convert string to number
+
+        // Update all elements with class "currency-div"
+        document.querySelectorAll(".currency-div").forEach(el => {
+            let originalPrice;
+
+            // For total values, apply only to elements with 'total-container' class
+            if (el.classList.contains("total-container")) {
+                let totalTicketValue = $('input[name="amount"]').val() * parseFloat($('input[name="price"]').val()).toFixed(2)
+                originalPrice = totalTicketValue;
+            } else {
+                originalPrice = parseFloat(el.dataset.originalPrice);
+                if (!originalPrice) {
+                    originalPrice = parseFloat(el.innerText); // fallback
+                    el.dataset.originalPrice = originalPrice; // Store once
+                }
+            }
+
+            let convertedPrice = (originalPrice * exchangeRate).toFixed(2);
+            el.innerText = convertedPrice;
+        });
+
+        // Update all elements with the current currency key (e.g., USD, EUR)
+        document.querySelectorAll(".currency-key").forEach(el => {
+            el.innerText = selectedCurrency;
+        });
+
+        // Update selected currency in localStorage and UI
+        localStorage.setItem("selected_currency", selectedCurrency);
+        document.getElementById("currentCurrency").innerText = selectedCurrency;
+    }
+
+    let currencies = localStorage.getItem("currencies");
+    let selectedCurrency = localStorage.getItem("selected_currency");
+    if (!currencies || !selectedCurrency) {
+        loadCurrencyData()
+    }
+
+    function loadCurrencyData () {
+        $.ajax({
+            data: { _token: CSRF_TOKEN },
+            url: route("current_currency_code"),
+            dataType: "JSON",
+            method: "POST",
+            beforeSend: function () {
+                $(".loading-web").css("display", "none");
+            },
+            success: function (data) {
+                currencies = data['currencies'];
+                selectedCurrency = data['selected_currency'];
+                if (currencies && selectedCurrency) {
+                    localStorage.setItem("selected_currency", selectedCurrency);
+                    localStorage.setItem("currencies", JSON.stringify(currencies));
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Currency details get error:", error);
+                alertify.error(error);
+            }
+        });
+    }
+
+
+ document.querySelectorAll(".switch-currency").forEach(item => {
         item.addEventListener("click", function () {
-            const selectedCurrency = this.getAttribute("data-currency");
-            console.log("Selected currency:", selectedCurrency);
-            document.getElementById("currentCurrency").innerText = selectedCurrency;
+            let selectedCurrency = this.dataset.currency;
+            updateCurrency(selectedCurrency);
         });
     });
 
@@ -1827,18 +1899,23 @@ $('#closeLiveTracking').on('click', async function() {
             $("#arrival_day").parent().parent().addClass("hidden");
             $("#departure_date").parent().parent().removeClass("hidden");
             $("#arrival_date").parent().parent().removeClass("hidden");
-            setDepatureDateType(true);
+            setDepatureDateType(false);
         } else if ($(this).val() === "2") {
             $("#departure_day").parent().parent().removeClass("hidden");
             $("#arrival_day").parent().parent().removeClass("hidden");
             $("#departure_date").parent().parent().addClass("hidden");
             $("#arrival_date").parent().parent().addClass("hidden");
-            setDepatureDateType(false);
+            setDepatureDateType(true);
         }
     });
 
     function setDepatureDateType(val) {
         let datePicker = $("#departure_date_multiple");
+        datePicker.val("");
+        if (datePicker.data("datepicker")) {
+            datePicker.datepicker("destroy");
+        }
+
         let options = {
             orientation: "bottom auto",
             format: "d MM yyyy",
@@ -4504,6 +4581,7 @@ $('#closeLiveTracking').on('click', async function() {
                         .css("display", "inline-block")
                         .addClass("response-success")
                         .html(data.text);
+                    registerNewPartnerForm.trigger("reset");
                 } else {
                     $(this)
                         .parent()
@@ -4615,9 +4693,7 @@ $('#closeLiveTracking').on('click', async function() {
                         .css("display", "inline-block")
                         .addClass("response-success")
                         .html(data.text);
-                    setTimeout(function () {
-                        window.location.href = route("partner_profit");
-                    }, 5000);
+                    window.location.href = route("partner_profit");
                 } else {
                     $(this)
                         .parent()
@@ -5556,10 +5632,9 @@ $('#closeLiveTracking').on('click', async function() {
                     });
                 }
                 $("#amount").val(++seat_counts);
-                $(".details-of-payment-total .txt2 span").html(
-                    (seat_counts) *
-                        parseFloat($('input[name="price"]').val()).toFixed(2)
-                );
+                // let totalTicketValue = (seat_counts) * parseFloat($('input[name="price"]').val()).toFixed(2)
+                // $(".details-of-payment-total .txt2 .currency-div").html( totalTicketValue );
+                updateCurrency()
             } else {
                 selectedSeats = selectedSeats.filter(seat => seat !== seat_number);
                 that.removeClass("seat-active");
@@ -5575,10 +5650,9 @@ $('#closeLiveTracking').on('click', async function() {
                 //     ticket_totals.addClass("hidden");
                 // }
                 $("#amount").val(--seat_counts);
-                $(".details-of-payment-total .txt2 span").html(
-                    (seat_counts) *
-                        parseFloat($('input[name="price"]').val()).toFixed(2)
-                );
+                // let totalTicketValue = (seat_counts) * parseFloat($('input[name="price"]').val()).toFixed(2)
+                // $(".details-of-payment-total .txt2 .currency-div").html( totalTicketValue );
+                updateCurrency()
             }
         }
     }
@@ -5703,7 +5777,7 @@ $('#closeLiveTracking').on('click', async function() {
     if (phone_number_input.length) {
         $.ajax({
             data: { _token: CSRF_TOKEN },
-            url: route("current_currency_code"),
+            url: route("current_country_code"),
             dataType: "JSON",
             method: "POST",
             beforeSend: function () {

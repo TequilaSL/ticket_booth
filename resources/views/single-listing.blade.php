@@ -166,6 +166,7 @@
             @slot('type') hidden @endslot
             @slot('hideGroup') @endslot
             @slot('name') price @endslot
+            {{-- @slot('class') currency-div @endslot --}}
             @slot('value') {{ $result['price'] }} @endslot
         @endcomponent
 
@@ -201,7 +202,7 @@
                 </div>
                 <div class="col-lg-3">
                     @component('components.misc.form-group-col')
-                        @slot('disabled') @endslot
+                        @slot('readonly') @endslot
                         @slot('name') amount @endslot
                         @slot('group_class') details-of-payment-number @endslot
                         @slot('value') 0 @endslot
@@ -212,10 +213,11 @@
 
 
             <div class="details-of-payment-total hidden">
-                <div class="txt1">{{ Lang::get('misc.total') }}:</div>
-                <div class="txt2"><span></span> <img
-                        src="{{ URL::asset('images/currencies/'.$currencies[$current_currency]['key'].'.png') }}"
-                        alt="{{ $currencies[$current_currency]['key'] }}"></div>
+                <div class="txt1">{{ Lang::get('misc.total') }}</div>
+                <div class="txt2">
+                    <span class="currency-div total-container"></span>
+                    <span class="currency-key">{{$result['currency']['currency_key']}}</span>
+                </div>
             </div>
 
             <div class="details-of-payment-buttons">

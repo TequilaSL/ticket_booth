@@ -73,7 +73,7 @@ class WizardController extends DriverController {
         $data['fuel_types'] = FuelTypes::with('translated')->get()->toArray();
         $data['countries'] = Country::with('translated')->get()->toArray();
         if (Vehicle::current()->exists()) {
-            $data['vehicle'] = Vehicle::with('fullspecifications:vehicle_id,vehicle_specification_id', 'routeTypes')->current()->first()->toArray();
+            $data['vehicle'] = Vehicle::with('fullspecifications:id', 'routeTypes')->current()->first()->toArray();
             $vehicleImages = json_decode($data['vehicle']['images_extension'], true);
             foreach($vehicleImages as $k => $image) {
                 if (Storage::disk('s3')->exists('drivers/vehicles/'.$data['vehicle']['id'].'/'.$image)) {
