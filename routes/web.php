@@ -122,7 +122,6 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/cart/checkout', 'CartController@checkout')->name('cart_checkout');
         Route::post('/cart/remove', 'CartController@remove')->name('remove_cart');
         Route::post('/listings/sort', 'ListingController@sorting')->name('listings_sort');
-        Route::post('/current-country-code', 'Auth\LoginController@current_locale')->name('current_currency_code');
         Route::post('/auth/forgot', 'Auth\ForgotPasswordController@action')->name('auth_forgot');
         Route::post('/auth/support', 'SupportController@action')->name('auth_support');
         Route::post('/auth/support-reply-secure', 'SupportController@actionReplySecure')->name('auth_support_reply_secure');
