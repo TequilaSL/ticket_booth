@@ -1782,7 +1782,7 @@ transition: all 0.3s ease-out;
 
     /* .front-section-wrapper{display: none;} */
 
-    .currency{display: none;}
+    .currency{padding-right: 15px;}
     .divider-tc{display: none;}
     .language .dropdown-toggle span{display: none;}
     .language .dropdown-toggle::after{display: none;}

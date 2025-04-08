@@ -76,11 +76,8 @@ class Controller extends BaseController {
         } else {
             $return = \Lang::get('misc.non_stop');
         }
-
-
         return $return;
     }
-
 
     public static function essentialVars($fields = null) {
         $currencies = \Request::get('currencies');

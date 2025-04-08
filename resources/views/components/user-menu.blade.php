@@ -2,7 +2,7 @@
     <ul class="user-menu d-flex justify-content-around sf-menu">
         <li>
             <a href="#"
-               @if(in_array(Request::route()->getName(), ['profile','drivers_license','edit_password','bought_tickets','financial'])) class="active" @endif>
+               @if(in_array(Request::route()->getName(), ['profile','drivers_license','edit_password','bought_tickets','financial', 'update_mobile'])) class="active" @endif>
                 <i class="fa fa-user" aria-hidden="true"></i> {{Lang::get('menu.profile')}}
                 <em class="fa fa-chevron-down" aria-hidden="true"></em>
             </a>

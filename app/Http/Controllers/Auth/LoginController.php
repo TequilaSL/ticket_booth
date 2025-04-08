@@ -26,6 +26,14 @@ class LoginController extends Controller
         return Controller::essentialVars(['current_country_code'])['current_country_code'];
     }
 
+    public function current_currency() {
+        $data = Controller::essentialVars(['currencies']);
+        return [
+            'currencies' => $data['currencies'],
+            'selected_currency' => 'LKR'
+        ];
+    }
+
     public function __invoke(Request $request) {
         $credentials = $request->only('phone_number', 'password');
         $googleId = $request->input('google-id');

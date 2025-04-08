@@ -41,6 +41,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(new RatingSchedule())->everyMinute();
         $schedule->call(new RouteComplete())->everyFiveMinutes();
         $schedule->call(new DeleteOldTokens())->everyFiveMinutes();
+        $schedule->command('currencies:update')->daily();
     }
 
 

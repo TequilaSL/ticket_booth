@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\LogHelper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
@@ -58,7 +59,7 @@ class MobileVerificationController extends Controller
 
             return response()->json(['status' => 1, 'text' => \Lang::get('validation.if_mobile_correct_for_otp')]);
         } catch (\Throwable $th) {
-            Log::error("Error in sendVerificationMessage: " . $th->getMessage());
+            LogHelper::error("Error in sendVerificationMessage: " . $th->getMessage());
             return response()->json(['status' => 3, 'text' => 'Something went wrong!']);
         }
     }
@@ -124,7 +125,6 @@ class MobileVerificationController extends Controller
                 return response()->json(['status' => 3, 'text' => \Lang::get('validation.duplicate_email')]);
             }
 
-            // Log::info('avater ',[$storedData['avatar']]);
             $user = User::create([
                 'name' => $storedData['name'] ?? 'User',
                 'email' => $storedData['email'] ?? null,
@@ -133,7 +133,6 @@ class MobileVerificationController extends Controller
                 'password' => $storedData['password'],
                 'country_id' => "1"
             ]);
-            Log::info('avater ',[$user]);
 
             if (!empty($storedData['avatar']) && isset($user) && isset($user->id)) {
                 $this->uploadGoogleAvatar($storedData['avatar'], $user->id);
@@ -155,7 +154,7 @@ class MobileVerificationController extends Controller
             );
             return response()->json(['status' => 1, 'text' => 'User registered successfully!']);
         } catch (\Throwable $th) {
-            Log::error("Error in verifyMobile: " . $th->getMessage());
+            LogHelper::error("Error in verifyMobile: " . $th->getMessage());
             return response()->json(['status' => 3, 'text' => 'Something went wrong! Please try again later.']);
         }
     }
