@@ -1,6 +1,6 @@
 <template>
     <div v-if="!isLoading">
-        <Header :title="title" :showBack="true" :showLogo="false"/>
+        <Header :title="title" :showBack="true" :showLogo="false" @on-currency-change="onChangeCurrency"/>
         <section>
             <div v-if="ticket" class="list">
                 <v-alert type="error" v-if="error">
@@ -17,7 +17,9 @@
                             <p class="title_area">{{ lang.salesHistory.passenger }}</p>
                             <p class="passenger_name">{{ ticket.passenger }}</p>
                         </div>
-                        <p class="price">{{ ticket.price }} <span>lkr</span></p>
+                        <div class="amount price">
+                            {{ ticket.price }} {{ selectedCurrency }}
+                        </div>                    
                     </div>
                     <div class="second_box">
                         <div class="from">
@@ -95,12 +97,12 @@
 </template>
 
 <script>
-import lang from "../../translations";
-import Header from "../../components/Header"
-import Footer from "../../components/Footer"
-import VLoading from "../../components/Loading"
+import { scroller } from 'vue-scrollto/src/scrollTo';
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import VLoading from "../../components/Loading";
 import modals from "../../modals";
-import {scroller} from 'vue-scrollto/src/scrollTo'
+import lang from "../../translations";
 
 export default {
     name: "singleTicket",
@@ -168,6 +170,14 @@ export default {
                 this.isLoadingCancel = false
                 this.scrollTo('app')
             })
+        },
+        onChangeCurrency(){
+            const selectedRateObj = this.currencyRates.find(
+                currency => currency.key === this.selectedCurrency
+            );
+            const rate = selectedRateObj ? parseFloat(selectedRateObj.value) : 1.0;
+            const newPrice = (parseFloat(this.ticket.price) * rate).toFixed(2);
+            this.ticket.price = newPrice
         }
     },
     data() {
@@ -186,11 +196,13 @@ export default {
             modalTitle: null,
             isLoadingCancel: false,
             modalId: 0,
+            selectedCurrency: localStorage.getItem('selected_currency') ?? "LKR",
+            currencyRates: JSON.parse(localStorage.getItem('currencies')) || [],
         }
     },
-    mounted() {
+    async mounted () {
         document.title = this.title
-        this.$store.dispatch('apiCall', {
+        await this.$store.dispatch('apiCall', {
             actionName: 'getTicket',
             data: {
                 lang: this.$store.state.locale,
@@ -205,6 +217,7 @@ export default {
             this.$router.go(-1)
             console.log(e)
         })
+        this.onChangeCurrency()
     }
 }
 </script>
