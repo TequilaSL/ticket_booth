@@ -9,6 +9,13 @@
                 <router-link :to="{name: 'languages'}" class="languages_menu">
                     <div>{{ locales[this.$store.state.locale].code }}</div>
                 </router-link>
+                <div class="currency_menu">
+                    <select v-model="selectedCurrency" @change="onCurrencyChange">
+                        <option v-for="currency in currencyRates" :key="currency.id" :value="currency.key">
+                        {{ currency.key }}
+                        </option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="header_logo" :class="{mt30: additionalMarginTop}" v-if="showLogo">
@@ -72,12 +79,19 @@ export default {
                 } else {
                     this.$router.push({name: this.parent})
                 }
-            }
+            },
+            onCurrencyChange() {
+                localStorage.setItem('selected_currency', this.selectedCurrency)
+                this.$emit('on-currency-change', this.selectedCurrency)
+            },
         },
         data() {
+            const storedRates = localStorage.getItem('currencies')
             return {
                 locales: locales,
-                imagesPathRewrite: imagesPathRewrite
+                imagesPathRewrite: imagesPathRewrite,
+                selectedCurrency: localStorage.getItem('selected_currency') || 'LKR',
+                currencyRates: storedRates ? JSON.parse(storedRates) : [],
             }
         }
 }

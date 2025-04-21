@@ -96,6 +96,7 @@ return [
     'view_ticket' => 'იხ. ბილეთი',
     'departure_date' => 'თარიღი',
     'name_of_passenger' => 'მგზავრის სახელი',
+    'route_number' => 'Route number',
     'vehicle_model_number' => 'მოდელი, ნომერი',
     'ticket_number' => 'ბილეთის #',
     'travel_ticket' => 'სამგზავრო ბილეთი',

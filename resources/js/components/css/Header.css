@@ -20,6 +20,16 @@
     margin-right: 25px;
 }
 
+.currency_menu {
+    float: right;
+    margin-top: -33px;
+    margin-right: 70px;
+}
+
+.currency_menu:focus-visible {
+    outline: 0;
+}
+
 .languages_menu img {
     width:30px;
 }

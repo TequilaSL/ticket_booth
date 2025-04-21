@@ -1,6 +1,6 @@
 <template>
     <div v-if="!isLoading">
-        <Header :title="title" :showBack="true" :showLogo="false"/>
+        <Header :title="title" :showBack="true" :showLogo="false" @on-currency-change="onChangeCurrency" />
         <section>
         <a :href="($store.state.locale && $store.state.locale !== 'en') ? defaultSiteUrl+'/'+$store.state.locale+'/listings' : `${defaultSiteUrl}/listings`">
                 <v-btn class="submit gradiented no-margins-vertical">
@@ -8,7 +8,7 @@
                 </v-btn>
             </a>
             <div class="list" v-if="data.items && data.items.length">
-                <div class="div-container" :key="i" v-for="(item, i) in data.items">
+                <div class="div-container" :key="i" v-for="(item, i) in convertedItems">
                     <router-link :to="{name: 'singleTicket', params: {id: item.ticket_number }}">
                         <div class="item">
                             <div class="image_block">
@@ -23,7 +23,9 @@
                                 </p>
                             </div>
                             <div class="content">
-                                <div class="amount">{{ item.price }} <span>lkr</span></div>
+                                <div class="amount">
+                                    {{ item.converted_price }} {{ item.currency_key }}
+                                </div>
                             </div>
                         </div>
                     </router-link>
@@ -52,15 +54,29 @@
 </template>
 
 <script>
-import lang from "../../translations"
-import VLoading from "../../components/Loading"
-import {boughtTicketsPerPage, imagesPathRewrite, siteURL} from "../../config"
-import Header from "../../components/Header"
 import Footer from "../../components/Footer"
+import Header from "../../components/Header"
+import VLoading from "../../components/Loading"
+import { boughtTicketsPerPage, imagesPathRewrite, siteURL } from "../../config"
+import lang from "../../translations"
 
 export default {
     name: "ticketList",
     components: {VLoading, Header, Footer},
+    computed: {
+        convertedItems() {
+            const rateObj = this.currencyRates.find(
+            (currency) => currency.key === this.selectedCurrency
+            );
+            const rate = rateObj ? parseFloat(rateObj.value) : 1.0;
+
+            return this.data.items.map(item => ({
+                ...item,
+                converted_price: (parseFloat(item.price) * rate).toFixed(2),
+                currency_key: this.selectedCurrency
+            }));
+        }
+    },
     methods: {
         showMore() {
             this.listLoading = true
@@ -75,6 +91,9 @@ export default {
                 console.log(e)
             })
         },
+        onChangeCurrency(selected){
+            this.selectedCurrency = selected;
+        }
     },
     data() {
         return {
@@ -87,7 +106,9 @@ export default {
             perPage: boughtTicketsPerPage,
             skip: 0,
             imagesPathRewrite: imagesPathRewrite,
-            lang: lang[this.$store.state.locale]
+            lang: lang[this.$store.state.locale],
+            selectedCurrency: localStorage.getItem('selected_currency') ?? "LKR",
+            currencyRates: JSON.parse(localStorage.getItem('currencies')) || [],
         }
     },
     mounted() {

@@ -96,6 +96,7 @@ return [
     'view_ticket' => 'View ticket',
     'departure_date' => 'Departure',
     'name_of_passenger' => 'Passenger name',
+    'route_number' => 'Route number',
     'vehicle_model_number' => 'Vehicle model, number',
     'ticket_number' => 'Ticket #',
     'travel_ticket' => 'Travel Ticket',

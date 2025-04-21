@@ -74,6 +74,7 @@ class TicketsController extends ValidationController
                 'currency:id,key as currency_key'
             )->status([1, 3])->where('ticket_number', $id)->get()->toArray();
 
+            $tickets = $data['tickets'];
             if (!empty($tickets)) {
                 $tickets[0]['seat_number'] = implode(', ', array_column($tickets, 'seat_number'));
             }
